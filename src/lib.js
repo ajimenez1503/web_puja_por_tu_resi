@@ -12,7 +12,7 @@
 */
 function showErrorMessagesPage(page,element,message,success){
     if (typeof(message) === 'string' && typeof(element) === 'string' && typeof(page) === 'string' &&
-        (page=="Welcome" || page=="Profile")){
+        (page=="Welcome" || page=="Student" || page=="College")){
         document.getElementById("showErrorMessage"+page+"Page").style.display="block";
         if(success){
             document.getElementById("showErrorMessage"+page+"Page").className ="alert alert-success";
@@ -24,6 +24,7 @@ function showErrorMessagesPage(page,element,message,success){
 		fade(document.getElementById("showErrorMessage"+page+"Page"),300);
         return true;
     }else{
+        console.log("incorrect infput showErrorMessage.");
         return false;
     }
 

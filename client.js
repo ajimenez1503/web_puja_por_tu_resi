@@ -2,7 +2,7 @@
 * @author antonio Jimenez (antji996)
 * @version 0.1
 */
-var globa_view="welcomeview";//global view
+var globa_view="welcomeview";//"studentview";//global view
 var sizePaswword=8; //global variable of size of password
 var port=":8000";
 
@@ -40,22 +40,6 @@ displayView = function(){
        document.getElementById("viewBase").innerHTML = document.getElementById("studentview").innerHTML;
    }
 };
-
-
-/**
-* Display the data of the user in the tab home: messages, data profile and chart
-*/
-displayData = function(){
-	// the code required to display a view
-	if(localStorage.getItem("token") != null){
-		dataProfile();
-		getMessage();
-		getNumberMessageAndLikes();
-		showImageUser();
-		showVideoUser();
-	}
-};
-
 
 
 /**
@@ -158,15 +142,110 @@ function signout(){
     var xmlHttp =new XMLHttpRequest();
 	xmlHttp.onreadystatechange = function() {
 		if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
+            console.log(JSON.parse(xmlHttp.responseText));
 			//TODO when success is true
 			console.log("logout");
             reloadPage();
 		}
 	}
 	xmlHttp.open("GET", url, true );
+    xmlHttp.withCredentials = true;
+
 	xmlHttp.send();
 }
 
+
+
+/**
+* show the data of the student user
+* @param {string}email. If the email is null the is own user in the opposite case we check the data of the user user
+*/
+function dataProfile(view){
+	var xmlHttp =new XMLHttpRequest();
+	var url=window.location.protocol+"//"+window.location.host+port+"/ProfileStudent/profile/";
+	xmlHttp.open("GET", url, true );
+    xmlHttp.withCredentials = true;
+	xmlHttp.send();
+	xmlHttp.onreadystatechange = function() {
+    	if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
+    		var output= JSON.parse(xmlHttp.responseText);
+            console.log(output)
+    		if(output.success){
+    			document.getElementById(view+"StudentName").innerHTML="   "+output.data.name;
+    			document.getElementById(view+"StudentUSername").innerHTML="   "+output.data.username;
+    			document.getElementById(view+"StudentEmail").innerHTML="   "+output.data.email;
+                if (view=="profile"){
+                    document.getElementById(view+"StudentPoint").innerHTML="   "+output.data.point;
+                }
+    		}else{
+    			showErrorMessagesPage("Student","showdata",output.message,output.success);
+    		}
+    	}
+    }
+}
+
+
+
+/**
+* Change the pasword.
+*The input is validate and show the error in case of problem
+*/
+function changePassword(){
+	var passwordOld=document.getElementById("formChangePasswordOld").value;
+	var passwordNew=document.getElementById("formChangePasswordNew").value;
+	var passwordNewRepeat=document.getElementById("formChangePasswordNewRepeat").value;
+	if(passwordNew==passwordNewRepeat){
+		if(passwordNew.length>=sizePaswword){
+			var url=window.location.protocol+"//"+window.location.host+port+"/ProfileStudent/changePassword/";
+			var xmlHttp =new XMLHttpRequest();
+			xmlHttp.onreadystatechange = function() {
+				if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
+					var output= JSON.parse(xmlHttp.responseText);
+                    console.log(output);
+					showErrorMessagesPage("Student","changePassword",output.message,output.success);
+				}
+			}
+			xmlHttp.open("POST", url, true );
+            xmlHttp.withCredentials = true;
+            var data = new FormData();
+            data.append("old_password", passwordOld);
+            data.append("new_password", passwordNew);
+			xmlHttp.send(data);
+		}else{
+		    showErrorMessagesPage("Student","changePassword","error input",false);
+		}
+	}else{
+		showErrorMessagesPage("Student","changePassword","passwords not identical ",false);
+	}
+}
+
+
+
+/**
+* Change the pasword.
+*The input is validate and show the error in case of problem
+*/
+function changeEmail(){
+	var email=document.getElementById("formChangeEmail").value;
+	if(validateEmail(email)){
+		var url=window.location.protocol+"//"+window.location.host+port+"/ProfileStudent/changeEmail/";
+		var xmlHttp =new XMLHttpRequest();
+		xmlHttp.onreadystatechange = function() {
+			if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
+				var output= JSON.parse(xmlHttp.responseText);
+                console.log(output);
+				showErrorMessagesPage("Student","changeEmail",output.message,output.success);
+			}
+		}
+		xmlHttp.open("POST", url, true );
+        xmlHttp.withCredentials = true;
+        var data = new FormData();
+        data.append("email", email);
+		xmlHttp.send(data);
+	}else{
+		showErrorMessagesPage("Student","changeEmail","Email no es valido.",false);
+	}
+}
 
 ////////////////////////////////////////////////////////////////
 /*
@@ -178,45 +257,25 @@ function signout(){
 * Dispaly the Home view
 */
 function displayHome(){
-	if(localStorage.getItem("token") != null){
-		document.getElementById("home").style.display="block";
-		document.getElementById("browse").style.display="none";
-		document.getElementById("account").style.display="none";
-		dataProfile();
-		getMessage();
-		getNumberMessageAndLikes();
-		showImageUser();
-		showVideoUser();
-	} else {
-		page('/connection');
-	}
+    if("studentview"===globa_view){
+        console.log("displayhome");
+    	document.getElementById("home").style.display="block";
+    	document.getElementById("perfil").style.display="none";
+    	dataProfile("home");
+    }
 }
 
-/**
-* Dispaly the Browse view
-*/
-function displayBrowse(){
-	if(localStorage.getItem("token") != null){
-		document.getElementById("home").style.display="none";
-		document.getElementById("browse").style.display="block";
-		document.getElementById("account").style.display="none";
-	} else {
-		page('/connection');
-	}
-
-}
 
 /**
-* Dispaly the Account view
+* Dispaly the perfil view
 */
-function displayAccount(){
-	if(localStorage.getItem("token") != null){
-		document.getElementById("home").style.display="none";
-		document.getElementById("browse").style.display="none";
-		document.getElementById("account").style.display="block";
-	} else {
-		page('/connection');
-	}
+function displayperfil(){
+    if("studentview"===globa_view){
+        console.log("displayperfil");
+    	document.getElementById("home").style.display="none";
+    	document.getElementById("perfil").style.display="block";
+        dataProfile("profile");
+    }
 }
 
 /**
@@ -230,9 +289,7 @@ page('/', function(){
 * This page disconnect the user when he is connected
 */
 page('/connection', function(){
- 	if(localStorage.getItem("token") != null){
 		signout();
-	}
 });
 
 /**
@@ -243,17 +300,10 @@ page('/home', function(){
 });
 
 /**
-* Display the Browse page
+* Display the perfil page
 */
-page('/browse', function(){
- 	displayBrowse();
-});
-
-/**
-* Display the Account page
-*/
-page('/account', function(){
- 	displayAccount();
+page('/perfil', function(){
+ 	displayperfil();
 });
 
 /**

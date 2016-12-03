@@ -18,6 +18,8 @@
 	<script src="src/page.js"></script>
     <script src="src/lib.js"></script>
     <script src="client.js" ></script>
+    <link rel="icon" type="image/ico" href="img/logo.ico">
+
     <script id="welcomeview" type=”text/view”>
     <div class="header_welcomeview">
         <div class="header_welcomeview_left">
@@ -94,32 +96,130 @@
     </div>
     </script>
     <script id="studentview" type=”text/view”>
-			<div id="home">
-				<div class="row">
-					<div class="col-sm-6">
-						<div id="dataProfile" class="panel-group">
-							<div class="panel with panel-primary class">
-								<div class="panel-heading">User information</div>
-								<div class="panel-body">
-									<div class="row">
-										<div class="col-sm-4">
-											<img id="profileImg" src="" class="img-responsive img-circle"  alt="profile pic" style="display:none;">
-										</div>
-										<div class="col-sm-4 col-md-offset-2" >
-											<label>First name:   </label><label id="profileFirstName"></label></br>
-											<label>Family name:   </label><label id="profileFamilyName"></label></br>
-											<label>Gender:   </label><label id="profileGender"></label></br>
-											<label>City:   </label><label id="profileCity"></label></br>
-											<label>Country:   </label><label id="profileCountry"></label></br>
-											<label>Email:   </label><label id="profileEmail"></label></br>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				 </div>
-			</div>
+    <nav class="nav nav-pills nav-justified">
+		<div class="container-fluid">
+			<ul class="nav navbar-nav">
+				<li onclick="page('/home')"> <a> <label>Home</label ></a> </li>
+				<li onclick="page('/perfil')"> <a>  <label>Perfil</label> </a> </li>
+				<li onclick="page('/connection')"> <a> <label>Log out</label> </a> </li>
+			</ul>
+		</div>
+	</nav>
+    <div id="home">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="panel-group">
+                    <div class="panel with panel-primary class">
+                        <div class="panel-heading">Informacion usuario</div>
+                        <div class="panel-body">
+                            <label>Nomber:   </label><label id="homeStudentName"></label></br>
+                            <label>Usuario:   </label><label id="homeStudentUSername"></label></br>
+                            <label>Email:   </label><label id="homeStudentEmail"></label></br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="perfil">
+
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="panel-group">
+                    <div class="panel with panel-primary class">
+                        <div class="panel-heading">User information</div>
+                        <div class="panel-body">
+                            <label>perfil</label></br>
+                            <label>Nomber:   </label><label id="profileStudentName"></label></br>
+                            <label>Usuario:   </label><label id="profileStudentUSername"></label></br>
+                            <label>Email:   </label><label id="profileStudentEmail"></label></br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="panel-group">
+                    <div class="panel with panel-primary class">
+                        <div class="panel-heading">Punto</div>
+                        <div class="panel-body">
+                            <label>Puntos:   </label><label id="profileStudentPoint"></label></br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-7">
+            <div class="row">
+                <div class="col-md-10 col-md-offset-5">
+                    <div class="panel panel-login">
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <form action="javascript:void(0);" method="post" role="form" >
+                                        <div class="form-group">
+                                            <input  id="formChangePasswordOld" type="password" name="password" pattern=".{8,8}" tabindex="2" class="form-control" placeholder="contraseña actual" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="password" name="confirm-password" pattern=".{8,8}" id="formChangePasswordNew" tabindex="2" class="form-control" placeholder="Nueva contraeña" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="password" name="confirm-password" pattern=".{8,8}" id="formChangePasswordNewRepeat" tabindex="2" class="form-control" placeholder="Confirmar nueva contraseña" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-sm-6 col-sm-offset-3">
+                                                    <input type="submit" onClick="changePassword()" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="Cambiar contraseña">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-sm-7">
+            <div class="row">
+                <div class="col-md-10 col-md-offset-5">
+                    <div class="panel panel-login">
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <form action="javascript:void(0);" method="post" role="form" >
+                                        <div class="form-group">
+                                            <input  id="formChangeEmail" type="email" name="email"  tabindex="2" class="form-control" placeholder="nuevo email" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-sm-6 col-sm-offset-3">
+                                                    <input type="submit" onClick="changeEmail()" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="Cambiar contraseña">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div id="showErrorMessageStudentPage" style="display:none;">
+        <strong>
+            <center>
+                <p id="errorMessageStudentPage"> Error </p>
+            </center>
+        </strong>
     </div>
     </script>
   </head>

@@ -76,7 +76,7 @@
     margin-right: auto;
 	display:none;
 }
-#account{
+#perfil{
 
 	margin-left: auto;
     margin-right: auto;
@@ -178,4 +178,12 @@
 	color: #fff;
 	background-color: #1CA347;
 	border-color: #1CA347;
+}
+
+.navbar-inverse{
+	background-color: #083b66;
+}
+
+.navbar-inverse .navbar-nav>li>a {
+  color: #FFFFFF;
 }
