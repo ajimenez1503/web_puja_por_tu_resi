@@ -101,6 +101,7 @@
 			<ul class="nav navbar-nav">
 				<li onclick="page('/home')"> <a> <label>Home</label ></a> </li>
 				<li onclick="page('/perfil')"> <a>  <label>Perfil</label> </a> </li>
+                <li onclick="page('/inicidence')"> <a> <label>Incidencias</label> </a> </li>
 				<li onclick="page('/connection')"> <a> <label>Log out</label> </a> </li>
 			</ul>
 		</div>
@@ -214,6 +215,85 @@
         </div>
 
     </div>
+
+
+
+    <div id="incidence">
+
+        <div class="row">
+
+            <div class="col-sm-3">
+                <div class="panel-group">
+                    <div class="panel with panel-primary class">
+                        <div class="panel-heading">OPEN</div>
+                        <div class="panel-body" id="incidence_OPEN">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-3">
+                <div class="panel-group">
+                    <div class="panel with panel-primary class">
+                        <div class="panel-heading">IN PROGRESS</div>
+                        <div class="panel-body" id="incidence_IN_PROGRESS">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-3">
+                <div class="panel-group">
+                    <div class="panel with panel-primary class">
+                        <div class="panel-heading">DONE</div>
+                        <div class="panel-body" id="incidence_DONE">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+
+
+        <div class="col-sm-7">
+            <div class="row">
+                <div class="col-md-10 col-md-offset-5">
+                    <div class="panel panel-login">
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <form action="javascript:void(0);" method="post" role="form" >
+                                        <div class="form-group">
+                                            <input  id="formInicidenceDescription" type="text" name="descritption" tabindex="2" class="form-control" placeholder="Descripcion" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" name="file_name"  id="formIncidenceFilename" tabindex="2" class="form-control" placeholder="nombre archivo" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-sm-6 col-sm-offset-3">
+                                                    <input type="submit" onClick="createIncidence()" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="Crear incidencia">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+
+
     <div id="showErrorMessageStudentPage" style="display:none;">
         <strong>
             <center>

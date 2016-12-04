@@ -83,7 +83,7 @@ function validateDNI(dni){
 * @param {element} father of the element will be deleted
 */
 function deleteAllChildElement(node){
-		while (node.firstChild) {
-    		node.removeChild(node.firstChild);
-		}
+	while (node.firstChild) {
+		node.removeChild(node.firstChild);
+	}
 }

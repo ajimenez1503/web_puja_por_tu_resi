@@ -158,7 +158,6 @@ function signout(){
 
 /**
 * show the data of the student user
-* @param {string}email. If the email is null the is own user in the opposite case we check the data of the user user
 */
 function dataProfile(view){
 	var xmlHttp =new XMLHttpRequest();
@@ -247,6 +246,101 @@ function changeEmail(){
 	}
 }
 
+
+
+
+/**
+* create Incidence from the Student to the college.
+*The input is validate and show the error in case of problem
+*/
+function createIncidence(){
+	var description=document.getElementById("formInicidenceDescription").value;
+    var file_name=document.getElementById("formIncidenceFilename").value;
+	var url=window.location.protocol+"//"+window.location.host+port+"/Incidence/create/";
+	var xmlHttp =new XMLHttpRequest();
+	xmlHttp.onreadystatechange = function() {
+		if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
+			var output= JSON.parse(xmlHttp.responseText);
+            console.log(output);
+			showErrorMessagesPage("Student","createIncidence",output.message,output.success);
+		}
+	}
+	xmlHttp.open("POST", url, true );
+    xmlHttp.withCredentials = true;
+    var data = new FormData();
+    data.append("description", description);
+    data.append("file_name", file_name);
+	xmlHttp.send(data);
+}
+
+
+function create_div_incidence(data){
+    var div = document.createElement('div');
+    div.className += " localIncidence";
+
+    var label_id= document.createElement('label');
+    label_id.appendChild(document.createTextNode("id: "+data.id));
+    div.appendChild(label_id);
+    div.appendChild(document.createElement('br'));
+
+    var label_description= document.createElement('label');
+    label_description.appendChild(document.createTextNode("description: "+data.description));
+    div.appendChild(label_description);
+    div.appendChild(document.createElement('br'));
+
+    var label_date= document.createElement('label');
+    label_date.appendChild(document.createTextNode("Fecha: "+data.date.date));
+    div.appendChild(label_date);
+    div.appendChild(document.createElement('br'));
+
+
+
+    return div;
+}
+
+
+/**
+* show the list of incidences
+*/
+function getIncidences(){
+	var xmlHttp =new XMLHttpRequest();
+	var url=window.location.protocol+"//"+window.location.host+port+"/Incidence/get/";
+	xmlHttp.open("GET", url, true );
+    xmlHttp.withCredentials = true;
+	xmlHttp.send();
+	xmlHttp.onreadystatechange = function() {
+    	if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
+    		var output= JSON.parse(xmlHttp.responseText);
+            console.log(output)
+    		if(output.success){
+                var father_open = document.getElementById("incidence_OPEN");
+                deleteAllChildElement(father_open)
+                var father_in_progress = document.getElementById("incidence_IN_PROGRESS");
+                deleteAllChildElement(father_in_progress)
+                var father_done = document.getElementById("incidence_DONE");
+                deleteAllChildElement(father_done)
+
+                for (i = 0; i < output.data.length; i++) {
+                    if("OPEN"==output.data[i].status){
+
+                        father_open.appendChild(create_div_incidence(output.data[i]));
+                    }
+                    else if ("IN PROGRESS"==output.data[i].status){
+                        father_in_progress.appendChild(create_div_incidence(output.data[i]));
+                    }
+                    else if ("DONE"==output.data[i].status){
+                        father_done.appendChild(create_div_incidence(output.data[i]));
+                    }
+                }
+
+    		}else{
+    			showErrorMessagesPage("Student","showdata",output.message,output.success);
+    		}
+    	}
+    }
+}
+
+
 ////////////////////////////////////////////////////////////////
 /*
 *Routing
@@ -261,6 +355,7 @@ function displayHome(){
         console.log("displayhome");
     	document.getElementById("home").style.display="block";
     	document.getElementById("perfil").style.display="none";
+        document.getElementById("incidence").style.display="none";
     	dataProfile("home");
     }
 }
@@ -274,7 +369,23 @@ function displayperfil(){
         console.log("displayperfil");
     	document.getElementById("home").style.display="none";
     	document.getElementById("perfil").style.display="block";
+        document.getElementById("incidence").style.display="none";
         dataProfile("profile");
+    }
+}
+
+
+
+/**
+* Dispaly the perfil view
+*/
+function displayIncidence(){
+    if("studentview"===globa_view){
+        console.log("displayIncidence");
+    	document.getElementById("home").style.display="none";
+    	document.getElementById("perfil").style.display="none";
+        document.getElementById("incidence").style.display="block";
+        getIncidences();
     }
 }
 
@@ -304,6 +415,14 @@ page('/home', function(){
 */
 page('/perfil', function(){
  	displayperfil();
+});
+
+
+/**
+* Display the perfil page
+*/
+page('/inicidence', function(){
+ 	displayIncidence();
 });
 
 /**
