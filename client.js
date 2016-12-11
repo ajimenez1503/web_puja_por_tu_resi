@@ -145,6 +145,7 @@ function signout(){
             console.log(JSON.parse(xmlHttp.responseText));
 			//TODO when success is true
 			console.log("logout");
+            globa_view="welcomeview";
             reloadPage();
 		}
 	}
