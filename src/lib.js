@@ -24,7 +24,7 @@ function showErrorMessagesPage(page,element,message,success){
 		fade(document.getElementById("showErrorMessage"+page+"Page"),300);
         return true;
     }else{
-        console.log("incorrect infput showErrorMessage.");
+        console.log("Incorrect input showErrorMessage.");
         return false;
     }
 

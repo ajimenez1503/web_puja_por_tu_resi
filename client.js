@@ -250,30 +250,65 @@ function changeEmail(){
 
 
 /**
+* Validate size and name of file.
+*/
+function validate_file(fileName,fileSize){
+    console.log("name:"+fileName+" . Size: "+fileSize)
+	var ext = fileName.substring(fileName.lastIndexOf('.') + 1);
+    if( ext=="gif" || ext=="jpg" || ext=="JPG" || ext=="jpeg" || ext=="png" ){
+		if(fileSize>0 && fileSize<1000000000){//The file size can not exceed 1GB.
+			 return true;
+		}else{
+			return false;
+		}
+    }
+    else{
+        return false;
+    }
+
+}
+
+
+/**
 * create Incidence from the Student to the college.
 *The input is validate and show the error in case of problem
 */
 function createIncidence(){
 	var description=document.getElementById("formInicidenceDescription").value;
-    var file_name=document.getElementById("formIncidenceFilename").value;
+    var file=document.getElementById("formIncidenceFilename");
 	var url=window.location.protocol+"//"+window.location.host+port+"/Incidence/create/";
 	var xmlHttp =new XMLHttpRequest();
-	xmlHttp.onreadystatechange = function() {
-		if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
-			var output= JSON.parse(xmlHttp.responseText);
-            console.log(output);
-			showErrorMessagesPage("Student","createIncidence",output.message,output.success);
-		}
-	}
-	xmlHttp.open("POST", url, true );
-    xmlHttp.withCredentials = true;
-    var data = new FormData();
-    data.append("description", description);
-    data.append("file_name", file_name);
-	xmlHttp.send(data);
+    if ('files' in file && file.files.length>=1){
+        file=file.files[0];
+        if ('name' in file && 'size' in file) {
+            if (!validate_file(file.name,file.size)){
+                showErrorMessagesPage("Student","Upload file","error validation file image format.",false);
+            }else{
+                xmlHttp.onreadystatechange = function() {
+            		if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
+            			var output= JSON.parse(xmlHttp.responseText);
+                        console.log(output);
+            			showErrorMessagesPage("Student","createIncidence",output.message,output.success);
+            		}
+            	}
+            	xmlHttp.open("POST", url, true );
+                xmlHttp.withCredentials = true;
+                var data = new FormData();
+                data.append("description", description);
+                data.append("file_name", file);
+            	xmlHttp.send(data);
+            }
+        }else{
+            showErrorMessagesPage("Student","Upload file","error file image.",false);
+        }
+    }else{
+        console.log("Enter a correct file.")
+    }
 }
 
-
+/**
+* create the strucutre to show the incidences in the web
+*/
 function create_div_incidence(data){
     var div = document.createElement('div');
     div.className += " localIncidence";
@@ -292,7 +327,6 @@ function create_div_incidence(data){
     label_date.appendChild(document.createTextNode("Fecha: "+data.date.date));
     div.appendChild(label_date);
     div.appendChild(document.createElement('br'));
-
 
 
     return div;
@@ -319,7 +353,6 @@ function getIncidences(){
                 deleteAllChildElement(father_in_progress)
                 var father_done = document.getElementById("incidence_DONE");
                 deleteAllChildElement(father_done)
-
                 for (i = 0; i < output.data.length; i++) {
                     if("OPEN"==output.data[i].status){
 

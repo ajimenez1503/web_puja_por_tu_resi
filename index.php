@@ -264,12 +264,12 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <form action="javascript:void(0);" method="post" role="form" >
+                                    <form action="javascript:void(0);" method="post" enctype="multipart/form-data" >
                                         <div class="form-group">
                                             <input  id="formInicidenceDescription" type="text" name="descritption" tabindex="2" class="form-control" placeholder="Descripcion" required>
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" name="file_name"  id="formIncidenceFilename" tabindex="2" class="form-control" placeholder="nombre archivo" required>
+                                            <input type="file" name="file_name"  id="formIncidenceFilename" tabindex="2" class="form-control" placeholder="nombre archivo" required>
                                         </div>
                                         <div class="form-group">
                                             <div class="row">
