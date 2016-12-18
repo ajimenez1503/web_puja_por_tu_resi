@@ -2,7 +2,7 @@
 * @author antonio Jimenez (antji996)
 * @version 0.1
 */
-var globa_view="welcomeview";//"studentview";//global view
+var globa_view="welcomeview";//"studentview";//"welcomeview";//global view
 var sizePaswword=8; //global variable of size of password
 var port=":8000";
 
@@ -256,7 +256,7 @@ function changeEmail(){
 function validate_file(fileName,fileSize){
     console.log("name:"+fileName+" . Size: "+fileSize)
 	var ext = fileName.substring(fileName.lastIndexOf('.') + 1);
-    if( ext=="gif" || ext=="jpg" || ext=="JPG" || ext=="jpeg" || ext=="png" ){
+    if( ext=="gif" || ext=="jpg" || ext=="JPG" || ext=="jpeg" || ext=="png" || ext=="pdf" ){
 		if(fileSize>0 && fileSize<1000000000){//The file size can not exceed 1GB.
 			 return true;
 		}else{
@@ -375,6 +375,99 @@ function getIncidences(){
 }
 
 
+
+
+/**
+* create message from the Student to the college.
+*The input is validate and show the error in case of problem
+* the
+*/
+function sendMessage(){
+	var message=document.getElementById("formMessageText").value;
+    var file=document.getElementById("formMessageFilename");
+	var url=window.location.protocol+"//"+window.location.host+port+"/Message/create/";
+	var xmlHttp =new XMLHttpRequest();
+    if (message ===""){
+        showErrorMessagesPage("Student","message","ERROR: necesita un mensaje texto.",false);
+        return;
+    }
+    if ('files' in file && file.files.length>=1){
+        file=file.files[0];
+        if ('name' in file && 'size' in file) {
+            if (!validate_file(file.name,file.size)){
+                showErrorMessagesPage("Student","Upload file","error validation file image format.",false);
+                return;
+            }
+        }else{
+            showErrorMessagesPage("Student","Upload file","error file image.",false);
+            return;
+        }
+        console.log("file "+file.name)
+    }
+    else{
+        console.log("no file")
+        file=null;
+    }
+    xmlHttp.onreadystatechange = function() {
+		if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
+			var output= JSON.parse(xmlHttp.responseText);
+            console.log(output);
+			showErrorMessagesPage("Student","createMessage",output.message,output.success);
+		}
+	}
+	xmlHttp.open("POST", url, true );
+    xmlHttp.withCredentials = true;
+    var data = new FormData();
+    data.append("message", message);
+    data.append("file_attached", file);
+	xmlHttp.send(data);
+}
+
+
+/**
+* show the list of incidences
+*/
+function getMessages(){
+	var xmlHttp =new XMLHttpRequest();
+	var url=window.location.protocol+"//"+window.location.host+port+"/Message/get/";
+	xmlHttp.open("GET", url, true );
+    xmlHttp.withCredentials = true;
+	xmlHttp.send();
+	xmlHttp.onreadystatechange = function() {
+    	if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
+    		var output= JSON.parse(xmlHttp.responseText);
+            console.log(output)
+    		if(output.success){
+                var father = document.getElementById("list_message");
+                deleteAllChildElement(father)
+                for (i = 0; i < output.data.length; i++) {
+                    var div = document.createElement('div');
+                    div.className += " div_message";
+
+                    var p_text = document.createElement('p');
+                    p_text.appendChild(document.createTextNode(output.data[i].message));
+                    div.appendChild(p_text);
+
+                    var p_time = document.createElement('div');
+                    p_time.appendChild(document.createTextNode(output.data[i].date.date));
+                    p_time.className += " div_message_time";
+                    div.appendChild(p_time);
+
+                    if(output.data[i].open){
+                        div.style.color = "#c04021";
+                    }
+                    else{
+                        div.style.color = "#3c763d";
+                    }
+                    father.appendChild(div);
+                }
+    		}else{
+    			showErrorMessagesPage("Student","showdata",output.message,output.success);
+    		}
+    	}
+    }
+}
+
 ////////////////////////////////////////////////////////////////
 /*
 *Routing
@@ -390,6 +483,8 @@ function displayHome(){
     	document.getElementById("home").style.display="block";
     	document.getElementById("perfil").style.display="none";
         document.getElementById("incidence").style.display="none";
+        document.getElementById("message").style.display="none";
+
     	dataProfile("home");
     }
 }
@@ -404,6 +499,7 @@ function displayperfil(){
     	document.getElementById("home").style.display="none";
     	document.getElementById("perfil").style.display="block";
         document.getElementById("incidence").style.display="none";
+        document.getElementById("message").style.display="none";
         dataProfile("profile");
     }
 }
@@ -419,9 +515,28 @@ function displayIncidence(){
     	document.getElementById("home").style.display="none";
     	document.getElementById("perfil").style.display="none";
         document.getElementById("incidence").style.display="block";
+        document.getElementById("message").style.display="none";
         getIncidences();
     }
 }
+
+
+
+
+/**
+* Dispaly the messsage view
+*/
+function displayMessage(){
+    if("studentview"===globa_view){
+        console.log("displayMessage");
+    	document.getElementById("home").style.display="none";
+    	document.getElementById("perfil").style.display="none";
+        document.getElementById("incidence").style.display="none";
+        document.getElementById("message").style.display="block";
+        getMessages();
+    }
+}
+
 
 /**
 * When only the adress of the server is enter, redirection to the connection page
@@ -457,6 +572,14 @@ page('/perfil', function(){
 */
 page('/inicidence', function(){
  	displayIncidence();
+});
+
+
+/**
+* Display the perfil page
+*/
+page('/message', function(){
+ 	displayMessage();
 });
 
 /**
