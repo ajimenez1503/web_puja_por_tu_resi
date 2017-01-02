@@ -335,7 +335,7 @@ function create_div_incidence(data){
 
 
 /**
-* show the list of incidences
+* show the list of incidences of the user
 */
 function getIncidences(){
 	var xmlHttp =new XMLHttpRequest();
@@ -380,7 +380,6 @@ function getIncidences(){
 /**
 * create message from the Student to the college.
 *The input is validate and show the error in case of problem
-* the
 */
 function sendMessage(){
 	var message=document.getElementById("formMessageText").value;
@@ -424,8 +423,73 @@ function sendMessage(){
 }
 
 
+
 /**
-* show the list of incidences
+* create  html message from the mesage (message / date / id / read )
+*@return structure html
+*/
+function createHTMLMessage(message){
+    var div = document.createElement('div');
+    div.className += " div_message";
+
+    var p_text = document.createElement('p');
+    p_text.appendChild(document.createTextNode(message.message));
+    if (message.senderType=="ROLE_STUDENT"){
+        p_text.style.textAlign = "right";
+        console.log(message.senderType);
+    }
+    else if (message.senderType=="ROLE_COLLEGE"){
+        p_text.style.textAlign="left";
+        console.log(message.senderType);
+    }
+    div.appendChild(p_text);
+
+
+    var div_extra = document.createElement('div');
+    div_extra.id="div_extra"+message.id;
+    div_extra.style.display="none";
+        var p_time = document.createElement('div');
+        p_time.appendChild(document.createTextNode(message.date.date));
+        p_time.className += " div_message_time";
+        div_extra.appendChild(p_time);
+
+        if (message.file_attached){
+            var file_download = document.createElement('a');
+            file_download.setAttribute('href', "http://localhost:8000/Message/download/"+message.file_attached);
+            file_download.download="file"
+            file_download.appendChild(document.createTextNode("file_download"));
+            div_extra.appendChild(file_download);
+        }
+    div.appendChild(div_extra);
+
+
+    var img_plus = new Image(20,20); // width, height values are optional params
+    img_plus.src = 'http://www.ieem.edu.uy/img/boton-mas.png';
+    img_plus.onclick = function(){
+        document.getElementById("div_extra"+message.id).style.display="block";
+    };
+    div.appendChild(img_plus);
+
+
+    var img_less = new Image(20,20); // width, height values are optional params
+    img_less.src = 'https://image.freepik.com/icones-gratuites/le-signe-moins-dans-un-cercle_318-67824.jpg';
+    img_less.onclick = function(){
+        document.getElementById("div_extra"+message.id).style.display="none";
+    };
+    div.appendChild(img_less);
+
+
+    if(message.open){
+        div.style.color = "#3c763d";
+    }
+    else{
+        div.style.color = "#c04021";
+    }
+    return div
+
+}
+/**
+* show the list of message of the user
 */
 function getMessages(){
 	var xmlHttp =new XMLHttpRequest();
@@ -441,28 +505,33 @@ function getMessages(){
                 var father = document.getElementById("list_message");
                 deleteAllChildElement(father)
                 for (i = 0; i < output.data.length; i++) {
-                    var div = document.createElement('div');
-                    div.className += " div_message";
-
-                    var p_text = document.createElement('p');
-                    p_text.appendChild(document.createTextNode(output.data[i].message));
-                    div.appendChild(p_text);
-
-                    var p_time = document.createElement('div');
-                    p_time.appendChild(document.createTextNode(output.data[i].date.date));
-                    p_time.className += " div_message_time";
-                    div.appendChild(p_time);
-
-                    if(output.data[i].open){
-                        div.style.color = "#c04021";
-                    }
-                    else{
-                        div.style.color = "#3c763d";
-                    }
-                    father.appendChild(div);
+                    father.appendChild( createHTMLMessage(output.data[i]));
                 }
     		}else{
     			showErrorMessagesPage("Student","showdata",output.message,output.success);
+    		}
+    	}
+    }
+}
+
+
+
+
+/**
+* Open all the messages of the user
+*/
+function OpenAllMessages(){
+	var xmlHttp =new XMLHttpRequest();
+	var url=window.location.protocol+"//"+window.location.host+port+"/Message/openAll/";
+	xmlHttp.open("POST", url, true );
+    xmlHttp.withCredentials = true;
+	xmlHttp.send();
+	xmlHttp.onreadystatechange = function() {
+    	if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
+    		var output= JSON.parse(xmlHttp.responseText);
+            console.log(output)
+    		if(!output.success){
+    			showErrorMessagesPage("Student","Open message",output.message,output.success);
     		}
     	}
     }
@@ -484,7 +553,6 @@ function displayHome(){
     	document.getElementById("perfil").style.display="none";
         document.getElementById("incidence").style.display="none";
         document.getElementById("message").style.display="none";
-
     	dataProfile("home");
     }
 }
@@ -534,6 +602,7 @@ function displayMessage(){
         document.getElementById("incidence").style.display="none";
         document.getElementById("message").style.display="block";
         getMessages();
+        OpenAllMessages();
     }
 }
 
