@@ -625,6 +625,7 @@ function displayHome(){
         console.log("displayhome");
     	document.getElementById("home").style.display="block";
     	document.getElementById("perfil").style.display="none";
+        document.getElementById("Room").style.display="none";
         document.getElementById("incidence").style.display="none";
         document.getElementById("message").style.display="none";
         countNotReadMessages();
@@ -636,19 +637,47 @@ function displayHome(){
 /**
 * Dispaly the perfil view
 */
-function displayperfil(){
+function displayPerfil(){
     if("studentview"===globa_view){
-        console.log("displayperfil");
+        console.log("displayPerfil");
     	document.getElementById("home").style.display="none";
     	document.getElementById("perfil").style.display="block";
         document.getElementById("incidence").style.display="none";
+        document.getElementById("Room").style.display="none";
         document.getElementById("message").style.display="none";
         countNotReadMessages();
         dataProfile("profile");
     }
 }
 
+function initMap() {
+        //get latitude,longitued from the college
+        var uluru = {lat: 39.88605099999999, lng: -3.9192423};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 10,
+          center: uluru
+        });
+        var marker = new google.maps.Marker({
+          position: uluru,
+          map: map
+        });
+}
 
+/**
+* Dispaly the Room view
+*/
+function displayRoom(){
+    if("studentview"===globa_view){
+        console.log("displayRoom");
+    	document.getElementById("home").style.display="none";
+    	document.getElementById("perfil").style.display="none";
+        document.getElementById("Room").style.display="block";
+        document.getElementById("incidence").style.display="none";
+        document.getElementById("message").style.display="none";
+        countNotReadMessages();
+        initMap();
+    }
+}
 
 /**
 * Dispaly the perfil view
@@ -658,6 +687,7 @@ function displayIncidence(){
         console.log("displayIncidence");
     	document.getElementById("home").style.display="none";
     	document.getElementById("perfil").style.display="none";
+        document.getElementById("Room").style.display="none";
         document.getElementById("incidence").style.display="block";
         document.getElementById("message").style.display="none";
         countNotReadMessages();
@@ -676,6 +706,7 @@ function displayMessage(){
         console.log("displayMessage");
     	document.getElementById("home").style.display="none";
     	document.getElementById("perfil").style.display="none";
+        document.getElementById("Room").style.display="none";
         document.getElementById("incidence").style.display="none";
         document.getElementById("message").style.display="block";
         countNotReadMessages();
@@ -710,12 +741,19 @@ page('/home', function(){
 * Display the perfil page
 */
 page('/perfil', function(){
- 	displayperfil();
+ 	displayPerfil();
+});
+
+/**
+* Display the perfil page
+*/
+page('/Room', function(){
+ 	displayRoom();
 });
 
 
 /**
-* Display the perfil page
+* Display the inicidence page
 */
 page('/inicidence', function(){
  	displayIncidence();
@@ -723,7 +761,7 @@ page('/inicidence', function(){
 
 
 /**
-* Display the perfil page
+* Display the message page
 */
 page('/message', function(){
  	displayMessage();
