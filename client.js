@@ -2,6 +2,7 @@
 * @author antonio Jimenez (antji996)
 * @version 0.1
 */
+
 var globa_view="welcomeview";//"studentview";//"welcomeview";//global view
 var sizePaswword=8; //global variable of size of password
 var port=":8000";
