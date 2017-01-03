@@ -329,7 +329,14 @@ function create_div_incidence(data){
     div.appendChild(label_date);
     div.appendChild(document.createElement('br'));
 
-
+    if (data.file_name){
+        var file_download = document.createElement('a');
+        file_download.setAttribute('href', window.location.protocol+"//"+window.location.host+port+"/Incidence/download/"+data.file_name);
+        file_download.download="file"
+        file_download.appendChild(document.createTextNode("file_download"));
+        div.appendChild(file_download);
+        //downloadFile(message.file_attached,file_download);//TODO cannot read the image :Error al interpretar el archivo gráfico JPEG (Not a JPEG file: starts with 0xef 0xbf)
+    }
     return div;
 }
 
@@ -383,6 +390,7 @@ function getIncidences(){
 */
 function sendMessage(){
 	var message=document.getElementById("formMessageText").value;
+    document.getElementById("formMessageText").value= "";//clean input
     var file=document.getElementById("formMessageFilename");
 	var url=window.location.protocol+"//"+window.location.host+port+"/Message/create/";
 	var xmlHttp =new XMLHttpRequest();
@@ -422,7 +430,50 @@ function sendMessage(){
 	xmlHttp.send(data);
 }
 
+/*
+function downloadFile(file_attached,a_element){
+    var xmlHttp =new XMLHttpRequest();
+	var url=window.location.protocol+"//"+window.location.host+port+"/Message/download/"+file_attached;
+	xmlHttp.open("GET", url, true );
+    xmlHttp.withCredentials = true;
+	xmlHttp.send();
+	xmlHttp.onreadystatechange = function() {
+    	if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
+            if(xmlHttp.response.byteLength==0){
+                showErrorMessagesPage("Student","download file","cannot download file",false);
+            }
+            else{
 
+                var filename = "";
+                var disposition = xmlHttp.getResponseHeader('Content-Disposition');
+                if (disposition && disposition.indexOf('attachment') !== -1) {
+                    var filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
+                    var matches = filenameRegex.exec(disposition);
+                    if (matches != null && matches[1]){
+                        filename = matches[1].replace(/['"]/g, '');
+                        console.log(filename);
+                        var type = xmlHttp.getResponseHeader('Content-Type');
+                        var blob = new Blob([xmlHttp.response], { type: type });
+                        var URL = window.URL || window.webkitURL;
+                        var downloadUrl = URL.createObjectURL(blob);
+                        console.log(downloadUrl);
+                        a_element.href = downloadUrl;
+                        a_element.download = filename;
+                    }else{
+                        console.log("There are no file in contect disposition")
+                        showErrorMessagesPage("Student","download file","cannot download file",false);
+                    }
+
+                }else{
+                    console.log("Cannot access to contect disposition")
+                    showErrorMessagesPage("Student","download file","cannot download file",false);
+                }
+
+
+            }
+    	}
+    }
+}*/
 
 /**
 * create  html message from the mesage (message / date / id / read )
@@ -436,11 +487,9 @@ function createHTMLMessage(message){
     p_text.appendChild(document.createTextNode(message.message));
     if (message.senderType=="ROLE_STUDENT"){
         p_text.style.textAlign = "right";
-        console.log(message.senderType);
     }
     else if (message.senderType=="ROLE_COLLEGE"){
         p_text.style.textAlign="left";
-        console.log(message.senderType);
     }
     div.appendChild(p_text);
 
@@ -455,10 +504,11 @@ function createHTMLMessage(message){
 
         if (message.file_attached){
             var file_download = document.createElement('a');
-            file_download.setAttribute('href', "http://localhost:8000/Message/download/"+message.file_attached);
+            file_download.setAttribute('href',window.location.protocol+"//"+window.location.host+port+"/Message/download/"+message.file_attached);
             file_download.download="file"
             file_download.appendChild(document.createTextNode("file_download"));
             div_extra.appendChild(file_download);
+            //downloadFile(message.file_attached,file_download);//TODO cannot read the image :Error al interpretar el archivo gráfico JPEG (Not a JPEG file: starts with 0xef 0xbf)
         }
     div.appendChild(div_extra);
 
@@ -479,7 +529,7 @@ function createHTMLMessage(message){
     div.appendChild(img_less);
 
 
-    if(message.open){
+    if(message.read_by_student){
         div.style.color = "#3c763d";
     }
     else{
@@ -537,6 +587,30 @@ function OpenAllMessages(){
     }
 }
 
+
+
+
+
+/**
+* get number message wihout open, and write in menu whith the message.
+*/
+function countNotReadMessages(){
+	var xmlHttp =new XMLHttpRequest();
+	var url=window.location.protocol+"//"+window.location.host+port+"/Message/countNotRead/";
+	xmlHttp.open("GET", url, true );
+    xmlHttp.withCredentials = true;
+	xmlHttp.send();
+	xmlHttp.onreadystatechange = function() {
+    	if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
+    		var output= JSON.parse(xmlHttp.responseText);
+            console.log(output)
+    		if(output.success){
+    			document.getElementById("numberMessage").textContent=output.data;
+    		}
+    	}
+    }
+}
+
 ////////////////////////////////////////////////////////////////
 /*
 *Routing
@@ -553,6 +627,7 @@ function displayHome(){
     	document.getElementById("perfil").style.display="none";
         document.getElementById("incidence").style.display="none";
         document.getElementById("message").style.display="none";
+        countNotReadMessages();
     	dataProfile("home");
     }
 }
@@ -568,6 +643,7 @@ function displayperfil(){
     	document.getElementById("perfil").style.display="block";
         document.getElementById("incidence").style.display="none";
         document.getElementById("message").style.display="none";
+        countNotReadMessages();
         dataProfile("profile");
     }
 }
@@ -584,6 +660,7 @@ function displayIncidence(){
     	document.getElementById("perfil").style.display="none";
         document.getElementById("incidence").style.display="block";
         document.getElementById("message").style.display="none";
+        countNotReadMessages();
         getIncidences();
     }
 }
@@ -601,6 +678,7 @@ function displayMessage(){
     	document.getElementById("perfil").style.display="none";
         document.getElementById("incidence").style.display="none";
         document.getElementById("message").style.display="block";
+        countNotReadMessages();
         getMessages();
         OpenAllMessages();
     }

@@ -236,3 +236,7 @@
 	padding: 1%;
 	margin: 2%;
 }
+
+#numberMessage  {
+    color: orange;
+}

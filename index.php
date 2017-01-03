@@ -102,7 +102,7 @@
 				<li onclick="page('/home')"> <a> <label>Home</label ></a> </li>
 				<li onclick="page('/perfil')"> <a>  <label>Perfil</label> </a> </li>
                 <li onclick="page('/inicidence')"> <a> <label>Incidencias</label> </a> </li>
-                <li onclick="page('/message')"> <a> <label>Message</label> </a> </li>
+                <li onclick="page('/message')"> <a> <label>Message <span id="numberMessage">0</span></label> </a> </li>
 				<li onclick="page('/connection')"> <a> <label>Log out</label> </a> </li>
 			</ul>
 		</div>
@@ -295,18 +295,18 @@
 
     <div id="message">
 
-            <form class="panel-footer" action="javascript:void(0);" method="post" enctype="multipart/form-data" >
-                <div class="input-group">
-                    <input required id="formMessageText" type="text" class="form-control input-sm" placeholder="Type your message here..."  />
-                    <span class="fileUpload input-group-btn">
-                        <button class="btn btn-warning btn-sm"><i class="glyphicon glyphicon-paperclip"></i> </button>
-                        <input id="formMessageFilename" type="file" class="upload" />
-                    </span>
-                    <span class="input-group-btn">
-                        <button class="btn btn-warning btn-sm"  onClick="sendMessage()">Enviar</button>
-                    </span>
-                </div>
-            </form>
+        <form class="panel-footer" action="javascript:void(0);" method="post" enctype="multipart/form-data" >
+            <div class="input-group">
+                <input required id="formMessageText" type="text" class="form-control input-sm" placeholder="Type your message here..."  />
+                <span class="fileUpload input-group-btn">
+                    <button class="btn btn-warning btn-sm"><i class="glyphicon glyphicon-paperclip"></i> </button>
+                    <input id="formMessageFilename" type="file" class="upload" />
+                </span>
+                <span class="input-group-btn">
+                    <button class="btn btn-warning btn-sm"  onClick="sendMessage()">Enviar</button>
+                </span>
+            </div>
+        </form>
 
         <div id="list_message">
         </div>
