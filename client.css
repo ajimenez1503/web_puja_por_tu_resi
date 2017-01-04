@@ -1,5 +1,5 @@
 /**
-* @author antonio Jimenez (antji996)
+* @author antonio Jimenez (softwarejimenez)
 * @version 0.1
 */
 
@@ -80,6 +80,11 @@
 }
 
 #Room{
+	margin-left: auto;
+    margin-right: auto;
+	display:none;
+}
+#rent{
 	margin-left: auto;
     margin-right: auto;
 	display:none;
@@ -272,4 +277,16 @@
     height: 150px;
     margin: 5%;
     border-radius: 15%;
+}
+
+/*////////////////////////////////////////////////////////////////
+*STUDENT VIEW / RENT
+////////////////////////////////////////////////////////////////*/
+.tabe_rent{
+  margin: 5%;
+}
+
+#payment_rent{
+	margin: 3%;
+	display: none;
 }

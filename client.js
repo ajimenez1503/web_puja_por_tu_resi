@@ -1,5 +1,5 @@
 /**
-* @author antonio Jimenez (antji996)
+* @author antonio Jimenez (softwarejimenez)
 * @version 0.1
 */
 
@@ -665,7 +665,15 @@ function initMap() {
     );
 }
 
-
+////////////////////////////////////////////////////////////////
+/*
+*ROOM, SHOW DATA, DOWNLOAD FILE, PAY
+*/
+////////////////////////////////////////////////////////////////
+function show_form_payment(){
+    //TODO check if there area month available to pay.
+    document.getElementById("payment_rent").style.display="block";
+}
 
 
 ////////////////////////////////////////////////////////////////
@@ -684,6 +692,8 @@ function displayHome(){
         document.getElementById("Room").style.display="none";
         document.getElementById("incidence").style.display="none";
         document.getElementById("message").style.display="none";
+        document.getElementById("rent").style.display="none";
+
         countNotReadMessages();
     	dataProfile("home");
     }
@@ -700,6 +710,8 @@ function displayPerfil(){
         document.getElementById("incidence").style.display="none";
         document.getElementById("Room").style.display="none";
         document.getElementById("message").style.display="none";
+        document.getElementById("rent").style.display="none";
+
         countNotReadMessages();
         dataProfile("profile");
     }
@@ -716,6 +728,8 @@ function displayRoom(){
         document.getElementById("Room").style.display="block";
         document.getElementById("incidence").style.display="none";
         document.getElementById("message").style.display="none";
+        document.getElementById("rent").style.display="none";
+
         countNotReadMessages();
         initMap();
     }
@@ -732,6 +746,8 @@ function displayIncidence(){
         document.getElementById("Room").style.display="none";
         document.getElementById("incidence").style.display="block";
         document.getElementById("message").style.display="none";
+        document.getElementById("rent").style.display="none";
+
         countNotReadMessages();
         getIncidences();
     }
@@ -748,9 +764,27 @@ function displayMessage(){
         document.getElementById("Room").style.display="none";
         document.getElementById("incidence").style.display="none";
         document.getElementById("message").style.display="block";
+        document.getElementById("rent").style.display="none";
         countNotReadMessages();
         getMessages();
         OpenAllMessages();
+    }
+}
+
+/**
+* Dispaly the rent view
+*/
+function displayRent(){
+    if("studentview"===globa_view){
+        console.log("displayRent");
+    	document.getElementById("home").style.display="none";
+    	document.getElementById("perfil").style.display="none";
+        document.getElementById("Room").style.display="none";
+        document.getElementById("incidence").style.display="none";
+        document.getElementById("rent").style.display="block";
+        document.getElementById("message").style.display="none";
+        countNotReadMessages();
+        show_form_payment();
     }
 }
 
@@ -804,6 +838,13 @@ page('/inicidence', function(){
 */
 page('/message', function(){
  	displayMessage();
+});
+
+/**
+* Display the message page
+*/
+page('/rent', function(){
+ 	displayRent();
 });
 
 /**
