@@ -693,7 +693,7 @@ function displayHome(){
         document.getElementById("incidence").style.display="none";
         document.getElementById("message").style.display="none";
         document.getElementById("rent").style.display="none";
-
+        document.getElementById("search_room").style.display="none";
         countNotReadMessages();
     	dataProfile("home");
     }
@@ -711,7 +711,7 @@ function displayPerfil(){
         document.getElementById("Room").style.display="none";
         document.getElementById("message").style.display="none";
         document.getElementById("rent").style.display="none";
-
+        document.getElementById("search_room").style.display="none";
         countNotReadMessages();
         dataProfile("profile");
     }
@@ -726,6 +726,26 @@ function displayRoom(){
     	document.getElementById("home").style.display="none";
     	document.getElementById("perfil").style.display="none";
         document.getElementById("Room").style.display="block";
+        document.getElementById("incidence").style.display="none";
+        document.getElementById("message").style.display="none";
+        document.getElementById("rent").style.display="none";
+        document.getElementById("search_room").style.display="none";
+        countNotReadMessages();
+        initMap();
+    }
+}
+
+
+/**
+* Dispaly the search_room view
+*/
+function displaySearch_room(){
+    if("studentview"===globa_view){
+        console.log("displaySearch_room");
+    	document.getElementById("home").style.display="none";
+    	document.getElementById("perfil").style.display="none";
+        document.getElementById("Room").style.display="none";
+        document.getElementById("search_room").style.display="block";
         document.getElementById("incidence").style.display="none";
         document.getElementById("message").style.display="none";
         document.getElementById("rent").style.display="none";
@@ -747,7 +767,7 @@ function displayIncidence(){
         document.getElementById("incidence").style.display="block";
         document.getElementById("message").style.display="none";
         document.getElementById("rent").style.display="none";
-
+        document.getElementById("search_room").style.display="none";
         countNotReadMessages();
         getIncidences();
     }
@@ -765,6 +785,7 @@ function displayMessage(){
         document.getElementById("incidence").style.display="none";
         document.getElementById("message").style.display="block";
         document.getElementById("rent").style.display="none";
+        document.getElementById("search_room").style.display="none";
         countNotReadMessages();
         getMessages();
         OpenAllMessages();
@@ -783,6 +804,7 @@ function displayRent(){
         document.getElementById("incidence").style.display="none";
         document.getElementById("rent").style.display="block";
         document.getElementById("message").style.display="none";
+        document.getElementById("search_room").style.display="none";
         countNotReadMessages();
         show_form_payment();
     }
@@ -818,10 +840,17 @@ page('/perfil', function(){
 });
 
 /**
-* Display the perfil page
+* Display the room page
 */
 page('/Room', function(){
  	displayRoom();
+});
+
+/**
+* Display the search_room page
+*/
+page('/search_room', function(){
+ 	displaySearch_room();
 });
 
 

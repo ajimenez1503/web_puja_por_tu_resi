@@ -78,6 +78,11 @@
     margin-right: auto;
 	display:none;
 }
+#search_room{
+	margin-left: auto;
+    margin-right: auto;
+	display:none;
+}
 
 #Room{
 	margin-left: auto;
@@ -290,3 +295,7 @@
 	margin: 3%;
 	display: none;
 }
+
+/*////////////////////////////////////////////////////////////////
+*STUDENT VIEW / SEARCH_ROOM
+////////////////////////////////////////////////////////////////*/

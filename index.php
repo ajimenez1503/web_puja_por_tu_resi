@@ -104,6 +104,7 @@
 			<ul class="nav navbar-nav">
 				<li onclick="page('/home')"> <a> <label>Home</label ></a> </li>
 				<li onclick="page('/perfil')"> <a>  <label>Perfil</label> </a> </li>
+                <li onclick="page('/search_room')"> <a>  <label>Buscar Habitacion</label> </a> </li>
                 <li onclick="page('/Room')"> <a>  <label>Mi Habitacion</label> </a> </li>
                 <li onclick="page('/inicidence')"> <a> <label>Incidencias</label> </a> </li>
                 <li onclick="page('/message')"> <a> <label>Mensajes <span id="numberMessage">0</span></label> </a> </li>
@@ -229,6 +230,26 @@
 
     </div> <!-- end Profile -->
 
+
+
+    <div id="search_room">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="panel-group">
+                    <div class="panel with panel-primary class">
+                        <div class="panel-heading">Informacion usuario</div>
+                        <div class="panel-body">
+                            <label>Nombre:   </label><label id="homeStudentName"></label></br>
+                            <label>Usuario:   </label><label id="homeStudentUSername"></label></br>
+                            <label>Email:   </label><label id="homeStudentEmail"></label></br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- end search_room -->
+
+
     <div id="Room">
         <button onclick="show_upload_file_agreement()" type="button" class="button_margin_room btn btn-primary">Aceptar y firmar contrato</button>
         <button type="button" class="button_margin_room btn btn-success">Descargar contrato</button>
@@ -333,7 +354,7 @@
                     <div class="panel with panel-primary class">
                         <div class="panel-heading">Contato</div>
                         <div class="panel-body">
-                            <label>File:   </label><label id="AgreementStudentfile"></label></br>
+                            <label>Archivo:   </label><label id="AgreementStudentfile"></label></br>
                             <label>fecha inicio:   </label><label id="AgreementStudentDateStart"></label></br>
                             <label>fecha fin:   </label><label id="AgreementStudentDateEnd"></label></br>
                             <label>Precio:   </label><label id="AgreementStudentPrice"></label></br>
