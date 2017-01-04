@@ -164,7 +164,20 @@ function logout(){
 */
 ////////////////////////////////////////////////////////////////
 
+/**
+* Display form to updload the agreement (signed)
+*/
+function show_from_update(id) {
+    if (id=="password"){
+        document.getElementById("from_update_password").style.display="block";
+        document.getElementById("from_update_email").style.display="none";
+    }else if (id=="email"){
+        document.getElementById("from_update_email").style.display="block";
+        document.getElementById("from_update_password").style.display="none";
 
+    }
+
+}
 /**
 * show the data of the student user
 */

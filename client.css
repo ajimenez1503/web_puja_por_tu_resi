@@ -156,6 +156,22 @@
 	background-color: #1CA347;
 	border-color: #1CA347;
 }
+
+
+
+
+/*////////////////////////////////////////////////////////////////
+*STUDENT VIEW / PROFILE
+////////////////////////////////////////////////////////////////*/
+#from_update_email {
+	display: None;
+}
+#from_update_password{
+	display: None;
+}
+.elememt_profile{
+	  padding-bottom: 15%;
+}
 /*////////////////////////////////////////////////////////////////
 *STUDENT VIEW / MESSAGE
 ////////////////////////////////////////////////////////////////*/
@@ -241,4 +257,19 @@
 
 #upload_file_agreement{
 	display:none;
+}
+.left_room{
+	float: left;
+}
+.right_room{
+	float: right;
+    background-color: rgb(216, 220, 226);
+    width: 170px;
+    border-radius: 3%;
+}
+.img_room{
+	width: 150px;
+    height: 150px;
+    margin: 5%;
+    border-radius: 15%;
 }
