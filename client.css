@@ -1,8 +1,12 @@
 /**
-* @author antonio Jimenez (antji996) cedric Lallemand (cedla736)
+* @author antonio Jimenez (antji996)
 * @version 0.1
 */
-.margin{
+
+/*////////////////////////////////////////////////////////////////
+*WELCOME VIEW
+////////////////////////////////////////////////////////////////*/
+.margin_top{
 	margin-top:3%;
 }
 
@@ -28,76 +32,28 @@
 	padding-right: 5%;
 }
 
-
-
-.div_message{
-	background-color: #dff0d8;
-	border-color: #d6e9c6;
-	padding: 15px;
-	margin-bottom: 20px;
-	border: 1px solid transparent;
-	border-radius: 4px;
-	margin: 5%;
-	padding-bottom: 5%;
+.btn-login {
+	background-color: #59B2E0;
+	outline: none;
+	color: #fff;
+	font-size: 14px;
+	height: auto;
+	font-weight: normal;
+	padding: 7px 11px;
+	text-transform: uppercase;
+	border-color: #59B2E6;
+}
+.btn-login:hover,
+.btn-login:focus {
+	color: #fff;
+	background-color: #53A3CD;
+	border-color: #53A3CD;
 }
 
-.div_message_time {
-  float: right;
-  border: 5px solid transparent;
-  border-color: rgb(232, 216, 216);
-}
+/*////////////////////////////////////////////////////////////////
+*STUDENT VIEW
+////////////////////////////////////////////////////////////////*/
 
-
-.fileUpload {
-    position: relative;
-    overflow: hidden;
-	cursor: pointer;
-}
-.fileUpload input.upload {
-    position: absolute;
-    top: 0;
-    right: 0;
-    margin: 0;
-    padding: 0;
-	width: 100%;
-  	height: 100%;
-    font-size: 20px;
-    cursor: pointer;
-    opacity: 0;
-    filter: alpha(opacity=0);
-}
-
-
-
-
-
-
-
-
-#browseDataUser{
-	display: none;
-}
-
-#drag1{
-	width:80px;
-	height:80px;
-	margin-right:50px;
-}
-
-#Display_thumb{
-	display: inline-flex;
-    border: none;
-}
-
-#dropper {
-	width: 100px;
-    height: 100px;
-	padding:10px;
-	border:1px solid #aaaaaa;
-}
-
-
-/*profile*/
 #home{
 
 	margin-left: auto;
@@ -128,6 +84,7 @@
     margin-right: auto;
 	display:none;
 }
+
 .panel-login {
 	border-color: #ccc;
 	-webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
@@ -180,34 +137,9 @@
 	box-shadow: none;
 	border-color: #ccc;
 }
-.btn-login {
-	background-color: #59B2E0;
-	outline: none;
-	color: #fff;
-	font-size: 14px;
-	height: auto;
-	font-weight: normal;
-	padding: 7px 11px;
-	text-transform: uppercase;
-	border-color: #59B2E6;
-}
-.btn-login:hover,
-.btn-login:focus {
-	color: #fff;
-	background-color: #53A3CD;
-	border-color: #53A3CD;
-}
-.forgot-password {
-	text-decoration: underline;
-	color: #888;
-}
-.forgot-password:hover,
-.forgot-password:focus {
-	text-decoration: underline;
-	color: #666;
-}
 
-.btn-register {
+
+.btn-submit {
 	background-color: #1CB94E;
 	outline: none;
 	color: #fff;
@@ -218,22 +150,61 @@
 	text-transform: uppercase;
 	border-color: #1CB94A;
 }
-.btn-register:hover,
-.btn-register:focus {
+.btn-submit:hover,
+.btn-submit:focus {
 	color: #fff;
 	background-color: #1CA347;
 	border-color: #1CA347;
 }
+/*////////////////////////////////////////////////////////////////
+*STUDENT VIEW / MESSAGE
+////////////////////////////////////////////////////////////////*/
 
-.navbar-inverse{
-	background-color: #083b66;
+.div_message{
+	background-color: #dff0d8;
+	border-color: #d6e9c6;
+	padding: 15px;
+	margin-bottom: 20px;
+	border: 1px solid transparent;
+	border-radius: 4px;
+	margin: 5%;
+	padding-bottom: 5%;
 }
 
-.navbar-inverse .navbar-nav>li>a {
-  color: #FFFFFF;
+.div_message_time {
+  float: right;
+  border: 5px solid transparent;
+  border-color: rgb(232, 216, 216);
 }
 
+.fileUpload {
+    position: relative;
+    overflow: hidden;
+	cursor: pointer;
+}
+.fileUpload input.upload {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+	width: 100%;
+  	height: 100%;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+.icon_paperclip{
+	font-size: 15px !important;
+}
 
+#numberMessage  {
+    color: orange;
+}
+/*////////////////////////////////////////////////////////////////
+*STUDENT VIEW / INCIDENCE
+////////////////////////////////////////////////////////////////*/
 
 .localIncidence{
 	background-color: rgb(116, 207, 234);
@@ -241,17 +212,16 @@
 	padding: 1%;
 	margin: 2%;
 }
-
-#numberMessage  {
-    color: orange;
-}
-.button_margin{
+/*////////////////////////////////////////////////////////////////
+*STUDENT VIEW / ROOM
+////////////////////////////////////////////////////////////////*/
+.button_margin_room{
 	margin-left: 5%;
 	margin-right: 5%;
 	margin-bottom: 4%;
 }
 
-i{
+.icon{
 	font-size: 24px !important;
 	margin: 1% !important;
 }
@@ -267,4 +237,8 @@ i{
 	margin-left:  10%;
 	margin-bottom: 15px;
 	background-color: grey;
+}
+
+#upload_file_agreement{
+	display:none;
 }

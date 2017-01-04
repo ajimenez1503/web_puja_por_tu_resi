@@ -10,7 +10,6 @@ var port=":8000";
 ////////////////////////////////////////////////////////////////
 /*
 *LOAD VIEWS
-
 */
 ////////////////////////////////////////////////////////////////
 /**
@@ -42,6 +41,11 @@ displayView = function(){
    }
 };
 
+////////////////////////////////////////////////////////////////
+/*
+*SIGNIN SIGNUP LOGOUT
+*/
+////////////////////////////////////////////////////////////////
 
 /**
 * login the user by email and password.
@@ -132,13 +136,12 @@ function signup(){
         data.append("email",user.email);
         data.append("name", user.name);
 		xmlHttp.send(data);
-
-
 }
+
 /**
-* signout the user
+* logout the user
 */
-function signout(){
+function logout(){
     var url=window.location.protocol+"//"+window.location.host+port+"/logout";
     var xmlHttp =new XMLHttpRequest();
 	xmlHttp.onreadystatechange = function() {
@@ -152,10 +155,14 @@ function signout(){
 	}
 	xmlHttp.open("GET", url, true );
     xmlHttp.withCredentials = true;
-
 	xmlHttp.send();
 }
 
+////////////////////////////////////////////////////////////////
+/*
+*PROFILE USER. SHOW, UPDATE
+*/
+////////////////////////////////////////////////////////////////
 
 
 /**
@@ -184,8 +191,6 @@ function dataProfile(view){
     	}
     }
 }
-
-
 
 /**
 * Change the pasword.
@@ -220,8 +225,6 @@ function changePassword(){
 	}
 }
 
-
-
 /**
 * Change the pasword.
 *The input is validate and show the error in case of problem
@@ -249,7 +252,11 @@ function changeEmail(){
 }
 
 
-
+////////////////////////////////////////////////////////////////
+/*
+*INCIDENCE CREATE, SHOW
+*/
+////////////////////////////////////////////////////////////////
 
 /**
 * Validate size and name of file.
@@ -382,7 +389,11 @@ function getIncidences(){
     }
 }
 
-
+////////////////////////////////////////////////////////////////
+/*
+*MESSAGE CREATE SHOW OPEN
+*/
+////////////////////////////////////////////////////////////////
 
 
 /**
@@ -566,8 +577,6 @@ function getMessages(){
 }
 
 
-
-
 /**
 * Open all the messages of the user
 */
@@ -587,9 +596,6 @@ function OpenAllMessages(){
     	}
     }
 }
-
-
-
 
 
 /**
@@ -612,12 +618,48 @@ function countNotReadMessages(){
     }
 }
 
+
+////////////////////////////////////////////////////////////////
+/*
+*ROOM, SHOW DATA, DOWNLOAD FILE, ACEPT AGREEMENT, REJECT
+*/
+////////////////////////////////////////////////////////////////
+/**
+* Display form to updload the agreement (signed)
+*/
+function show_upload_file_agreement() {
+    document.getElementById("upload_file_agreement").style.display="block";
+}
+
+/**
+* display the location of the college of the room
+*/
+function initMap() {
+    //get latitude,longitued from the college
+    var uluru = {lat: 39.88605099999999, lng: -3.9192423};
+    var map = new google.maps.Map(
+        document.getElementById('map'),
+        {
+            zoom: 10,
+            center: uluru
+        }
+    );
+    var marker = new google.maps.Marker(
+        {
+            position: uluru,
+            map: map
+        }
+    );
+}
+
+
+
+
 ////////////////////////////////////////////////////////////////
 /*
 *Routing
 */
 ////////////////////////////////////////////////////////////////
-
 /**
 * Dispaly the Home view
 */
@@ -634,7 +676,6 @@ function displayHome(){
     }
 }
 
-
 /**
 * Dispaly the perfil view
 */
@@ -649,19 +690,6 @@ function displayPerfil(){
         countNotReadMessages();
         dataProfile("profile");
     }
-}
-
-function initMap() {
-        //get latitude,longitued from the college
-        var uluru = {lat: 39.88605099999999, lng: -3.9192423};
-        var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 10,
-          center: uluru
-        });
-        var marker = new google.maps.Marker({
-          position: uluru,
-          map: map
-        });
 }
 
 /**
@@ -681,7 +709,7 @@ function displayRoom(){
 }
 
 /**
-* Dispaly the perfil view
+* Dispaly the inicidence view
 */
 function displayIncidence(){
     if("studentview"===globa_view){
@@ -695,9 +723,6 @@ function displayIncidence(){
         getIncidences();
     }
 }
-
-
-
 
 /**
 * Dispaly the messsage view
@@ -728,7 +753,7 @@ page('/', function(){
 * This page disconnect the user when he is connected
 */
 page('/connection', function(){
-		signout();
+		logout();
 });
 
 /**
