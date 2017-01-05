@@ -714,18 +714,74 @@ function rotate(tab){
         }
     }
 }
-
 ////////////////////////////////////////////////////////////////
 /*
-*ROOM, SHOW DATA, DOWNLOAD FILE, PAY
+*RENT, SHOW DATA, DOWNLOAD FILE, PAY
 */
 ////////////////////////////////////////////////////////////////
+
+/**
+*Display the form to pay
+*/
 function show_form_payment(){
     //TODO check if there area month available to pay.
     document.getElementById("payment_rent").style.display="block";
 }
 
+////////////////////////////////////////////////////////////////
+/*
+*SEARCH_ROOM, SHOW DATA, DOWNLOAD FILE, PAY
+*/
+////////////////////////////////////////////////////////////////
+/**
+*Display the range of price
+*/
+function display_range_price(){
+    $( "#slider-range" ).slider({
+        range: true,
+        min: 0,
+        max: 1000,
+        values: [ 75, 300 ],
+        slide: function( event, ui ) {
+            $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+        }
+    });
+    $( "#amount" ).val(
+     get_min_range_prince() +" € - " + get_max_range_prince() +" € " );
+}
 
+/**
+*Get min price
+*/
+function get_min_range_prince(){
+    return $( "#slider-range" ).slider( "values", 0 );
+}
+
+/**
+*GEt max price
+*/
+function get_max_range_prince(){
+    return $( "#slider-range" ).slider( "values", 1 );
+}
+/**
+*select a icon or image of the list of equipment
+*/
+function selected(id){
+    document.getElementById(id).className += " selected";
+}
+/**
+*get element selected of the equpment in a json structure
+*/
+function get_equipment_selected(tab){
+    var result={};
+    child=document.getElementById(tab).children;;
+    var i;
+    for (i = 0; i < child.length; i++) {
+        result[child[i].id] = child[i].className.includes("selected");
+    }
+    console.log(result);
+    return result;
+}
 ////////////////////////////////////////////////////////////////
 /*
 *Routing
@@ -802,7 +858,7 @@ function displaySearch_room(){
         document.getElementById("message").style.display="none";
         document.getElementById("rent").style.display="none";
         countNotReadMessages();
-        initMap();
+        display_range_price();
     }
 }
 
