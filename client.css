@@ -273,15 +273,30 @@
 }
 .right_room{
 	float: right;
-    background-color: rgb(216, 220, 226);
-    width: 170px;
-    border-radius: 3%;
+
 }
 .img_room{
 	width: 150px;
     height: 150px;
     margin: 5%;
     border-radius: 15%;
+}
+
+
+.slide_img{
+	width: 230px;
+	height: 200px;
+	float: left;
+}
+#Room_slider_img{
+	width: 230px;
+	height: 200px;
+	overflow: hidden;
+	position: relative;
+	margin: 10px 0 0 0;
+	border-radius: 21px;
+  	border-color: rgb(150, 172, 219);
+
 }
 
 /*////////////////////////////////////////////////////////////////

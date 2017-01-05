@@ -665,6 +665,56 @@ function initMap() {
     );
 }
 
+
+/**
+* pause during the milisecond
+*/
+function pause(millis){
+  var date = new Date();
+  var curDate = null;
+  do { curDate = new Date(); }
+  while(curDate-date < millis);
+
+}
+
+/**
+*Rotate the images of the room
+*/
+function rotate(tab){
+    var animate=null;
+    var number_image=3;
+    var size_width=230;
+    var slider =document.getElementById(tab+"_slider_img");
+	document.getElementById(tab+"_slidesContainer_img").style.width=(size_width*number_image).toString()+"px";//230*3=690 totalWidth* number images
+	var totalWidth =size_width*number_image-size_width;//3*230-230=460//The total width, less one
+    animate=setTimeout(sliderScroll,20); // call moveRight in 20msec
+
+	function sliderScroll(){
+		position=parseInt(slider.scrollLeft);
+        //console.log(position);
+
+		if(position%size_width==0){//start of a image, pause 1seg
+			pause(1000);
+            //console.log("pause")
+		}
+		if(position+1>=totalWidth){//at the end, start again
+			slider.scrollLeft=0;
+            //console.log("start")
+		}
+		else{
+	    	slider.scrollLeft=position+1;//move scroll
+		}
+
+        if (document.getElementById(tab).style.display=="block"){//still in tab
+            animate = setTimeout(sliderScroll,20); // call moveRight in 20msec
+        }else {//stop animation if move to other tab
+            slider.scrollLeft=0;
+            clearTimeout(animate);
+            //console.log("stop");
+        }
+    }
+}
+
 ////////////////////////////////////////////////////////////////
 /*
 *ROOM, SHOW DATA, DOWNLOAD FILE, PAY
@@ -696,6 +746,7 @@ function displayHome(){
         document.getElementById("search_room").style.display="none";
         countNotReadMessages();
     	dataProfile("home");
+
     }
 }
 
@@ -730,6 +781,7 @@ function displayRoom(){
         document.getElementById("message").style.display="none";
         document.getElementById("rent").style.display="none";
         document.getElementById("search_room").style.display="none";
+        rotate("Room");
         countNotReadMessages();
         initMap();
     }
@@ -749,7 +801,6 @@ function displaySearch_room(){
         document.getElementById("incidence").style.display="none";
         document.getElementById("message").style.display="none";
         document.getElementById("rent").style.display="none";
-
         countNotReadMessages();
         initMap();
     }
