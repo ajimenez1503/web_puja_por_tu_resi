@@ -87,3 +87,29 @@ function deleteAllChildElement(node){
 		node.removeChild(node.firstChild);
 	}
 }
+
+
+
+/**
+* display the location of the college on map
+* @param {id} id of the div
+* @param {latitude} latitude of the position
+* @param {latitude} longitued of the position
+*/
+function init_map(id,latitude,longitued) {
+    //get latitude,longitued from the college
+    var uluru = {lat: latitude, lng: longitued};
+    var map = new google.maps.Map(
+        document.getElementById(id),
+        {
+            zoom: 10,
+            center: uluru
+        }
+    );
+    var marker = new google.maps.Marker(
+        {
+            position: uluru,
+            map: map
+        }
+    );
+}

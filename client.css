@@ -78,7 +78,7 @@
     margin-right: auto;
 	display:none;
 }
-#search_room_global{
+#search_room{
 	margin-left: auto;
     margin-right: auto;
 	display:none;
@@ -320,20 +320,20 @@
 }
 
 
-.table_search_room_form{
+.table_search_room{
 	margin: 5%;
 	margin: 5%;
 	height: 201px;
 	overflow-y: auto;
 }
 
-#search_room_form{
+#search_room_table{
 	margin-left: auto;
     margin-right: auto;
 	display:block;
 }
 
-#search_room_local{
+#search_room_specific{
 	margin-left: auto;
     margin-right: auto;
 	display:none;
@@ -346,11 +346,30 @@
 }
 
 
-#map_search_room_global{
+#search_room_table_map{
 	margin-top: 5%;
 	width: 80%;
 	height: 287px;
 	margin-left:  10%;
 	margin-bottom: 15px;
 	background-color: grey;
+}
+
+#search_room_specific_map{
+	width: 80%;
+	height: 287px;
+	margin-left:  10%;
+	margin-bottom: 15px;
+	background-color: grey;
+}
+
+#search_room_specific_slider_img{
+	width: 230px;
+	height: 200px;
+	overflow: hidden;
+	position: relative;
+	margin: 10px 0 0 0;
+	border-radius: 21px;
+  	border-color: rgb(150, 172, 219);
+
 }

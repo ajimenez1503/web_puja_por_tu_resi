@@ -660,6 +660,7 @@ function pause(millis){
 *Rotate the images of the room
 */
 function rotate(tab){
+    console.log("rotata start: "+ tab)
     var animate=null;
     var number_image=3;
     var size_width=230;
@@ -670,7 +671,7 @@ function rotate(tab){
 
 	function sliderScroll(){
 		position=parseInt(slider.scrollLeft);
-        //console.log(position);
+        console.log(position);
 
 		if(position%size_width==0){//start of a image, pause 1seg
 			pause(1000);
@@ -678,7 +679,7 @@ function rotate(tab){
 		}
 		if(position+1>=totalWidth){//at the end, start again
 			slider.scrollLeft=0;
-            //console.log("start")
+            console.log("start")
 		}
 		else{
 	    	slider.scrollLeft=position+1;//move scroll
@@ -686,10 +687,11 @@ function rotate(tab){
 
         if (document.getElementById(tab).style.display=="block"){//still in tab
             animate = setTimeout(sliderScroll,20); // call moveRight in 20msec
+            console.log("repeat");
         }else {//stop animation if move to other tab
             slider.scrollLeft=0;
             clearTimeout(animate);
-            //console.log("stop");
+            console.log("stop");
         }
     }
 }
@@ -762,7 +764,41 @@ function get_equipment_selected(tab){
     return result;
 }
 
+/**
+*Search room
+*/
+function search_rooms() {
+    var min_price=get_min_range_prince();
+    var max_price=get_max_range_prince();
+    //TODO get residence
+    get_equipment_selected('search_equipment');
+    document.getElementById("search_room_table").style.display="block";
+    document.getElementById("search_room_specific").style.display="none";
+    //TODO get all residences availables whith the paramenter
+    //display the table
 
+}
+
+/**
+* Dispaly search room table
+*/
+ function display_search_room_table() {
+     display_range_price();
+     init_map("search_room_table_map",39.88605099999999,-3.9192423);
+ }
+/**
+*Dispaly the features of a room
+*/
+function display_search_room_specific(room_name,username_college){
+    //TODO collect data of room and college
+    //TODO get the 5 best bets //display the best in search_room_specific_ul
+    document.getElementById("search_room_table").style.display="none";
+    document.getElementById("search_room_specific").style.display="block";
+    init_map("search_room_specific_map",39.88605099999999,-3.9192423);
+    rotate("search_room_specific");
+
+
+}
 /**
 *select a row in a table of the search
 * Display the maps
@@ -770,7 +806,7 @@ function get_equipment_selected(tab){
 function selected_row_table(id, latitude, longitued){
     document.getElementById(id).className = " selected_row_table";
     // display maps latitude, longitued
-    init_map("map_search_room_global",39.88605099999999,-3.9192423);
+    init_map("map_search_room_table",39.88605099999999,-3.9192423);
 }
 
 /**
@@ -797,7 +833,7 @@ function displayHome(){
         document.getElementById("incidence").style.display="none";
         document.getElementById("message").style.display="none";
         document.getElementById("rent").style.display="none";
-        document.getElementById("search_room_global").style.display="none";
+        document.getElementById("search_room").style.display="none";
         countNotReadMessages();
     	dataProfile("home");
 
@@ -816,7 +852,7 @@ function displayPerfil(){
         document.getElementById("Room").style.display="none";
         document.getElementById("message").style.display="none";
         document.getElementById("rent").style.display="none";
-        document.getElementById("search_room_global").style.display="none";
+        document.getElementById("search_room").style.display="none";
         countNotReadMessages();
         dataProfile("profile");
     }
@@ -834,7 +870,7 @@ function displayRoom(){
         document.getElementById("incidence").style.display="none";
         document.getElementById("message").style.display="none";
         document.getElementById("rent").style.display="none";
-        document.getElementById("search_room_global").style.display="none";
+        document.getElementById("search_room").style.display="none";
         rotate("Room");
         countNotReadMessages();
         init_map("map_room",39.88605099999999,-3.9192423);
@@ -847,16 +883,17 @@ function displayRoom(){
 */
 function displaySearch_room(){
     if("studentview"===globa_view){
-        console.log("displaySearch_room_global");
+        console.log("displaysearch_room");
     	document.getElementById("home").style.display="none";
     	document.getElementById("perfil").style.display="none";
         document.getElementById("Room").style.display="none";
-        document.getElementById("search_room_global").style.display="block";
+        document.getElementById("search_room").style.display="block";
         document.getElementById("incidence").style.display="none";
         document.getElementById("message").style.display="none";
         document.getElementById("rent").style.display="none";
+        //TODO get list of colleges for the search_room_form
         countNotReadMessages();
-        display_range_price();
+        display_search_room_table();
     }
 }
 
@@ -872,7 +909,7 @@ function displayIncidence(){
         document.getElementById("incidence").style.display="block";
         document.getElementById("message").style.display="none";
         document.getElementById("rent").style.display="none";
-        document.getElementById("search_room_global").style.display="none";
+        document.getElementById("search_room").style.display="none";
         countNotReadMessages();
         getIncidences();
     }
@@ -890,7 +927,7 @@ function displayMessage(){
         document.getElementById("incidence").style.display="none";
         document.getElementById("message").style.display="block";
         document.getElementById("rent").style.display="none";
-        document.getElementById("search_room_global").style.display="none";
+        document.getElementById("search_room").style.display="none";
         countNotReadMessages();
         getMessages();
         OpenAllMessages();
@@ -909,7 +946,7 @@ function displayRent(){
         document.getElementById("incidence").style.display="none";
         document.getElementById("rent").style.display="block";
         document.getElementById("message").style.display="none";
-        document.getElementById("search_room_global").style.display="none";
+        document.getElementById("search_room").style.display="none";
         countNotReadMessages();
         show_form_payment();
     }
