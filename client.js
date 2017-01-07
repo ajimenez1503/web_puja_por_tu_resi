@@ -660,7 +660,7 @@ function pause(millis){
 *Rotate the images of the room
 */
 function rotate(tab){
-    console.log("rotata start: "+ tab)
+    //console.log("rotata start: "+ tab)
     var animate=null;
     var number_image=3;
     var size_width=230;
@@ -671,7 +671,7 @@ function rotate(tab){
 
 	function sliderScroll(){
 		position=parseInt(slider.scrollLeft);
-        console.log(position);
+        //console.log(position);
 
 		if(position%size_width==0){//start of a image, pause 1seg
 			pause(1000);
@@ -679,7 +679,7 @@ function rotate(tab){
 		}
 		if(position+1>=totalWidth){//at the end, start again
 			slider.scrollLeft=0;
-            console.log("start")
+            //console.log("start")
 		}
 		else{
 	    	slider.scrollLeft=position+1;//move scroll
@@ -687,11 +687,11 @@ function rotate(tab){
 
         if (document.getElementById(tab).style.display=="block"){//still in tab
             animate = setTimeout(sliderScroll,20); // call moveRight in 20msec
-            console.log("repeat");
+            //console.log("repeat");
         }else {//stop animation if move to other tab
             slider.scrollLeft=0;
             clearTimeout(animate);
-            console.log("stop");
+            //console.log("stop");
         }
     }
 }

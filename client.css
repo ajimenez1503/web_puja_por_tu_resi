@@ -246,6 +246,9 @@
 	margin-right: 5%;
 	margin-bottom: 4%;
 }
+.room_wrapper_button{
+	text-align: center;
+}
 
 .icon{
 	font-size: 24px !important;

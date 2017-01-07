@@ -262,7 +262,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <div class="row">
+                    <div class>
                         <label class="col-sm-3 control-label" for="amount">Rango precio:</label>
                         <div class="col-xs-3" >
                             <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
@@ -298,7 +298,7 @@
 
         <div id="search_room_table">
 
-            <div class="row">
+            <div>
 
                 <div class="col-sm-8">
                     <div class="table_search_room">
@@ -357,7 +357,7 @@
 
         <div id="search_room_specific">
 
-            <div class="row">
+            <div>
 
                 <div class="col-sm-6">
                     <div class="panel-group">
@@ -447,10 +447,11 @@
 
 
     <div id="Room">
-        <button onclick="show_upload_file_agreement()" type="button" class="button_margin_room btn btn-primary">Aceptar y firmar contrato</button>
-        <button type="button" class="button_margin_room btn btn-success">Descargar contrato</button>
-        <button type="button" class="button_margin_room btn btn-warning">Rechazar habitacion</button>
-
+        <div class="room_wrapper_button">
+            <button onclick="show_upload_file_agreement()" type="button" class="button_margin_room btn btn-primary">Aceptar y firmar contrato</button>
+            <button type="button" class="button_margin_room btn btn-success">Descargar contrato</button>
+            <button type="button" class="button_margin_room btn btn-warning">Rechazar habitacion</button>
+        </div>
 
         <div    id="upload_file_agreement" class="col-sm-7">
             <div class="row">
@@ -480,7 +481,7 @@
         </div>
 
 
-        <div class="row">
+        <div>
 
             <div class="col-sm-6">
                 <div class="panel-group">
@@ -564,9 +565,9 @@
 
     <div id="incidence">
 
-        <div class="row">
+        <div >
 
-            <div class="col-sm-3">
+            <div class="col-sm-4">
                 <div class="panel-group">
                     <div class="panel with panel-primary class">
                         <div class="panel-heading">OPEN</div>
@@ -576,7 +577,7 @@
                 </div>
             </div>
 
-            <div class="col-sm-3">
+            <div class="col-sm-4">
                 <div class="panel-group">
                     <div class="panel with panel-primary class">
                         <div class="panel-heading">IN PROGRESS</div>
@@ -586,7 +587,7 @@
                 </div>
             </div>
 
-            <div class="col-sm-3">
+            <div class="col-sm-4">
                 <div class="panel-group">
                     <div class="panel with panel-primary class">
                         <div class="panel-heading">DONE</div>
