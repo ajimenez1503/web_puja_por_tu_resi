@@ -306,7 +306,9 @@
 *STUDENT VIEW / RENT
 ////////////////////////////////////////////////////////////////*/
 .table_rent{
-  margin: 5%;
+  	margin: 5%;
+	height: 180px;
+	overflow-y: auto;
 }
 
 
@@ -324,7 +326,6 @@
 
 
 .table_search_room{
-	margin: 5%;
 	margin: 5%;
 	height: 201px;
 	overflow-y: auto;

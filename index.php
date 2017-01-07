@@ -423,6 +423,7 @@
                         <div class="panel with panel-primary class">
                             <div class="panel-heading">Pujas</div>
                             <div class="panel-body">
+                                <button type="button" class="button_margin_room btn btn-success">Pujar</button>
                                 <ul id="earch_room_specific_ul" class="list-group">
                                     <li class="list-group-item justify-content-between">
                                         Puntos<span class="badge badge-default badge-pill">14</span>
@@ -659,34 +660,16 @@
 
     <div id="rent">
             <div class="table_rent">
-                <table class="table table-striped">
+                <table  class="table table-striped">
                     <thead>
                     <tr>
                       <th>mes</th>
                       <th>precio</th>
                       <th>Fecha pago</th>
-                      <th>recivo</th>
+                      <th>recibo</th>
                     </tr>
                     </thead>
-                    <tbody>
-                    <tr>
-                      <td>Jacob</td>
-                      <td>Mark</td>
-                      <td>Otto</td>
-                      <td>@mdo</td>
-                    </tr>
-                    <tr>
-                      <td>Jacob</td>
-                      <td>Jacob</td>
-                      <td>Thornton</td>
-                      <td>@fat</td>
-                    </tr>
-                    <tr>
-                      <td>Jacob</td>
-                      <td>Larry</td>
-                      <td>the Bird</td>
-                      <td>@twitter</td>
-                    </tr>
+                    <tbody  id="table_rent">
                     </tbody>
                 </table>
             </div>
@@ -757,7 +740,7 @@
                                 <input type="text" class="form-control" name="cvv" id="card_cvv" placeholder="Security Code">
                             </div>
                             <div class="col-sm-3">
-                                <button type="button" class="btn btn-success">Pagar</button>
+                                <button id="payment_rent_submint"type="button" class="btn btn-success">Pagar</button>
                             </div>
                         </div>
                     </div>

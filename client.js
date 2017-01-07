@@ -705,9 +705,101 @@ function rotate(tab){
 *Display the form to pay
 */
 function show_form_payment(){
-    //TODO check if there area month available to pay.
-    document.getElementById("payment_rent").style.display="block";
+    //check if there area month available to pay.
+    var xmlHttp =new XMLHttpRequest();
+	var url=window.location.protocol+"//"+window.location.host+port+"/Rent/getUnpaid/";
+	xmlHttp.open("GET", url, true );
+    xmlHttp.withCredentials = true;
+	xmlHttp.send();
+	xmlHttp.onreadystatechange = function() {
+    	if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
+    		var output= JSON.parse(xmlHttp.responseText);
+            console.log(output)
+    		if(output.success){
+                if (output.data.length>=1){
+                    document.getElementById("payment_rent_month").innerHTML="   "+output.data[0].month;
+                    document.getElementById("payment_rent_price").innerHTML="   "+output.data[0].price.toString()+"€";
+                    document.getElementById("payment_rent_submint").onclick = function(){
+                        pay_month(output.data[0].id)
+                    };
+                    console.log(output.data[0].id);
+                    document.getElementById("payment_rent").style.display="block";
+                }
+    		}else{
+    			showErrorMessagesPage("Student","showdata",output.message,output.success);
+    		}
+    	}
+    }
+
 }
+
+
+function create_row(data){
+    var tr = document.createElement('tr');
+    //month
+        var td = document.createElement('td');
+        td.appendChild(document.createTextNode(data.month))
+        tr.appendChild(td)
+    //price
+        var td = document.createElement('td');
+        td.appendChild(document.createTextNode(data.price.toString()+"€"));
+        tr.appendChild(td)
+    //date paid
+        var td = document.createElement('td');
+        if (data.date_paid == null){
+            td.appendChild(document.createTextNode(""))
+        }else{
+            td.appendChild(document.createTextNode(data.date_paid.date))
+        }
+        tr.appendChild(td)
+    //file_paid
+        var td = document.createElement('td');
+        if (data.file_receipt == null){
+            td.appendChild(document.createTextNode(""))
+        }else{
+            var file_download = document.createElement('a');
+            file_download.setAttribute('href',window.location.protocol+"//"+window.location.host+port+"/Rent/download/"+data.file_receipt);
+            file_download.download="file"
+            file_download.appendChild(document.createTextNode("file_download"));
+            td.appendChild(file_download);
+        }
+        tr.appendChild(td)
+
+    return tr;
+}
+
+function createTableRent(data) {
+    var father = document.getElementById("table_rent");
+    deleteAllChildElement(father)
+    for (i = 0; i < data.length; i++) {
+        father.appendChild( create_row(data[i]));
+    }
+}
+
+/**
+*Get all the rents and display in the table
+*/
+function getRents(){
+    var xmlHttp =new XMLHttpRequest();
+	var url=window.location.protocol+"//"+window.location.host+port+"/Rent/get/";
+	xmlHttp.open("GET", url, true );
+    xmlHttp.withCredentials = true;
+	xmlHttp.send();
+	xmlHttp.onreadystatechange = function() {
+    	if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
+    		var output= JSON.parse(xmlHttp.responseText);
+            console.log(output)
+    		if(output.success){
+                createTableRent(output.data)
+    		}else{
+    			showErrorMessagesPage("Student","showdata",output.message,output.success);
+    		}
+    	}
+    }
+}
+
+
+
 
 ////////////////////////////////////////////////////////////////
 /*
@@ -948,6 +1040,7 @@ function displayRent(){
         document.getElementById("message").style.display="none";
         document.getElementById("search_room").style.display="none";
         countNotReadMessages();
+        getRents();
         show_form_payment();
     }
 }
