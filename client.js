@@ -644,27 +644,6 @@ function show_upload_file_agreement() {
     document.getElementById("upload_file_agreement").style.display="block";
 }
 
-/**
-* display the location of the college of the room
-*/
-function initMap() {
-    //get latitude,longitued from the college
-    var uluru = {lat: 39.88605099999999, lng: -3.9192423};
-    var map = new google.maps.Map(
-        document.getElementById('map'),
-        {
-            zoom: 10,
-            center: uluru
-        }
-    );
-    var marker = new google.maps.Marker(
-        {
-            position: uluru,
-            map: map
-        }
-    );
-}
-
 
 /**
 * pause during the milisecond
@@ -766,8 +745,8 @@ function get_max_range_prince(){
 /**
 *select a icon or image of the list of equipment
 */
-function selected(id){
-    document.getElementById(id).className += " selected";
+function selected_icon_search(id){
+    document.getElementById(id).className += " selected_icon_search";
 }
 /**
 *get element selected of the equpment in a json structure
@@ -782,6 +761,25 @@ function get_equipment_selected(tab){
     console.log(result);
     return result;
 }
+
+
+/**
+*select a row in a table of the search
+* Display the maps
+*/
+function selected_row_table(id, latitude, longitued){
+    document.getElementById(id).className = " selected_row_table";
+    // display maps latitude, longitued
+    init_map("map_search_room_global",39.88605099999999,-3.9192423);
+}
+
+/**
+* out select a row in a table of the search
+*/
+function out_selected_row_table(id){
+    document.getElementById(id).className = "";//any class
+}
+
 ////////////////////////////////////////////////////////////////
 /*
 *Routing
@@ -799,7 +797,7 @@ function displayHome(){
         document.getElementById("incidence").style.display="none";
         document.getElementById("message").style.display="none";
         document.getElementById("rent").style.display="none";
-        document.getElementById("search_room").style.display="none";
+        document.getElementById("search_room_global").style.display="none";
         countNotReadMessages();
     	dataProfile("home");
 
@@ -818,7 +816,7 @@ function displayPerfil(){
         document.getElementById("Room").style.display="none";
         document.getElementById("message").style.display="none";
         document.getElementById("rent").style.display="none";
-        document.getElementById("search_room").style.display="none";
+        document.getElementById("search_room_global").style.display="none";
         countNotReadMessages();
         dataProfile("profile");
     }
@@ -836,10 +834,10 @@ function displayRoom(){
         document.getElementById("incidence").style.display="none";
         document.getElementById("message").style.display="none";
         document.getElementById("rent").style.display="none";
-        document.getElementById("search_room").style.display="none";
+        document.getElementById("search_room_global").style.display="none";
         rotate("Room");
         countNotReadMessages();
-        initMap();
+        init_map("map_room",39.88605099999999,-3.9192423);
     }
 }
 
@@ -849,11 +847,11 @@ function displayRoom(){
 */
 function displaySearch_room(){
     if("studentview"===globa_view){
-        console.log("displaySearch_room");
+        console.log("displaySearch_room_global");
     	document.getElementById("home").style.display="none";
     	document.getElementById("perfil").style.display="none";
         document.getElementById("Room").style.display="none";
-        document.getElementById("search_room").style.display="block";
+        document.getElementById("search_room_global").style.display="block";
         document.getElementById("incidence").style.display="none";
         document.getElementById("message").style.display="none";
         document.getElementById("rent").style.display="none";
@@ -874,7 +872,7 @@ function displayIncidence(){
         document.getElementById("incidence").style.display="block";
         document.getElementById("message").style.display="none";
         document.getElementById("rent").style.display="none";
-        document.getElementById("search_room").style.display="none";
+        document.getElementById("search_room_global").style.display="none";
         countNotReadMessages();
         getIncidences();
     }
@@ -892,7 +890,7 @@ function displayMessage(){
         document.getElementById("incidence").style.display="none";
         document.getElementById("message").style.display="block";
         document.getElementById("rent").style.display="none";
-        document.getElementById("search_room").style.display="none";
+        document.getElementById("search_room_global").style.display="none";
         countNotReadMessages();
         getMessages();
         OpenAllMessages();
@@ -911,7 +909,7 @@ function displayRent(){
         document.getElementById("incidence").style.display="none";
         document.getElementById("rent").style.display="block";
         document.getElementById("message").style.display="none";
-        document.getElementById("search_room").style.display="none";
+        document.getElementById("search_room_global").style.display="none";
         countNotReadMessages();
         show_form_payment();
     }
