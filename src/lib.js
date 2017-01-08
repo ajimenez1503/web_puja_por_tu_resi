@@ -173,3 +173,61 @@ function validateExpiryDate(expiry_month,expiry_year)
         return true;
     }
 }
+
+    //http://blog.mattheworiordan.com/post/13174566389/url-regular-expression-for-links-with-or-without
+function ValidURL(str) {
+    var pattern = /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[\-;:&=\+\$,\w]+@)?[A-Za-z0-9\.\-]+|(?:www\.|[\-;:&=\+\$,\w]+@)[A-Za-z0-9\.\-]+)((?:\/[\+~%\/\.\w\-_]*)?\??(?:[\-\+=&;%@\.\w_]*)#?(?:[\.\!\/\\\w]*))?)/
+    if(pattern.test(str)) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function ValidatePhonenumber(tel){
+    var phoneno1 = /^\d{9}$/; //XXXXXXXXX
+    var phoneno2 = /^\+?([0-9]{2})\)?[-. ]?([0-9]{9})$/; //+XX-XXXXXXXXX
+    if(tel.match(phoneno1) || tel.match(phoneno2)){
+        return true;
+    }
+    else{
+        return false;
+    }
+ }
+
+
+/*CIF
+_   _ _ _ _ _ _ _   _
+|_| |_|_|_|_|_|_|_| |_|
+^   ^           ^   ^
+|   |_ Números _|   |
+|                   |
+|               Dígito de control, un número ó letra:
+|               {Aó1,Bó2,Có3,Dó4,Eó5,Fó6,Gó7,Hó8,Ió9,Jó0}
+|
+Letra de tipo de Organización, una de las siguientes:
+{A,B,C,D,E,F,G,H,K,L,M,N,P,Q,S}
+//http://www.microteching.com/javascript/clase-para-validar-cifs-y-nifs-por-javascript
+*/
+function validateCIF(cif) {
+    var CIF_regExp = "^[a-zA-Z]{1}\\d{7}[a-jA-J0-9]{1}$";
+    var v1 = new Array(0,2,4,6,8,1,3,5,7,9);
+    var tempStr = cif.toUpperCase(); // pasar a mayúsculas
+    var temp = 0;
+    var temp1;
+    var dc;
+
+    // Comprueba el formato
+    if (!tempStr.match(CIF_regExp)) return false;    // Valida el formato?
+    if (!/^[ABCDEFGHKLMNPQS]/.test(tempStr)) return false;  // Es una letra de las admitidas ?
+
+    for( i = 2; i <= 6; i += 2 ) {
+            temp = temp + v1[ parseInt(cif.substr(i-1,1)) ];
+            temp = temp + parseInt(cif.substr(i,1));
+    };
+    temp = temp + v1[ parseInt(cif.substr(7,1)) ];
+    temp = (10 - ( temp % 10));
+    if (temp==10) temp=0;
+    dc  = cif.toUpperCase().charAt(8);
+    return (dc==temp) || (temp==1 && dc=='A') || (temp==2 && dc=='B') || (temp==3 && dc=='C') || (temp==4 && dc=='D') || (temp==5 && dc=='E') || (temp==6 && dc=='F') || (temp==7 && dc=='G') || (temp==8 && dc=='H') || (temp==9 && dc=='I') || (temp==0 && dc=='J');
+}

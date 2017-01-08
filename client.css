@@ -50,6 +50,22 @@
 	border-color: #53A3CD;
 }
 
+.button_login_student{
+	width: 50%;
+	margin-bottom: 2%;
+	float: left;
+	margin-right: 1%;
+}
+
+.button_login_college{
+	width: 45%;
+	margin-bottom: 2%;
+	float: right;
+	margin-left: 1%;
+}
+#register_form_college{
+	display: none;
+}
 /*////////////////////////////////////////////////////////////////
 *STUDENT VIEW
 ////////////////////////////////////////////////////////////////*/

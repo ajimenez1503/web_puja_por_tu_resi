@@ -47,6 +47,17 @@ displayView = function(){
 */
 ////////////////////////////////////////////////////////////////
 
+
+function display_form_login(id) {
+    if (id=="register_form_student"){
+        document.getElementById("register_form_student").style.display="block";
+        document.getElementById("register_form_college").style.display="none";
+    } else if (id=="register_form_college") {
+        document.getElementById("register_form_college").style.display="block";
+        document.getElementById("register_form_student").style.display="none";
+
+    }
+}
 /**
 * login the user by email and password.
 *The input is validate and show the error in case of problem
@@ -89,16 +100,85 @@ function login(){
 }
 
 /**
-*signin a new  user by email, password firstname, familyname, gender, city, country
+*signin a new  user (college) by email, password name, DNI
 *The input is validate and show the error in case of problem
 */
-function signup(){
+function signup_college(){
         var user = {
-          'email': document.getElementById("signupEmail").value,
-          'password':document.getElementById("signupPassword").value,
-		  'repeat_password':document.getElementById("signupRepeatPSW").value,
-          'name': document.getElementById("signupName").value,
-          'username': document.getElementById("signupusername").value,
+          'email': document.getElementById("college_signupEmail").value,
+          'password':document.getElementById("college_signupPassword").value,
+		  'repeat_password':document.getElementById("college_signupRepeatPSW").value,
+          'name': document.getElementById("college_signupName").value,
+          'username': document.getElementById("college_signupusername").value,
+          'address': document.getElementById("college_signupAddress").value,
+          'url': document.getElementById("college_signupUrl").value,
+          'telephone': document.getElementById("college_signupTelephone").value,
+        };
+        if (!validateCIF(user.username)){
+            showErrorMessagesPage("Welcome","signup","Invalid DNI",false);
+            return;
+        }
+        if(!validateEmail(user.email)){
+            showErrorMessagesPage("Welcome","signup","email invalid",false);
+            return;
+        }
+        if(!user.password.length==sizePaswword){
+            showErrorMessagesPage("Welcome","signup","password must be "+sizePaswword+" characters",false);
+            return;
+        }
+		if(user.repeat_password != user.password){
+            showErrorMessagesPage("Welcome","signup","passwords do not match",false);
+            return;
+        }
+        if(user.name.length==0){
+            showErrorMessagesPage("Welcome","signup","First name field empty",false);
+            return;
+        }
+        if(user.address.length==0){
+            showErrorMessagesPage("Welcome","signup","Address field empty",false);
+            return;
+        }if(!ValidURL(user.url)){
+            showErrorMessagesPage("Welcome","signup","URL no es valido",false);
+            return;
+        }if(!ValidatePhonenumber(user.telephone)){
+            showErrorMessagesPage("Welcome","signup","Telefono no es valido",false);
+            return;
+        }
+		var url=window.location.protocol+"//"+window.location.host+port+"/Signin/college/";
+		var xmlHttp =new XMLHttpRequest();
+		xmlHttp.onreadystatechange = function() {
+			if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
+				var output= JSON.parse(xmlHttp.responseText);
+                console.log(output);
+                showErrorMessagesPage("Welcome","signup",output.message,output.success);
+			}
+		}
+		xmlHttp.open("POST", url, true );
+        var data = new FormData();
+        data.append("username", user.username);
+        data.append("password", user.password);
+        data.append("email",user.email);
+        data.append("companyName", user.name);
+        data.append("address", user.address);
+        data.append("url", user.url);
+        data.append("telephone", user.telephone);
+		xmlHttp.send(data);
+}
+
+
+
+
+/**
+*signin a new  user (student) by email, password name, DNI, Address
+*The input is validate and show the error in case of problem
+*/
+function signup_student(){
+        var user = {
+          'email': document.getElementById("student_signupEmail").value,
+          'password':document.getElementById("student_signupPassword").value,
+		  'repeat_password':document.getElementById("student_signupRepeatPSW").value,
+          'name': document.getElementById("student_signupName").value,
+          'username': document.getElementById("student_signupusername").value,
         };
         if (!validateDNI(user.username)){
             showErrorMessagesPage("Welcome","signup","Invalid DNI",false);
@@ -137,7 +217,6 @@ function signup(){
         data.append("name", user.name);
 		xmlHttp.send(data);
 }
-
 /**
 * logout the user
 */

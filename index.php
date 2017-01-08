@@ -64,30 +64,69 @@
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-lg-12">
-                                <form id="register-form" action="javascript:void(0);" method="post" role="form" >
+                                <button type="button" onclick="display_form_login('register_form_student')" class="button_login_student btn btn-primary">Estudiante</button>
+                                <button type="button" onclick="display_form_login('register_form_college')" class="button_login_college btn btn-primary">Residencia</button>
+
+                                <form id="register_form_student" action="javascript:void(0);" method="post" role="form" >
                                     <div class="form-group">
-                                        <input id="signupusername" type="text" name="username" required tabindex="1" class="form-control" placeholder="DNI" required>
+                                        <input id="student_signupusername" type="text" name="username" required tabindex="1" class="form-control" placeholder="DNI" required>
                                     </div>
                                     <div class="form-group">
-                                        <input id="signupName" type="text" name="name" required tabindex="1" class="form-control" placeholder="Nombre" required>
+                                        <input id="student_signupName" type="text" name="name" required tabindex="1" class="form-control" placeholder="Nombre" required>
                                     </div>
                                     <div class="form-group">
-                                        <input type="email" name="email" id="signupEmail" tabindex="1" class="form-control" placeholder="Email" required>
+                                        <input type="email" name="email" id="student_signupEmail" tabindex="1" class="form-control" placeholder="Email" required>
                                     </div>
                                     <div class="form-group">
-                                        <input type="password" name="password" pattern=".{8,8}" id="signupPassword" tabindex="2" class="form-control" placeholder="Contraseña" required>
+                                        <input type="password" name="password" pattern=".{8,8}" id="student_signupPassword" tabindex="2" class="form-control" placeholder="Contraseña" required>
                                     </div>
                                     <div class="form-group">
-                                        <input type="password" name="confirm-password" pattern=".{8,8}" id="signupRepeatPSW" tabindex="2" class="form-control" placeholder="Confirma Contraseña" required>
+                                        <input type="password" name="confirm-password" pattern=".{8,8}" id="student_signupRepeatPSW" tabindex="2" class="form-control" placeholder="Confirma Contraseña" required>
                                     </div>
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-sm-6 col-sm-offset-3">
-                                                <input type="submit" onClick="signup()" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-submit" value="Registrar">
+                                                <input type="submit" onClick="signup_student()" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-submit" value="Registrar">
                                             </div>
                                         </div>
                                     </div>
                                 </form>
+
+
+                                <form id="register_form_college" action="javascript:void(0);" method="post" role="form" >
+                                    <div class="form-group">
+                                        <input id="college_signupusername" type="text" name="username" required tabindex="1" class="form-control" placeholder="CIF" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <input id="college_signupName" type="text" name="name" required tabindex="1" class="form-control" placeholder="Nombre compañia" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="email" name="email" id="college_signupEmail" tabindex="1" class="form-control" placeholder="Email" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" name="address" id="college_signupAddress" tabindex="1" class="form-control" placeholder="Dirreccion" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="url" name="url" id="college_signupUrl" tabindex="1" class="form-control" placeholder="URL" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" name="url" id="college_signupTelephone" tabindex="1" class="form-control" placeholder="Telefono" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="password" name="password" pattern=".{8,8}" id="college_signupPassword" tabindex="2" class="form-control" placeholder="Contraseña" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="password" name="confirm-password" pattern=".{8,8}" id="college_signupRepeatPSW" tabindex="2" class="form-control" placeholder="Confirma Contraseña" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-sm-6 col-sm-offset-3">
+                                                <input type="submit" onClick="signup_college()" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-submit" value="Registrar">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+
                             </div>
                         </div>
                     </div>
