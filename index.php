@@ -695,12 +695,11 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-3 control-label" for="expiry-month">Expiration Date</label>
+                        <label class="col-sm-3 control-label" for="expiry-month">Fecha expiracion</label>
                         <div class="col-sm-9">
                             <div class="row">
                                 <div class="col-xs-3">
                                     <select class="form-control col-sm-2" name="expiry-month" id="expiry-month">
-                                    <option>Month</option>
                                     <option value="01">Jan (01)</option>
                                     <option value="02">Feb (02)</option>
                                     <option value="03">Mar (03)</option>
@@ -716,18 +715,18 @@
                                     </select>
                                 </div>
                                 <div class="col-xs-3">
-                                    <select class="form-control" name="expiry-year">
-                                    <option value="17">2017</option>
-                                    <option value="18">2018</option>
-                                    <option value="19">2019</option>
-                                    <option value="20">2020</option>
-                                    <option value="21">2021</option>
-                                    <option value="22">2022</option>
-                                    <option value="23">2023</option>
-                                    <option value="20">2024</option>
-                                    <option value="21">2025</option>
-                                    <option value="22">2026</option>
-                                    <option value="23">2027</option>
+                                    <select class="form-control" name="expiry-year" id="expiry-year">
+                                    <option value="2017">2017</option>
+                                    <option value="2018">2018</option>
+                                    <option value="2019">2019</option>
+                                    <option value="2020">2020</option>
+                                    <option value="2021">2021</option>
+                                    <option value="2022">2022</option>
+                                    <option value="2023">2023</option>
+                                    <option value="2024">2024</option>
+                                    <option value="2025">2025</option>
+                                    <option value="2026">2026</option>
+                                    <option value="2027">2027</option>
                                     </select>
                                 </div>
                             </div>

@@ -113,3 +113,61 @@ function init_map(id,latitude,longitued) {
         }
     );
 }
+
+
+// takes the form field value and returns true on valid number
+function validateCreditCard(value) {
+  // accept only digits, dashes or spaces
+	if (/[^0-9-\s]+/.test(value)) return false;
+
+	// The Luhn Algorithm. It's so pretty.
+	var nCheck = 0, nDigit = 0, bEven = false;
+	value = value.replace(/\D/g, "");
+
+	for (var n = value.length - 1; n >= 0; n--) {
+		var cDigit = value.charAt(n),
+			  nDigit = parseInt(cDigit, 10);
+
+		if (bEven) {
+			if ((nDigit *= 2) > 9) nDigit -= 9;
+		}
+
+		nCheck += nDigit;
+		bEven = !bEven;
+	}
+
+	return (nCheck % 10) == 0;
+}
+
+function validateCVV(cardNumber,cvv)
+{
+    // Get the first number of the credit card so we know how many digits to look for
+    var $firstnumber = Number(cardNumber.substr(0, 1));
+    if ($firstnumber === 3)
+    {
+        if (!cvv.match(/^\d{4}$/))
+        {
+            // The credit card is an American Express card but does not have a four digit CVV code
+            return false;
+        }
+    }
+    else if (!cvv.match(/^\d{3}$/))
+    {
+        // The credit card is a Visa, MasterCard, or Discover Card card but does not have a three digit CVV code
+        return false;
+    }
+    return true;
+}
+
+
+function validateDate(expiry_month,expiry_year)
+{
+    var date = new Date ();
+    var month = date.getMonth()+1;
+    var year = date.getFullYear();
+    if (year> expiry_year || (year === expiry_year && month >= expiry_month)){
+        return false;
+    }else{
+        return true;
+    }
+}

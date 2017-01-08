@@ -720,10 +720,12 @@ function show_form_payment(){
                     document.getElementById("payment_rent_month").innerHTML="   "+output.data[0].month;
                     document.getElementById("payment_rent_price").innerHTML="   "+output.data[0].price.toString()+"€";
                     document.getElementById("payment_rent_submint").onclick = function(){
-                        pay_month(output.data[0].id)
+                        pay_month(output.data[0].id);
                     };
                     console.log(output.data[0].id);
                     document.getElementById("payment_rent").style.display="block";
+                }else{
+                    document.getElementById("payment_rent").style.display="none";
                 }
     		}else{
     			showErrorMessagesPage("Student","showdata",output.message,output.success);
@@ -733,7 +735,9 @@ function show_form_payment(){
 
 }
 
-
+/**
+*Get every rent rents and display as a row in the table. Month/ price/date_paid/receipt
+*/
 function create_row(data){
     var tr = document.createElement('tr');
     //month
@@ -768,6 +772,9 @@ function create_row(data){
     return tr;
 }
 
+/**
+*Get all the rents and display in the table
+*/
 function createTableRent(data) {
     var father = document.getElementById("table_rent");
     deleteAllChildElement(father)
@@ -796,6 +803,65 @@ function getRents(){
     		}
     	}
     }
+}
+
+
+
+/**
+* pay the month of the last rent
+*
+*/
+function pay_month(id){
+	var card_holder_name=document.getElementById("card-holder-name").value;
+    var card_number=document.getElementById("card-number").value;
+    card_number= card_number.replace(/\D/g, "");//get only the digit
+    var e = document.getElementById("expiry-month");
+    var expiry_month = e.options[e.selectedIndex].value;
+    var e = document.getElementById("expiry-year");
+    var expiry_year = e.options[e.selectedIndex].value;
+    var cvv=document.getElementById("card_cvv").value;
+    if (!validateCreditCard(card_number)){
+        showErrorMessagesPage("Student","pay","Invalid credit card",false);
+        return;
+    }
+    if(card_holder_name.length==0){
+        showErrorMessagesPage("Student","pay","Invalid card Holder name",false);
+        return;
+    }if(!validateCVV(card_number,cvv)){
+        showErrorMessagesPage("Student","pay","Invalid CCV",false);
+        return;
+    }
+    if(!validateDate(parseInt(expiry_month),parseInt(expiry_year))){
+        showErrorMessagesPage("Student","pay","Invalid fecha expiracion",false);
+        return;
+    }
+
+    console.log(card_holder_name);
+    console.log(card_number);
+    console.log(expiry_month);
+    console.log(expiry_year);
+    console.log(cvv);
+
+    var data = new FormData();
+    data.append("id", id);
+    data.append("cardHolder", card_holder_name);
+    data.append("cardNumber", card_number);
+    data.append("cvv", cvv);
+    data.append("expiry_year", expiry_year);
+    data.append("expiry_month", expiry_month);
+
+	var url=window.location.protocol+"//"+window.location.host+port+"/Rent/pay/";
+	var xmlHttp =new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function() {
+		if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
+			var output= JSON.parse(xmlHttp.responseText);
+            console.log(output);
+			showErrorMessagesPage("Student","pay rent",output.message,output.success);
+		}
+	}
+	xmlHttp.open("POST", url, true );
+    xmlHttp.withCredentials = true;
+	xmlHttp.send(data);
 }
 
 
@@ -1039,6 +1105,7 @@ function displayRent(){
         document.getElementById("rent").style.display="block";
         document.getElementById("message").style.display="none";
         document.getElementById("search_room").style.display="none";
+        document.getElementById("payment_rent").style.display="none";
         countNotReadMessages();
         getRents();
         show_form_payment();

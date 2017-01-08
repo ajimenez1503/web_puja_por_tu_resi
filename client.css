@@ -306,14 +306,16 @@
 *STUDENT VIEW / RENT
 ////////////////////////////////////////////////////////////////*/
 .table_rent{
-  	margin: 5%;
-	height: 180px;
+	margin-left: 5%;
+	margin-right: 5%;
+	height: 160px;
 	overflow-y: auto;
 }
 
 
 #payment_rent{
-	margin: 3%;
+	margin-left: 4%;
+  	margin-right: 4%;
 	display: none;
 }
 
