@@ -724,8 +724,10 @@ function show_form_payment(){
                     };
                     console.log(output.data[0].id);
                     document.getElementById("payment_rent").style.display="block";
+                    document.getElementById("table_rent").style.overflowY = "auto";
                 }else{
                     document.getElementById("payment_rent").style.display="none";
+                    document.getElementById("table_rent").style.overflowY = "visible";
                 }
     		}else{
     			showErrorMessagesPage("Student","showdata",output.message,output.success);
@@ -776,7 +778,7 @@ function create_row(data){
 *Get all the rents and display in the table
 */
 function createTableRent(data) {
-    var father = document.getElementById("table_rent");
+    var father = document.getElementById("element_table_rent");
     deleteAllChildElement(father)
     for (i = 0; i < data.length; i++) {
         father.appendChild( create_row(data[i]));
@@ -831,7 +833,7 @@ function pay_month(id){
         showErrorMessagesPage("Student","pay","Invalid CCV",false);
         return;
     }
-    if(!validateDate(parseInt(expiry_month),parseInt(expiry_year))){
+    if(!validateExpiryDate(expiry_month,expiry_year)){
         showErrorMessagesPage("Student","pay","Invalid fecha expiracion",false);
         return;
     }

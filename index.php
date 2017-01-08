@@ -659,7 +659,7 @@
 
 
     <div id="rent">
-            <div class="table_rent">
+            <div id="table_rent">
                 <table  class="table table-striped">
                     <thead>
                     <tr>
@@ -669,7 +669,7 @@
                       <th>recibo</th>
                     </tr>
                     </thead>
-                    <tbody  id="table_rent">
+                    <tbody  id="element_table_rent">
                     </tbody>
                 </table>
             </div>

@@ -305,11 +305,12 @@
 /*////////////////////////////////////////////////////////////////
 *STUDENT VIEW / RENT
 ////////////////////////////////////////////////////////////////*/
-.table_rent{
+#table_rent{
 	margin-left: 5%;
 	margin-right: 5%;
 	height: 160px;
-	overflow-y: auto;
+	margin-bottom: 5%;
+	overflow-y: visible;;
 }
 
 

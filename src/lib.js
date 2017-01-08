@@ -160,8 +160,10 @@ function validateCVV(cardNumber,cvv)
 }
 
 
-function validateDate(expiry_month,expiry_year)
+function validateExpiryDate(expiry_month,expiry_year)
 {
+    expiry_year=parseInt(expiry_year);
+    expiry_month=parseInt(expiry_month);
     var date = new Date ();
     var month = date.getMonth()+1;
     var year = date.getFullYear();
