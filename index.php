@@ -19,12 +19,12 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
     <title>Puja por tu resi</title>
-    <link href="client.css" type="text/css" rel="stylesheet">
+    <link href="style/client.css" type="text/css" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<script src="src/page.js"></script>
     <script src="src/lib.js"></script>
-    <script src="client.js" ></script>
+    <script src="src/client.js" ></script>
     <script async defer  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDau09DcBHg-wQ8wHUsl6SUCYOPPlDFiWQ&callback=initMap"></script>
     <link rel="icon" type="image/ico" href="img/logo.ico">
 
