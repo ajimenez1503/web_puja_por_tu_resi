@@ -15,10 +15,10 @@ function showErrorMessagesPage(page,element,message,success){
         (page=="Welcome" || page=="Student" || page=="College")){
         document.getElementById("showErrorMessage"+page+"Page").style.display="block";
         if(success){
-            document.getElementById("showErrorMessage"+page+"Page").className ="alert alert-success";
+            document.getElementById("showErrorMessage"+page+"Page").className +=" alert alert-success";
         }
         else{
-            document.getElementById("showErrorMessage"+page+"Page").className="alert alert-danger";
+            document.getElementById("showErrorMessage"+page+"Page").className+=" alert alert-danger";
         }
         document.getElementById("errorMessage"+page+"Page").innerHTML=element+" : "+message;
 		fade(document.getElementById("showErrorMessage"+page+"Page"),300);

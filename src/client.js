@@ -765,15 +765,17 @@ function rotate(tab){
 		else{
 	    	slider.scrollLeft=position+1;//move scroll
 		}
-
-        if (document.getElementById(tab).style.display=="block"){//still in tab
-            animate = setTimeout(sliderScroll,20); // call moveRight in 20msec
-            //console.log("repeat");
-        }else {//stop animation if move to other tab
-            slider.scrollLeft=0;
-            clearTimeout(animate);
-            //console.log("stop");
+        if(globa_view=="studentview"){
+            if (document.getElementById(tab).style.display=="block"){//still in tab
+                animate = setTimeout(sliderScroll,20); // call moveRight in 20msec
+                //console.log("repeat");
+            }else {//stop animation if move to other tab
+                slider.scrollLeft=0;
+                clearTimeout(animate);
+                //console.log("stop");
+            }
         }
+
     }
 }
 

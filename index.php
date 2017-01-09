@@ -31,7 +31,7 @@
     <script id="welcomeview" type=”text/view”>
     <div class="header_welcomeview">
         <div class="header_welcomeview_left">
-            <img class="img-responsive" src="img/logo2.png" alt="log and slogan">
+            <img class="img_header_welcomeview_left" src="img/logo2.png" alt="log and slogan">
         </div>
         <div class="header_welcomeview_right">
             <form id="login-form" role="form" action="javascript:void(0);" method="post">
@@ -133,13 +133,13 @@
                 </div>
             </div>
         </div>
-        <div id="showErrorMessageWelcomePage" style="display:none;">
-            <strong>
-                <center>
-                    <p id="errorMessageWelcomePage"> Error </p>
-                </center>
-            </strong>
-        </div>
+    </div>
+    <div class="error_footer" id="showErrorMessageWelcomePage" style="display:none;">
+        <strong>
+            <center>
+                <p id="errorMessageWelcomePage"> Error </p>
+            </center>
+        </strong>
     </div>
     </script> <!-- end welcomeview -->
     <script id="studentview" type=”text/view”>
@@ -793,7 +793,7 @@
 
 
 
-    <div id="showErrorMessageStudentPage" style="display:none;">
+    <div class="error_footer" id="showErrorMessageStudentPage" style="display:none;">
         <strong>
             <center>
                 <p id="errorMessageStudentPage"> Error </p>
