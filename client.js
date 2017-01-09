@@ -115,7 +115,7 @@ function signup_college(){
           'telephone': document.getElementById("college_signupTelephone").value,
         };
         if (!validateCIF(user.username)){
-            showErrorMessagesPage("Welcome","signup","Invalid DNI",false);
+            showErrorMessagesPage("Welcome","signup","Invalid CIF",false);
             return;
         }
         if(!validateEmail(user.email)){
@@ -262,7 +262,7 @@ function show_from_update(id) {
 */
 function dataProfile(view){
 	var xmlHttp =new XMLHttpRequest();
-	var url=window.location.protocol+"//"+window.location.host+port+"/ProfileStudent/profile/";
+	var url=window.location.protocol+"//"+window.location.host+port+"/ProfileStudent/get/";
 	xmlHttp.open("GET", url, true );
     xmlHttp.withCredentials = true;
 	xmlHttp.send();
@@ -285,22 +285,22 @@ function dataProfile(view){
 }
 
 /**
-* Change the pasword.
+* update the pasword.
 *The input is validate and show the error in case of problem
 */
-function changePassword(){
-	var passwordOld=document.getElementById("formChangePasswordOld").value;
-	var passwordNew=document.getElementById("formChangePasswordNew").value;
-	var passwordNewRepeat=document.getElementById("formChangePasswordNewRepeat").value;
+function updatePassword(){
+	var passwordOld=document.getElementById("formUpdatePasswordOld").value;
+	var passwordNew=document.getElementById("formUpdatePasswordNew").value;
+	var passwordNewRepeat=document.getElementById("formUpdatePasswordNewRepeat").value;
 	if(passwordNew==passwordNewRepeat){
 		if(passwordNew.length>=sizePaswword){
-			var url=window.location.protocol+"//"+window.location.host+port+"/ProfileStudent/changePassword/";
+			var url=window.location.protocol+"//"+window.location.host+port+"/ProfileStudent/updatePassword/";
 			var xmlHttp =new XMLHttpRequest();
 			xmlHttp.onreadystatechange = function() {
 				if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
 					var output= JSON.parse(xmlHttp.responseText);
                     console.log(output);
-					showErrorMessagesPage("Student","changePassword",output.message,output.success);
+					showErrorMessagesPage("Student","updatePassword",output.message,output.success);
 				}
 			}
 			xmlHttp.open("POST", url, true );
@@ -310,27 +310,27 @@ function changePassword(){
             data.append("new_password", passwordNew);
 			xmlHttp.send(data);
 		}else{
-		    showErrorMessagesPage("Student","changePassword","error input",false);
+		    showErrorMessagesPage("Student","updatePassword","error input",false);
 		}
 	}else{
-		showErrorMessagesPage("Student","changePassword","passwords not identical ",false);
+		showErrorMessagesPage("Student","updatePassword","passwords not identical ",false);
 	}
 }
 
 /**
-* Change the pasword.
+* update the email.
 *The input is validate and show the error in case of problem
 */
-function changeEmail(){
-	var email=document.getElementById("formChangeEmail").value;
+function updateEmail(){
+	var email=document.getElementById("formUpdateEmail").value;
 	if(validateEmail(email)){
-		var url=window.location.protocol+"//"+window.location.host+port+"/ProfileStudent/changeEmail/";
+		var url=window.location.protocol+"//"+window.location.host+port+"/ProfileStudent/updateEmail/";
 		var xmlHttp =new XMLHttpRequest();
 		xmlHttp.onreadystatechange = function() {
 			if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
 				var output= JSON.parse(xmlHttp.responseText);
                 console.log(output);
-				showErrorMessagesPage("Student","changeEmail",output.message,output.success);
+				showErrorMessagesPage("Student","updateEmail",output.message,output.success);
 			}
 		}
 		xmlHttp.open("POST", url, true );
@@ -339,7 +339,7 @@ function changeEmail(){
         data.append("email", email);
 		xmlHttp.send(data);
 	}else{
-		showErrorMessagesPage("Student","changeEmail","Email no es valido.",false);
+		showErrorMessagesPage("Student","updateEmail","Email no es valido.",false);
 	}
 }
 
@@ -693,9 +693,9 @@ function OpenAllMessages(){
 /**
 * get number message wihout open, and write in menu whith the message.
 */
-function countNotReadMessages(){
+function countUnreadMessages(){
 	var xmlHttp =new XMLHttpRequest();
-	var url=window.location.protocol+"//"+window.location.host+port+"/Message/countNotRead/";
+	var url=window.location.protocol+"//"+window.location.host+port+"/Message/countUnread/";
 	xmlHttp.open("GET", url, true );
     xmlHttp.withCredentials = true;
 	xmlHttp.send();
@@ -1073,7 +1073,7 @@ function displayHome(){
         document.getElementById("message").style.display="none";
         document.getElementById("rent").style.display="none";
         document.getElementById("search_room").style.display="none";
-        countNotReadMessages();
+        countUnreadMessages();
     	dataProfile("home");
 
     }
@@ -1092,7 +1092,7 @@ function displayPerfil(){
         document.getElementById("message").style.display="none";
         document.getElementById("rent").style.display="none";
         document.getElementById("search_room").style.display="none";
-        countNotReadMessages();
+        countUnreadMessages();
         dataProfile("profile");
     }
 }
@@ -1111,7 +1111,7 @@ function displayRoom(){
         document.getElementById("rent").style.display="none";
         document.getElementById("search_room").style.display="none";
         rotate("Room");
-        countNotReadMessages();
+        countUnreadMessages();
         init_map("map_room",39.88605099999999,-3.9192423);
     }
 }
@@ -1131,7 +1131,7 @@ function displaySearch_room(){
         document.getElementById("message").style.display="none";
         document.getElementById("rent").style.display="none";
         //TODO get list of colleges for the search_room_form
-        countNotReadMessages();
+        countUnreadMessages();
         display_search_room_table();
     }
 }
@@ -1149,7 +1149,7 @@ function displayIncidence(){
         document.getElementById("message").style.display="none";
         document.getElementById("rent").style.display="none";
         document.getElementById("search_room").style.display="none";
-        countNotReadMessages();
+        countUnreadMessages();
         getIncidences();
     }
 }
@@ -1167,7 +1167,7 @@ function displayMessage(){
         document.getElementById("message").style.display="block";
         document.getElementById("rent").style.display="none";
         document.getElementById("search_room").style.display="none";
-        countNotReadMessages();
+        countUnreadMessages();
         getMessages();
         OpenAllMessages();
     }
@@ -1187,7 +1187,7 @@ function displayRent(){
         document.getElementById("message").style.display="none";
         document.getElementById("search_room").style.display="none";
         document.getElementById("payment_rent").style.display="none";
-        countNotReadMessages();
+        countUnreadMessages();
         getRents();
         show_form_payment();
     }

@@ -220,18 +220,18 @@
                                     <div class="col-lg-12">
                                         <form action="javascript:void(0);" method="post" role="form" >
                                             <div class="form-group">
-                                                <input  id="formChangePasswordOld" type="password" name="password" pattern=".{8,8}" tabindex="2" class="form-control" placeholder="contraseña actual" required>
+                                                <input  id="formUpdatePasswordOld" type="password" name="password" pattern=".{8,8}" tabindex="2" class="form-control" placeholder="contraseña actual" required>
                                             </div>
                                             <div class="form-group">
-                                                <input type="password" name="confirm-password" pattern=".{8,8}" id="formChangePasswordNew" tabindex="2" class="form-control" placeholder="Nueva contraeña" required>
+                                                <input type="password" name="confirm-password" pattern=".{8,8}" id="formUpdatePasswordNew" tabindex="2" class="form-control" placeholder="Nueva contraeña" required>
                                             </div>
                                             <div class="form-group">
-                                                <input type="password" name="confirm-password" pattern=".{8,8}" id="formChangePasswordNewRepeat" tabindex="2" class="form-control" placeholder="Confirmar nueva contraseña" required>
+                                                <input type="password" name="confirm-password" pattern=".{8,8}" id="formUpdatePasswordNewRepeat" tabindex="2" class="form-control" placeholder="Confirmar nueva contraseña" required>
                                             </div>
                                             <div class="form-group">
                                                 <div class="row">
                                                     <div class="col-sm-6 col-sm-offset-3">
-                                                        <input type="submit" onClick="changePassword()" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-submit" value="Cambiar contraseña">
+                                                        <input type="submit" onClick="updatePassword()" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-submit" value="Cambiar contraseña">
                                                     </div>
                                                 </div>
                                             </div>
@@ -255,12 +255,12 @@
                                     <div class="col-lg-12">
                                         <form action="javascript:void(0);" method="post" role="form" >
                                             <div class="form-group">
-                                                <input  id="formChangeEmail" type="email" name="email"  tabindex="2" class="form-control" placeholder="nuevo email" required>
+                                                <input  id="formUpdateEmail" type="email" name="email"  tabindex="2" class="form-control" placeholder="nuevo email" required>
                                             </div>
                                             <div class="form-group">
                                                 <div class="row">
                                                     <div class="col-sm-6 col-sm-offset-3">
-                                                        <input type="submit" onClick="changeEmail()" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-submit" value="Cambiar  email">
+                                                        <input type="submit" onClick="updateEmail()" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-submit" value="Cambiar  email">
                                                     </div>
                                                 </div>
                                             </div>
