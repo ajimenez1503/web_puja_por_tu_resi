@@ -493,7 +493,7 @@
             <button type="button" class="button_margin_room btn btn-warning">Rechazar habitacion</button>
         </div>
 
-        <div    id="upload_file_agreement" class="col-sm-7">
+        <div id="upload_file_agreement" class="col-sm-7">
             <div class="row">
                 <div class="col-md-10 col-md-offset-5">
                     <div class="panel panel-login">

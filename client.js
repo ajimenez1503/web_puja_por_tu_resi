@@ -3,15 +3,16 @@
 * @version 0.1
 */
 
-var globa_view="welcomeview";//"studentview";//"welcomeview";//global view
+var globa_view="welcomeview";//"studentview";//"collegeview";//"welcomeview";//global view
 var sizePaswword=8; //global variable of size of password
 var port=":8000";
 
-////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
 /*
 *LOAD VIEWS
 */
-////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
+
 /**
 * Display the specific view when the page is reload
 */
@@ -30,7 +31,7 @@ reloadPage = function(){
 
 
 /**
-* Display a view according to the token of the user.
+* Display a view according to globa_view paramenter, it is chagne in the login/logout
 */
 displayView = function(){
    // the code required to display a view
@@ -41,13 +42,15 @@ displayView = function(){
    }
 };
 
-////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
 /*
 *SIGNIN SIGNUP LOGOUT
 */
-////////////////////////////////////////////////////////////////
-
-
+//////////////////////////////////////////////////////////////////////////////
+/**
+* Display the register form of the student or the college.
+*@param {id} id of the div
+*/
 function display_form_login(id) {
     if (id=="register_form_student"){
         document.getElementById("register_form_student").style.display="block";
@@ -59,20 +62,18 @@ function display_form_login(id) {
     }
 }
 /**
-* login the user by email and password.
-*The input is validate and show the error in case of problem
+* Login the user by email and password.
+*The input is validate and show the error in case of problem.
 */
 function login(){
 	var username=document.getElementById("loginUsername").value;
 	var password=document.getElementById("loginPassword").value;
     if(password.length>=sizePaswword && validateDNI(username)){
-		//var params = "_password="+password+"&_username="+username;
         var data = new FormData();
         data.append("_username", username);
         data.append("_password", password);
 		var url= window.location.protocol+"//"+window.location.host+port+"/login";
 		var xmlHttp =new XMLHttpRequest();
-        console.log(url);
 		xmlHttp.onreadystatechange = function() {
 			if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
 				var output= JSON.parse(xmlHttp.responseText);
@@ -84,7 +85,7 @@ function login(){
                             page("/home");
                     }else{
                             console.log(output.data.ROLE[0]);
-                            showErrorMessagesPage("Welcome","login","View of COLLEGE.",output.success);
+                            showErrorMessagesPage("Welcome","login","Vista de la resiencia.",output.success);
                     }
 				}else{
 					showErrorMessagesPage("Welcome","login",output.message,output.success);
@@ -95,12 +96,12 @@ function login(){
         xmlHttp.withCredentials = true;
         xmlHttp.send(data);
     }else{
-       showErrorMessagesPage("Welcome","login","Invalid input.",false);
+       showErrorMessagesPage("Welcome","login","Invalid password o usuario.",false);
     }
 }
 
 /**
-*signin a new  user (college) by email, password name, DNI
+*Signin a new  user (college) by email, password company_name, CIF, telefone, address, url
 *The input is validate and show the error in case of problem
 */
 function signup_college(){
@@ -119,23 +120,23 @@ function signup_college(){
             return;
         }
         if(!validateEmail(user.email)){
-            showErrorMessagesPage("Welcome","signup","email invalid",false);
+            showErrorMessagesPage("Welcome","signup","Invalid email",false);
             return;
         }
         if(!user.password.length==sizePaswword){
-            showErrorMessagesPage("Welcome","signup","password must be "+sizePaswword+" characters",false);
+            showErrorMessagesPage("Welcome","signup","password debe tener "+sizePaswword+" caracteres",false);
             return;
         }
 		if(user.repeat_password != user.password){
-            showErrorMessagesPage("Welcome","signup","passwords do not match",false);
+            showErrorMessagesPage("Welcome","signup","passwords no son iguales",false);
             return;
         }
         if(user.name.length==0){
-            showErrorMessagesPage("Welcome","signup","First name field empty",false);
+            showErrorMessagesPage("Welcome","signup","Nombre de la compañia esta vacio",false);
             return;
         }
         if(user.address.length==0){
-            showErrorMessagesPage("Welcome","signup","Address field empty",false);
+            showErrorMessagesPage("Welcome","signup","Dirreccion esta vacia",false);
             return;
         }if(!ValidURL(user.url)){
             showErrorMessagesPage("Welcome","signup","URL no es valido",false);
@@ -166,10 +167,8 @@ function signup_college(){
 }
 
 
-
-
 /**
-*signin a new  user (student) by email, password name, DNI, Address
+*Signin a new  user (student) by email, password name, DNI, Address
 *The input is validate and show the error in case of problem
 */
 function signup_student(){
@@ -185,19 +184,19 @@ function signup_student(){
             return;
         }
         if(!validateEmail(user.email)){
-            showErrorMessagesPage("Welcome","signup","email invalid",false);
+            showErrorMessagesPage("Welcome","signup","Invalid email",false);
             return;
         }
         if(!user.password.length==sizePaswword){
-            showErrorMessagesPage("Welcome","signup","password must be "+sizePaswword+" characters",false);
+            showErrorMessagesPage("Welcome","signup","password debe tener "+sizePaswword+" caracteres",false);
             return;
         }
 		if(user.repeat_password != user.password){
-            showErrorMessagesPage("Welcome","signup","passwords do not match",false);
+            showErrorMessagesPage("Welcome","signup","Contraseñas no son iguales",false);
             return;
         }
         if(user.name.length==0){
-            showErrorMessagesPage("Welcome","signup","First name field empty",false);
+            showErrorMessagesPage("Welcome","signup","El nombre esta vacio",false);
             return;
         }
 		var url=window.location.protocol+"//"+window.location.host+port+"/Signin/student/";
@@ -218,7 +217,7 @@ function signup_student(){
 		xmlHttp.send(data);
 }
 /**
-* logout the user
+* Logout the user
 */
 function logout(){
     var url=window.location.protocol+"//"+window.location.host+port+"/logout";
@@ -237,14 +236,15 @@ function logout(){
 	xmlHttp.send();
 }
 
-////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
 /*
 *PROFILE USER. SHOW, UPDATE
 */
-////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
 
 /**
 * Display form to updload the agreement (signed)
+*@param {id} id of the div
 */
 function show_from_update(id) {
     if (id=="password"){
@@ -259,6 +259,7 @@ function show_from_update(id) {
 }
 /**
 * show the data of the student user
+*@param {view} the tab, it can be profile or home
 */
 function dataProfile(view){
 	var xmlHttp =new XMLHttpRequest();
@@ -285,7 +286,7 @@ function dataProfile(view){
 }
 
 /**
-* update the pasword.
+* Update the pasword.
 *The input is validate and show the error in case of problem
 */
 function updatePassword(){
@@ -318,7 +319,7 @@ function updatePassword(){
 }
 
 /**
-* update the email.
+* Update the email.
 *The input is validate and show the error in case of problem
 */
 function updateEmail(){
@@ -344,14 +345,15 @@ function updateEmail(){
 }
 
 
-////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
 /*
 *INCIDENCE CREATE, SHOW
 */
-////////////////////////////////////////////////////////////////
-
+//////////////////////////////////////////////////////////////////////////////
 /**
 * Validate size and name of file.
+*@param {fileName} name of the file
+*@param {fileSize} size of the file
 */
 function validate_file(fileName,fileSize){
     console.log("name:"+fileName+" . Size: "+fileSize)
@@ -366,12 +368,11 @@ function validate_file(fileName,fileSize){
     else{
         return false;
     }
-
 }
 
 
 /**
-* create Incidence from the Student to the college.
+*Create Incidence from the Student to the college.
 *The input is validate and show the error in case of problem
 */
 function createIncidence(){
@@ -408,7 +409,7 @@ function createIncidence(){
 }
 
 /**
-* create the strucutre to show the incidences in the web
+* create the strucutre to show the incidences in the html structure
 */
 function create_div_incidence(data){
     var div = document.createElement('div');
@@ -442,7 +443,7 @@ function create_div_incidence(data){
 
 
 /**
-* show the list of incidences of the user
+* Display the list of incidences of the user
 */
 function getIncidences(){
 	var xmlHttp =new XMLHttpRequest();
@@ -463,13 +464,10 @@ function getIncidences(){
                 deleteAllChildElement(father_done)
                 for (i = 0; i < output.data.length; i++) {
                     if("OPEN"==output.data[i].status){
-
                         father_open.appendChild(create_div_incidence(output.data[i]));
-                    }
-                    else if ("IN PROGRESS"==output.data[i].status){
+                    }else if ("IN PROGRESS"==output.data[i].status){
                         father_in_progress.appendChild(create_div_incidence(output.data[i]));
-                    }
-                    else if ("DONE"==output.data[i].status){
+                    }else if ("DONE"==output.data[i].status){
                         father_done.appendChild(create_div_incidence(output.data[i]));
                     }
                 }
@@ -481,15 +479,13 @@ function getIncidences(){
     }
 }
 
-////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
 /*
 *MESSAGE CREATE SHOW OPEN
 */
-////////////////////////////////////////////////////////////////
-
-
+//////////////////////////////////////////////////////////////////////////////
 /**
-* create message from the Student to the college.
+* Create message from the Student to the college.
 *The input is validate and show the error in case of problem
 */
 function sendMessage(){
@@ -572,8 +568,6 @@ function downloadFile(file_attached,a_element){
                     console.log("Cannot access to contect disposition")
                     showErrorMessagesPage("Student","download file","cannot download file",false);
                 }
-
-
             }
     	}
     }
@@ -581,7 +575,7 @@ function downloadFile(file_attached,a_element){
 
 /**
 * create  html message from the mesage (message / date / id / read )
-*@return structure html
+* @return structure html
 */
 function createHTMLMessage(message){
     var div = document.createElement('div');
@@ -642,8 +636,10 @@ function createHTMLMessage(message){
     return div
 
 }
+
+
 /**
-* show the list of message of the user
+* Display the list of message of the user
 */
 function getMessages(){
 	var xmlHttp =new XMLHttpRequest();
@@ -683,7 +679,7 @@ function OpenAllMessages(){
     		var output= JSON.parse(xmlHttp.responseText);
             console.log(output)
     		if(!output.success){
-    			showErrorMessagesPage("Student","Open message",output.message,output.success);
+    			showErrorMessagesPage("Student","Open_message",output.message,output.success);
     		}
     	}
     }
@@ -691,7 +687,7 @@ function OpenAllMessages(){
 
 
 /**
-* get number message wihout open, and write in menu whith the message.
+* Get number message wihout open, and write in menu whith the message.
 */
 function countUnreadMessages(){
 	var xmlHttp =new XMLHttpRequest();
@@ -711,16 +707,21 @@ function countUnreadMessages(){
 }
 
 
-////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
 /*
 *ROOM, SHOW DATA, DOWNLOAD FILE, ACEPT AGREEMENT, REJECT
 */
-////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
 /**
 * Display form to updload the agreement (signed)
 */
 function show_upload_file_agreement() {
     document.getElementById("upload_file_agreement").style.display="block";
+}
+
+function upload_file_agreement(){
+    //TODO update the file and everything
+    document.getElementById("upload_file_agreement").style.display="none";
 }
 
 
@@ -737,6 +738,7 @@ function pause(millis){
 
 /**
 *Rotate the images of the room
+* The number of images should be 3, otherwise need a paramenter //TODO add parameter with 3 by default
 */
 function rotate(tab){
     //console.log("rotata start: "+ tab)
@@ -774,17 +776,18 @@ function rotate(tab){
         }
     }
 }
-////////////////////////////////////////////////////////////////
+
+
+//////////////////////////////////////////////////////////////////////////////
 /*
 *RENT, SHOW DATA, DOWNLOAD FILE, PAY
 */
-////////////////////////////////////////////////////////////////
-
+//////////////////////////////////////////////////////////////////////////////
 /**
 *Display the form to pay
 */
 function show_form_payment(){
-    //check if there area month available to pay.
+    //check if there area any month available to pay.
     var xmlHttp =new XMLHttpRequest();
 	var url=window.location.protocol+"//"+window.location.host+port+"/Rent/getUnpaid/";
 	xmlHttp.open("GET", url, true );
@@ -794,7 +797,7 @@ function show_form_payment(){
     	if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
     		var output= JSON.parse(xmlHttp.responseText);
             console.log(output)
-    		if(output.success){
+    		if(output.success){//in the case that there are month available, show it
                 if (output.data.length>=1){
                     document.getElementById("payment_rent_month").innerHTML="   "+output.data[0].month;
                     document.getElementById("payment_rent_price").innerHTML="   "+output.data[0].price.toString()+"€";
@@ -813,11 +816,10 @@ function show_form_payment(){
     		}
     	}
     }
-
 }
 
 /**
-*Get every rent rents and display as a row in the table. Month/ price/date_paid/receipt
+*Get every rent and display as a row in the table. Month/ price/ date_paid/ receipt_file
 */
 function create_row(data){
     var tr = document.createElement('tr');
@@ -854,7 +856,7 @@ function create_row(data){
 }
 
 /**
-*Get all the rents and display in the table
+*Display all the rents in the table_rent
 */
 function createTableRent(data) {
     var father = document.getElementById("element_table_rent");
@@ -889,8 +891,8 @@ function getRents(){
 
 
 /**
-* pay the month of the last rent
-*
+* Pay the month of the last rent
+* @param {id} id of the rent in the database
 */
 function pay_month(id){
 	var card_holder_name=document.getElementById("card-holder-name").value;
@@ -916,13 +918,6 @@ function pay_month(id){
         showErrorMessagesPage("Student","pay","Invalid fecha expiracion",false);
         return;
     }
-
-    console.log(card_holder_name);
-    console.log(card_number);
-    console.log(expiry_month);
-    console.log(expiry_year);
-    console.log(cvv);
-
     var data = new FormData();
     data.append("id", id);
     data.append("cardHolder", card_holder_name);
@@ -946,13 +941,11 @@ function pay_month(id){
 }
 
 
-
-
-////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
 /*
 *SEARCH_ROOM, SHOW DATA, DOWNLOAD FILE, PAY
 */
-////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
 /**
 *Display the range of price
 */
@@ -966,36 +959,36 @@ function display_range_price(){
             $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
         }
     });
-    $( "#amount" ).val(
-     get_min_range_prince() +" € - " + get_max_range_prince() +" € " );
+    $( "#amount" ).val( get_min_range_prince() +" € - " + get_max_range_prince() +" € " );
 }
 
 /**
-*Get min price
+*@return min price
 */
 function get_min_range_prince(){
     return $( "#slider-range" ).slider( "values", 0 );
 }
 
 /**
-*GEt max price
+*@return max price
 */
 function get_max_range_prince(){
     return $( "#slider-range" ).slider( "values", 1 );
 }
 /**
-*select a icon or image of the list of equipment
+*Select a icon or image of the list of equipment. It will be shadow
 */
 function selected_icon_search(id){
     document.getElementById(id).className += " selected_icon_search";
 }
 /**
-*get element selected of the equpment in a json structure
+*Get element selected of the equpment in a json structure
+@return json_structure with the list of element
 */
 function get_equipment_selected(tab){
-    var result={};
     child=document.getElementById(tab).children;;
     var i;
+    var result={};
     for (i = 0; i < child.length; i++) {
         result[child[i].id] = child[i].className.includes("selected");
     }
@@ -1004,29 +997,31 @@ function get_equipment_selected(tab){
 }
 
 /**
-*Search room
+*Search room by the parementer of the form
 */
 function search_rooms() {
     var min_price=get_min_range_prince();
     var max_price=get_max_range_prince();
     //TODO get residence
-    get_equipment_selected('search_equipment');
+    var equpment=get_equipment_selected('search_equipment');
     document.getElementById("search_room_table").style.display="block";
     document.getElementById("search_room_specific").style.display="none";
     //TODO get all residences availables whith the paramenter
-    //display the table
+    //TODO create the row of the table
 
 }
 
 /**
-* Dispaly search room table
+* Dispaly search room table (table/ form / map)
 */
  function display_search_room_table() {
      display_range_price();
      init_map("search_room_table_map",39.88605099999999,-3.9192423);
+     //TODO display all the availables room in the table
  }
+
 /**
-*Dispaly the features of a room
+*Dispaly the features of a specific room
 */
 function display_search_room_specific(room_name,username_college){
     //TODO collect data of room and college
@@ -1039,12 +1034,12 @@ function display_search_room_specific(room_name,username_college){
 
 }
 /**
-*select a row in a table of the search
-* Display the maps
+* Select a row in a table of the search room (red background-color) and display its map
 */
 function selected_row_table(id, latitude, longitued){
     document.getElementById(id).className = " selected_row_table";
     // display maps latitude, longitued
+    //TODO get the  latitude, longitued of the room
     init_map("map_search_room_table",39.88605099999999,-3.9192423);
 }
 
@@ -1055,11 +1050,11 @@ function out_selected_row_table(id){
     document.getElementById(id).className = "";//any class
 }
 
-////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
 /*
 *Routing
 */
-////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
 /**
 * Dispaly the Home view
 */
@@ -1195,7 +1190,7 @@ function displayRent(){
 
 
 /**
-* When only the adress of the server is enter, redirection to the connection page
+* When only the address of the server is enter, redirection to the connection page (logout)
 */
 page('/', function(){
 	page('/connection');

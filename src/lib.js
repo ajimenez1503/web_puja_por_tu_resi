@@ -5,10 +5,10 @@
 
 /**
 * show the error in a div with is block in this moment
-* @param {string}page of the view, 2 possibility profile or Welcome
-* @param {string}the element of the error, such as: login, message, etc
-* @param {message}message of error
-* @returns {boolean} return true is the operation is success
+* @param {string} page of the view, 2 possibility profile or Welcome
+* @param {string} the element of the error, such as: login, message, etc
+* @param {message} message of error
+* @returns {boolean} bool
 */
 function showErrorMessagesPage(page,element,message,success){
     if (typeof(message) === 'string' && typeof(element) === 'string' && typeof(page) === 'string' &&
@@ -30,7 +30,11 @@ function showErrorMessagesPage(page,element,message,success){
 
 }
 
-
+/**
+* Disappear the element with a speed
+* @param {element} html element
+* @param {speed} speed to disappear
+*/
 function fade(element, speed) {
 var op = 1,
         timer = setInterval(function () {
@@ -91,10 +95,10 @@ function deleteAllChildElement(node){
 
 
 /**
-* display the location of the college on map
+* Display the location of the latitude and logitude on map
 * @param {id} id of the div
 * @param {latitude} latitude of the position
-* @param {latitude} longitued of the position
+* @param {longitued} longitued of the position
 */
 function init_map(id,latitude,longitued) {
     //get latitude,longitued from the college
@@ -115,17 +119,21 @@ function init_map(id,latitude,longitued) {
 }
 
 
-// takes the form field value and returns true on valid number
-function validateCreditCard(value) {
+/**
+* Check if the credit Card is valid by the Luhn Algorithm
+* @param {String} cardNumber
+* @returns {boolean} if the cardNumber is valid
+*/
+function validateCreditCard(cardNumber) {
   // accept only digits, dashes or spaces
-	if (/[^0-9-\s]+/.test(value)) return false;
+	if (/[^0-9-\s]+/.test(cardNumber)) return false;
 
 	// The Luhn Algorithm. It's so pretty.
 	var nCheck = 0, nDigit = 0, bEven = false;
-	value = value.replace(/\D/g, "");
+	cardNumber = cardNumber.replace(/\D/g, "");
 
-	for (var n = value.length - 1; n >= 0; n--) {
-		var cDigit = value.charAt(n),
+	for (var n = cardNumber.length - 1; n >= 0; n--) {
+		var cDigit = cardNumber.charAt(n),
 			  nDigit = parseInt(cDigit, 10);
 
 		if (bEven) {
@@ -139,6 +147,12 @@ function validateCreditCard(value) {
 	return (nCheck % 10) == 0;
 }
 
+/**
+* Check if the security code is valid
+* @param {String} cardNumber
+* @param {String} cvv
+* @returns {boolean} if the cvv is valid
+*/
 function validateCVV(cardNumber,cvv)
 {
     // Get the first number of the credit card so we know how many digits to look for
@@ -160,6 +174,12 @@ function validateCVV(cardNumber,cvv)
 }
 
 
+/**
+* Check if the expiry date is valid compare with now
+* @param {String} cardNumber
+* @param {String} cvv
+* @returns {boolean} if the cvv is valid
+*/
 function validateExpiryDate(expiry_month,expiry_year)
 {
     expiry_year=parseInt(expiry_year);
@@ -174,16 +194,27 @@ function validateExpiryDate(expiry_month,expiry_year)
     }
 }
 
-    //http://blog.mattheworiordan.com/post/13174566389/url-regular-expression-for-links-with-or-without
-function ValidURL(str) {
+/**
+* Check if the Url is valid by the Algorithm:
+*http://blog.mattheworiordan.com/post/13174566389/url-regular-expression-for-links-with-or-without
+* @param {String} Url
+* @returns {boolean} if the url is valid
+*/
+function ValidURL(Url) {
     var pattern = /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[\-;:&=\+\$,\w]+@)?[A-Za-z0-9\.\-]+|(?:www\.|[\-;:&=\+\$,\w]+@)[A-Za-z0-9\.\-]+)((?:\/[\+~%\/\.\w\-_]*)?\??(?:[\-\+=&;%@\.\w_]*)#?(?:[\.\!\/\\\w]*))?)/
-    if(pattern.test(str)) {
+    if(pattern.test(Url)) {
         return true;
     } else {
         return false;
     }
 }
 
+
+/**
+* Check if the tel is valid
+* @param {String} tel
+* @returns {boolean} if the tel is valid
+*/
 function ValidatePhonenumber(tel){
     var phoneno1 = /^\d{9}$/; //XXXXXXXXX
     var phoneno2 = /^\+?([0-9]{2})\)?[-. ]?([0-9]{9})$/; //+XX-XXXXXXXXX
@@ -195,8 +226,8 @@ function ValidatePhonenumber(tel){
     }
  }
 
-
-/*CIF
+/**
+* Check if the CIF is valid by the Algorithm:
 _   _ _ _ _ _ _ _   _
 |_| |_|_|_|_|_|_|_| |_|
 ^   ^           ^   ^
@@ -208,6 +239,8 @@ _   _ _ _ _ _ _ _   _
 Letra de tipo de Organización, una de las siguientes:
 {A,B,C,D,E,F,G,H,K,L,M,N,P,Q,S}
 //http://www.microteching.com/javascript/clase-para-validar-cifs-y-nifs-por-javascript
+* @param {String} cif
+* @returns {boolean} if the cif is valid
 */
 function validateCIF(cif) {
     var CIF_regExp = "^[a-zA-Z]{1}\\d{7}[a-jA-J0-9]{1}$";
