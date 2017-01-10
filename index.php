@@ -221,7 +221,7 @@
                             <div class="panel-body">
                                 <div class="row">
                                     <div class="col-lg-12">
-                                        <form action="javascript:void(0);" method="post" role="form" >
+                                        <form id="id_formUpdatePassword" action="javascript:void(0);" method="post" role="form" >
                                             <div class="form-group">
                                                 <input  id="formUpdatePasswordOld" type="password" name="password" pattern=".{8,8}" tabindex="2" class="form-control" placeholder="contraseña actual" required>
                                             </div>
@@ -256,7 +256,7 @@
                             <div class="panel-body">
                                 <div class="row">
                                     <div class="col-lg-12">
-                                        <form action="javascript:void(0);" method="post" role="form" >
+                                        <form id="id_formUpdateEmail"action="javascript:void(0);" method="post" role="form" >
                                             <div class="form-group">
                                                 <input  id="formUpdateEmail" type="email" name="email"  tabindex="2" class="form-control" placeholder="nuevo email" required>
                                             </div>
@@ -503,7 +503,7 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <form action="javascript:void(0);" method="post" enctype="multipart/form-data" >
+                                    <form id="form_id_upload_file_agreement" action="javascript:void(0);" method="post" enctype="multipart/form-data" >
                                         <div class="form-group">
                                             <input type="file" name="file_name"  id="formAgreementFilename" tabindex="2" class="form-control" placeholder="nombre archivo" required>
                                         </div>
@@ -652,7 +652,7 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <form action="javascript:void(0);" method="post" enctype="multipart/form-data" >
+                                    <form id="id_form_createIncidence" action="javascript:void(0);" method="post" enctype="multipart/form-data" >
                                         <div class="form-group">
                                             <input  id="formInicidenceDescription" type="text" name="descritption" tabindex="2" class="form-control" placeholder="Descripcion" required>
                                         </div>
@@ -681,7 +681,7 @@
 
 
     <div id="message">
-        <form class="panel-footer" action="javascript:void(0);" method="post" enctype="multipart/form-data" >
+        <form id="id_form_sendMessage" class="panel-footer" action="javascript:void(0);" method="post" enctype="multipart/form-data" >
             <div class="input-group">
                 <input required id="formMessageText" type="text" class="form-control input-sm" placeholder="Type your message here..."  />
                 <span class="fileUpload input-group-btn">
@@ -717,7 +717,7 @@
             </div>
 
         <div id="payment_rent">
-            <form class="form-horizontal" role="form">
+            <form id="form_id_payment_rent_submit" class="form-horizontal" role="form">
                 <fieldset>
                     <legend>
                         <label>PAGO:   </label>
@@ -781,7 +781,7 @@
                                 <input type="text" class="form-control" name="cvv" id="card_cvv" placeholder="Security Code">
                             </div>
                             <div class="col-sm-3">
-                                <button id="payment_rent_submint"type="button" class="btn btn-success">Pagar</button>
+                                <button id="payment_rent_submit"type="button" class="btn btn-success">Pagar</button>
                             </div>
                         </div>
                     </div>

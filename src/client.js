@@ -97,6 +97,7 @@ function login(){
     }else{
        showErrorMessagesPage("Welcome","login","Invalid password o usuario.",false);
     }
+    //TODO document.getElementById("login-form").reset();//clean input
 }
 
 
@@ -218,6 +219,8 @@ function signup_college(){
         data.append("url", user.url);
         data.append("telephone", user.telephone);
 		xmlHttp.send(data);
+        document.getElementById("register_form_college").reset();//clean input
+
 }
 
 
@@ -269,6 +272,9 @@ function signup_student(){
         data.append("email",user.email);
         data.append("name", user.name);
 		xmlHttp.send(data);
+        document.getElementById("register_form_student").reset();//clean input
+
+
 }
 /**
 * Logout the user
@@ -370,6 +376,7 @@ function updatePassword(){
 	}else{
 		showErrorMessagesPage("Student","updatePassword","passwords not identical ",false);
 	}
+    document.getElementById("id_formUpdatePassword").reset();//clean input
 }
 
 /**
@@ -396,6 +403,7 @@ function updateEmail(){
 	}else{
 		showErrorMessagesPage("Student","updateEmail","Email no es valido.",false);
 	}
+    document.getElementById("id_formUpdateEmail").reset();//clean input
 }
 
 
@@ -460,6 +468,7 @@ function createIncidence(){
     }else{
         console.log("Enter a correct file.")
     }
+    document.getElementById("id_form_createIncidence").reset();//clean input
 }
 
 /**
@@ -582,6 +591,7 @@ function sendMessage(){
     data.append("message", message);
     data.append("file_attached", file);
 	xmlHttp.send(data);
+    document.getElementById("id_form_sendMessage").reset();//clean input
 }
 
 /*
@@ -666,15 +676,15 @@ function createHTMLMessage(message){
 
 
     var img_plus = new Image(20,20); // width, height values are optional params
-    img_plus.src = 'http://www.ieem.edu.uy/img/boton-mas.png';
+    img_plus.src = 'http://image.flaticon.com/icons/png/128/54/54443.png';
     img_plus.onclick = function(){
         document.getElementById("div_extra"+message.id).style.display="block";
     };
     div.appendChild(img_plus);
 
 
-    var img_less = new Image(20,20); // width, height values are optional params
-    img_less.src = 'https://image.freepik.com/icones-gratuites/le-signe-moins-dans-un-cercle_318-67824.jpg';
+    var img_less = new Image(23,23); // width, height values are optional params
+    img_less.src = 'https://cdn3.iconfinder.com/data/icons/line/36/cancel-512.png';
     img_less.onclick = function(){
         document.getElementById("div_extra"+message.id).style.display="none";
     };
@@ -776,6 +786,7 @@ function show_upload_file_agreement() {
 function upload_file_agreement(){
     //TODO update the file and everything
     document.getElementById("upload_file_agreement").style.display="none";
+    document.getElementById("form_id_upload_file_agreement").reset();//clean input
 }
 
 
@@ -857,7 +868,7 @@ function show_form_payment(){
                 if (output.data.length>=1){
                     document.getElementById("payment_rent_month").innerHTML="   "+output.data[0].month;
                     document.getElementById("payment_rent_price").innerHTML="   "+output.data[0].price.toString()+"€";
-                    document.getElementById("payment_rent_submint").onclick = function(){
+                    document.getElementById("payment_rent_submit").onclick = function(){
                         pay_month(output.data[0].id);
                     };
                     console.log(output.data[0].id);
@@ -994,6 +1005,8 @@ function pay_month(id){
 	xmlHttp.open("POST", url, true );
     xmlHttp.withCredentials = true;
 	xmlHttp.send(data);
+    document.getElementById("form_id_payment_rent_submit").reset();//clean input form
+
 }
 
 
