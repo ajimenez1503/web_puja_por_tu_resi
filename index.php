@@ -25,10 +25,13 @@
 	<script src="src/page.js"></script>
     <script src="src/lib.js"></script>
     <script src="src/client.js" ></script>
-    <script async defer  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDau09DcBHg-wQ8wHUsl6SUCYOPPlDFiWQ&callback=initMap"></script>
+    <!--<script async defer  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDau09DcBHg-wQ8wHUsl6SUCYOPPlDFiWQ&callback=init_map"></script>-->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDau09DcBHg-wQ8wHUsl6SUCYOPPlDFiWQ&libraries=places"async defer></script>
     <link rel="icon" type="image/ico" href="img/logo.ico">
 
     <script id="welcomeview" type=”text/view”>
+    <!--<input oninput="search_place()" id="pac-input" class="controls" type="text" placeholder="Search Box">-->
+
     <div class="header_welcomeview">
         <div class="header_welcomeview_left">
             <img class="img_header_welcomeview_left" src="img/logo2.png" alt="log and slogan">
@@ -104,7 +107,7 @@
                                         <input type="email" name="email" id="college_signupEmail" tabindex="1" class="form-control" placeholder="Email" required>
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" name="address" id="college_signupAddress" tabindex="1" class="form-control" placeholder="Dirreccion" required>
+                                        <input oninput="search_place()" type="text" name="address" id="college_signupAddress" tabindex="1" class="form-control" placeholder="Dirreccion" required>
                                     </div>
                                     <div class="form-group">
                                         <input type="url" name="url" id="college_signupUrl" tabindex="1" class="form-control" placeholder="URL" required>
@@ -502,7 +505,7 @@
                                 <div class="col-lg-12">
                                     <form action="javascript:void(0);" method="post" enctype="multipart/form-data" >
                                         <div class="form-group">
-                                            <input type="file" name="file_name"  id="formIncidenceFilename" tabindex="2" class="form-control" placeholder="nombre archivo" required>
+                                            <input type="file" name="file_name"  id="formAgreementFilename" tabindex="2" class="form-control" placeholder="nombre archivo" required>
                                         </div>
                                         <div class="form-group">
                                             <div class="row">

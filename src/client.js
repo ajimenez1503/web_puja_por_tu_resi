@@ -12,7 +12,6 @@ var port=":8000";
 *LOAD VIEWS
 */
 //////////////////////////////////////////////////////////////////////////////
-
 /**
 * Display the specific view when the page is reload
 */
@@ -100,6 +99,57 @@ function login(){
     }
 }
 
+
+
+var global_address_college = {
+  'formatted_address': "",
+  'lat':"",
+  'lng':"",
+};
+
+/**
+*Searchbox for the address of the college. When the user choose aa specific address
+*/
+function search_place() {
+  // Create the search box and link it to the UI element.
+  var input = document.getElementById('college_signupAddress');
+  var searchBox = new google.maps.places.SearchBox(input);
+
+  var markers = [];
+  // [START region_getplaces]
+  // Listen for the event fired when the user selects a prediction and retrieve
+  // more details for that place.
+  searchBox.addListener('places_changed', function() {
+    var places = searchBox.getPlaces();
+    if (places.length == 0) {
+      return;
+    }
+    // Clear out the old markers.
+    markers.forEach(function(marker) {
+      marker.setMap(null);
+    });
+    markers = [];
+
+    // For each place, get  name and location.
+    places.forEach(function(place) {
+
+      // Create a marker for each place.
+      markers.push(new google.maps.Marker({
+        title: place.name,
+        position: place.geometry.location
+      }));
+    });
+    if(places.length == 1)
+    {
+        console.log(places[0].formatted_address);
+        global_address_college.formatted_address=places[0].formatted_address;
+        global_address_college.lat=places[0].geometry.location.lat();
+        global_address_college.lng=places[0].geometry.location.lng();
+    }
+  });
+  // [END region_getplaces]
+}
+
 /**
 *Signin a new  user (college) by email, password company_name, CIF, telefone, address, url
 *The input is validate and show the error in case of problem
@@ -111,7 +161,9 @@ function signup_college(){
 		  'repeat_password':document.getElementById("college_signupRepeatPSW").value,
           'name': document.getElementById("college_signupName").value,
           'username': document.getElementById("college_signupusername").value,
-          'address': document.getElementById("college_signupAddress").value,
+          'address': global_address_college.formatted_address,
+          'lat':global_address_college.lat,
+          'lng':global_address_college.lng,
           'url': document.getElementById("college_signupUrl").value,
           'telephone': document.getElementById("college_signupTelephone").value,
         };
@@ -161,6 +213,8 @@ function signup_college(){
         data.append("email",user.email);
         data.append("companyName", user.name);
         data.append("address", user.address);
+        data.append("lat", user.lat);
+        data.append("lng", user.lng);
         data.append("url", user.url);
         data.append("telephone", user.telephone);
 		xmlHttp.send(data);
