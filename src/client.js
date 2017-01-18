@@ -198,6 +198,7 @@ function signup_college(){
             showErrorMessagesPage("Welcome","signup","Telefono no es valido",false);
             return;
         }
+        var equipment=get_equipment_selected('college_equipment');
 		var url=window.location.protocol+"//"+window.location.host+port+"/Signin/college/";
 		var xmlHttp =new XMLHttpRequest();
 		xmlHttp.onreadystatechange = function() {
@@ -218,6 +219,14 @@ function signup_college(){
         data.append("lng", user.lng);
         data.append("url", user.url);
         data.append("telephone", user.telephone);
+        data.append("wifi", equipment.college_icon_wifi);
+        data.append("elevator", equipment.college_icon_elevator);
+        data.append("canteen", equipment.college_icon_restaurant);
+        data.append("hours24", equipment.college_icon_24h);
+        data.append("laundry", equipment.college_icon_laundry);
+        data.append("gym", equipment.college_icon_gym);
+        data.append("study_room", equipment.college_icon_school);
+        data.append("heating", equipment.college_icon_heating);
 		xmlHttp.send(data);
         document.getElementById("register_form_college").reset();//clean input
 
@@ -1045,13 +1054,18 @@ function get_max_range_prince(){
     return $( "#slider-range" ).slider( "values", 1 );
 }
 /**
-*Select a icon or image of the list of equipment. It will be shadow
+*Select and selected a icon or image of the list of equipment. It will be shadow
 */
 function selected_icon_search(id){
-    document.getElementById(id).className += " selected_icon_search";
+    if  (document.getElementById(id).className.includes(" selected_icon_search")){
+        document.getElementById(id).className.replace('selected_icon_search','');
+    }else{
+        document.getElementById(id).className+=' selected_icon_search';
+    }
+
 }
 /**
-*Get element selected of the equpment in a json structure
+*Get element selected of the equipment in a json structure
 @return json_structure with the list of element
 */
 function get_equipment_selected(tab){
@@ -1059,7 +1073,11 @@ function get_equipment_selected(tab){
     var i;
     var result={};
     for (i = 0; i < child.length; i++) {
-        result[child[i].id] = child[i].className.includes("selected");
+        if (child[i].className.includes("selected_icon_search")){
+            result[child[i].id]='1';
+        }else{
+            result[child[i].id]='0';
+        }
     }
     console.log(result);
     return result;
@@ -1072,7 +1090,7 @@ function search_rooms() {
     var min_price=get_min_range_prince();
     var max_price=get_max_range_prince();
     //TODO get residence
-    var equpment=get_equipment_selected('search_equipment');
+    var equipment=get_equipment_selected('search_equipment');
     document.getElementById("search_room_table").style.display="block";
     document.getElementById("search_room_specific").style.display="none";
     //TODO get all residences availables whith the paramenter
