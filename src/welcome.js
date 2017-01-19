@@ -315,3 +315,7 @@ function logout(){
     xmlHttp.withCredentials = true;
 	xmlHttp.send();
 }
+
+page('/welcome', function(){
+	console.log("welcome page")
+});

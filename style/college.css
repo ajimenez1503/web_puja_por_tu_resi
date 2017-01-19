@@ -15,10 +15,24 @@
 /*////////////////////////////////////////////////////////////////
 *List of rooms
 ////////////////////////////////////////////////////////////////*/
-.college_table_list_rooms{
+#college_table_list_rooms{
 	margin-left: 5%;
 	margin-right: 5%;
 	height: 550px;
 	margin-bottom: 5%;
 	overflow-y: auto;
+}
+/*////////////////////////////////////////////////////////////////
+*college_specific_room
+////////////////////////////////////////////////////////////////*/
+
+#college_specific_room_slider_img{
+	width: 230px;
+	height: 200px;
+	overflow: hidden;
+	position: relative;
+	margin: 10px 0 0 0;
+	border-radius: 21px;
+  	border-color: rgb(150, 172, 219);
+
 }
