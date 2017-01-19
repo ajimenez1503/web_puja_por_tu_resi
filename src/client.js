@@ -35,11 +35,17 @@ reloadPage = function(){
 displayView = function(){
    // the code required to display a view
    if("welcomeview" === globa_view){
-       document.getElementById("viewBase").innerHTML = document.getElementById("welcomeview").innerHTML;
+       $( "#viewBase" ).load( "welcome.html" , function() {
+          page("/welcome");//display view until is load
+        });
    }else if("studentview"===globa_view){
-       document.getElementById("viewBase").innerHTML = document.getElementById("studentview").innerHTML;
+       $( "#viewBase" ).load( "student.html" , function() {
+          page("/home");//display view until is load
+        });
    }else if("collegeview"===globa_view){
-       document.getElementById("viewBase").innerHTML = document.getElementById("collegeview").innerHTML;
+       $( "#viewBase" ).load( "college.html" , function() {
+          page("/college_list_rooms");//display view until is load
+        });
    }
 };
 
@@ -83,11 +89,9 @@ function login(){
                     if (output.data.ROLE[0]=="ROLE_STUDENT"){
                             globa_view="studentview";
                             reloadPage();
-                            page("/home");
                     }else if (output.data.ROLE[0]=="ROLE_COLLEGE"){
                             globa_view="collegeview";
                             reloadPage();
-                            page("/college_list_rooms");
                     }else{
                             console.log(output.data.ROLE[0]);
                             showErrorMessagesPage("Welcome","login","Role desconocido.",output.success);
@@ -1282,6 +1286,9 @@ function displayRent(){
     }
 }
 
+page('/welcome', function(){
+	console.log("welcome page")
+});
 
 /**
 * When only the address of the server is enter, redirection to the connection page (logout)
@@ -1501,7 +1508,7 @@ function getRooms(){
 * Dispaly the Home view
 */
 function displayCollege_list_rooms(){
-    if("collegeview"===globa_view){
+    if("collegeview"===globa_view ){
         console.log("display college_list_rooms");
     	document.getElementById("college_list_rooms").style.display="block";
         getRooms();// display table list rooms
