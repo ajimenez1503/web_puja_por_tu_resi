@@ -38,6 +38,8 @@ displayView = function(){
        document.getElementById("viewBase").innerHTML = document.getElementById("welcomeview").innerHTML;
    }else if("studentview"===globa_view){
        document.getElementById("viewBase").innerHTML = document.getElementById("studentview").innerHTML;
+   }else if("collegeview"===globa_view){
+       document.getElementById("viewBase").innerHTML = document.getElementById("collegeview").innerHTML;
    }
 };
 
@@ -67,7 +69,7 @@ function display_form_login(id) {
 function login(){
 	var username=document.getElementById("loginUsername").value;
 	var password=document.getElementById("loginPassword").value;
-    if(password.length>=sizePaswword && validateDNI(username)){
+    if(password.length>=sizePaswword && (validateDNI(username) || validateCIF(username))){
         var data = new FormData();
         data.append("_username", username);
         data.append("_password", password);
@@ -82,12 +84,17 @@ function login(){
                             globa_view="studentview";
                             reloadPage();
                             page("/home");
+                    }else if (output.data.ROLE[0]=="ROLE_COLLEGE"){
+                            globa_view="collegeview";
+                            reloadPage();
+                            page("/college_list_rooms");
                     }else{
                             console.log(output.data.ROLE[0]);
-                            showErrorMessagesPage("Welcome","login","Vista de la resiencia.",output.success);
+                            showErrorMessagesPage("Welcome","login","Role desconocido.",output.success);
                     }
 				}else{
 					showErrorMessagesPage("Welcome","login",output.message,output.success);
+                    console.log(output);
 				}
 			}
 		}
@@ -897,7 +904,7 @@ function show_form_payment(){
 /**
 *Get every rent and display as a row in the table. Month/ price/ date_paid/ receipt_file
 */
-function create_row(data){
+function create_row_rent(data){
     var tr = document.createElement('tr');
     //month
         var td = document.createElement('td');
@@ -938,7 +945,7 @@ function createTableRent(data) {
     var father = document.getElementById("element_table_rent");
     deleteAllChildElement(father)
     for (i = 0; i < data.length; i++) {
-        father.appendChild( create_row(data[i]));
+        father.appendChild( create_row_rent(data[i]));
     }
 }
 
@@ -1139,7 +1146,7 @@ function out_selected_row_table(id){
 
 //////////////////////////////////////////////////////////////////////////////
 /*
-*Routing
+*Routing student
 */
 //////////////////////////////////////////////////////////////////////////////
 /**
@@ -1344,8 +1351,168 @@ page('/rent', function(){
 /**
 * If the URL enter is wrong we redirect the user to the home page, and if the user is not connected to the connection page
 */
+/*
 page('*', function(){
- 	page('/home');
+ 	page('/connection');
+});*/
+//////////////////////////////////////////////////////////////////////////////
+/*
+*COLLGE LIST ROOMS , SHOW table with all the rooms
+*/
+//////////////////////////////////////////////////////////////////////////////
+/**
+*Get every room and display as a row in the table. nombre,inicio academico,fin academico,inicio puja,fin puja,tamaño,planta,tv, bath, desk, wardrove
+*/
+function create_row_room(data){
+    var tr = document.createElement('tr');
+    //nombre
+        var td = document.createElement('td');
+        td.appendChild(document.createTextNode(data.name))
+        tr.appendChild(td)
+    //inicio academico
+        var td = document.createElement('td');
+        td.appendChild(document.createTextNode(data.date_start_school.date));
+        tr.appendChild(td)
+    //fin academico
+        var td = document.createElement('td');
+        td.appendChild(document.createTextNode(data.date_end_school.date));
+        tr.appendChild(td)
+    //inicio puja
+        var td = document.createElement('td');
+        td.appendChild(document.createTextNode(data.date_start_bid.date));
+        tr.appendChild(td)
+    //fin puja
+        var td = document.createElement('td');
+        td.appendChild(document.createTextNode(data.date_end_bid.date));
+        tr.appendChild(td)
+    //tamaño
+        var td = document.createElement('td');
+        td.appendChild(document.createTextNode(data.size))
+        tr.appendChild(td)
+    //planta
+        var td = document.createElement('td');
+        td.appendChild(document.createTextNode(data.floor))
+        tr.appendChild(td)
+    //cliente
+        var td = document.createElement('td');
+        td.appendChild(document.createTextNode("nombre cliente"))
+        tr.appendChild(td)
+
+    //tv
+        var td = document.createElement('td');
+        if(data.tv){
+            var icon_check_tv= document.createElement('i');
+            icon_check_tv.className+="icon fa fa-check"       //<i class="fa fa-check" aria-hidden="true"></i>
+            icon_check_tv.setAttribute("aria-hidden","true")
+            td.appendChild(icon_check_tv)
+        }else{
+            var icon_failed_tv= document.createElement('i');
+            icon_failed_tv.className+="icon fa fa-times"       //<i class="fa fa-times" aria-hidden="true"></i>
+            icon_failed_tv.setAttribute("aria-hidden","true")
+            td.appendChild(icon_failed_tv)
+        }
+        tr.appendChild(td)
+    // bath
+        var td = document.createElement('td');
+        if(data.bath){
+            var icon_check_bath= document.createElement('i');
+            icon_check_bath.className+="icon fa fa-check"       //<i class="fa fa-check" aria-hidden="true"></i>
+            icon_check_bath.setAttribute("aria-hidden","true")
+            td.appendChild(icon_check_bath)
+        }else{
+            var icon_failed_bath= document.createElement('i');
+            icon_failed_bath.className+="icon fa fa-times"       //<i class="fa fa-times" aria-hidden="true"></i>
+            icon_failed_bath.setAttribute("aria-hidden","true")
+            td.appendChild(icon_failed_bath)
+        }
+        tr.appendChild(td)
+    //desk
+        var td = document.createElement('td');
+        if(data.desk){
+            var icon_check_desk= document.createElement('i');
+            icon_check_desk.className+="icon fa fa-check"       //<i class="fa fa-check" aria-hidden="true"></i>
+            icon_check_desk.setAttribute("aria-hidden","true")
+            td.appendChild(icon_check_desk)
+        }else{
+            var icon_failed_desk= document.createElement('i');
+            icon_failed_desk.className+="icon fa fa-times"       //<i class="fa fa-times" aria-hidden="true"></i>
+            icon_failed_desk.setAttribute("aria-hidden","true")
+            td.appendChild(icon_failed_desk)
+        }
+        tr.appendChild(td)
+    //wardrove
+       var td = document.createElement('td');
+       if(data.wardrove){
+           var icon_check_wardrove= document.createElement('i');
+           icon_check_wardrove.className+="icon fa fa-check"       //<i class="fa fa-check" aria-hidden="true"></i>
+           icon_check_wardrove.setAttribute("aria-hidden","true")
+           td.appendChild(icon_check_wardrove)
+       }else{
+           var icon_failed_wardrove= document.createElement('i');
+           icon_failed_wardrove.className+="icon fa fa-times"       //<i class="fa fa-times" aria-hidden="true"></i>
+           icon_failed_wardrove.setAttribute("aria-hidden","true")
+           td.appendChild(icon_failed_wardrove)
+       }
+       tr.appendChild(td)
+    return tr;
+}
+
+/**
+*Display all the room of the college in the table_rent
+*/
+
+function display_table_list_rooms(data){
+    var father = document.getElementById("college_element_table_list_rooms");
+    deleteAllChildElement(father)
+    for (i = 0; i < data.length; i++) {
+        father.appendChild( create_row_room(data[i]));
+    }
+}
+
+
+/**
+*Get all the rents and display in the table
+*/
+function getRooms(){
+    var xmlHttp =new XMLHttpRequest();
+	var url=window.location.protocol+"//"+window.location.host+port+"/Room/getAll/";
+	xmlHttp.open("GET", url, true );
+    xmlHttp.withCredentials = true;
+	xmlHttp.send();
+	xmlHttp.onreadystatechange = function() {
+    	if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
+    		var output= JSON.parse(xmlHttp.responseText);
+            console.log(output)
+    		if(output.success){
+                display_table_list_rooms(output.data)
+    		}else{
+    			showErrorMessagesPage("College","showdata",output.message,output.success);
+    		}
+    	}
+    }
+}
+
+//////////////////////////////////////////////////////////////////////////////
+/*
+*Routing College
+*/
+//////////////////////////////////////////////////////////////////////////////
+/**
+* Dispaly the Home view
+*/
+function displayCollege_list_rooms(){
+    if("collegeview"===globa_view){
+        console.log("display college_list_rooms");
+    	document.getElementById("college_list_rooms").style.display="block";
+        getRooms();// display table list rooms
+    }
+}
+/**
+* Display list rooms of the college
+*/
+page('/college_list_rooms', function(){
+ 	displayCollege_list_rooms();
 });
+
 
 page({hashbang: true});
