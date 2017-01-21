@@ -52,12 +52,12 @@ function create_row_room(data){
         var td = document.createElement('td');
         if(data.tv){
             var icon_check_tv= document.createElement('i');
-            icon_check_tv.className+="icon fa fa-check"       //<i class="fa fa-check" aria-hidden="true"></i>
+            icon_check_tv.className+="icon fa fa-check-circle"       //<i class="fa fa-check-circle" aria-hidden="true"></i>
             icon_check_tv.setAttribute("aria-hidden","true")
             td.appendChild(icon_check_tv)
         }else{
             var icon_failed_tv= document.createElement('i');
-            icon_failed_tv.className+="icon fa fa-times"       //<i class="fa fa-times" aria-hidden="true"></i>
+            icon_failed_tv.className+="icon fa fa-ban"       //<i class="fa fa-ban" aria-hidden="true"></i>
             icon_failed_tv.setAttribute("aria-hidden","true")
             td.appendChild(icon_failed_tv)
         }
@@ -66,12 +66,12 @@ function create_row_room(data){
         var td = document.createElement('td');
         if(data.bath){
             var icon_check_bath= document.createElement('i');
-            icon_check_bath.className+="icon fa fa-check"       //<i class="fa fa-check" aria-hidden="true"></i>
+            icon_check_bath.className+="icon fa fa-check-circle"       //<i class="fa fa-check-circle" aria-hidden="true"></i>
             icon_check_bath.setAttribute("aria-hidden","true")
             td.appendChild(icon_check_bath)
         }else{
             var icon_failed_bath= document.createElement('i');
-            icon_failed_bath.className+="icon fa fa-times"       //<i class="fa fa-times" aria-hidden="true"></i>
+            icon_failed_bath.className+="icon fa fa-ban"       //<i class="fa fa-ban" aria-hidden="true"></i>
             icon_failed_bath.setAttribute("aria-hidden","true")
             td.appendChild(icon_failed_bath)
         }
@@ -80,12 +80,12 @@ function create_row_room(data){
         var td = document.createElement('td');
         if(data.desk){
             var icon_check_desk= document.createElement('i');
-            icon_check_desk.className+="icon fa fa-check"       //<i class="fa fa-check" aria-hidden="true"></i>
+            icon_check_desk.className+="icon fa fa-check-circle"       //<i class="fa fa-check-circle" aria-hidden="true"></i>
             icon_check_desk.setAttribute("aria-hidden","true")
             td.appendChild(icon_check_desk)
         }else{
             var icon_failed_desk= document.createElement('i');
-            icon_failed_desk.className+="icon fa fa-times"       //<i class="fa fa-times" aria-hidden="true"></i>
+            icon_failed_desk.className+="icon fa fa-ban"       //<i class="fa fa-ban" aria-hidden="true"></i>
             icon_failed_desk.setAttribute("aria-hidden","true")
             td.appendChild(icon_failed_desk)
         }
@@ -94,22 +94,38 @@ function create_row_room(data){
        var td = document.createElement('td');
        if(data.wardrove){
            var icon_check_wardrove= document.createElement('i');
-           icon_check_wardrove.className+="icon fa fa-check"       //<i class="fa fa-check" aria-hidden="true"></i>
+           icon_check_wardrove.className+="icon fa fa-check-circle"       //<i class="fa fa-check-circle" aria-hidden="true"></i>
            icon_check_wardrove.setAttribute("aria-hidden","true")
            td.appendChild(icon_check_wardrove)
        }else{
            var icon_failed_wardrove= document.createElement('i');
-           icon_failed_wardrove.className+="icon fa fa-times"       //<i class="fa fa-times" aria-hidden="true"></i>
+           icon_failed_wardrove.className+="icon fa fa-ban"       //<i class="fa fa-ban" aria-hidden="true"></i>
            icon_failed_wardrove.setAttribute("aria-hidden","true")
            td.appendChild(icon_failed_wardrove)
        }
        tr.appendChild(td)
+     //buttom remove
+        var td = document.createElement('td');
+        remove_buttom=document.createElement('button');
+        remove_buttom.className+=" btn btn-link"
+        var icon_failed_desk= document.createElement('i');
+        icon_failed_desk.className+="icon fa fa-times"       //<i class="fa fa-times" aria-hidden="true"></i>
+        icon_failed_desk.setAttribute("aria-hidden","true")
+        remove_buttom.appendChild(icon_failed_desk)
+        remove_buttom.onclick = function() {
+            remove_room(data.id);
+            getRooms();
+            tr.onclick = function() {/*empty*/ };
+
+        };
+        td.appendChild(remove_buttom)
+        tr.appendChild(td)
 
     tr.onmouseover = function() {
-        selected_row_table(tr.id)
+        college_selected_outselected_row_table(tr.id)
     };
     tr.onmouseout = function() {
-        out_selected_row_table(tr.id)
+        college_selected_outselected_row_table(tr.id)
     };
 
     tr.onclick = function() {
@@ -126,6 +142,22 @@ function display_table_list_rooms(data){
     deleteAllChildElement(father)
     for (i = 0; i < data.length; i++) {
         father.appendChild( create_row_room(data[i]));
+    }
+}
+
+
+/**
+*Select a row in a table of the search room (red background-color)
+* out select a row in a table of the search
+*/
+function college_selected_outselected_row_table(id){
+
+    class_name=document.getElementById(id).className;
+    if (class_name.includes(" selected_row_table")){
+        class_name=class_name.replace("selected_row_table","");
+        document.getElementById(id).className=class_name;
+    }else{
+        document.getElementById(id).className+= " selected_row_table";
     }
 }
 
@@ -151,6 +183,36 @@ function getRooms(){
     	}
     }
 }
+
+
+
+
+/**
+*remove a room (id)
+*@param id of the room
+*@return bool (true if it is deleted)
+*/
+function remove_room(id){
+	var xmlHttp =new XMLHttpRequest();
+	var url=window.location.protocol+"//"+window.location.host+port+"/Room/remove/"+id;
+	xmlHttp.open("POST", url, true );
+    xmlHttp.withCredentials = true;
+	xmlHttp.send();
+	xmlHttp.onreadystatechange = function() {
+    	if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
+    		var output= JSON.parse(xmlHttp.responseText);
+            console.log(output)
+    		if(!output.success){
+    			showErrorMessagesPage("College","remove_roome",output.message,output.success);
+                return false;
+    		}else{
+                return true;
+            }
+    	}
+    }
+}
+
+
 
 /**
 *display the view of a specific room
@@ -201,8 +263,10 @@ function college_display_specifiy_room(data_room){
     document.getElementById("college_specific_room_picture1").src=window.location.protocol+"//"+window.location.host+port+"/Room/download/"+data_room.picture1;
     document.getElementById("college_specific_room_picture2").src=window.location.protocol+"//"+window.location.host+port+"/Room/download/"+data_room.picture2;
     document.getElementById("college_specific_room_picture3").src=window.location.protocol+"//"+window.location.host+port+"/Room/download/"+data_room.picture3;
-
     rotate("college_specific_room");
+    //TODO choose if display agreemtn or bid or anything according to the dates
+    //TODO get data of agreement and display
+    //TODO get data of bids and display
 }
 
 //////////////////////////////////////////////////////////////////////////////
