@@ -37,6 +37,7 @@ function create_new_room(){
         }
     }else{
         showErrorMessagesPage("College","Upload file","No hay picture1.",false);
+        console.log(picture);
         return;
     }
     if ('files' in picture.picture2 && picture.picture2.files.length>=1){
@@ -52,6 +53,7 @@ function create_new_room(){
         }
     }else{
         showErrorMessagesPage("College","Upload file","No hay picture2.",false);
+        console.log(picture);
         return;
     }
     if ('files' in picture.picture3 && picture.picture3.files.length>=1){
@@ -67,21 +69,20 @@ function create_new_room(){
         }
     }else{
         showErrorMessagesPage("College","Upload file","No hay picture3.",false);
+        console.log(picture);
         return;
     }
 
     if (room.name=="" ||  room.floor=="" ||  room.size=="" ||  room.price==""){
         showErrorMessagesPage("College","Input room","Valores de entrada incorrectos (Habitacion-general).",false);
+        console.log(room)
         return;
     }
     if (room.date_start_school=="" ||  room.date_end_school=="" ||  room.date_start_bid=="" ||  room.date_start_bid==""){
         showErrorMessagesPage("College","Input room","Valores de entrada incorrectos (Fechas).",false);
+        console.log(room)
         return;
     }
-    console.log(room)
-    console.log(equipment);
-    console.log(picture);
-
     var xmlHttp =new XMLHttpRequest();
     var url=window.location.protocol+"//"+window.location.host+port+"/Room/create/";
     xmlHttp.onreadystatechange = function() {

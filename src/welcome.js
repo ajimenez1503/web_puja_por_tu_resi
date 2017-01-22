@@ -16,7 +16,7 @@ var port=":8000";
 * Display the specific view when the page is reload
 */
 window.onload = function(){
-    displayView();
+    check_sesion();
 	page({hashbang: true});
 };
 
@@ -54,6 +54,38 @@ displayView = function(){
 *SIGNIN SIGNUP LOGOUT
 */
 //////////////////////////////////////////////////////////////////////////////
+
+
+
+/**
+* Check if the user is logged in the system.
+*/
+function check_sesion(){
+    var url= window.location.protocol+"//"+window.location.host+port+"/Security/checkSesion/";
+    var xmlHttp =new XMLHttpRequest();
+    xmlHttp.open("GET", url, true );
+    xmlHttp.withCredentials = true;
+	xmlHttp.send();
+    xmlHttp.onreadystatechange = function() {
+    	if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
+    		var output= JSON.parse(xmlHttp.responseText);
+            console.log(output);
+    		if( output.success ){
+                if (output.data.ROLE[0]=="ROLE_STUDENT"){
+                        globa_view="studentview";
+                        reloadPage();
+                }else if (output.data.ROLE[0]=="ROLE_COLLEGE"){
+                        globa_view="collegeview";
+                        reloadPage();
+                }else{
+                    console.log(output.data.ROLE[0]);
+                    showErrorMessagesPage("Welcome","login","Role desconocido.",output.success);
+                }
+    		}
+    	}
+    }
+
+}
 /**
 * Display the register form of the student or the college.
 *@param {id} id of the div
