@@ -264,3 +264,24 @@ function validateCIF(cif) {
     dc  = cif.toUpperCase().charAt(8);
     return (dc==temp) || (temp==1 && dc=='A') || (temp==2 && dc=='B') || (temp==3 && dc=='C') || (temp==4 && dc=='D') || (temp==5 && dc=='E') || (temp==6 && dc=='F') || (temp==7 && dc=='G') || (temp==8 && dc=='H') || (temp==9 && dc=='I') || (temp==0 && dc=='J');
 }
+
+
+/**
+* Validate size and name of file.
+*@param {fileName} name of the file
+*@param {fileSize} size of the file
+*/
+function validate_file(fileName,fileSize){
+    console.log("name:"+fileName+" . Size: "+fileSize)
+	var ext = fileName.substring(fileName.lastIndexOf('.') + 1);
+    if( ext=="gif" || ext=="jpg" || ext=="JPG" || ext=="jpeg" || ext=="png" || ext=="pdf" ){
+		if(fileSize>0 && fileSize<1000000000){//The file size can not exceed 1GB.
+			 return true;
+		}else{
+			return false;
+		}
+    }
+    else{
+        return false;
+    }
+}

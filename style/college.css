@@ -7,7 +7,11 @@
 *college VIEW
 ////////////////////////////////////////////////////////////////*/
 #college_list_rooms{
-
+	margin-left: auto;
+    margin-right: auto;
+	display:block;
+}
+#college_create_room{
 	margin-left: auto;
     margin-right: auto;
 	display:block;
@@ -35,4 +39,12 @@
 	border-radius: 21px;
   	border-color: rgb(150, 172, 219);
 
+}
+
+/*////////////////////////////////////////////////////////////////
+*create new room
+////////////////////////////////////////////////////////////////*/
+#div_form_college_create_new_room{
+	margin-left: 4%;
+  	margin-right: 4%;
 }

@@ -2,7 +2,116 @@
 * @author antonio Jimenez (softwarejimenez)
 * @version 0.1
 */
+//////////////////////////////////////////////////////////////////////////////
+/*
+*create new room
+*/
+//////////////////////////////////////////////////////////////////////////////
+function create_new_room(){
+    var equipment=get_equipment_selected("college_equipment_new_room");
+    var room = {
+      'name': document.getElementById("college_name_new_room").value,
+      'price':document.getElementById("college_price_new_room").value.replace("€",""),
+      'floor':document.getElementById("college_floor_new_room").value,
+      'size': document.getElementById("college_size_new_room").value.replace("m2",""),
+      'date_start_school': document.getElementById("college_date_start_school_new_room").value,
+      'date_end_school': document.getElementById("college_date_end_school_new_room").value,
+      'date_start_bid': document.getElementById("college_date_start_bid_new_room").value,
+      'date_end_bid': document.getElementById("college_date_end_bid_new_room").value,
+    };
+    var picture={
+        'picture1': document.getElementById("college_picture1_new_room"),
+        'picture2': document.getElementById("college_picture2_new_room"),
+        'picture3': document.getElementById("college_picture3_new_room"),
+    }
+    if ('files' in picture.picture1 && picture.picture1.files.length>=1){
+        picture.picture1=picture.picture1.files[0];
+        if ('name' in picture.picture1 && 'size' in picture.picture1) {
+            if (!validate_file(picture.picture1.name,picture.picture1.size)){
+                showErrorMessagesPage("College","Upload file","error validation pciture1.",false);
+                return;
+            }
+        }else{
+            showErrorMessagesPage("College","Upload file"," picture1 error.",false);
+            return;
+        }
+    }else{
+        showErrorMessagesPage("College","Upload file","No hay picture1.",false);
+        return;
+    }
+    if ('files' in picture.picture2 && picture.picture2.files.length>=1){
+        picture.picture2=picture.picture2.files[0];
+        if ('name' in picture.picture2 && 'size' in picture.picture2) {
+            if (!validate_file(picture.picture2.name,picture.picture2.size)){
+                showErrorMessagesPage("College","Upload file","error validation pciture1.",false);
+                return;
+            }
+        }else{
+            showErrorMessagesPage("College","Upload file"," picture2 error.",false);
+            return;
+        }
+    }else{
+        showErrorMessagesPage("College","Upload file","No hay picture2.",false);
+        return;
+    }
+    if ('files' in picture.picture3 && picture.picture3.files.length>=1){
+        picture.picture3=picture.picture3.files[0];
+        if ('name' in picture.picture3 && 'size' in picture.picture3) {
+            if (!validate_file(picture.picture3.name,picture.picture3.size)){
+                showErrorMessagesPage("College","Upload file","error validation pciture1.",false);
+                return;
+            }
+        }else{
+            showErrorMessagesPage("College","Upload file"," picture3 error.",false);
+            return;
+        }
+    }else{
+        showErrorMessagesPage("College","Upload file","No hay picture3.",false);
+        return;
+    }
 
+    if (room.name=="" ||  room.floor=="" ||  room.size=="" ||  room.price==""){
+        showErrorMessagesPage("College","Input room","Valores de entrada incorrectos (Habitacion-general).",false);
+        return;
+    }
+    if (room.date_start_school=="" ||  room.date_end_school=="" ||  room.date_start_bid=="" ||  room.date_start_bid==""){
+        showErrorMessagesPage("College","Input room","Valores de entrada incorrectos (Fechas).",false);
+        return;
+    }
+    console.log(room)
+    console.log(equipment);
+    console.log(picture);
+
+    var xmlHttp =new XMLHttpRequest();
+    var url=window.location.protocol+"//"+window.location.host+port+"/Room/create/";
+    xmlHttp.onreadystatechange = function() {
+        if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
+            var output= JSON.parse(xmlHttp.responseText);
+            console.log(output);
+            showErrorMessagesPage("College","create new room",output.message,output.success);
+        }
+    }
+    xmlHttp.open("POST", url, true );
+    xmlHttp.withCredentials = true;
+
+    var data = new FormData();
+    data.append("name", room.name);
+    data.append("price", room.price);
+    data.append("floor",room.floor);
+    data.append("size", room.size);
+    data.append("date_start_school", room.date_start_school);
+    data.append("date_end_school", room.date_end_school);
+    data.append("date_start_bid", room.date_start_bid);
+    data.append("date_end_bid", room.date_end_bid);
+    data.append("picture1", picture.picture1);
+    data.append("picture2", picture.picture2);
+    data.append("picture3", picture.picture3);
+    data.append("tv", equipment.college_icon_tv_new_room);
+    data.append("desk", equipment.college_icon_desk_new_room);
+    data.append("bath", equipment.college_icon_bath_new_room);
+    data.append("wardrove", equipment.college_icon_wardrove_new_room);
+    xmlHttp.send(data);
+}
 //////////////////////////////////////////////////////////////////////////////
 /*
 *COLLGE LIST ROOMS , SHOW table with all the rooms
@@ -260,7 +369,7 @@ function college_display_specifiy_room(data_room){
 
     //panel room img
     //get imgs
-    document.getElementById("college_specific_room_picture1").src=window.location.protocol+"//"+window.location.host+port+"/Room/download/"+data_room.picture1;
+    document.getElementById("college_specific_room_picture3").src=window.location.protocol+"//"+window.location.host+port+"/Room/download/"+data_room.picture1;
     document.getElementById("college_specific_room_picture2").src=window.location.protocol+"//"+window.location.host+port+"/Room/download/"+data_room.picture2;
     document.getElementById("college_specific_room_picture3").src=window.location.protocol+"//"+window.location.host+port+"/Room/download/"+data_room.picture3;
     rotate("college_specific_room");
@@ -275,7 +384,7 @@ function college_display_specifiy_room(data_room){
 */
 //////////////////////////////////////////////////////////////////////////////
 /**
-* Dispaly the Home view
+* Dispaly the College_list_rooms view
 */
 function displayCollege_list_rooms(){
     if("collegeview"===globa_view ){
@@ -283,9 +392,27 @@ function displayCollege_list_rooms(){
     	document.getElementById("college_list_rooms").style.display="block";
         document.getElementById("college_table_list_rooms").style.display="block";
         document.getElementById("college_specific_room").style.display="none";
+        document.getElementById('college_create_room').style.display="none";
+
         getRooms();// display table list rooms
     }
 }
+/**
+* Dispaly the college_create_room view
+*/
+function displayCollege_create_room(){
+    if("collegeview"===globa_view ){
+        console.log("display college_list_rooms");
+        document.getElementById('college_create_room').style.display="block";
+    	document.getElementById("college_list_rooms").style.display="none";
+    }
+}
+/**
+* Display list rooms of the college
+*/
+page('/college_create_room', function(){
+ 	displayCollege_create_room();
+});
 /**
 * Display list rooms of the college
 */

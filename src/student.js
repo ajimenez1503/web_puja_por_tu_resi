@@ -117,26 +117,6 @@ function updateEmail(){
 *INCIDENCE CREATE, SHOW
 */
 //////////////////////////////////////////////////////////////////////////////
-/**
-* Validate size and name of file.
-*@param {fileName} name of the file
-*@param {fileSize} size of the file
-*/
-function validate_file(fileName,fileSize){
-    console.log("name:"+fileName+" . Size: "+fileSize)
-	var ext = fileName.substring(fileName.lastIndexOf('.') + 1);
-    if( ext=="gif" || ext=="jpg" || ext=="JPG" || ext=="jpeg" || ext=="png" || ext=="pdf" ){
-		if(fileSize>0 && fileSize<1000000000){//The file size can not exceed 1GB.
-			 return true;
-		}else{
-			return false;
-		}
-    }
-    else{
-        return false;
-    }
-}
-
 
 /**
 *Create Incidence from the Student to the college.
