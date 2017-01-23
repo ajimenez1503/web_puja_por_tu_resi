@@ -98,11 +98,11 @@ function deleteAllChildElement(node){
 * Display the location of the latitude and logitude on map
 * @param {id} id of the div
 * @param {latitude} latitude of the position
-* @param {longitued} longitued of the position
+* @param {longitude} longitude of the position
 */
-function init_map(id,latitude,longitued) {
-    //get latitude,longitued from the college
-    var uluru = {lat: latitude, lng: longitued};
+function init_map(id,latitude,longitude) {
+    //get latitude,longitude from the college
+    var uluru = {lat: latitude, lng: longitude};
     var map = new google.maps.Map(
         document.getElementById(id),
         {
@@ -284,4 +284,24 @@ function validate_file(fileName,fileSize){
     else{
         return false;
     }
+}
+
+/**
+*Get element selected of the equipment in a json structure
+@param tab: it is the id of the div with the elements
+@return json_structure with the list of element
+*/
+function get_equipment_selected(tab){
+    child=document.getElementById(tab).children;;
+    var i;
+    var result={};
+    for (i = 0; i < child.length; i++) {
+        if (child[i].className.includes("selected_icon_search")){
+            result[child[i].id]='1';
+        }else{
+            result[child[i].id]='0';
+        }
+    }
+    console.log(result);
+    return result;
 }

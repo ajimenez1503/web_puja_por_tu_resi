@@ -740,24 +740,6 @@ function selected_icon_search(id){
     }
 
 }
-/**
-*Get element selected of the equipment in a json structure
-@return json_structure with the list of element
-*/
-function get_equipment_selected(tab){
-    child=document.getElementById(tab).children;;
-    var i;
-    var result={};
-    for (i = 0; i < child.length; i++) {
-        if (child[i].className.includes("selected_icon_search")){
-            result[child[i].id]='1';
-        }else{
-            result[child[i].id]='0';
-        }
-    }
-    console.log(result);
-    return result;
-}
 
 /**
 *Search room by the parementer of the form
@@ -765,28 +747,105 @@ function get_equipment_selected(tab){
 function search_rooms() {
     var min_price=get_min_range_prince();
     var max_price=get_max_range_prince();
-    //TODO get residence
     var equipment=get_equipment_selected('search_equipment');
     document.getElementById("search_room_table").style.display="block";
     document.getElementById("search_room_specific").style.display="none";
-    //TODO get all residences availables whith the paramenter
-    //TODO create the row of the table
 
+    // get all residences availables whith the paramenter
+    // create the row of the table
+    GetOFFEREDRooms();
+    init_map("search_room_table_map",37.176487,-3.597929);//By default GRANADA in the maps
+}
+
+
+/**
+*Get every room and display as a row in the table. nombre,inicio academico,fin academico,inicio puja,fin puja,tamaño,planta,tv, bath, desk, wardrove
+*@return tr element (row)
+*/
+function create_row_room(data_college,data_room){
+    var tr = document.createElement('tr');
+    tr.id="student_list_room_id"+data_room.id.toString();
+    //nombre
+        var td = document.createElement('td');
+        td.appendChild(document.createTextNode(data_room.name))
+        tr.appendChild(td)
+    //company
+        var td = document.createElement('td');
+        td.appendChild(document.createTextNode(data_college.companyName))
+        tr.appendChild(td)
+    //price
+        var td = document.createElement('td');
+        td.appendChild(document.createTextNode(data_room.price+"€"))
+        tr.appendChild(td)
+    //fin puja
+        var td = document.createElement('td');
+        td.appendChild(document.createTextNode(data_room.date_start_school.date.replace(" 00:00:00", "")));
+        tr.appendChild(td)
+    tr.onmouseover = function() {
+        selected_row_table(tr.id,data_college.latitude,data_college.longitude);
+    };
+    tr.onmouseout = function() {
+        out_selected_row_table(tr.id);
+    };
+
+    tr.onclick = function() {
+        display_search_room_specific(data_college,data_room);
+    };
+    return tr;
+}
+
+/**
+*Display all the OFFERED room in the student_element_table_list_rooms
+*/
+function display_table_list_rooms(data){
+    var father = document.getElementById("student_element_table_list_rooms");
+    deleteAllChildElement(father)
+    for (i = 0; i < data.length; i++) {
+        for (j=0;j< data[i].rooms.length; j++){
+            father.appendChild( create_row_room(data[i],data[i].rooms[j]));
+        }
+
+    }
+}
+
+/**
+*Get all the OFFERED Rooms and display table
+*/
+function GetOFFEREDRooms(){
+    var xmlHttp =new XMLHttpRequest();
+	var url=window.location.protocol+"//"+window.location.host+port+"/Room/getSearch/";
+	xmlHttp.open("GET", url, true );
+    xmlHttp.withCredentials = true;
+	xmlHttp.send();
+	xmlHttp.onreadystatechange = function() {
+    	if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
+    		var output= JSON.parse(xmlHttp.responseText);
+            console.log(output)
+    		if(output.success){
+                display_table_list_rooms(output.data)
+    		}else{
+    			showErrorMessagesPage("Student","showrooms",output.message,output.success);
+    		}
+    	}
+    }
 }
 
 /**
 * Dispaly search room table (table/ form / map)
 */
  function display_search_room_table() {
+     document.getElementById("search_room_table").style.display="block";
+     document.getElementById("search_room_specific").style.display="none";
      display_range_price();
-     init_map("search_room_table_map",39.88605099999999,-3.9192423);
-     //TODO display all the availables room in the table
+     init_map("search_room_table_map",37.176487,-3.597929);//By default GRANADA in the maps
+     // display all the availables room in the table
+     GetOFFEREDRooms();
  }
 
 /**
 *Dispaly the features of a specific room
 */
-function display_search_room_specific(room_name,username_college){
+function display_search_room_specific(college_data,room_data){
     //TODO collect data of room and college
     //TODO get the 5 best bets //display the best in search_room_specific_ul
     document.getElementById("search_room_table").style.display="none";
@@ -799,11 +858,10 @@ function display_search_room_specific(room_name,username_college){
 /**
 * Select a row in a table of the search room (red background-color) and display its map
 */
-function selected_row_table(id, latitude, longitued){
+function selected_row_table(id, latitude, longitude){
     document.getElementById(id).className = " selected_row_table";
-    // display maps latitude, longitued
-    //TODO get the  latitude, longitued of the room
-    init_map("map_search_room_table",39.88605099999999,-3.9192423);
+    // display maps latitude, longitude
+    init_map("search_room_table_map",latitude,longitude);
 }
 
 /**

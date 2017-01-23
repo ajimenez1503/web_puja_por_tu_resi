@@ -122,7 +122,7 @@ function create_new_room(){
 *Get every room and display as a row in the table. nombre,inicio academico,fin academico,inicio puja,fin puja,tamaño,planta,tv, bath, desk, wardrove
 *@return tr element (row)
 */
-function create_row_room(data){
+function college_create_row_room(data){
     var tr = document.createElement('tr');
     tr.id="college_list_room_id"+data.id.toString();
     //nombre
@@ -224,7 +224,7 @@ function create_row_room(data){
         remove_buttom.appendChild(icon_failed_desk)
         remove_buttom.onclick = function() {
             remove_room(data.id);
-            getRooms();
+            collegeGetAllRooms();
             tr.onclick = function() {/*empty*/ };
 
         };
@@ -245,13 +245,13 @@ function create_row_room(data){
 }
 
 /**
-*Display all the room of the college in the table_rent
+*Display all the room of the college in the college_element_table_list_rooms
 */
-function display_table_list_rooms(data){
+function college_display_table_list_rooms(data){
     var father = document.getElementById("college_element_table_list_rooms");
     deleteAllChildElement(father)
     for (i = 0; i < data.length; i++) {
-        father.appendChild( create_row_room(data[i]));
+        father.appendChild( college_create_row_room(data[i]));
     }
 }
 
@@ -273,9 +273,9 @@ function college_selected_outselected_row_table(id){
 
 
 /**
-*Get all the rents and display in the table
+*Get all the rooms of the college and display in the table
 */
-function getRooms(){
+function collegeGetAllRooms(){
     var xmlHttp =new XMLHttpRequest();
 	var url=window.location.protocol+"//"+window.location.host+port+"/Room/getAll/";
 	xmlHttp.open("GET", url, true );
@@ -286,7 +286,7 @@ function getRooms(){
     		var output= JSON.parse(xmlHttp.responseText);
             console.log(output)
     		if(output.success){
-                display_table_list_rooms(output.data)
+                college_display_table_list_rooms(output.data)
     		}else{
     			showErrorMessagesPage("College","showdata",output.message,output.success);
     		}
@@ -394,8 +394,7 @@ function displayCollege_list_rooms(){
         document.getElementById("college_table_list_rooms").style.display="block";
         document.getElementById("college_specific_room").style.display="none";
         document.getElementById('college_create_room').style.display="none";
-
-        getRooms();// display table list rooms
+        collegeGetAllRooms();// display table list rooms
     }
 }
 /**
