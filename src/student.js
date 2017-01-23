@@ -700,6 +700,42 @@ function pay_month(id){
 *SEARCH_ROOM, SHOW DATA, DOWNLOAD FILE, PAY
 */
 //////////////////////////////////////////////////////////////////////////////
+
+
+/**
+*Get all colleges name and display the list in the form of search room
+*/
+function display_list_colleges(){
+    var xmlHttp =new XMLHttpRequest();
+	var url=window.location.protocol+"//"+window.location.host+port+"/Room/getAllCompanyName/";
+	xmlHttp.open("GET", url, true );
+    xmlHttp.withCredentials = true;
+	xmlHttp.send();
+	xmlHttp.onreadystatechange = function() {
+    	if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
+    		var output= JSON.parse(xmlHttp.responseText);
+            console.log(output)
+    		if(output.success){
+                var search_room_form_college = document.getElementById("search_room_form_college");
+                deleteAllChildElement(search_room_form_college);
+                //Add TODAS
+                var option = document.createElement("option");
+                option.value="TODAS";
+                option.text = "TODAS";
+                search_room_form_college.add(option);
+                for (i = 0; i < output.data.length; i++) {
+                    var option = document.createElement("option");
+                    option.value=output.data[i];
+                    option.text = output.data[i];
+                    search_room_form_college.add(option);
+                }
+    		}else{
+    			showErrorMessagesPage("Student","Get Colleges",output.message,output.success);
+    		}
+    	}
+    }
+}
+
 /**
 *Display the range of price
 */
@@ -707,8 +743,8 @@ function display_range_price(){
     $( "#slider-range" ).slider({
         range: true,
         min: 0,
-        max: 1000,
-        values: [ 75, 300 ],
+        max: 2000,
+        values: [ 75, 1500 ],
         slide: function( event, ui ) {
             $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
         }
@@ -730,6 +766,13 @@ function get_max_range_prince(){
     return $( "#slider-range" ).slider( "values", 1 );
 }
 /**
+*@return college selected
+*/
+function get_college_selected(){
+    var e = document.getElementById("search_room_form_college");
+    return  e.options[e.selectedIndex].value;
+}
+/**
 *Select and selected a icon or image of the list of equipment. It will be shadow
 */
 function selected_icon_search(id){
@@ -748,6 +791,7 @@ function search_rooms() {
     var min_price=get_min_range_prince();
     var max_price=get_max_range_prince();
     var equipment=get_equipment_selected('search_equipment');
+    var college=get_college_selected();
     document.getElementById("search_room_table").style.display="block";
     document.getElementById("student_search_room_specific").style.display="none";
 
@@ -804,7 +848,6 @@ function display_table_list_rooms(data){
         for (j=0;j< data[i].rooms.length; j++){
             father.appendChild( create_row_room(data[i],data[i].rooms[j]));
         }
-
     }
 }
 
@@ -837,6 +880,7 @@ function GetOFFEREDRooms(){
      document.getElementById("search_room_table").style.display="block";
      document.getElementById("student_search_room_specific").style.display="none";
      display_range_price();
+     display_list_colleges();
      init_map("search_room_table_map",37.176487,-3.597929);//By default GRANADA in the maps
      // display all the availables room in the table
      GetOFFEREDRooms();
