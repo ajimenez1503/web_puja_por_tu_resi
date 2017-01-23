@@ -370,7 +370,7 @@ function college_display_specifiy_room(data_room){
 
     //panel room img
     //get imgs
-    document.getElementById("college_specific_room_picture3").src=window.location.protocol+"//"+window.location.host+port+"/Room/download/"+data_room.picture1;
+    document.getElementById("college_specific_room_picture1").src=window.location.protocol+"//"+window.location.host+port+"/Room/download/"+data_room.picture1;
     document.getElementById("college_specific_room_picture2").src=window.location.protocol+"//"+window.location.host+port+"/Room/download/"+data_room.picture2;
     document.getElementById("college_specific_room_picture3").src=window.location.protocol+"//"+window.location.host+port+"/Room/download/"+data_room.picture3;
     rotate("college_specific_room");
