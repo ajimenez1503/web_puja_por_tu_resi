@@ -73,15 +73,14 @@ function check_sesion(){
     		if( output.success ){
                 if (output.data.ROLE[0]=="ROLE_STUDENT"){
                         globa_view="studentview";
-                        reloadPage();
                 }else if (output.data.ROLE[0]=="ROLE_COLLEGE"){
                         globa_view="collegeview";
-                        reloadPage();
                 }else{
                     console.log(output.data.ROLE[0]);
                     showErrorMessagesPage("Welcome","login","Role desconocido.",output.success);
                 }
     		}
+            reloadPage();
     	}
     }
 
