@@ -746,7 +746,7 @@ function display_range_price(){
         max: 2000,
         values: [ 75, 1500 ],
         slide: function( event, ui ) {
-            $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+            $( "#amount" ).val(  ui.values[ 0 ] + "€ -" + ui.values[ 1 ]+" €" );
         }
     });
     $( "#amount" ).val( get_min_range_prince() +" € - " + get_max_range_prince() +" € " );
@@ -788,16 +788,47 @@ function selected_icon_search(id){
 *Search room by the parementer of the form
 */
 function search_rooms() {
-    var min_price=get_min_range_prince();
-    var max_price=get_max_range_prince();
-    var equipment=get_equipment_selected('search_equipment');
-    var college=get_college_selected();
     document.getElementById("search_room_table").style.display="block";
     document.getElementById("student_search_room_specific").style.display="none";
 
+    //get data form
+    var equipment=get_equipment_selected('search_equipment');
+
     // get all residences availables whith the paramenter
     // create the row of the table
-    GetOFFEREDRooms();
+    var url=window.location.protocol+"//"+window.location.host+port+"/Room/getSearch/";
+    url+="?college_company_name="+get_college_selected();
+    url+="&price_min="+get_min_range_prince();
+    url+="&price_max="+get_max_range_prince();
+    url+="&study_room="+equipment.search_icon_school;
+    url+="&gym="+equipment.search_icon_gym;
+    url+="&canteen="+equipment.search_icon_restaurant;
+    url+="&wifi="+equipment.search_icon_wifi;
+    url+="&laundry="+ equipment.search_icon_laundry;
+    url+="&heating="+ equipment.search_icon_heating;
+    url+="&elevator="+ equipment.search_icon_elevator;
+    url+="&hours24="+ equipment.search_icon_24h;
+    url+="&tv="+ equipment.search_icon_tv;
+    url+="&bath="+ equipment.search_icon_bath;
+    url+="&desk="+ equipment.search_icon_desk;
+    url+="&wardrove="+ equipment.search_icon_wardrove;
+
+    var xmlHttp =new XMLHttpRequest();
+    xmlHttp.withCredentials = true;
+    xmlHttp.open("GET", url, true );
+	xmlHttp.send();
+	xmlHttp.onreadystatechange = function() {
+    	if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
+    		var output= JSON.parse(xmlHttp.responseText);
+            console.log(output)
+    		if(output.success){
+                display_table_list_rooms(output.data)
+    		}else{
+    			showErrorMessagesPage("Student","showrooms",output.message,output.success);
+    		}
+    	}
+    }
+
     init_map("search_room_table_map",37.176487,-3.597929);//By default GRANADA in the maps
 }
 
@@ -856,7 +887,7 @@ function display_table_list_rooms(data){
 */
 function GetOFFEREDRooms(){
     var xmlHttp =new XMLHttpRequest();
-	var url=window.location.protocol+"//"+window.location.host+port+"/Room/getSearch/";
+	var url=window.location.protocol+"//"+window.location.host+port+"/Room/getSearchAll/";
 	xmlHttp.open("GET", url, true );
     xmlHttp.withCredentials = true;
 	xmlHttp.send();
