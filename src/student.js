@@ -1035,13 +1035,61 @@ function display_search_room_specific(data_college,data_room){
         college_equipment_father.appendChild(icon_hours24);
     }
 
+    //button of bid and remove bid
+    document.getElementById("search_room_specific_button_bid_new").onclick = function(){ create_bid(data_room.id)};
+    document.getElementById("search_room_specific_button_bid_remove").onclick = function(){ remove_bid(data_room.id)};
     //get data of bids and display
     get_display_bids(data_room.id,"search_room_specific_ul_bid");
 }
+/**
+*Create the a bid about the room with the user who call
+*@param: room id
+*/
+function create_bid(room_id){
+    var url=window.location.protocol+"//"+window.location.host+port+"/Bid/create/";
+    var xmlHttp =new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function() {
+        if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
+            var output= JSON.parse(xmlHttp.responseText);
+            console.log(output);
+            showErrorMessagesPage("Student","createBid",output.message,output.success);
+        }
+    }
+    xmlHttp.open("POST", url, true );
+    xmlHttp.withCredentials = true;
+    var data = new FormData();
+    data.append("room", room_id);
+    xmlHttp.send(data);
+    get_display_bids(room_id,"search_room_specific_ul_bid")
+}
 
+/**
+*Create the a bid about the room with the user who call
+*@param: room id
+*/
+function remove_bid(room_id){
+
+    var url=window.location.protocol+"//"+window.location.host+port+"/Bid/removeBidRoomStudent/";
+    var xmlHttp =new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function() {
+        if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
+            var output= JSON.parse(xmlHttp.responseText);
+            console.log(output);
+            showErrorMessagesPage("Student","createBid",output.message,output.success);
+        }
+    }
+    xmlHttp.open("POST", url, true );
+    xmlHttp.withCredentials = true;
+    var data = new FormData();
+    data.append("room", room_id);
+    xmlHttp.send(data);
+    get_display_bids(room_id,"search_room_specific_ul_bid")
+}
 
 /**
 *Get the bid of a room (room_id) and display in a tab_id
+*@param: room id
+*@param: tab_id of the ul element
 */
 function get_display_bids(room_id,tab_id){
     var xmlHttp =new XMLHttpRequest();
