@@ -376,7 +376,10 @@ function college_display_specifiy_room(data_room){
     rotate("college_specific_room");
     //TODO choose if display agreemtn or bid or anything according to the dates
     //TODO get data of agreement and display
-    //TODO get data of bids and display
+
+    //get data of bids and display
+    get_display_bids(data_room.id,"college_specific_room_ul");
+
 }
 
 //////////////////////////////////////////////////////////////////////////////

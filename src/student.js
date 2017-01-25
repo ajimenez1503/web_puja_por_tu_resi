@@ -1035,8 +1035,44 @@ function display_search_room_specific(data_college,data_room){
         college_equipment_father.appendChild(icon_hours24);
     }
 
-    //TODO get data of bids and display
+    //get data of bids and display
+    get_display_bids(data_room.id,"search_room_specific_ul_bid");
 }
+
+
+/**
+*Get the bid of a room (room_id) and display in a tab_id
+*/
+function get_display_bids(room_id,tab_id){
+    var xmlHttp =new XMLHttpRequest();
+	var url=window.location.protocol+"//"+window.location.host+port+"/Bid/getBidsRoom/"+room_id.toString();
+	xmlHttp.open("GET", url, true );
+    xmlHttp.withCredentials = true;
+	xmlHttp.send();
+	xmlHttp.onreadystatechange = function() {
+    	if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
+    		var output= JSON.parse(xmlHttp.responseText);
+            console.log(output)
+    		if(output.success){
+                var ul_element = document.getElementById(tab_id);
+                deleteAllChildElement(ul_element);
+                for (i = 0; i < output.data.length; i++) {
+                    var li = document.createElement("li");
+                    li.className="list-group-item justify-content-between";
+                    li.innerHTML="Puntos";
+                    var span = document.createElement("span");
+                    span.className="badge badge-default badge-pilln";
+                    span.innerHTML=output.data[i].point;
+                    li.appendChild(span);
+                    ul_element.appendChild(li);
+                }
+    		}else{
+    			showErrorMessagesPage("Student","Get bids",output.message,output.success);
+    		}
+    	}
+    }
+}
+
 /**
 * Select a row in a table of the search room (red background-color) and display its map
 */
