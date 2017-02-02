@@ -421,6 +421,20 @@ function countUnreadMessages(){
 //////////////////////////////////////////////////////////////////////////////
 
 
+ /**
+ *Dispaly data of a specific agreement
+ *@param: tab
+ *@param: data_agreement
+ */
+function display_specific_agreement(tab,data_agreement){
+    //panel room atributes:
+    document.getElementById(tab+"_room_specific_agreement_file").setAttribute('href', window.location.protocol+"//"+window.location.host+port+"/Incidence/download/"+data_agreement.file_agreement_signed);
+    document.getElementById(tab+"_room_specific_agreement_file").download="file"
+    document.getElementById(tab+"_room_specific_agreement_dateStart").innerHTML="   "+data_agreement.date_start_school.date;
+    document.getElementById(tab+"_room_specific_agreement_dateEnd").innerHTML="   "+data_agreement.date_end_school.date;
+    document.getElementById(tab+"_room_specific_agreement_price").innerHTML="   "+data_agreement.price+"€";
+    document.getElementById(tab+"_room_specific_size").innerHTML="   "+data_agreement.size;
+}
 
 /**
 * verify if the student has a agreement:
@@ -441,7 +455,8 @@ function get_room_data(){
             console.log(output)
             if(output.success){//in the case that there are agreemnt, show it
                 document.getElementById("Room_room_specific").style.display="block";
-                //TODO display data agreement
+                //display data agreement
+                 display_specific_agreement("Room",output.data.agreement);
                 //display data room
                 display_specific_room("Room",output.data.room);
                 //displat data college
@@ -1043,7 +1058,10 @@ function display_specific_college(tab,data_college){
     init_map(tab+"_room_specific_college_map",data_college.latitude,data_college.longitude);
     document.getElementById(tab+"_room_specific_college_company_name").innerHTML="   "+data_college.companyName;
     document.getElementById(tab+"_room_specific_college_telephone").innerHTML="   "+data_college.telephone;
+
+    document.getElementById(tab+"_room_specific_college_url").setAttribute('href', data_college.url);
     document.getElementById(tab+"_room_specific_college_url").innerHTML="   "+data_college.url;
+
     //panel college equipment
     college_equipment_father=document.getElementById(tab+"_room_specific_equipment_college");
     deleteAllChildElement(college_equipment_father);//clean all data
