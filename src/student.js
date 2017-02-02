@@ -1049,7 +1049,7 @@ function display_specific_room(tab,data_room){
 
 
 /**
-*Dispaly data of a specific room
+*Dispaly data of a specific college
 *@param: tab
 *@param: data_college
 */

@@ -27,10 +27,10 @@
 	overflow-y: auto;
 }
 /*////////////////////////////////////////////////////////////////
-*college_specific_room
+*college_room_specific
 ////////////////////////////////////////////////////////////////*/
 
-#college_specific_room_slider_img{
+#college_room_specific_slider_img{
 	width: 230px;
 	height: 200px;
 	overflow: hidden;
