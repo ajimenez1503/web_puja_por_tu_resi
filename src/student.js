@@ -444,7 +444,8 @@ function get_room_data(){
                 //TODO display data agreement
                 //display data room
                 display_specific_room("Room",output.data.room);
-                //TODO displat data college
+                //displat data college
+                display_specific_college("Room",output.data.college);
                 display_button_accept_refuse(output.data.agreement_signed,output.data.agreement);
 
 
@@ -981,7 +982,7 @@ function GetOFFEREDRooms(){
 
  /**
  *Dispaly data of a specific room
- *@param: data_college
+ *@param: tab
  *@param: data_room
  */
 function display_specific_room(tab,data_room){
@@ -1033,24 +1034,18 @@ function display_specific_room(tab,data_room){
 
 
 /**
-*Dispaly the features of a specific room
+*Dispaly data of a specific room
+*@param: tab
 *@param: data_college
-*@param: data_room
 */
-function display_search_room_specific(data_college,data_room){
-    document.getElementById("search_room_table").style.display="none";
-    document.getElementById("student_search_room_specific").style.display="block";
-
-    display_specific_room("student_search",data_room)
-
-
+function display_specific_college(tab,data_college){
     //panel college  atributes:
-    init_map("student_search_room_specific_college_map",data_college.latitude,data_college.longitude);
-    document.getElementById("student_search_room_specific_college_company_name").innerHTML="   "+data_college.companyName;
-    document.getElementById("student_search_room_specific_college_telephone").innerHTML="   "+data_college.telephone;
-    document.getElementById("student_search_room_specific_college_url").innerHTML="   "+data_college.url;
+    init_map(tab+"_room_specific_college_map",data_college.latitude,data_college.longitude);
+    document.getElementById(tab+"_room_specific_college_company_name").innerHTML="   "+data_college.companyName;
+    document.getElementById(tab+"_room_specific_college_telephone").innerHTML="   "+data_college.telephone;
+    document.getElementById(tab+"_room_specific_college_url").innerHTML="   "+data_college.url;
     //panel college equipment
-    college_equipment_father=document.getElementById("student_search_room_specific_equipment_college");
+    college_equipment_father=document.getElementById(tab+"_room_specific_equipment_college");
     deleteAllChildElement(college_equipment_father);//clean all data
     if(data_college.equipment_college.study_room){
         var icon_study_room= document.createElement('i');
@@ -1108,6 +1103,20 @@ function display_search_room_specific(data_college,data_room){
         icon_hours24.title="recepcion 24 horas";
         college_equipment_father.appendChild(icon_hours24);
     }
+}
+
+
+/**
+*Dispaly the features of a specific room
+*@param: data_college
+*@param: data_room
+*/
+function display_search_room_specific(data_college,data_room){
+    document.getElementById("search_room_table").style.display="none";
+    document.getElementById("student_search_room_specific").style.display="block";
+
+    display_specific_room("student_search",data_room);
+    display_specific_college("student_search",data_college);
 
     //button of bid and remove bid
     document.getElementById("search_room_specific_button_bid_new").onclick = function(){ create_bid(data_room.id)};
