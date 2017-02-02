@@ -305,3 +305,15 @@ function get_equipment_selected(tab){
     console.log(result);
     return result;
 }
+
+
+/**
+* pause during the milisecond
+*/
+function pause(millis){
+  var date = new Date();
+  var curDate = null;
+  do { curDate = new Date(); }
+  while(curDate-date < millis);
+
+}

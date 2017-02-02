@@ -461,30 +461,100 @@ function countUnreadMessages(){
 *ROOM, SHOW DATA, DOWNLOAD FILE, ACEPT AGREEMENT, REJECT
 */
 //////////////////////////////////////////////////////////////////////////////
+
+
+
+/**
+* verify if the student has a agreement:
+    -displat data of the college
+    -display data of the room
+    -display data of the agreement
+    -If the AGREEMENT is not signed yet display the button (accept, refuse, download)
+*/
+function get_room_data(){
+    var xmlHttp =new XMLHttpRequest();
+    var url=window.location.protocol+"//"+window.location.host+port+"/Agreement/verifyUnsigned/";
+    xmlHttp.open("GET", url, true );
+    xmlHttp.withCredentials = true;
+    xmlHttp.send();
+    xmlHttp.onreadystatechange = function() {
+        if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
+            var output= JSON.parse(xmlHttp.responseText);
+            console.log(output)
+            if(output.success){//in the case that there are agreemnt, show it
+                document.getElementById("Room_data").style.display="block";
+                //TODO display data agreement
+                //TODO display data room
+                //TODO displat data college
+                display_button_accept_refuse(output.data.agreement_signed,output.data.agreement);
+
+
+            }else{
+                showErrorMessagesPage("Student","showdata",output.message,output.success);
+            }
+        }
+    }
+}
+
+
+/**
+* Display the button. Assigned a every button and form the specifit function and link
+*/
+function display_button_accept_refuse(agreement_signed, agreement_data){
+    if(!agreement_signed){
+        document.getElementById("Room_accept_refuse").style.display="block";//display button
+        document.getElementById("Room_upload_file_agreement").onclick = function(){
+            upload_file_agreement(agreement_data.room_id);
+        };
+        document.getElementById("Room_button_download_agreement").setAttribute('href',window.location.protocol+"//"+window.location.host+port+"/Agreement/download/"+agreement_data.file_agreement);
+        document.getElementById("Room_button_download_agreement").download="file"
+        document.getElementById("Room_button_refuse_agreement").onclick = function(){
+            refuse_agreement_room(agreement_data.room_id);
+        };
+
+    }
+
+}
+
+/**
+* Display the button. Assigned a every button and form the specifit function and link
+*/
+function refuse_agreement_room(room_id){
+    //remove a agrement between room and a student ( assincronous false)
+    var url=window.location.protocol+"//"+window.location.host+port+"/Agreement/remove/";
+    var xmlHttp =new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function() {
+        if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
+            var output= JSON.parse(xmlHttp.responseText);
+            console.log(output);
+            showErrorMessagesPage("Student","updatePassword",output.message,output.success);
+        }
+    }
+    xmlHttp.open("POST", url, true );
+    xmlHttp.withCredentials = true;
+    var data = new FormData();
+    data.append("room_id", room_id);
+    xmlHttp.send(data);
+    document.getElementById("Room_data").style.display="none";
+    document.getElementById("Room_accept_refuse").style.display="none";//display button
+    get_room_data();
+}
+
+
 /**
 * Display form to updload the agreement (signed)
 */
 function show_upload_file_agreement() {
-    document.getElementById("upload_file_agreement").style.display="block";
+    document.getElementById("Room_upload_file_agreement").style.display="block";
 }
 
-function upload_file_agreement(){
+function upload_file_agreement(room_id){
     //TODO update the file and everything
-    document.getElementById("upload_file_agreement").style.display="none";
-    document.getElementById("form_id_upload_file_agreement").reset();//clean input
+    document.getElementById("Room_upload_file_agreement").style.display="none";
+    document.getElementById("Room_form_id_upload_file_agreement").reset();//clean input
 }
 
 
-/**
-* pause during the milisecond
-*/
-function pause(millis){
-  var date = new Date();
-  var curDate = null;
-  do { curDate = new Date(); }
-  while(curDate-date < millis);
-
-}
 
 /**
 *Rotate the images of the room
@@ -1192,9 +1262,10 @@ function displayRoom(){
         document.getElementById("message").style.display="none";
         document.getElementById("rent").style.display="none";
         document.getElementById("search_room").style.display="none";
-        rotate("Room");
+        get_room_data();
         countUnreadMessages();
-        init_map("map_room",39.88605099999999,-3.9192423);
+        //TODO rotate("Room");
+        //TODO init_map("map_room",39.88605099999999,-3.9192423);
     }
 }
 

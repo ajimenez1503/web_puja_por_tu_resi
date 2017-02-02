@@ -193,6 +193,15 @@
 /*////////////////////////////////////////////////////////////////
 *STUDENT VIEW / ROOM
 ////////////////////////////////////////////////////////////////*/
+
+#Room_accept_refuse{
+	display:none;
+}
+
+#Room_data{
+	display:none;
+}
+
 .button_margin_room{
 	margin-left: 5%;
 	margin-right: 5%;
@@ -220,7 +229,7 @@
 	background-color: grey;
 }
 
-#upload_file_agreement{
+#Room_upload_file_agreement{
 	display:none;
 }
 .left_room{
