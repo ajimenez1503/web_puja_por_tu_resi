@@ -279,48 +279,6 @@ function sendMessage(){
     document.getElementById("id_form_sendMessage").reset();//clean input
 }
 
-/*
-function downloadFile(file_attached,a_element){
-    var xmlHttp =new XMLHttpRequest();
-	var url=window.location.protocol+"//"+window.location.host+port+"/Message/download/"+file_attached;
-	xmlHttp.open("GET", url, true );
-    xmlHttp.withCredentials = true;
-	xmlHttp.send();
-	xmlHttp.onreadystatechange = function() {
-    	if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
-            if(xmlHttp.response.byteLength==0){
-                showErrorMessagesPage("Student","download file","cannot download file",false);
-            }
-            else{
-
-                var filename = "";
-                var disposition = xmlHttp.getResponseHeader('Content-Disposition');
-                if (disposition && disposition.indexOf('attachment') !== -1) {
-                    var filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
-                    var matches = filenameRegex.exec(disposition);
-                    if (matches != null && matches[1]){
-                        filename = matches[1].replace(/['"]/g, '');
-                        console.log(filename);
-                        var type = xmlHttp.getResponseHeader('Content-Type');
-                        var blob = new Blob([xmlHttp.response], { type: type });
-                        var URL = window.URL || window.webkitURL;
-                        var downloadUrl = URL.createObjectURL(blob);
-                        console.log(downloadUrl);
-                        a_element.href = downloadUrl;
-                        a_element.download = filename;
-                    }else{
-                        console.log("There are no file in contect disposition")
-                        showErrorMessagesPage("Student","download file","cannot download file",false);
-                    }
-
-                }else{
-                    console.log("Cannot access to contect disposition")
-                    showErrorMessagesPage("Student","download file","cannot download file",false);
-                }
-            }
-    	}
-    }
-}*/
 
 /**
 * create  html message from the mesage (message / date / id / read )
@@ -482,9 +440,10 @@ function get_room_data(){
             var output= JSON.parse(xmlHttp.responseText);
             console.log(output)
             if(output.success){//in the case that there are agreemnt, show it
-                document.getElementById("Room_data").style.display="block";
+                document.getElementById("Room_room_specific").style.display="block";
                 //TODO display data agreement
-                //TODO display data room
+                //display data room
+                display_specific_room("Room",output.data.room);
                 //TODO displat data college
                 display_button_accept_refuse(output.data.agreement_signed,output.data.agreement);
 
@@ -535,7 +494,7 @@ function refuse_agreement_room(room_id){
     var data = new FormData();
     data.append("room_id", room_id);
     xmlHttp.send(data);
-    document.getElementById("Room_data").style.display="none";
+    document.getElementById("Room_room_specific").style.display="none";
     document.getElementById("Room_accept_refuse").style.display="none";//display button
     get_room_data();
 }
@@ -1018,20 +977,21 @@ function GetOFFEREDRooms(){
      GetOFFEREDRooms();
  }
 
-/**
-*Dispaly the features of a specific room
-*/
-function display_search_room_specific(data_college,data_room){
-    document.getElementById("search_room_table").style.display="none";
-    document.getElementById("student_search_room_specific").style.display="block";
 
+
+ /**
+ *Dispaly data of a specific room
+ *@param: data_college
+ *@param: data_room
+ */
+function display_specific_room(tab,data_room){
     //panel room atributes:
-    document.getElementById("student_search_room_specific_name").innerHTML="   "+data_room.name;
-    document.getElementById("student_search_room_specific_floor").innerHTML="   "+data_room.floor;
-    document.getElementById("student_search_room_specific_size").innerHTML="   "+data_room.size;
+    document.getElementById(tab+"_room_specific_name").innerHTML="   "+data_room.name;
+    document.getElementById(tab+"_room_specific_floor").innerHTML="   "+data_room.floor;
+    document.getElementById(tab+"_room_specific_size").innerHTML="   "+data_room.size;
 
     //panel room equipment
-    room_equipment_father=document.getElementById("student_search_room_specific_equipment_room");
+    room_equipment_father=document.getElementById(tab+"_room_specific_equipment_room");
     deleteAllChildElement(room_equipment_father);//clean all data
     if(data_room.tv){
         var icon_tv= document.createElement('i');
@@ -1065,10 +1025,23 @@ function display_search_room_specific(data_college,data_room){
 
     //panel room img
     //get imgs
-    document.getElementById("student_search_room_specific_picture1").src=window.location.protocol+"//"+window.location.host+port+"/Room/download/"+data_room.picture1;
-    document.getElementById("student_search_room_specific_picture2").src=window.location.protocol+"//"+window.location.host+port+"/Room/download/"+data_room.picture2;
-    document.getElementById("student_search_room_specific_picture3").src=window.location.protocol+"//"+window.location.host+port+"/Room/download/"+data_room.picture3;
-    rotate("student_search_room_specific");
+    document.getElementById(tab+"_room_specific_picture1").src=window.location.protocol+"//"+window.location.host+port+"/Room/download/"+data_room.picture1;
+    document.getElementById(tab+"_room_specific_picture2").src=window.location.protocol+"//"+window.location.host+port+"/Room/download/"+data_room.picture2;
+    document.getElementById(tab+"_room_specific_picture3").src=window.location.protocol+"//"+window.location.host+port+"/Room/download/"+data_room.picture3;
+    rotate(tab+"_room_specific");
+}
+
+
+/**
+*Dispaly the features of a specific room
+*@param: data_college
+*@param: data_room
+*/
+function display_search_room_specific(data_college,data_room){
+    document.getElementById("search_room_table").style.display="none";
+    document.getElementById("student_search_room_specific").style.display="block";
+
+    display_specific_room("student_search",data_room)
 
 
     //panel college  atributes:
