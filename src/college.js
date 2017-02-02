@@ -322,22 +322,59 @@ function remove_room(id){
     }
 }
 
+/**
+*Dispaly data of a specific student
+*@param: tab
+*@param: data_student
+*/
+function display_specific_student(tab,data_student){
+   document.getElementById(tab+"_room_specific_agreement_student_name").innerHTML="   "+data_student.name;
+   document.getElementById(tab+"_room_specific_agreement_student_username").innerHTML="   "+data_student.username;
+   document.getElementById(tab+"_room_specific_agreement_student_email").innerHTML="   "+data_student.email;
+}
 
 
 /**
-*display the view of a specific room
+*display the view of a specific room.
+* Verify if display agreemtn or bids
+* @param data_room
 */
 function college_display_specifiy_room(data_room){
     document.getElementById("college_table_list_rooms").style.display="none";
     document.getElementById("college_room_specific").style.display="block";
 
     display_specific_room("college",data_room);
-    //TODO choose if display agreemtn or bid or anything according to the dates
-    //TODO get data of agreement and display
 
-    //get data of bids and display
-    get_display_bids(data_room.id,"college_room_specific_ul");
+    var xmlHttp =new XMLHttpRequest();
+    var url=window.location.protocol+"//"+window.location.host+port+"/Agreement/roomVerifyUnsigned/"+data_room.id;
+    xmlHttp.open("GET", url, true );
+    xmlHttp.withCredentials = true;
+    xmlHttp.send();
+    xmlHttp.onreadystatechange = function() {
+        if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
+            var output= JSON.parse(xmlHttp.responseText);
+            console.log(output)
+            if(output.success){//choose if display agreemtn or bid or anything according to the dates
+                if(output.data.agreement_signed){
+                    document.getElementById("college_room_specific_agreement").style.display="block";
+                    //display data agreement
+                    display_specific_agreement("college",output.data.agreement);
+                    document.getElementById("college_room_specific_agreement_student").style.display="block";
+                    //display data agreement student
+                     display_specific_student("college",output.data.student);
 
+                }else{
+                    document.getElementById("college_room_specific_bids").style.display="block";
+                    //get data of bids and display
+                    get_display_bids(data_room.id,"college_room_specific_ul");
+                }
+            }else{
+                document.getElementById("college_room_specific_bids").style.display="block";
+                //get data of bids and display
+                get_display_bids(data_room.id,"college_room_specific_ul");
+            }
+        }
+    }
 }
 
 //////////////////////////////////////////////////////////////////////////////
