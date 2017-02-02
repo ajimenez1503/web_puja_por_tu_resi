@@ -527,10 +527,10 @@ function refuse_agreement_room(room_id){
         if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
             var output= JSON.parse(xmlHttp.responseText);
             console.log(output);
-            showErrorMessagesPage("Student","updatePassword",output.message,output.success);
+            showErrorMessagesPage("Student","refuse room",output.message,output.success);
         }
     }
-    xmlHttp.open("POST", url, true );
+    xmlHttp.open("POST", url, false );
     xmlHttp.withCredentials = true;
     var data = new FormData();
     data.append("room_id", room_id);
@@ -548,10 +548,41 @@ function show_upload_file_agreement() {
     document.getElementById("Room_upload_file_agreement").style.display="block";
 }
 
+
 function upload_file_agreement(room_id){
-    //TODO update the file and everything
-    document.getElementById("Room_upload_file_agreement").style.display="none";
+    //update the file and everything
+    var file=document.getElementById("formAgreementFilename");
+	var url=window.location.protocol+"//"+window.location.host+port+"/Agreement/accept/";
+	var xmlHttp =new XMLHttpRequest();
+    if ('files' in file && file.files.length>=1){
+        file=file.files[0];
+        if ('name' in file && 'size' in file) {
+            if (!validate_file(file.name,file.size)){
+                showErrorMessagesPage("Student","Upload file","error validation file pdf format.",false);
+            }else{
+                xmlHttp.onreadystatechange = function() {
+            		if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
+            			var output= JSON.parse(xmlHttp.responseText);
+                        console.log(output);
+            			showErrorMessagesPage("Student","accept Agreement",output.message,output.success);
+            		}
+            	}
+            	xmlHttp.open("POST", url, false );
+                xmlHttp.withCredentials = true;
+                var data = new FormData();
+                data.append("room_id", room_id);
+                data.append("file_agreement_signed", file);
+            	xmlHttp.send(data);
+            }
+        }else{
+            showErrorMessagesPage("Student","Upload file","error file pdf.",false);
+        }
+    }else{
+        console.log("Enter a correct file.")
+    }
     document.getElementById("Room_form_id_upload_file_agreement").reset();//clean input
+    document.getElementById("Room_accept_refuse").style.display="none";//display button
+    get_room_data();
 }
 
 
