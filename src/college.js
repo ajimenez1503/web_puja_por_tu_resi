@@ -7,6 +7,10 @@
 *create new room
 */
 //////////////////////////////////////////////////////////////////////////////
+/**
+*Create a room by the form
+*Validate the input
+*/
 function create_new_room(){
     var equipment=get_equipment_selected("college_equipment_new_room");
     var room = {
@@ -113,6 +117,7 @@ function create_new_room(){
     data.append("wardrove", equipment.college_icon_wardrove_new_room);
     xmlHttp.send(data);
 }
+
 //////////////////////////////////////////////////////////////////////////////
 /*
 *COLLGE LIST ROOMS , SHOW table with all the rooms
@@ -259,15 +264,15 @@ function college_display_table_list_rooms(data){
 /**
 *Select a row in a table of the search room (red background-color)
 * out select a row in a table of the search
+*@param: id_element
 */
-function college_selected_outselected_row_table(id){
-
-    class_name=document.getElementById(id).className;
+function college_selected_outselected_row_table(id_element){
+    class_name=document.getElementById(id_element).className;
     if (class_name.includes(" selected_row_table")){
         class_name=class_name.replace("selected_row_table","");
-        document.getElementById(id).className=class_name;
+        document.getElementById(id_element).className=class_name;
     }else{
-        document.getElementById(id).className+= " selected_row_table";
+        document.getElementById(id_element).className+= " selected_row_table";
     }
 }
 
@@ -336,7 +341,7 @@ function display_specific_student(tab,data_student){
 
 /**
 *display the view of a specific room.
-* Verify if display agreemtn or bids
+* Verify if display agreement or bids
 * @param data_room
 */
 function college_display_specifiy_room(data_room){

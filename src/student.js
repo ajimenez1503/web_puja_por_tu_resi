@@ -430,8 +430,8 @@ function display_specific_agreement(tab,data_agreement){
     //panel room atributes:
     document.getElementById(tab+"_room_specific_agreement_file").setAttribute('href', window.location.protocol+"//"+window.location.host+port+"/Incidence/download/"+data_agreement.file_agreement_signed);
     document.getElementById(tab+"_room_specific_agreement_file").download="file"
-    document.getElementById(tab+"_room_specific_agreement_dateStart").innerHTML="   "+data_agreement.date_start_school.date;
-    document.getElementById(tab+"_room_specific_agreement_dateEnd").innerHTML="   "+data_agreement.date_end_school.date;
+    document.getElementById(tab+"_room_specific_agreement_dateStart").innerHTML="   "+data_agreement.date_start_school.date.replace(" 00:00:00", "");
+    document.getElementById(tab+"_room_specific_agreement_dateEnd").innerHTML="   "+data_agreement.date_end_school.date.replace(" 00:00:00", "");
     document.getElementById(tab+"_room_specific_agreement_price").innerHTML="   "+data_agreement.price+"€";
     document.getElementById(tab+"_room_specific_size").innerHTML="   "+data_agreement.size;
 }
@@ -1258,7 +1258,6 @@ function displayHome(){
         document.getElementById("search_room").style.display="none";
         countUnreadMessages();
     	dataProfile("home");
-
     }
 }
 
@@ -1295,8 +1294,6 @@ function displayRoom(){
         document.getElementById("search_room").style.display="none";
         get_room_data();
         countUnreadMessages();
-        //TODO rotate("Room");
-        //TODO init_map("map_room",39.88605099999999,-3.9192423);
     }
 }
 
