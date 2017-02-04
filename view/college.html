@@ -284,7 +284,34 @@
         </table>
     </div>
 
-    <div class=".col-md-8">
+    <div class="college_messages_list_messages" >
+        <div id="college_messages_send_message">
+            <form id="college_messages_id_form_sendMessage" class="panel-footer" action="javascript:void(0);" method="post" enctype="multipart/form-data" >
+                <select title="Destinatario email..." id="college_messages_list_student" class="selectpicker" data-live-search="true" multiple data-size="5" data-actions-box="true" >
+                  <option value="DNI_Antonio" data-tokens="Antonio">Antonio</option>
+                  <option value="DNI_Juan" data-tokens="Juan">Juan</option>
+                </select>
+
+                <div class="input-group">
+
+                    <textarea form="college_messages_id_form_sendMessage" required
+                     class="form-control input-sm" placeholder="Escribe tu mensaje aqui..."  id="college_messages_formMessageText" rows="6" cols="150"></textarea>
+                </div>
+                <div class="input-group">
+                     <span class="fileUpload input-group-btn">
+                        <button class="btn btn-warning btn-sm"><i class="icon_paperclip fa fa-paperclip" aria-hidden="true"></i> </button>
+                        <input id="college_messages_formMessageFilename" type="file" class="upload" />
+                    </span>
+                    <span class="">
+                        <button class="btn btn-warning btn-sm"  onClick="college_sendMessage()">Enviar</button>
+                    </span>
+                </div>
+            </form>
+        </div>
+
+        <div id="college_messages_conversation">
+
+        <div
     </div>
 
 </div><!-- end college_messages -->

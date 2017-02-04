@@ -384,6 +384,22 @@ function college_display_specifiy_room(data_room){
 
 //////////////////////////////////////////////////////////////////////////////
 /*
+*MESSAGES , get list student, get messages of student, send message, read messag
+*/
+//////////////////////////////////////////////////////////////////////////////
+function college_sendMessage(){
+    var targets= [];
+    $.each($("#college_messages_list_student option:selected"), function(){
+        targets.push($(this).val());
+    });
+    $("#college_messages_list_student").selectpicker('deselectAll');
+
+    console.log(targets)
+}
+
+
+//////////////////////////////////////////////////////////////////////////////
+/*
 *Routing College
 */
 //////////////////////////////////////////////////////////////////////////////
@@ -427,7 +443,7 @@ function displayCollege_messages(){
         document.getElementById('college_create_room').style.display="none";
     	document.getElementById("college_list_rooms").style.display="none";
         document.getElementById('college_messages').style.display="block";
-
+        $('.selectpicker').selectpicker(); // display the select
     }
 }
 /**
