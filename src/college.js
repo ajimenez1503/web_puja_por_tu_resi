@@ -387,14 +387,62 @@ function college_display_specifiy_room(data_room){
 *MESSAGES , get list student, get messages of student, send message, read messag
 */
 //////////////////////////////////////////////////////////////////////////////
+/**
+* Dispaly the College_list_rooms view
+*/
 function college_sendMessage(){
-    var targets= [];
+    var student_targets= [];
     $.each($("#college_messages_list_student option:selected"), function(){
-        targets.push($(this).val());
+        student_targets.push($(this).val());
     });
     $("#college_messages_list_student").selectpicker('deselectAll');
 
-    console.log(targets)
+    console.log(student_targets)
+
+    var message=document.getElementById("college_messages_formMessageText").value;
+    var file=document.getElementById("college_messages_formMessageFilename");
+	var url=window.location.protocol+"//"+window.location.host+port+"/Message/create/";
+
+    if (message ===""){
+        showErrorMessagesPage("College","message","ERROR: necesita un mensaje texto.",false);
+        return;
+    }
+    if ('files' in file && file.files.length>=1){
+        file=file.files[0];
+        if ('name' in file && 'size' in file) {
+            if (!validate_file(file.name,file.size)){
+                showErrorMessagesPage("College","Upload file","error validation file image format.",false);
+                return;
+            }
+        }else{
+            showErrorMessagesPage("College","Upload file","error file image.",false);
+            return;
+        }
+        console.log("file "+file.name)
+    }
+    else{
+        console.log("no file")
+        file=null;
+    }
+    for (i=0; i<student_targets.length ; i++){
+        var xmlHttp =new XMLHttpRequest();
+        xmlHttp.onreadystatechange = function() {
+    		if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
+    			var output= JSON.parse(xmlHttp.responseText);
+                console.log(output);
+    			showErrorMessagesPage("College","createMessage",output.message,output.success);
+    		}
+    	}
+    	xmlHttp.open("POST", url, true );
+        xmlHttp.withCredentials = true;
+        var data = new FormData();
+        data.append("message", message);
+        data.append("file_attached", file);
+        data.append("username_student", student_targets[i]);
+    	xmlHttp.send(data);
+    }
+
+    document.getElementById("college_messages_id_form_sendMessage").reset();//clean input
 }
 
 
@@ -444,6 +492,10 @@ function displayCollege_messages(){
     	document.getElementById("college_list_rooms").style.display="none";
         document.getElementById('college_messages').style.display="block";
         $('.selectpicker').selectpicker(); // display the select
+        //TODO get list student
+            //TODO get number of message without read of every student
+            //TODO add all the studnt to the select option
+        //TODO display the list of messgaes of every student
     }
 }
 /**
