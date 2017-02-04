@@ -288,58 +288,71 @@ function createHTMLMessage(message){
     var div = document.createElement('div');
     div.className += " div_message";
 
+    var div_elements= document.createElement("div");
+    div_elements.className+=" list_message_elements_div"
+        if (message.senderType=="ROLE_STUDENT"){
+            var p_from = document.createElement('p');
+            p_from.className+=" list_message_element_p";
+            p_from.appendChild(document.createTextNode("De: "+message.student_name));
+            div_elements.appendChild(p_from);
+
+            var p_to = document.createElement('p');
+            p_to.className+=" list_message_element_p";
+            p_to.appendChild(document.createTextNode("Para: "+message.college_name));
+            div_elements.appendChild(p_to);
+        }
+        else if (message.senderType=="ROLE_COLLEGE"){
+            var p_from = document.createElement('p');
+            p_from.className+=" list_message_element_p";
+            p_from.appendChild(document.createTextNode("De: "+message.college_name));
+            div_elements.appendChild(p_from);
+
+            var p_to = document.createElement('p');
+            p_to.className+=" list_message_element_p";
+            p_to.appendChild(document.createTextNode("Para: "+message.student_name));
+            div_elements.appendChild(p_to);
+        }
+
+        var p_time = document.createElement('div');
+        p_time.appendChild(document.createTextNode("Fecha: "+message.date.date));
+        p_time.className += " list_message_element_p";
+        div_elements.appendChild(p_time);
+
+
+        if (message.file_attached){
+            var p_file_attached = document.createElement('div');
+            p_file_attached.appendChild(document.createTextNode("Adjunto: "));
+            p_file_attached.className += " list_message_element_p";
+            div_elements.appendChild(p_file_attached);
+
+            var file_download = document.createElement('a');
+            file_download.setAttribute('href',window.location.protocol+"//"+window.location.host+port+"/Message/download/"+message.file_attached);
+            file_download.download="file"
+            file_download.appendChild(document.createTextNode("file_download"));
+            div_elements.appendChild(file_download);
+        }
+
+    div.appendChild(div_elements);
+
+
     var p_text = document.createElement('p');
     p_text.appendChild(document.createTextNode(message.message));
+    p_text.className+="list_messages_elements_text";
     if (message.senderType=="ROLE_STUDENT"){
         p_text.style.textAlign = "right";
     }
     else if (message.senderType=="ROLE_COLLEGE"){
         p_text.style.textAlign="left";
     }
+    if(message.read_by_student){
+        p_text.style.color = "#3c763d";
+    }
+    else{
+        p_text.style.color = "#c04021";
+    }
     div.appendChild(p_text);
 
 
-    var div_extra = document.createElement('div');
-    div_extra.id="div_extra"+message.id;
-    div_extra.style.display="none";
-        var p_time = document.createElement('div');
-        p_time.appendChild(document.createTextNode(message.date.date));
-        p_time.className += " div_message_time";
-        div_extra.appendChild(p_time);
-
-        if (message.file_attached){
-            var file_download = document.createElement('a');
-            file_download.setAttribute('href',window.location.protocol+"//"+window.location.host+port+"/Message/download/"+message.file_attached);
-            file_download.download="file"
-            file_download.appendChild(document.createTextNode("file_download"));
-            div_extra.appendChild(file_download);
-            //downloadFile(message.file_attached,file_download);//TODO cannot read the image :Error al interpretar el archivo gráfico JPEG (Not a JPEG file: starts with 0xef 0xbf)
-        }
-    div.appendChild(div_extra);
-
-
-    var img_plus = new Image(20,20); // width, height values are optional params
-    img_plus.src = 'http://image.flaticon.com/icons/png/128/54/54443.png';
-    img_plus.onclick = function(){
-        document.getElementById("div_extra"+message.id).style.display="block";
-    };
-    div.appendChild(img_plus);
-
-
-    var img_less = new Image(23,23); // width, height values are optional params
-    img_less.src = 'https://cdn3.iconfinder.com/data/icons/line/36/cancel-512.png';
-    img_less.onclick = function(){
-        document.getElementById("div_extra"+message.id).style.display="none";
-    };
-    div.appendChild(img_less);
-
-
-    if(message.read_by_student){
-        div.style.color = "#3c763d";
-    }
-    else{
-        div.style.color = "#c04021";
-    }
     return div
 
 }
@@ -360,7 +373,7 @@ function getMessages(){
             console.log(output)
     		if(output.success){
                 var father = document.getElementById("list_message");
-                deleteAllChildElement(father)
+                deleteAllChildElement(father);
                 for (i = 0; i < output.data.length; i++) {
                     father.appendChild( createHTMLMessage(output.data[i]));
                 }

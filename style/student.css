@@ -146,13 +146,6 @@
 	border: 1px solid transparent;
 	border-radius: 4px;
 	margin: 5%;
-	padding-bottom: 5%;
-}
-
-.div_message_time {
-  float: right;
-  border: 5px solid transparent;
-  border-color: rgb(232, 216, 216);
 }
 
 .fileUpload {
@@ -179,6 +172,21 @@
 
 #numberMessage  {
     color: orange;
+}
+
+.list_message_element_p{
+	margin-left: 2%;
+	margin-right: 1%;
+}
+.list_message_elements_div{
+	display: flex;
+    text-align: center;
+}
+
+.list_messages_elements_text{
+  background-color: white;
+  padding: 2%;
+  border-radius: 17px;
 }
 /*////////////////////////////////////////////////////////////////
 *STUDENT VIEW / INCIDENCE
