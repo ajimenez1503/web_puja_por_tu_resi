@@ -394,6 +394,10 @@ function displayCollege_list_rooms(){
     if("collegeview"===globa_view ){
         console.log("display college_list_rooms");
     	document.getElementById("college_list_rooms").style.display="block";
+        document.getElementById('college_create_room').style.display="none";
+        document.getElementById('college_messages').style.display="none";
+
+
         document.getElementById("college_table_list_rooms").style.display="block";
         document.getElementById("college_room_specific").style.display="none";
         document.getElementById('college_create_room').style.display="none";
@@ -408,6 +412,22 @@ function displayCollege_create_room(){
         console.log("display college_list_rooms");
         document.getElementById('college_create_room').style.display="block";
     	document.getElementById("college_list_rooms").style.display="none";
+        document.getElementById('college_messages').style.display="none";
+
+    }
+}
+
+
+/**
+* Dispaly the college_create_room view
+*/
+function displayCollege_messages(){
+    if("collegeview"===globa_view ){
+        console.log("display college_list_rooms");
+        document.getElementById('college_create_room').style.display="none";
+    	document.getElementById("college_list_rooms").style.display="none";
+        document.getElementById('college_messages').style.display="block";
+
     }
 }
 /**
@@ -421,4 +441,11 @@ page('/college_create_room', function(){
 */
 page('/college_list_rooms', function(){
  	displayCollege_list_rooms();
+});
+
+/**
+* Display list rooms of the college
+*/
+page('/college_messages', function(){
+ 	displayCollege_messages();
 });

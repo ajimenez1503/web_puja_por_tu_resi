@@ -16,6 +16,11 @@
     margin-right: auto;
 	display:block;
 }
+#college_messages{
+	margin-left: auto;
+	margin-right: auto;
+	display:block;
+}
 /*////////////////////////////////////////////////////////////////
 *List of rooms
 ////////////////////////////////////////////////////////////////*/
@@ -59,4 +64,26 @@
 #div_form_college_create_new_room{
 	margin-left: 4%;
   	margin-right: 4%;
+}
+
+/*////////////////////////////////////////////////////////////////
+*MESSAGES
+////////////////////////////////////////////////////////////////*/
+
+.college_messages_tr{
+	  height: 50px;
+}
+
+#college_messages_list_student_table{
+	width: 100%;
+	height: 100%;
+}
+
+.college_messages_table{
+	width: 25%;
+    float: left;
+    height: 550px;
+    margin-bottom: 2%;
+    padding-left: 5%;
+    overflow-y: auto;
 }
