@@ -482,15 +482,17 @@ function college_create_row_student(data_student,unread){
     return tr;
 }
 
-var list_student=[]
+
 
 
 /**
 * Get the list of student and the number of message without read ofthem
 * For every studnet create a row in the table of the left with the name and the number of unread messages
 *save the list of student of another uses
+*add all the studnt to the select option
 */
 function college_get_list_student(){
+    var list_student=[]
     var xmlHttp =new XMLHttpRequest();
 	var url=window.location.protocol+"//"+window.location.host+port+"/Message/countUnreadStudent/";
 	xmlHttp.open("GET", url, true );
@@ -507,12 +509,33 @@ function college_get_list_student(){
                     list_student.push(output.data[i].student)
                     father.appendChild( college_create_row_student(output.data[i].student,output.data[i].unread));
                 }
+                //add all the studnt to the select option
+                college_fill_list_student_select(list_student);
     		}else{
     			showErrorMessagesPage("College","showdata",output.message,output.success);
     		}
     	}
     }
 }
+
+
+/**
+* Fill the select element of the form with the list of student.(name and username)
+*/
+function college_fill_list_student_select(list_student){
+    var select=document.getElementById('college_messages_list_student_select');
+    for(i=0;i<list_student.length;i++){
+        // <option value="12345678A" data-tokens="Antonio">Antonio</option>
+        var option = document.createElement("option");
+        option.text = list_student[i].name;
+        option.value=list_student[i].username;
+        option.setAttribute('data-tokens', list_student[i].name);
+        select.add(option);
+    }
+    $('.selectpicker').selectpicker(); // display the select
+}
+
+
 
 
 //////////////////////////////////////////////////////////////////////////////
@@ -560,11 +583,10 @@ function displayCollege_messages(){
         document.getElementById('college_create_room').style.display="none";
     	document.getElementById("college_list_rooms").style.display="none";
         document.getElementById('college_messages').style.display="block";
-        $('.selectpicker').selectpicker(); // display the select
-        //TODO get list student
-            //TODO get number of message without read of every student
-            //TODO add all the studnt to the select option
-        college_get_list_student();
+
+        // get list student
+            //get number of message without read of every student
+            college_get_list_student();
         //TODO display the list of messgaes of every student
     }
 }
