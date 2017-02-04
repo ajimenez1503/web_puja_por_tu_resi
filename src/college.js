@@ -388,7 +388,7 @@ function college_display_specifiy_room(data_room){
 */
 //////////////////////////////////////////////////////////////////////////////
 /**
-* Dispaly the College_list_rooms view
+* Send a message to one or several student with a text and a file
 */
 function college_sendMessage(){
     var student_targets= [];
@@ -445,6 +445,75 @@ function college_sendMessage(){
     document.getElementById("college_messages_id_form_sendMessage").reset();//clean input
 }
 
+/**
+* Create a row in the table.
+*NAme of the studnet, in a circle the number of messages without read
+*Click go the the conversation ot the studetn
+*onmouseout onmouseover change the background-color
+*@param: data_student
+*@param: unread
+*@return tr
+*/
+function college_create_row_student(data_student,unread){
+    var tr = document.createElement('tr');
+    tr.className+=" college_messages_tr";
+    tr.id="college_messages_tr_"+data_student.username;
+    //nombre
+        var td = document.createElement('td');
+        td.appendChild(document.createTextNode(data_student.name+" "))
+
+    //unrad messges
+        var span = document.createElement("span");
+        span.className="badge badge-default badge-pilln";
+        span.innerHTML=unread;
+        td.appendChild(span);
+    tr.appendChild(td);
+    tr.onmouseover = function() {
+        college_selected_outselected_row_table(tr.id)
+    };
+    tr.onmouseout = function() {
+        college_selected_outselected_row_table(tr.id)
+    };
+
+    tr.onclick = function() {
+        //college_display_messages_specific_student(data_student.username);
+        console.log("conversation")
+    };
+    return tr;
+}
+
+var list_student=[]
+
+
+/**
+* Get the list of student and the number of message without read ofthem
+* For every studnet create a row in the table of the left with the name and the number of unread messages
+*save the list of student of another uses
+*/
+function college_get_list_student(){
+    var xmlHttp =new XMLHttpRequest();
+	var url=window.location.protocol+"//"+window.location.host+port+"/Message/countUnreadStudent/";
+	xmlHttp.open("GET", url, true );
+    xmlHttp.withCredentials = true;
+	xmlHttp.send();
+	xmlHttp.onreadystatechange = function() {
+    	if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
+    		var output= JSON.parse(xmlHttp.responseText);
+            console.log(output)
+    		if(output.success){
+                var father = document.getElementById("college_messages_list_student_table");
+                deleteAllChildElement(father);
+                for (i = 0; i < output.data.length; i++) {
+                    list_student.push(output.data[i].student)
+                    father.appendChild( college_create_row_student(output.data[i].student,output.data[i].unread));
+                }
+    		}else{
+    			showErrorMessagesPage("College","showdata",output.message,output.success);
+    		}
+    	}
+    }
+}
+
 
 //////////////////////////////////////////////////////////////////////////////
 /*
@@ -495,6 +564,7 @@ function displayCollege_messages(){
         //TODO get list student
             //TODO get number of message without read of every student
             //TODO add all the studnt to the select option
+        college_get_list_student();
         //TODO display the list of messgaes of every student
     }
 }
