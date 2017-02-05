@@ -10,7 +10,7 @@
 //////////////////////////////////////////////////////////////////////////////
 
 /**
-* Display form to updload the agreement (signed)
+* Display form to updload password and the email student
 *@param {id} id of the div
 */
 function show_from_update(id) {
@@ -1071,9 +1071,9 @@ function display_specific_college(tab,data_college){
     init_map(tab+"_room_specific_college_map",data_college.latitude,data_college.longitude);
     document.getElementById(tab+"_room_specific_college_company_name").innerHTML="   "+data_college.companyName;
     document.getElementById(tab+"_room_specific_college_telephone").innerHTML="   "+data_college.telephone;
-
     document.getElementById(tab+"_room_specific_college_url").setAttribute('href', data_college.url);
     document.getElementById(tab+"_room_specific_college_url").innerHTML="   "+data_college.url;
+    document.getElementById(tab+"_room_specific_college_email").innerHTML="   "+data_college.email;
 
     //panel college equipment
     college_equipment_father=document.getElementById(tab+"_room_specific_equipment_college");

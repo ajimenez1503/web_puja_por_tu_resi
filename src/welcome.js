@@ -153,9 +153,9 @@ var global_address_college = {
 /**
 *Searchbox for the address of the college. When the user choose aa specific address
 */
-function search_place() {
+function search_place(tab) {
   // Create the search box and link it to the UI element.
-  var input = document.getElementById('college_signupAddress');
+  var input = document.getElementById(tab);
   var searchBox = new google.maps.places.SearchBox(input);
 
   var markers = [];

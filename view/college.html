@@ -27,6 +27,7 @@
                     <label>Nombre:   </label><label id="college_profile_room_specific_college_company_name"></label></br>
                     <label>Contacto:   </label><label id="college_profile_room_specific_college_telephone"></label></br>
                     <label>Url:   </label><a target="_blank" id="college_profile_room_specific_college_url"></a></br>
+                    <label>email:   </label><label id="college_profile_room_specific_college_email"></label></br>
                     <label>Equipamiento:   </label></br>
                     <div id="college_profile_room_specific_equipment_college">
                     </div>
@@ -35,15 +36,17 @@
             </div>
         </div>
 
-        <!--<div class="col-sm-3">
-            <button onclick="show_from_update('email')" type="button" class="button_margin_room btn btn-success">Cambiar email</button>
-            <button onclick="show_from_update('password')" type="button" class="button_margin_room btn btn-warning">Cambiar contraseña</button>
-        </div> -->
+        <div class="col-sm-3">
+            <button onclick="college_show_from_update('college_profile_from_update_email')" type="button" class="button_margin_room btn btn-success">Cambiar email</button>
+            <button onclick="college_show_from_update('college_profile_from_update_password')" type="button" class="button_margin_room btn btn-warning">Cambiar contraseña</button>
+            <button onclick="college_show_from_update('college_profile_from_update_address')" type="button" class="button_margin_room btn btn-default">Cambiar Direccion</button>
+
+        </div>
 
     </div>
 
 
-    <!--<div id="from_update_password">
+    <div id="college_profile_from_update_password">
         <div class="col-sm-7">
             <div class="row">
                 <div class="col-md-10 col-md-offset-5">
@@ -51,20 +54,20 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <form id="id_formUpdatePassword" action="javascript:void(0);" method="post" role="form" >
+                                    <form id="college_profile_id_formUpdatePassword" action="javascript:void(0);" method="post" role="form" >
                                         <div class="form-group">
-                                            <input  id="formUpdatePasswordOld" type="password" name="password" pattern=".{8,8}" tabindex="2" class="form-control" placeholder="contraseña actual" required>
+                                            <input  id="college_profile_formUpdatePasswordOld" type="password" name="password" pattern=".{8,8}" tabindex="2" class="form-control" placeholder="contraseña actual" required>
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" name="confirm-password" pattern=".{8,8}" id="formUpdatePasswordNew" tabindex="2" class="form-control" placeholder="Nueva contraeña" required>
+                                            <input type="password" name="confirm-password" pattern=".{8,8}" id="college_profile_formUpdatePasswordNew" tabindex="2" class="form-control" placeholder="Nueva contraeña" required>
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" name="confirm-password" pattern=".{8,8}" id="formUpdatePasswordNewRepeat" tabindex="2" class="form-control" placeholder="Confirmar nueva contraseña" required>
+                                            <input type="password" name="confirm-password" pattern=".{8,8}" id="college_profile_formUpdatePasswordNewRepeat" tabindex="2" class="form-control" placeholder="Confirmar nueva contraseña" required>
                                         </div>
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-sm-6 col-sm-offset-3">
-                                                    <input type="submit" onClick="updatePassword()" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-submit" value="Cambiar contraseña">
+                                                    <input type="submit" onClick="college_profile_updatePassword()" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-submit" value="Cambiar contraseña">
                                                 </div>
                                             </div>
                                         </div>
@@ -78,7 +81,7 @@
         </div>
     </div>
 
-    <div id="from_update_email">
+    <div id="college_profile_from_update_email">
         <div class="col-sm-7">
             <div class="row">
                 <div class="col-md-10 col-md-offset-5">
@@ -86,14 +89,14 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <form id="id_formUpdateEmail"action="javascript:void(0);" method="post" role="form" >
+                                    <form id="college_profile_id_formUpdateEmail"action="javascript:void(0);" method="post" role="form" >
                                         <div class="form-group">
-                                            <input  id="formUpdateEmail" type="email" name="email"  tabindex="2" class="form-control" placeholder="nuevo email" required>
+                                            <input  id="college_profile_formUpdateEmail" type="email" name="email"  tabindex="2" class="form-control" placeholder="nuevo email" required>
                                         </div>
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-sm-6 col-sm-offset-3">
-                                                    <input type="submit" onClick="updateEmail()" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-submit" value="Cambiar  email">
+                                                    <input type="submit" onClick="college_profile_updateEmail()" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-submit" value="Cambiar  email">
                                                 </div>
                                             </div>
                                         </div>
@@ -105,7 +108,37 @@
                 </div>
             </div>
         </div>
-    </div>-->
+    </div>
+
+
+    <div id="college_profile_from_update_address">
+        <div class="col-sm-7">
+            <div class="row">
+                <div class="col-md-10 col-md-offset-5">
+                    <div class="panel panel-login">
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <form id="college_profile_id_formUpdateAddress"action="javascript:void(0);" method="post" role="form" >
+                                        <div class="form-group">
+                                            <input oninput="search_place('college_profile_formUpdateAddress')"  id="college_profile_formUpdateAddress" type="text" name="address"  tabindex="1" class="form-control" placeholder="Dirreccion" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-sm-6 col-sm-offset-3">
+                                                    <input type="submit" onClick="college_profile_updateAddress()" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-submit" value="Cambiar Direccion">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </div> <!-- end Profile -->
 

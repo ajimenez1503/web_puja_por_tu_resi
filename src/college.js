@@ -607,8 +607,20 @@ function college_display_messages_specific_student(student){
 */
 //////////////////////////////////////////////////////////////////////////////
 
-//display_specific_college("college_profile",data_college)
+/**
+* Display form to updload password and the email student
+*@param {id} id of the div
+*/
+function college_show_from_update(id) {
+    document.getElementById("college_profile_from_update_password").style.display="none";
+    document.getElementById("college_profile_from_update_email").style.display="none";
+    document.getElementById("college_profile_from_update_address").style.display="none";
 
+
+    document.getElementById(id).style.display="block";
+
+
+}
 
 /**
 * show the data of the college user
@@ -631,6 +643,101 @@ function college_displayProfile(){
     	}
     }
 }
+
+
+
+
+/**
+* Update the pasword of the user college
+*The input is validate and show the error in case of problem
+*/
+function college_profile_updatePassword(){
+	var passwordOld=document.getElementById("college_profile_formUpdatePasswordOld").value;
+	var passwordNew=document.getElementById("college_profile_formUpdatePasswordNew").value;
+	var passwordNewRepeat=document.getElementById("college_profile_formUpdatePasswordNewRepeat").value;
+	if(passwordNew==passwordNewRepeat){
+		if(passwordNew.length>=sizePaswword){
+			var url=window.location.protocol+"//"+window.location.host+port+"/ProfileCollege/updatePassword/";
+			var xmlHttp =new XMLHttpRequest();
+			xmlHttp.onreadystatechange = function() {
+				if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
+					var output= JSON.parse(xmlHttp.responseText);
+                    console.log(output);
+					showErrorMessagesPage("College","updatePassword",output.message,output.success);
+				}
+			}
+			xmlHttp.open("POST", url, true );
+            xmlHttp.withCredentials = true;
+            var data = new FormData();
+            data.append("old_password", passwordOld);
+            data.append("new_password", passwordNew);
+			xmlHttp.send(data);
+		}else{
+		    showErrorMessagesPage("College","updatePassword","error input",false);
+		}
+	}else{
+		showErrorMessagesPage("College","updatePassword","passwords not identical ",false);
+	}
+    document.getElementById("college_profile_id_formUpdatePassword").reset();//clean input
+}
+
+
+
+/**
+* Update the email of the college user
+*The input is validate and show the error in case of problem
+*/
+function college_profile_updateEmail(){
+	var email=document.getElementById("college_profile_formUpdateEmail").value;
+	if(validateEmail(email)){
+		var url=window.location.protocol+"//"+window.location.host+port+"/ProfileCollege/updateEmail/";
+		var xmlHttp =new XMLHttpRequest();
+		xmlHttp.onreadystatechange = function() {
+			if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
+				var output= JSON.parse(xmlHttp.responseText);
+                console.log(output);
+				showErrorMessagesPage("College","updateEmail",output.message,output.success);
+			}
+		}
+		xmlHttp.open("POST", url, true );
+        xmlHttp.withCredentials = true;
+        var data = new FormData();
+        data.append("email", email);
+		xmlHttp.send(data);
+	}else{
+		showErrorMessagesPage("Student","updateEmail","Email no es valido.",false);
+	}
+    document.getElementById("college_profile_id_formUpdateEmail").reset();//clean input
+}
+
+
+
+
+/**
+* Update the address of the college user
+*/
+function college_profile_updateAddress(){
+	var url=window.location.protocol+"//"+window.location.host+port+"/ProfileCollege/updateAddress/";
+	var xmlHttp =new XMLHttpRequest();
+	xmlHttp.onreadystatechange = function() {
+		if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
+			var output= JSON.parse(xmlHttp.responseText);
+            console.log(output);
+			showErrorMessagesPage("College","updateEmail",output.message,output.success);
+		}
+    }
+	xmlHttp.open("POST", url, true );
+    xmlHttp.withCredentials = true;
+    var data = new FormData();
+    data.append("address", global_address_college.formatted_address);
+    data.append("lat", global_address_college.lat);
+    data.append("lng", global_address_college.lng);
+
+	xmlHttp.send(data);
+
+    document.getElementById("college_profile_id_formUpdateAddress").reset();//clean input
+}
+
 //////////////////////////////////////////////////////////////////////////////
 /*
 *Routing College
@@ -700,6 +807,11 @@ function displayCollege_profile(){
     	document.getElementById("college_list_rooms").style.display="none";
         document.getElementById('college_messages').style.display="none";
         college_displayProfile();
+
+
+        document.getElementById("college_profile_from_update_password").style.display="none";
+        document.getElementById("college_profile_from_update_email").style.display="none";
+        document.getElementById("college_profile_from_update_address").style.display="none";
     }
 }
 
