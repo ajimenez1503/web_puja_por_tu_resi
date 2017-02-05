@@ -540,8 +540,31 @@ function college_fill_list_student_select(list_student){
 }
 
 
+
 /**
-* Display the list of message of the college with a user
+* reaad/open  all the list of message of the college with a specific student
+*/
+function college_open_messages_specific_student(student){
+	var xmlHttp =new XMLHttpRequest();
+	var url=window.location.protocol+"//"+window.location.host+port+"/Message/openStudent/"+student;
+
+	xmlHttp.onreadystatechange = function() {
+    	if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
+    		var output= JSON.parse(xmlHttp.responseText);
+            console.log(output)
+    		if(!output.success){
+    			showErrorMessagesPage("College","displayMessages",output.message,output.success);
+    		}
+    	}
+    }
+    xmlHttp.open("POST", url, true );
+    xmlHttp.withCredentials = true;
+	xmlHttp.send();
+}
+
+/**
+* Display the list of message of the college with a specific student
+* Open all the messages of the studnet
 */
 function college_display_messages_specific_student(student){
 	var xmlHttp =new XMLHttpRequest();
@@ -564,6 +587,8 @@ function college_display_messages_specific_student(student){
     		}
     	}
     }
+
+    college_open_messages_specific_student(student);
 
     //display the conversation
     document.getElementById('college_messages_send_message').style.display="none";
