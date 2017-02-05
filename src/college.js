@@ -390,17 +390,22 @@ function college_display_specifiy_room(data_room){
 /**
 * Send a message to one or several student with a text and a file
 */
-function college_sendMessage(){
+function college_sendMessage(tab, specific_student){
+    console.log(tab);
     var student_targets= [];
-    $.each($("#college_messages_list_student option:selected"), function(){
-        student_targets.push($(this).val());
-    });
-    $("#college_messages_list_student").selectpicker('deselectAll');
+    if (specific_student !== undefined) { //we already know the specific student
+        student_targets.push(specific_student);
+    } else { //get eleemnt of the list of studnet
+        $.each($("#college_messages_send_message_form_select option:selected"), function(){
+            student_targets.push($(this).val());
+        });
+        $("#college_messages_send_message_form_select").selectpicker('deselectAll');
+    }
 
     console.log(student_targets)
 
-    var message=document.getElementById("college_messages_formMessageText").value;
-    var file=document.getElementById("college_messages_formMessageFilename");
+    var message=document.getElementById(tab+"_form_text").value;
+    var file=document.getElementById(tab+"_form_filename");
 	var url=window.location.protocol+"//"+window.location.host+port+"/Message/create/";
 
     if (message ===""){
@@ -442,7 +447,7 @@ function college_sendMessage(){
     	xmlHttp.send(data);
     }
 
-    document.getElementById("college_messages_id_form_sendMessage").reset();//clean input
+    document.getElementById(tab+"_form").reset();//clean input
 }
 
 /**
@@ -522,7 +527,7 @@ function college_get_list_student(){
 * Fill the select element of the form with the list of student.(name and username)
 */
 function college_fill_list_student_select(list_student){
-    var select=document.getElementById('college_messages_list_student_select');
+    var select=document.getElementById('college_messages_send_message_form_select');
     for(i=0;i<list_student.length;i++){
         // <option value="12345678A" data-tokens="Antonio">Antonio</option>
         var option = document.createElement("option");
@@ -565,8 +570,8 @@ function college_display_messages_specific_student(student){
     document.getElementById('college_messages_conversation').style.display="block";
 
     //update the button send messages
-    document.getElementById('college_messages_conversation_form_button_send').onclick = function(){
-        //college_conversation_sendMessage(student);
+    document.getElementById('college_messages_conversation_form_button').onclick = function(){
+        college_sendMessage("college_messages_conversation", student);
         console.log("send message")
     }
 }
