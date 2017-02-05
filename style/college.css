@@ -96,15 +96,6 @@ textarea{
 	margin-bottom: 2% !important;
 	margin-top: 2%;
 }
-.checkboxgroup{
-    width: 20em;
-    overflow: auto;
-}
-.checkboxgroup p{
-    width: 7em;
-    text-align: right;
-}
-.checkboxgroup label{
-    width: 12em;
-    float: right;
+#college_messages_conversation{
+	display: none;
 }

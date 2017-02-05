@@ -476,8 +476,7 @@ function college_create_row_student(data_student,unread){
     };
 
     tr.onclick = function() {
-        //college_display_messages_specific_student(data_student.username);
-        console.log("conversation")
+        college_display_messages_specific_student(data_student.username);
     };
     return tr;
 }
@@ -536,6 +535,41 @@ function college_fill_list_student_select(list_student){
 }
 
 
+/**
+* Display the list of message of the college with a user
+*/
+function college_display_messages_specific_student(student){
+	var xmlHttp =new XMLHttpRequest();
+	var url=window.location.protocol+"//"+window.location.host+port+"/Message/get/?username_student="+student;
+	xmlHttp.open("GET", url, true );
+    xmlHttp.withCredentials = true;
+	xmlHttp.send();
+	xmlHttp.onreadystatechange = function() {
+    	if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
+    		var output= JSON.parse(xmlHttp.responseText);
+            console.log(output)
+    		if(output.success){
+                var father = document.getElementById("college_messages_conversation_list_message");
+                deleteAllChildElement(father);
+                for (i = 0; i < output.data.length; i++) {
+                    father.appendChild( createHTMLMessage(output.data[i]));
+                }
+    		}else{
+    			showErrorMessagesPage("College","displayMessages",output.message,output.success);
+    		}
+    	}
+    }
+
+    //display the conversation
+    document.getElementById('college_messages_send_message').style.display="none";
+    document.getElementById('college_messages_conversation').style.display="block";
+
+    //update the button send messages
+    document.getElementById('college_messages_conversation_form_button_send').onclick = function(){
+        //college_conversation_sendMessage(student);
+        console.log("send message")
+    }
+}
 
 
 //////////////////////////////////////////////////////////////////////////////
@@ -584,6 +618,8 @@ function displayCollege_messages(){
     	document.getElementById("college_list_rooms").style.display="none";
         document.getElementById('college_messages').style.display="block";
 
+        document.getElementById('college_messages_send_message').style.display="block";
+        document.getElementById('college_messages_conversation').style.display="none";
         // get list student
             //get number of message without read of every student
             college_get_list_student();

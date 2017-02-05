@@ -227,7 +227,7 @@
                         <button class="btn btn-warning btn-sm"><i class="icon_paperclip fa fa-paperclip" aria-hidden="true"></i> </button>
                         <input id="college_messages_formMessageFilename" type="file" class="upload" />
                     </span>
-                    <span class="">
+                    <span>
                         <button class="btn btn-warning btn-sm"  onClick="college_sendMessage()">Enviar</button>
                     </span>
                 </div>
@@ -235,8 +235,27 @@
         </div>
 
         <div id="college_messages_conversation">
+            <form id="college_messages_conversation_id_form_sendMessage" class="panel-footer" action="javascript:void(0);" method="post" enctype="multipart/form-data" >
+                <div class="input-group">
+                    <textarea form="college_messages_conversation_id_form_sendMessage" required
+                     class="form-control input-sm" placeholder="Escribe tu mensaje aqui..."  id="college_messages_conversation_formMessageText" ows="6" cols="150"></textarea>
+                </div>
+                <div class="input-group">
+                     <span class="fileUpload input-group-btn">
+                        <button class="btn btn-warning btn-sm"><i class="icon_paperclip fa fa-paperclip" aria-hidden="true"></i> </button>
+                        <input id="college_messages_conversation_formMessageFilename" type="file" class="upload" />
+                    </span>
+                    <span>
+                        <button id="college_messages_conversation_form_button_send" class="btn btn-warning btn-sm" >Enviar</button>
+                    </span>
+                </div>
+            </form>
 
-        <div
+            <div id="college_messages_conversation_list_message">
+            </div>
+        </div>
+
+
     </div>
 
 </div><!-- end college_messages -->
