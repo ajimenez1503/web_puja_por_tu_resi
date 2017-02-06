@@ -40,7 +40,8 @@
             <button onclick="college_display_specific_form('college_profile_list_form','college_profile_from_update_email')" type="button" class="button_margin_room btn btn-success">Cambiar email</button>
             <button onclick="college_display_specific_form('college_profile_list_form','college_profile_from_update_password')" type="button" class="button_margin_room btn btn-warning">Cambiar contraseña</button>
             <button onclick="college_display_specific_form('college_profile_list_form','college_profile_from_update_address')" type="button" class="button_margin_room btn btn-default">Cambiar Direccion</button>
-            <button onclick="college_display_specific_form('college_profile_list_form','college_profile_from_update_telephone')" type="button" class="button_margin_room btn btn-primary">Cambiar telefonoe</button>
+            <button onclick="college_display_specific_form('college_profile_list_form','college_profile_from_update_telephone')" type="button" class="button_margin_room btn btn-primary">Cambiar telefono</button>
+            <button onclick="college_display_specific_form('college_profile_list_form','college_profile_from_update_url')" type="button" class="button_margin_room btn btn-danger">Cambiar URL</button>
 
         </div>
 
@@ -69,7 +70,7 @@
                                             <div class="form-group">
                                                 <div class="row">
                                                     <div class="col-sm-6 col-sm-offset-3">
-                                                        <input type="submit" onClick="college_profile_updatePassword()" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-submit" value="Cambiar contraseña">
+                                                        <input type="submit" onClick="college_profile_updatePassword()" name="register-submit"  tabindex="4" class="form-control btn btn-submit" value="Cambiar contraseña">
                                                     </div>
                                                 </div>
                                             </div>
@@ -98,7 +99,7 @@
                                             <div class="form-group">
                                                 <div class="row">
                                                     <div class="col-sm-6 col-sm-offset-3">
-                                                        <input type="submit" onClick="college_profile_updateEmail()" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-submit" value="Cambiar  email">
+                                                        <input type="submit" onClick="college_profile_updateEmail()" name="register-submit"  tabindex="4" class="form-control btn btn-submit" value="Cambiar  email">
                                                     </div>
                                                 </div>
                                             </div>
@@ -128,7 +129,7 @@
                                             <div class="form-group">
                                                 <div class="row">
                                                     <div class="col-sm-6 col-sm-offset-3">
-                                                        <input type="submit" onClick="college_profile_updateAddress()" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-submit" value="Cambiar Direccion">
+                                                        <input type="submit" onClick="college_profile_updateAddress()" name="register-submit"  tabindex="4" class="form-control btn btn-submit" value="Cambiar Direccion">
                                                     </div>
                                                 </div>
                                             </div>
@@ -157,7 +158,36 @@
                                             <div class="form-group">
                                                 <div class="row">
                                                     <div class="col-sm-6 col-sm-offset-3">
-                                                        <input type="submit" onClick="college_profile_updateTelephone()" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-submit" value="Cambiar  telefono">
+                                                        <input type="submit" onClick="college_profile_updateTelephone()" name="register-submit"  tabindex="4" class="form-control btn btn-submit" value="Cambiar  telefono">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="college_profile_from_update_url">
+            <div class="col-sm-7">
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-5">
+                        <div class="panel panel-login">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <form id="college_profile_id_formUpdateURL"action="javascript:void(0);" method="post" role="form" >
+                                            <div class="form-group">
+                                                <input  id="college_profile_formUpdateURL" type="text" name="URL"  tabindex="2" class="form-control" placeholder="nueva URL" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <div class="col-sm-6 col-sm-offset-3">
+                                                        <input type="submit" onClick="college_profile_updateURL()" name="register-submit"  tabindex="4" class="form-control btn btn-submit" value="Cambiar url">
                                                     </div>
                                                 </div>
                                             </div>
@@ -352,7 +382,7 @@
                 <div class="form-group">
                     <div class="row">
                         <div class="col-sm-6 col-sm-offset-3">
-                            <input type="submit" onClick="create_new_room()" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-submit" value="Registrar">
+                            <input type="submit" onClick="create_new_room()" name="register-submit"  tabindex="4" class="form-control btn btn-submit" value="Registrar">
                         </div>
                     </div>
                 </div>

@@ -639,7 +639,7 @@ function college_displayProfile(){
     		if(output.success){
     			display_specific_college("college_profile",output.data);
     		}else{
-    			showErrorMessagesPage("Student","showdata",output.message,output.success);
+    			showErrorMessagesPage("College","showdata",output.message,output.success);
     		}
     	}
     }
@@ -762,9 +762,37 @@ function college_profile_updateTelephone(){
         data.append("telephone", telephone);
 		xmlHttp.send(data);
 	}else{
-		showErrorMessagesPage("Student","updateTelephone","Email no es valido.",false);
+		showErrorMessagesPage("College","updateTelephone","Telefono no es valido.",false);
 	}
     document.getElementById("college_profile_id_formUpdateTelephone").reset();//clean input
+}
+
+
+/**
+* Update the URL of the college user
+*The input is validate and show the error in case of problem
+*/
+function college_profile_updateURL(){
+	var URL=document.getElementById("college_profile_formUpdateURL").value;
+	if(ValidURL(URL)){
+		var url=window.location.protocol+"//"+window.location.host+port+"/ProfileCollege/updateURL/";
+		var xmlHttp =new XMLHttpRequest();
+		xmlHttp.onreadystatechange = function() {
+			if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
+				var output= JSON.parse(xmlHttp.responseText);
+                console.log(output);
+				showErrorMessagesPage("College","updateURL",output.message,output.success);
+			}
+		}
+		xmlHttp.open("POST", url, true );
+        xmlHttp.withCredentials = true;
+        var data = new FormData();
+        data.append("URL", URL);
+		xmlHttp.send(data);
+	}else{
+		showErrorMessagesPage("College","updateURL","URL no es valido.",false);
+	}
+    document.getElementById("college_profile_id_formUpdateURL").reset();//clean input
 }
 
 //////////////////////////////////////////////////////////////////////////////
