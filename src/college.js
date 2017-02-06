@@ -312,7 +312,7 @@ function college_display_specifiy_room(data_room){
     document.getElementById("college_table_list_rooms").style.display="none";
     document.getElementById("college_room_specific").style.display="block";
 
-    display_specific_room("college",data_room);
+    display_specific_room("college_room_specific",data_room);
 
     var xmlHttp =new XMLHttpRequest();
     var url=window.location.protocol+"//"+window.location.host+port+"/Agreement/roomVerifyUnsigned/"+data_room.id;
@@ -327,7 +327,7 @@ function college_display_specifiy_room(data_room){
                 if(output.data.agreement_signed){
                     document.getElementById("college_room_specific_agreement").style.display="block";
                     //display data agreement
-                    display_specific_agreement("college",output.data.agreement);
+                    display_specific_agreement("college_room_specific_agreement_",output.data.agreement);
                     document.getElementById("college_room_specific_agreement_student").style.display="block";
                     //display data agreement student
                      display_specific_student("college_room_specific_agreement_student_",output.data.student);
@@ -584,7 +584,7 @@ function college_displayProfile(){
     		var output= JSON.parse(xmlHttp.responseText);
             console.log(output)
     		if(output.success){
-    			display_specific_college("college_profile",output.data);
+    			display_specific_college("college_profile_",output.data);
     		}else{
     			showErrorMessagesPage("College","showdata",output.message,output.success);
     		}
