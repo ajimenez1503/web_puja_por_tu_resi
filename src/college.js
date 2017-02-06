@@ -795,6 +795,40 @@ function college_profile_updateURL(){
     document.getElementById("college_profile_id_formUpdateURL").reset();//clean input
 }
 
+
+
+
+/**
+* Update the equipemnt of the college user
+*The input is validate and show the error in case of problem
+*/
+function college_profile_updateEquipment(){
+	var equipment=get_equipment_selected("college_profile_formUpdateEquipment");
+	var url=window.location.protocol+"//"+window.location.host+port+"/ProfileCollege/updateEquipment/";
+	var xmlHttp =new XMLHttpRequest();
+	xmlHttp.onreadystatechange = function() {
+		if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
+			var output= JSON.parse(xmlHttp.responseText);
+            console.log(output);
+			showErrorMessagesPage("College","updateURL",output.message,output.success);
+		}
+	}
+	xmlHttp.open("POST", url, true );
+    xmlHttp.withCredentials = true;
+    var data = new FormData();
+    data.append("wifi", equipment.college_profile_icon_wifi);
+    data.append("elevator", equipment.college_profile_icon_elevator);
+    data.append("canteen", equipment.college_profile_icon_restaurant);
+    data.append("hours24", equipment.college_profile_icon_24h);
+    data.append("laundry", equipment.college_profile_icon_laundry);
+    data.append("gym", equipment.college_profile_icon_gym);
+    data.append("study_room", equipment.college_profile_icon_school);
+    data.append("heating", equipment.college_profile_icon_heating);
+	xmlHttp.send(data);
+
+    document.getElementById("college_profile_id_formUpdateEquipment").reset();//clean input
+}
+
 //////////////////////////////////////////////////////////////////////////////
 /*
 *Routing College
