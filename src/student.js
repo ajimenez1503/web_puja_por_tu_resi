@@ -24,9 +24,8 @@ function show_from_update(id) {
 }
 /**
 * show the data of the student user
-*@param {view} the tab, it can be profile or home
 */
-function dataProfile(view){
+function dataProfile(){
 	var xmlHttp =new XMLHttpRequest();
 	var url=window.location.protocol+"//"+window.location.host+port+"/ProfileStudent/get/";
 	xmlHttp.open("GET", url, true );
@@ -37,12 +36,8 @@ function dataProfile(view){
     		var output= JSON.parse(xmlHttp.responseText);
             console.log(output)
     		if(output.success){
-    			document.getElementById(view+"StudentName").innerHTML="   "+output.data.name;
-    			document.getElementById(view+"StudentUSername").innerHTML="   "+output.data.username;
-    			document.getElementById(view+"StudentEmail").innerHTML="   "+output.data.email;
-                if (view=="profile"){
-                    document.getElementById(view+"StudentPoint").innerHTML="   "+output.data.point;
-                }
+                display_specific_student("profile_student_",output.data);
+                document.getElementById("profile_student_point").innerHTML="   "+output.data.point;
     		}else{
     			showErrorMessagesPage("Student","showdata",output.message,output.success);
     		}
@@ -1258,14 +1253,15 @@ function out_selected_row_table(id){
 //////////////////////////////////////////////////////////////////////////////
 
 /**
-* Dispaly the perfil view
+* Dispaly the profile view
 */
-function displayPerfil(){
+function displayProfile(){
     if("studentview"===globa_view){
-        console.log("displayPerfil");
-        display_specific_div("student_view_list_elements","perfil");
+        console.log("displayProfile");
+        display_specific_div("student_view_list_elements","profile");
         countUnreadMessages();
         dataProfile("profile");
+        display_specific_div('profile_student_list_form',undefined);
     }
 }
 
@@ -1348,11 +1344,12 @@ page('/connection', function(){
 });
 
 
+
 /**
-* Display the perfil page
+* Display the profile page
 */
-page('/perfil', function(){
- 	displayPerfil();
+page('/profile', function(){
+ 	displayProfile();
 });
 
 /**

@@ -18,7 +18,7 @@
     margin-right: auto;
 	display:none;
 }
-#perfil{
+#profile{
 
 	margin-left: auto;
     margin-right: auto;
@@ -125,14 +125,9 @@
 /*////////////////////////////////////////////////////////////////
 *STUDENT VIEW / PROFILE
 ////////////////////////////////////////////////////////////////*/
-#from_update_email {
-	display: None;
-}
-#from_update_password{
-	display: None;
-}
 .elememt_profile{
-	  padding-bottom: 15%;
+	padding-bottom: 20%;
+	text-align: center; 
 }
 /*////////////////////////////////////////////////////////////////
 *STUDENT VIEW / MESSAGE

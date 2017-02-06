@@ -317,17 +317,6 @@ function remove_room(id){
     }
 }
 
-/**
-*Dispaly data of a specific student
-*@param: tab
-*@param: data_student
-*/
-function display_specific_student(tab,data_student){
-   document.getElementById(tab+"_room_specific_agreement_student_name").innerHTML="   "+data_student.name;
-   document.getElementById(tab+"_room_specific_agreement_student_username").innerHTML="   "+data_student.username;
-   document.getElementById(tab+"_room_specific_agreement_student_email").innerHTML="   "+data_student.email;
-}
-
 
 /**
 *display the view of a specific room.
@@ -356,7 +345,7 @@ function college_display_specifiy_room(data_room){
                     display_specific_agreement("college",output.data.agreement);
                     document.getElementById("college_room_specific_agreement_student").style.display="block";
                     //display data agreement student
-                     display_specific_student("college",output.data.student);
+                     display_specific_student("college_room_specific_agreement_student_",output.data.student);
 
                 }else{
                     document.getElementById("college_room_specific_bids").style.display="block";

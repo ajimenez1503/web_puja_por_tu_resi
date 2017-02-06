@@ -20,6 +20,18 @@ function display_specific_div(father,id) {
     }
 }
 
+
+/**
+*Dispaly data of a specific student
+*@param: tab
+*@param: data_student
+*/
+function display_specific_student(tab,data_student){
+   document.getElementById(tab+"name").innerHTML="   "+data_student.name;
+   document.getElementById(tab+"username").innerHTML="   "+data_student.username;
+   document.getElementById(tab+"email").innerHTML="   "+data_student.email;
+}
+
 /**
 * show the error in a div with is block in this moment
 * @param {string} page of the view, 2 possibility profile or Welcome

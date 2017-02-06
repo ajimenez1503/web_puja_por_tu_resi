@@ -40,7 +40,7 @@ displayView = function(){
         });
    }else if("studentview"===globa_view){
        $( "#viewBase" ).load( "view/student.html" , function() {
-          page("/perfil");//display view until is load
+          page("/profile");//display view until is load
         });
    }else if("collegeview"===globa_view){
        $( "#viewBase" ).load( "view/college.html" , function() {

@@ -1,7 +1,7 @@
 <nav class="nav nav-pills nav-justified">
     <div class="container-fluid">
         <ul class="nav navbar-nav">
-            <li onclick="page('/perfil')"> <a>  <label>Perfil</label> </a> </li>
+            <li onclick="page('/profile')"> <a>  <label>Perfil</label> </a> </li>
             <li onclick="page('/search_room')"> <a>  <label>Buscar Habitacion</label> </a> </li>
             <li onclick="page('/Room')"> <a>  <label>Mi Habitacion</label> </a> </li>
             <li onclick="page('/inicidence')"> <a> <label>Incidencias</label> </a> </li>
@@ -14,7 +14,7 @@
 
 <div id="student_view_list_elements">
 
-    <div id="perfil">
+    <div id="profile">
 
         <div class="elememt_profile">
             <div class="col-sm-3">
@@ -22,17 +22,17 @@
                     <div class="panel with panel-primary class">
                         <div class="panel-heading">Informacion usuario</div>
                         <div class="panel-body">
-                            <label>Nombre:   </label><label id="profileStudentName"></label></br>
-                            <label>Usuario:   </label><label id="profileStudentUSername"></label></br>
-                            <label>Email:   </label><label id="profileStudentEmail"></label></br>
+                            <label>Nombre:   </label><label id="profile_student_name"></label></br>
+                            <label>Usuario:   </label><label id="profile_student_username"></label></br>
+                            <label>Email:   </label><label id="profile_student_email"></label></br>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="col-sm-3">
-                <button onclick="show_from_update('email')" type="button" class="button_margin_room btn btn-success">Cambiar email</button>
-                <button onclick="show_from_update('password')" type="button" class="button_margin_room btn btn-warning">Cambiar contraseña</button>
+            <div class="col-sm-5">
+                <button onclick="display_specific_div('profile_student_list_form','profile_student_from_update_password')" type="button" class="button_margin_room btn btn-success">Cambiar email</button>
+                <button onclick="display_specific_div('profile_student_list_form','profile_student_from_update_email')" type="button" class="button_margin_room btn btn-warning">Cambiar contraseña</button>
             </div>
 
             <div class="col-sm-3">
@@ -41,7 +41,7 @@
                         <div class="panel-heading">Puntos</div>
                         <div class="panel-body">
                             <li class="list-group-item justify-content-between">
-                                Puntos<span  id="profileStudentPoint" class="badge badge-default badge-pill"></span>
+                                Puntos<span  id="profile_student_point" class="badge badge-default badge-pill"></span>
                             </li>
                         </div>
                     </div>
@@ -49,61 +49,35 @@
             </div>
 
         </div>
-        <div id="from_update_password">
-            <div class="col-sm-7">
-                <div class="row">
-                    <div class="col-md-10 col-md-offset-5">
-                        <div class="panel panel-login">
-                            <div class="panel-body">
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <form id="id_formUpdatePassword" action="javascript:void(0);" method="post" role="form" >
-                                            <div class="form-group">
-                                                <input  id="formUpdatePasswordOld" type="password" name="password" pattern=".{8,8}" tabindex="2" class="form-control" placeholder="contraseña actual" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="password" name="confirm-password" pattern=".{8,8}" id="formUpdatePasswordNew" tabindex="2" class="form-control" placeholder="Nueva contraeña" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="password" name="confirm-password" pattern=".{8,8}" id="formUpdatePasswordNewRepeat" tabindex="2" class="form-control" placeholder="Confirmar nueva contraseña" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <div class="row">
-                                                    <div class="col-sm-6 col-sm-offset-3">
-                                                        <input type="submit" onClick="updatePassword()" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-submit" value="Cambiar contraseña">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <div id="profile_student_list_form">
 
-        <div id="from_update_email">
-            <div class="col-sm-7">
-                <div class="row">
-                    <div class="col-md-10 col-md-offset-5">
-                        <div class="panel panel-login">
-                            <div class="panel-body">
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <form id="id_formUpdateEmail"action="javascript:void(0);" method="post" role="form" >
-                                            <div class="form-group">
-                                                <input  id="formUpdateEmail" type="email" name="email"  tabindex="2" class="form-control" placeholder="nuevo email" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <div class="row">
-                                                    <div class="col-sm-6 col-sm-offset-3">
-                                                        <input type="submit" onClick="updateEmail()" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-submit" value="Cambiar  email">
+            <div id="profile_student_from_update_password">
+                <div class="col-sm-7">
+                    <div class="row">
+                        <div class="col-md-10 col-md-offset-5">
+                            <div class="panel panel-login">
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <form id="id_formUpdatePassword" action="javascript:void(0);" method="post" role="form" >
+                                                <div class="form-group">
+                                                    <input  id="formUpdatePasswordOld" type="password" name="password" pattern=".{8,8}" tabindex="2" class="form-control" placeholder="contraseña actual" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="password" name="confirm-password" pattern=".{8,8}" id="formUpdatePasswordNew" tabindex="2" class="form-control" placeholder="Nueva contraeña" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="password" name="confirm-password" pattern=".{8,8}" id="formUpdatePasswordNewRepeat" tabindex="2" class="form-control" placeholder="Confirmar nueva contraseña" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-sm-6 col-sm-offset-3">
+                                                            <input type="submit" onClick="updatePassword()" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-submit" value="Cambiar contraseña">
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </form>
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -111,7 +85,36 @@
                     </div>
                 </div>
             </div>
-        </div>
+
+            <div id="profile_student_from_update_email">
+                <div class="col-sm-7">
+                    <div class="row">
+                        <div class="col-md-10 col-md-offset-5">
+                            <div class="panel panel-login">
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <form id="id_formUpdateEmail"action="javascript:void(0);" method="post" role="form" >
+                                                <div class="form-group">
+                                                    <input  id="formUpdateEmail" type="email" name="email"  tabindex="2" class="form-control" placeholder="nuevo email" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-sm-6 col-sm-offset-3">
+                                                            <input type="submit" onClick="updateEmail()" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-submit" value="Cambiar  email">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- end profile_student_list_form-->
 
     </div> <!-- end Profile -->
 
