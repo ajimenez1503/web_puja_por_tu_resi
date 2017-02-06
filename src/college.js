@@ -249,20 +249,9 @@ function college_create_row_room(data){
     return tr;
 }
 
-/**
-*Display all the room of the college in the college_element_table_list_rooms
-*/
-function college_display_table_list_rooms(data){
-    var father = document.getElementById("college_element_table_list_rooms");
-    deleteAllChildElement(father)
-    for (i = 0; i < data.length; i++) {
-        father.appendChild( college_create_row_room(data[i]));
-    }
-}
-
 
 /**
-*Select a row in a table of the search room (red background-color)
+*Select a row in a table (red background-color)
 * out select a row in a table of the search
 *@param: id_element
 */
@@ -291,16 +280,17 @@ function collegeGetAllRooms(){
     		var output= JSON.parse(xmlHttp.responseText);
             console.log(output)
     		if(output.success){
-                college_display_table_list_rooms(output.data)
+                var father = document.getElementById("college_element_table_list_rooms");
+                deleteAllChildElement(father)
+                for (i = 0; i < output.data.length; i++) {
+                    father.appendChild( college_create_row_room(output.data[i]));
+                }
     		}else{
     			showErrorMessagesPage("College","showdata",output.message,output.success);
     		}
     	}
     }
 }
-
-
-
 
 /**
 *remove a room (id)
@@ -452,9 +442,9 @@ function college_sendMessage(tab, specific_student){
 
 /**
 * Create a row in the table.
-*NAme of the studnet, in a circle the number of messages without read
-*Click go the the conversation ot the studetn
-*onmouseout onmouseover change the background-color
+* Name of the studnet, in a circle the number of messages without read
+* Click go the the conversation ot the studetn
+* onmouseout onmouseover change the background-color
 *@param: data_student
 *@param: unread
 *@return tr
@@ -492,8 +482,8 @@ function college_create_row_student(data_student,unread){
 /**
 * Get the list of student and the number of message without read ofthem
 * For every studnet create a row in the table of the left with the name and the number of unread messages
-*save the list of student of another uses
-*add all the studnt to the select option
+* save the list of student of another uses
+* add all the studnt to the select option
 */
 function college_get_list_student(){
     var list_student=[]
@@ -591,13 +581,12 @@ function college_display_messages_specific_student(student){
     college_open_messages_specific_student(student);
 
     //display the conversation
-    document.getElementById('college_messages_send_message').style.display="none";
-    document.getElementById('college_messages_conversation').style.display="block";
+    display_specific_div("college_messages_list_messages",'college_messages_conversation')
+
 
     //update the button send messages
     document.getElementById('college_messages_conversation_form_button').onclick = function(){
         college_sendMessage("college_messages_conversation", student);
-        console.log("send message")
     }
 }
 
@@ -606,22 +595,6 @@ function college_display_messages_specific_student(student){
 * College Profile
 */
 //////////////////////////////////////////////////////////////////////////////
-
-/**
-* All the form display none
-* Display a specific form of the user in the profile
-*@param {fater} id of the div
-*@param {id} id of the div
-*/
-function college_display_specific_form(father,id) {
-    var list_elements=document.getElementById(father).childNodes;
-    for(i=1;i<list_elements.length;i+=2){//becasue childNodes have the nodes in the even elemetns
-        list_elements[i].style.display="none";
-    }
-    if (id!== undefined){
-        document.getElementById(id).style.display="block";
-    }
-}
 
 /**
 * show the data of the college user
@@ -840,15 +813,10 @@ function college_profile_updateEquipment(){
 function displayCollege_list_rooms(){
     if("collegeview"===globa_view ){
         console.log("display college_list_rooms");
-        document.getElementById("college_profile").style.display="none";
-    	document.getElementById("college_list_rooms").style.display="block";
-        document.getElementById('college_create_room').style.display="none";
-        document.getElementById('college_messages').style.display="none";
-
+        display_specific_div("college_view_list_elements","college_list_rooms");
 
         document.getElementById("college_table_list_rooms").style.display="block";
         document.getElementById("college_room_specific").style.display="none";
-        document.getElementById('college_create_room').style.display="none";
         collegeGetAllRooms();// display table list rooms
     }
 }
@@ -858,11 +826,7 @@ function displayCollege_list_rooms(){
 function displayCollege_create_room(){
     if("collegeview"===globa_view ){
         console.log("display college_list_rooms");
-        document.getElementById("college_profile").style.display="none";
-        document.getElementById('college_create_room').style.display="block";
-    	document.getElementById("college_list_rooms").style.display="none";
-        document.getElementById('college_messages').style.display="none";
-
+        display_specific_div("college_view_list_elements","college_create_room");
     }
 }
 
@@ -873,17 +837,13 @@ function displayCollege_create_room(){
 function displayCollege_messages(){
     if("collegeview"===globa_view ){
         console.log("display college_list_rooms");
-        document.getElementById("college_profile").style.display="none";
-        document.getElementById('college_create_room').style.display="none";
-    	document.getElementById("college_list_rooms").style.display="none";
-        document.getElementById('college_messages').style.display="block";
+        display_specific_div("college_view_list_elements","college_messages");
 
-        document.getElementById('college_messages_send_message').style.display="block";
-        document.getElementById('college_messages_conversation').style.display="none";
+        display_specific_div("college_messages_list_messages",'college_messages_send_message');
         // get list student
             //get number of message without read of every student
             college_get_list_student();
-        //TODO display the list of messgaes of every student
+        //display the list of messgaes of every student
     }
 }
 
@@ -893,15 +853,10 @@ function displayCollege_messages(){
 function displayCollege_profile(){
     if("collegeview"===globa_view ){
         console.log("display college_list_rooms");
-        document.getElementById("college_profile").style.display="block";
-        document.getElementById('college_create_room').style.display="none";
-    	document.getElementById("college_list_rooms").style.display="none";
-        document.getElementById('college_messages').style.display="none";
-        college_display_specific_form("college_profile_list_form",undefined);
+        display_specific_div("college_view_list_elements","college_profile");
+
+        display_specific_div("college_profile_list_form",undefined);
         college_displayProfile();
-
-
-
     }
 }
 

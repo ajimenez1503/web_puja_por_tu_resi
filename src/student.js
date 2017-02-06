@@ -1280,13 +1280,7 @@ function displayHome(){
 function displayPerfil(){
     if("studentview"===globa_view){
         console.log("displayPerfil");
-    	document.getElementById("home").style.display="none";
-    	document.getElementById("perfil").style.display="block";
-        document.getElementById("incidence").style.display="none";
-        document.getElementById("Room").style.display="none";
-        document.getElementById("message").style.display="none";
-        document.getElementById("rent").style.display="none";
-        document.getElementById("search_room").style.display="none";
+        display_specific_div("student_view_list_elements","perfil");
         countUnreadMessages();
         dataProfile("profile");
     }
@@ -1298,13 +1292,7 @@ function displayPerfil(){
 function displayRoom(){
     if("studentview"===globa_view){
         console.log("displayRoom");
-    	document.getElementById("home").style.display="none";
-    	document.getElementById("perfil").style.display="none";
-        document.getElementById("Room").style.display="block";
-        document.getElementById("incidence").style.display="none";
-        document.getElementById("message").style.display="none";
-        document.getElementById("rent").style.display="none";
-        document.getElementById("search_room").style.display="none";
+        display_specific_div("student_view_list_elements","Room");
         get_room_data();
         countUnreadMessages();
     }
@@ -1317,14 +1305,7 @@ function displayRoom(){
 function displaySearch_room(){
     if("studentview"===globa_view){
         console.log("displaysearch_room");
-    	document.getElementById("home").style.display="none";
-    	document.getElementById("perfil").style.display="none";
-        document.getElementById("Room").style.display="none";
-        document.getElementById("search_room").style.display="block";
-        document.getElementById("incidence").style.display="none";
-        document.getElementById("message").style.display="none";
-        document.getElementById("rent").style.display="none";
-        //TODO get list of colleges for the search_room_form
+        display_specific_div("student_view_list_elements","search_room");
         countUnreadMessages();
         display_search_room_table();
     }
@@ -1336,13 +1317,7 @@ function displaySearch_room(){
 function displayIncidence(){
     if("studentview"===globa_view){
         console.log("displayIncidence");
-    	document.getElementById("home").style.display="none";
-    	document.getElementById("perfil").style.display="none";
-        document.getElementById("Room").style.display="none";
-        document.getElementById("incidence").style.display="block";
-        document.getElementById("message").style.display="none";
-        document.getElementById("rent").style.display="none";
-        document.getElementById("search_room").style.display="none";
+        display_specific_div("student_view_list_elements","incidence");
         countUnreadMessages();
         getIncidences();
     }
@@ -1354,13 +1329,7 @@ function displayIncidence(){
 function displayMessage(){
     if("studentview"===globa_view){
         console.log("displayMessage");
-    	document.getElementById("home").style.display="none";
-    	document.getElementById("perfil").style.display="none";
-        document.getElementById("Room").style.display="none";
-        document.getElementById("incidence").style.display="none";
-        document.getElementById("message").style.display="block";
-        document.getElementById("rent").style.display="none";
-        document.getElementById("search_room").style.display="none";
+        display_specific_div("student_view_list_elements","message");
         countUnreadMessages();
         getMessages();
         OpenAllMessages();
@@ -1373,14 +1342,7 @@ function displayMessage(){
 function displayRent(){
     if("studentview"===globa_view){
         console.log("displayRent");
-    	document.getElementById("home").style.display="none";
-    	document.getElementById("perfil").style.display="none";
-        document.getElementById("Room").style.display="none";
-        document.getElementById("incidence").style.display="none";
-        document.getElementById("rent").style.display="block";
-        document.getElementById("message").style.display="none";
-        document.getElementById("search_room").style.display="none";
-        document.getElementById("payment_rent").style.display="none";
+        display_specific_div("student_view_list_elements","rent");
         countUnreadMessages();
         getRents();
         show_form_payment();

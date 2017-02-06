@@ -3,6 +3,23 @@
 * @version 0.1
 */
 
+
+/**
+* All the form display none
+* Display a specific form of the user in the profile
+*@param {fater} id of the div
+*@param {id} id of the div
+*/
+function display_specific_div(father,id) {
+    var list_elements=document.getElementById(father).children;
+    for(i=0;i<list_elements.length;i++){//display none all the children
+        list_elements[i].style.display="none";
+    }
+    if (id!== undefined){
+        document.getElementById(id).style.display="block";
+    }
+}
+
 /**
 * show the error in a div with is block in this moment
 * @param {string} page of the view, 2 possibility profile or Welcome

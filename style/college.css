@@ -93,7 +93,7 @@
     padding-left: 5%;
     overflow-y: auto;
 }
-.college_messages_list_messages{
+#college_messages_list_messages{
 	float: left;
 	width: 75%;
 }
@@ -110,7 +110,9 @@ textarea{
 /*////////////////////////////////////////////////////////////////
 * College profile
 ////////////////////////////////////////////////////////////////*/
-
+.college_elememt_profile{
+	padding: 5%;
+}
 #college_profile_room_specific_college_map {
 	width: 80%;
 	height: 287px;

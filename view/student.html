@@ -12,212 +12,324 @@
         </ul>
     </div>
 </nav> <!-- end nav -->
-<div id="home">
-    <div class="row">
-        <div class="col-sm-6">
-            <div class="panel-group">
-                <div class="panel with panel-primary class">
-                    <div class="panel-heading">Informacion usuario</div>
-                    <div class="panel-body">
-                        <label>Nombre:   </label><label id="homeStudentName"></label></br>
-                        <label>Usuario:   </label><label id="homeStudentUSername"></label></br>
-                        <label>Email:   </label><label id="homeStudentEmail"></label></br>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div> <!-- end home -->
 
-<div id="perfil">
+<div id="student_view_list_elements">
 
-    <div class="elememt_profile">
-        <div class="col-sm-3">
-            <div class="panel-group">
-                <div class="panel with panel-primary class">
-                    <div class="panel-heading">Informacion usuario</div>
-                    <div class="panel-body">
-                        <label>Nombre:   </label><label id="profileStudentName"></label></br>
-                        <label>Usuario:   </label><label id="profileStudentUSername"></label></br>
-                        <label>Email:   </label><label id="profileStudentEmail"></label></br>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-sm-3">
-            <button onclick="show_from_update('email')" type="button" class="button_margin_room btn btn-success">Cambiar email</button>
-            <button onclick="show_from_update('password')" type="button" class="button_margin_room btn btn-warning">Cambiar contraseña</button>
-        </div>
-
-        <div class="col-sm-3">
-            <div class="panel-group">
-                <div class="panel with panel-primary class">
-                    <div class="panel-heading">Puntos</div>
-                    <div class="panel-body">
-                        <li class="list-group-item justify-content-between">
-                            Puntos<span  id="profileStudentPoint" class="badge badge-default badge-pill"></span>
-                        </li>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div>
-    <div id="from_update_password">
-        <div class="col-sm-7">
-            <div class="row">
-                <div class="col-md-10 col-md-offset-5">
-                    <div class="panel panel-login">
-                        <div class="panel-body">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <form id="id_formUpdatePassword" action="javascript:void(0);" method="post" role="form" >
-                                        <div class="form-group">
-                                            <input  id="formUpdatePasswordOld" type="password" name="password" pattern=".{8,8}" tabindex="2" class="form-control" placeholder="contraseña actual" required>
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="password" name="confirm-password" pattern=".{8,8}" id="formUpdatePasswordNew" tabindex="2" class="form-control" placeholder="Nueva contraeña" required>
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="password" name="confirm-password" pattern=".{8,8}" id="formUpdatePasswordNewRepeat" tabindex="2" class="form-control" placeholder="Confirmar nueva contraseña" required>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="row">
-                                                <div class="col-sm-6 col-sm-offset-3">
-                                                    <input type="submit" onClick="updatePassword()" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-submit" value="Cambiar contraseña">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div id="from_update_email">
-        <div class="col-sm-7">
-            <div class="row">
-                <div class="col-md-10 col-md-offset-5">
-                    <div class="panel panel-login">
-                        <div class="panel-body">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <form id="id_formUpdateEmail"action="javascript:void(0);" method="post" role="form" >
-                                        <div class="form-group">
-                                            <input  id="formUpdateEmail" type="email" name="email"  tabindex="2" class="form-control" placeholder="nuevo email" required>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="row">
-                                                <div class="col-sm-6 col-sm-offset-3">
-                                                    <input type="submit" onClick="updateEmail()" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-submit" value="Cambiar  email">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-</div> <!-- end Profile -->
-
-
-
-<div id="search_room">
-
-    <form class="form-horizontal" role="form">
-        <fieldset>
-            <div class="form-group">
-                <label class="col-sm-3 control-label" >Equipamiento: </label>
-                <div id="search_equipment" class="col-sm-9">
-                    <i id="search_icon_school" onclick="selected_icon_search('search_icon_school')" title="habitacion estudio"  class="icon material-icons">school</i>
-                    <i id="search_icon_gym" onclick="selected_icon_search('search_icon_gym')"title="gym" class="icon material-icons">fitness_center</i>
-                    <i id="search_icon_restaurant" onclick="selected_icon_search('search_icon_restaurant')" title="cantina"class="icon material-icons">restaurant_menu</i>
-                    <i id="search_icon_wifi" onclick="selected_icon_search('search_icon_wifi')"title="wifi" class="icon fa fa-wifi" aria-hidden="true"></i>
-                    <i id="search_icon_laundry" onclick="selected_icon_search('search_icon_laundry')"title="lavanderia" class="icon material-icons">local_laundry_service</i>
-                    <i  id="search_icon_heating" onclick="selected_icon_search('search_icon_heating')"title="calefaccion" class="icon fa fa-thermometer-full" aria-hidden="true"></i> <!-- heating -->
-                    <img id="search_icon_elevator" onclick="selected_icon_search('search_icon_elevator')" title="ascensor" class="selected icon_img" src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeD0iMHB4IiB5PSIwcHgiIHZpZXdCb3g9IjAgMCA1MDMuNjA3IDUwMy42MDciIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUwMy42MDcgNTAzLjYwNzsiIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSIyNHB4IiBoZWlnaHQ9IjI0cHgiPgo8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxIDEpIj4KCTxnPgoJCTxnPgoJCQk8cGF0aCBkPSJNNDc3LjQyNi0xSDI0LjE4QzkuOTExLTEtMSw5LjkxMS0xLDI0LjE4djQ1My4yNDZjMCwxNC4yNjksMTAuOTExLDI1LjE4LDI1LjE4LDI1LjE4aDgzLjkzNGgxNDIuNjg5aDE0Mi42ODloODMuOTM0ICAgICBjMTQuMjY5LDAsMjUuMTgtMTAuOTExLDI1LjE4LTI1LjE4VjI0LjE4QzUwMi42MDcsOS45MTEsNDkxLjY5NS0xLDQ3Ny40MjYtMXogTTI0Mi40MSw0ODUuODJIMTE2LjUwOFYxMjQuOTAyICAgICBjMC01LjAzNiwzLjM1Ny04LjM5Myw4LjM5My04LjM5M0gyNDIuNDFWNDg1LjgyeiBNMjU5LjE5Nyw0ODUuODJWMTE2LjUwOGgxMTcuNTA4YzUuMDM2LDAsOC4zOTMsMy4zNTcsOC4zOTMsOC4zOTNWNDg1LjgyICAgICBIMjU5LjE5N3ogTTQ4NS44Miw0NzcuNDI2YzAsNS4wMzYtMy4zNTcsOC4zOTMtOC4zOTMsOC4zOTNoLTc1LjU0MVYxMjQuOTAyYzAtMTQuMjY5LTEwLjkxMS0yNS4xOC0yNS4xOC0yNS4xOEgyNTAuODAzSDEyNC45MDIgICAgIGMtMTQuMjY5LDAtMjUuMTgsMTAuOTExLTI1LjE4LDI1LjE4VjQ4NS44MkgyNC4xOGMtNS4wMzYsMC04LjM5My0zLjM1Ny04LjM5My04LjM5M1YyNC4xOGMwLTUuMDM2LDQuMTk3LTguMzkzLDguMzkzLTguMzkzICAgICBoNDUzLjI0NmM1LjAzNiwwLDguMzkzLDMuMzU3LDguMzkzLDguMzkzVjQ3Ny40MjZ6IiBmaWxsPSIjMDAwMDAwIi8+CgkJCTxwYXRoIGQ9Ik00NjAuNjM5LDI1OS4xOTdoLTMzLjU3NGMtNS4wMzYsMC04LjM5MywzLjM1Ny04LjM5Myw4LjM5M3YzMy41NzR2MzMuNTc0YzAsNS4wMzYsMy4zNTcsOC4zOTMsOC4zOTMsOC4zOTNoMzMuNTc0ICAgICBjNS4wMzYsMCw4LjM5My0zLjM1Nyw4LjM5My04LjM5M3YtMzMuNTc0VjI2Ny41OUM0NjkuMDMzLDI2Mi41NTQsNDY1LjY3NSwyNTkuMTk3LDQ2MC42MzksMjU5LjE5N3ogTTQzNS40NTksMjc1Ljk4NGgxNi43ODcgICAgIHYxNi43ODdoLTE2Ljc4N1YyNzUuOTg0eiBNNDUyLjI0NiwzMjYuMzQ0aC0xNi43ODd2LTE2Ljc4N2gxNi43ODdWMzI2LjM0NHoiIGZpbGw9IiMwMDAwMDAiLz4KCQkJPHBhdGggZD0iTTMwOS41NTcsMzIuNTc0SDE5Mi4wNDljLTUuMDM2LDAtOC4zOTMsMy4zNTctOC4zOTMsOC4zOTN2MzMuNTc0YzAsNS4wMzYsMy4zNTcsOC4zOTMsOC4zOTMsOC4zOTNoMTE3LjUwOCAgICAgYzUuMDM2LDAsOC4zOTMtMy4zNTcsOC4zOTMtOC4zOTNWNDAuOTY3QzMxNy45NTEsMzUuOTMxLDMxNC41OTMsMzIuNTc0LDMwOS41NTcsMzIuNTc0eiBNMzAxLjE2NCw2Ni4xNDhIMjAwLjQ0M1Y0OS4zNjFoMTAwLjcyMSAgICAgVjY2LjE0OHoiIGZpbGw9IiMwMDAwMDAiLz4KCQk8L2c+Cgk8L2c+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg==" /><!-- elevator -->
-                    <img id="search_icon_24h" onclick="selected_icon_search('search_icon_24h')" title="recepcion 24 horas "class="icon_img" src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeD0iMHB4IiB5PSIwcHgiIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA1MTIgNTEyOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgd2lkdGg9IjI0cHgiIGhlaWdodD0iMjRweCI+CjxnPgoJPGc+CgkJPHBhdGggZD0iTTQ5OC45NDYsMjk0Ljk1OWMtNS41MjEtMS4xMTYtMTAuOTAyLDIuNDU1LTEyLjAxOCw3Ljk3N0M0NjQuODM0LDQxMi4yNTYsMzY3LjcxNSw0OTEuNjAyLDI1Niw0OTEuNjAyICAgIGMtMTI5LjkxMSwwLTIzNS42MDItMTA1LjY5LTIzNS42MDItMjM1LjYwMlMxMjYuMDg5LDIwLjM5OCwyNTYsMjAuMzk4YzYxLjI4NywwLDEyMC4wNDEsMjMuOTcsMTYzLjgxOCw2Ni4yOTVoLTI2LjM2MSAgICBjLTUuNjMzLDAtMTAuMTk5LDQuNTY2LTEwLjE5OSwxMC4xOTljMCw1LjYzMyw0LjU2NiwxMC4xOTksMTAuMTk5LDEwLjE5OWg1MS4yMjljNS42MzMsMCwxMC4xOTktNC41NjYsMTAuMTk5LTEwLjE5OVY0NS42NjQgICAgYzAtNS42MzMtNC41NjYtMTAuMTk5LTEwLjE5OS0xMC4xOTljLTUuNjMzLDAtMTAuMTk5LDQuNTY2LTEwLjE5OSwxMC4xOTl2MjYuODQ4QzM4Ni44NywyNi4yMjgsMzIyLjgyMywwLDI1NiwwICAgIEMxODcuNjIsMCwxMjMuMzMzLDI2LjYyOCw3NC45OCw3NC45OEMyNi42MjgsMTIzLjMzMywwLDE4Ny42MiwwLDI1NnMyNi42MjgsMTMyLjY2Nyw3NC45OCwxODEuMDIgICAgQzEyMy4zMzMsNDg1LjM3MiwxODcuNjIsNTEyLDI1Niw1MTJjNTkuNDM4LDAsMTE3LjM1Mi0yMC44MywxNjMuMDc0LTU4LjY1MmM0NS4xMTYtMzcuMzIxLDc2LjMxNS04OS4zMDQsODcuODQ5LTE0Ni4zNzIgICAgQzUwOC4wMzksMzAxLjQ1NSw1MDQuNDY3LDI5Ni4wNzUsNDk4Ljk0NiwyOTQuOTU5eiIgZmlsbD0iIzAwMDAwMCIvPgoJPC9nPgo8L2c+CjxnPgoJPGc+CgkJPHBhdGggZD0iTTUwMS44MDEsMjQ1LjgwMWMtNS42MzMsMC0xMC4xOTksNC41NjYtMTAuMTk5LDEwLjE5OWMwLDIuMjgxLTAuMDMzLDQuNTg1LTAuMDk4LDYuODQ4ICAgIGMtMC4xNjEsNS42MzEsNC4yNzMsMTAuMzI2LDkuOTAzLDEwLjQ4N2MwLjEsMC4wMDIsMC4xOTgsMC4wMDQsMC4yOTcsMC4wMDRjNS40OTcsMCwxMC4wMzEtNC4zNzYsMTAuMTktOS45MDcgICAgYzAuMDctMi40NTcsMC4xMDYtNC45NTcsMC4xMDYtNy40M0M1MTIsMjUwLjM2Nyw1MDcuNDM0LDI0NS44MDEsNTAxLjgwMSwyNDUuODAxeiIgZmlsbD0iIzAwMDAwMCIvPgoJPC9nPgo8L2c+CjxnPgoJPGc+CgkJPHBhdGggZD0iTTI0OC44NTgsMzUwLjQxNkgxNDUuMjM0di0yMC4xNGMwLTQzLjIwNCwxMDkuMTQ3LTY1LjI5MywxMDkuMTQ3LTEzNS4xMzRjMC0zNS4wODItMjcuMjg2LTYyLjM2OS02NC42NDQtNjIuMzY5ICAgIGMtMzQuNDM0LDAtNjEuMDcsMjIuNzM5LTYxLjA3LDUzLjkyNGMwLDkuNzQ1LDMuMjQ4LDEzLjMxOSw5Ljc0NSwxMy4zMTljNy40NzEsMCwxMS4zNjktNC41NDgsMTEuMzY5LTguNzcxICAgIGMwLTI1LjY2MiwxNi44OTItMzguMzMyLDM5LjMwNi0zOC4zMzJjMjkuODg2LDAsNDMuODU0LDIyLjQxNCw0My44NTQsNDIuODhjMCw1Ni44NDYtMTA5Ljc5Nyw4MC41Ni0xMDkuNzk3LDEzNC40ODR2MzEuNTEgICAgYzAsNS4xOTgsNS44NDcsOC40NDYsMTAuMDcsOC40NDZoMTE1LjY0NGM0LjIyMywwLDcuNzk2LTQuODcyLDcuNzk2LTEwLjA3MUMyNTYuNjU0LDM1NC45NjQsMjUzLjA4MSwzNTAuNDE2LDI0OC44NTgsMzUwLjQxNnoiIGZpbGw9IiMwMDAwMDAiLz4KCTwvZz4KPC9nPgo8Zz4KCTxnPgoJCTxwYXRoIGQ9Ik0zODguNTM4LDI5My44OTNoLTE3Ljg2NnYtNjIuNjk1YzAtNS41MjMtNS41MjMtOC4xMjEtMTAuNzItOC4xMjFjLTUuNTIzLDAtMTAuNzE5LDIuNTk5LTEwLjcxOSw4LjEyMXY2Mi42OTVoLTYzLjY2OSAgICBsNzUuMDM5LTE0OC4xMjdjMC42NS0xLjYyNSwwLjk3NS0yLjkyNCwwLjk3NS00LjIyM2MwLTUuMTk4LTYuMTczLTguNzcxLTEwLjM5NS04Ljc3MWMtMy44OTgsMC03Ljc5NiwxLjk0OS0xMC4wNzEsNi40OTcgICAgbC04MS41MzUsMTYwLjc5N2MtMC45NzQsMS42MjUtMS4yOTksMy41NzMtMS4yOTksNS41MjNjMCw0Ljg3MiwyLjkyNCw4Ljc3MSw4LjQ0Niw4Ljc3MWg4Mi41MXY0Ny40MjYgICAgYzAsNS41MjIsNS4xOTgsOC40NDYsMTAuNzE5LDguNDQ2YzUuMTk4LDAsMTAuNzItMi45MjQsMTAuNzItOC40NDZ2LTQ3LjQyNmgxNy44NjZjNC44NzIsMCw4LjEyMS01LjE5OCw4LjEyMS0xMC4zOTUgICAgQzM5Ni42NTgsMjk5LjA5MSwzOTQuMDU5LDI5My44OTMsMzg4LjUzOCwyOTMuODkzeiIgZmlsbD0iIzAwMDAwMCIvPgoJPC9nPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+Cjwvc3ZnPgo=" /><!-- 24hours -->
-                    <i  id="search_icon_tv" onclick="selected_icon_search('search_icon_tv')" title="television" class="icon fa fa-television" aria-hidden="true"></i>
-                    <i  id="search_icon_bath" onclick="selected_icon_search('search_icon_bath')" title="baño" class="icon fa fa-bath" aria-hidden="true"></i>
-                    <img id="search_icon_desk" onclick="selected_icon_search('search_icon_desk')" title="escritorio" class="icon_img" src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeD0iMHB4IiB5PSIwcHgiIHZpZXdCb3g9IjAgMCAyOTUuMjQgMjk1LjI0IiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCAyOTUuMjQgMjk1LjI0OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgd2lkdGg9IjI0cHgiIGhlaWdodD0iMjRweCI+CjxnPgoJPGc+CgkJPGc+CgkJCTxwYXRoIGQ9Ik0yMzMuMzM1LDIxNC4yODd2LTkuNTI0aDQ3LjYxN3YwYzcuODc2LDAsMTQuMjg2LTYuNDEsMTQuMjg2LTE0LjI4NnYtNzYuMTljMC03Ljg3Ni02LjQxLTE0LjI4Ni0xNC4yODYtMTQuMjg2SDE0Ny42MTkgICAgIGMtNy44NzYsMC0xNC4yODYsNi40MS0xNC4yODYsMTQuMjg2djc2LjE5YzAsNy44NzYsNi40MSwxNC4yODYsMTQuMjg2LDE0LjI4Nmg0Ny42MTl2OS41MjRoLTgwLjk1MnYtNC43NjIgICAgIGMwLTcuODc2LTYuNjg2LTE0LjI4Ni0xNC41NjItMTQuMjg2aC0xNi4xMWwtNDguOTI4LTc5LjY0OGMyLjEzOC0zLjA4MSwzLjQxLTYuODA1LDMuNDEtMTAuODI5YzAtMS4xNzEtMC4xNDMtMi4zMDUtMC4zNDgtMy40MTkgICAgIGwxOS45MzMtMzYuNTQyYzEuODM4LDkuMDUyLDYuODc2LDE3LjEzOCwxNC41MTksMjIuODUybDMuMTEsMi4zMjRsMTEuNzU3LTEwLjQ1MmMyLjU3NiwwLjkzMyw1LjIxNCwxLjQyOSw3Ljg5NSwxLjQyOSAgICAgYzEzLjEyOSwwLDIzLjgxLTEwLjY4MSwyMy44MS0yMy44MWMwLTEuNzI5LTAuMjcxLTMuNDY3LTAuNjc2LTUuMTk1bDExLjc4MS0xMC40NzFsLTEuOTQzLTMuMzY3ICAgICBjLTYuODA1LTExLjc1Ny0xOS40MzgtMTkuMDYyLTMyLjk3MS0xOS4wNjJjLTAuODk1LDAtMS43NzYsMC4wNzEtMi42NTcsMC4xMzNsLTE2LjEtMTYuMUw0MC44MiwzMi41NzJsNi41NTcsOC43NDNMMTYuMDg3LDg2LjAyICAgICBDNi45OSw4Ny40NTMsMCw5NS4yNzcsMCwxMDQuNzYzYzAsNy4xNDMsMy45OTUsMTMuMzA1LDkuODI5LDE2LjU2MmwzOS4zODEsNzMuOTE0SDMzLjA1N2MtNy44NzYsMC0xNC4wMSw2LjQxLTE0LjAxLDE0LjI4NiAgICAgdjQuNzYySDB2MjguNTcxaDE0LjI4NnY1Mi4zODFoOS41MjR2LTUyLjM4MWg5LjUyNHY1Mi4zODFoOS41MjR2LTUyLjM4MWgyMDkuNTI0djUyLjM4MWg5LjUyNHYtNTIuMzgxaDkuNTI0djUyLjM4MWg5LjUyNCAgICAgdi01Mi4zODFoMTQuMjg2di0yOC41NzFIMjMzLjMzNXogTTE0Mi44NTcsMTE0LjI4N2MwLTIuNjI0LDIuMTM4LTQuNzYyLDQuNzYyLTQuNzYyaDEzMy4zMzNjMi42MjQsMCw0Ljc2MiwyLjEzOCw0Ljc2Miw0Ljc2MiAgICAgdjYxLjkwNUgxNDIuODU3VjExNC4yODd6IE0xOTUuMjM4LDE5NS4yMzloLTQ3LjYxOWMtMi42MjQsMC00Ljc2Mi0yLjEzOC00Ljc2Mi00Ljc2MnYtNC43NjJoMTQyLjg1N3Y0Ljc2MiAgICAgYzAsMi42MjQtMi4xMzgsNC43NjItNC43NjIsNC43NjJoLTQ3LjYxOUgxOTUuMjM4eiBNMjIzLjgxLDIwNC43NjN2OS41MjRoLTE5LjA0OHYtOS41MjRIMjIzLjgxeiBNOTYuMjQzLDcxLjM3MmwxMi43LTExLjI5ICAgICBDMTA3LjY3MSw2Ni4xNDksMTAyLjUzOCw3MC44MTEsOTYuMjQzLDcxLjM3MnogTTk0Ljk2NywyOC41NzNjOC44NTctMC4wMDEsMTcuMjA0LDQuMTgsMjIuNTgxLDExLjExOEw3NC45ODYsNzcuNTI1ICAgICBjLTUuNS01LjM1Mi04LjU5LTEyLjYtOC41OS0yMC4zODFDNjYuMzk2LDQxLjM4Nyw3OS4yMSwyOC41NzMsOTQuOTY3LDI4LjU3M3ogTTc1LjYxOSwxNS45NjhsNS42NjIsNS42NjIgICAgIEM3MS43LDI1LjMzNCw2My45NjcsMzIuNzcyLDU5LjkyOSw0Mi4xODdsLTYuMDYyLTguMDlMNzUuNjE5LDE1Ljk2OHogTTUzLjM4NSw0OS4zMjlsMS4wOTEsMS40NTNMMzIuNDE5LDkxLjIyNSAgICAgYy0xLjYyOS0xLjYxLTMuNTQ4LTIuOTA1LTUuNjY3LTMuODQ4TDUzLjM4NSw0OS4zMjl6IE05LjUyNCwxMDQuNzYzYzAtNS4yNTIsNC4yNzEtOS41MjQsOS41MjQtOS41MjQgICAgIGM1LjI1MiwwLDkuNTI0LDQuMjcxLDkuNTI0LDkuNTI0YzAsNS4yNTItNC4yNzEsOS41MjQtOS41MjQsOS41MjRDMTMuNzk1LDExNC4yODcsOS41MjQsMTEwLjAxNiw5LjUyNCwxMDQuNzYzeiBNMjEuNzk1LDEyMy41MzQgICAgIGMxLjk2Ny0wLjI4NiwzLjgyNC0wLjg2Miw1LjU0OC0xLjcwNWw0NS4wOTUsNzMuNDFINjBMMjEuNzk1LDEyMy41MzR6IE0zMy4wNTcsMjA0Ljc2M2g2Ni42NjdjMi42MjQsMCw1LjAzOCwyLjEzOCw1LjAzOCw0Ljc2MiAgICAgdjQuNzYyaC03Ni4xOXYtNC43NjJoLTAuMDAxQzI4LjU3MSwyMDYuOTAxLDMwLjQzMywyMDQuNzYzLDMzLjA1NywyMDQuNzYzeiBNMjg1LjcxNCwyMzMuMzM1aC00Ljc2MmgtMjguNTcxSDQyLjg1N0gxNC4yODYgICAgIEg5LjUyNHYtOS41MjRoOS4yNDhoOTUuMjM4aDgxLjIyOWgzOC4wOTVoNTIuMzhWMjMzLjMzNXoiIGZpbGw9IiMwMDAwMDAiLz4KCQkJPHJlY3QgeD0iMTM4LjA5NSIgeT0iODAuOTUzIiB3aWR0aD0iMTUyLjM4MSIgaGVpZ2h0PSI5LjUyNCIgZmlsbD0iIzAwMDAwMCIvPgoJCQk8cGF0aCBkPSJNMjA0Ljc2MiwwLjAwMWgtMzguMDk1djc2LjE5aDM4LjA5NVYwLjAwMXogTTE5NS4yMzgsNjYuNjY4SDE3Ni4xOVY0Ny42MmgxOS4wNDhWNjYuNjY4eiBNMTk1LjIzOCwzOC4wOTZIMTc2LjE5VjkuNTI1ICAgICBoMTkuMDQ4VjM4LjA5NnoiIGZpbGw9IiMwMDAwMDAiLz4KCQkJPGNpcmNsZSBjeD0iMTg1LjcxNCIgY3k9IjU3LjE0NCIgcj0iNC43NjIiIGZpbGw9IiMwMDAwMDAiLz4KCQkJPHBhdGggZD0iTTI0Ny42MTksMC4wMDFoLTM4LjA5NXY3Ni4xOWgzOC4wOTVWMC4wMDF6IE0yMTkuMDQ3LDkuNTI1aDE5LjA0OHYyOC41NzFoLTE5LjA0OFY5LjUyNXogTTIzOC4wOTYsNjYuNjY4aC0xOS4wNDhWNDcuNjIgICAgIGgxOS4wNDhWNjYuNjY4eiIgZmlsbD0iIzAwMDAwMCIvPgoJCQk8Y2lyY2xlIGN4PSIyMjguNTcxIiBjeT0iNTcuMTQ0IiByPSI0Ljc2MiIgZmlsbD0iIzAwMDAwMCIvPgoJCQk8cGF0aCBkPSJNMjkwLjQ3NiwwLjAwMWgtMzguMDk1djc2LjE5aDM4LjA5NVYwLjAwMXogTTI2MS45MDQsOS41MjVoMTkuMDQ4djI4LjU3MWgtMTkuMDQ4VjkuNTI1eiBNMjgwLjk1Myw2Ni42NjhoLTE5LjA0OFY0Ny42MiAgICAgaDE5LjA0OFY2Ni42Njh6IiBmaWxsPSIjMDAwMDAwIi8+CgkJCTxjaXJjbGUgY3g9IjI3MS40MjkiIGN5PSI1Ny4xNDQiIHI9IjQuNzYyIiBmaWxsPSIjMDAwMDAwIi8+CgkJPC9nPgoJPC9nPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+Cjwvc3ZnPgo=" /><!--desk -->
-                    <img id="search_icon_wardrove" onclick="selected_icon_search('search_icon_wardrove')" title="armario"  class="icon_img" src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDYwIDYwIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA2MCA2MDsiIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSIyNHB4IiBoZWlnaHQ9IjI0cHgiPgo8Zz4KCTxnPgoJCTxwYXRoIGQ9Ik05LDUzaDE5VjNIOVY1M3ogTTExLDVoMTV2NDZIMTFWNXoiIGZpbGw9IiMwMDAwMDAiLz4KCQk8cGF0aCBkPSJNMTUsMTFoN2MwLjU1MiwwLDEtMC40NDgsMS0xcy0wLjQ0OC0xLTEtMWgtN2MtMC41NTIsMC0xLDAuNDQ4LTEsMVMxNC40NDgsMTEsMTUsMTF6IiBmaWxsPSIjMDAwMDAwIi8+CgkJPHBhdGggZD0iTTE1LDE0aDdjMC41NTIsMCwxLTAuNDQ4LDEtMXMtMC40NDgtMS0xLTFoLTdjLTAuNTUyLDAtMSwwLjQ0OC0xLDFTMTQuNDQ4LDE0LDE1LDE0eiIgZmlsbD0iIzAwMDAwMCIvPgoJCTxwYXRoIGQ9Ik0yMywxNmMwLTAuNTUyLTAuNDQ4LTEtMS0xaC03Yy0wLjU1MiwwLTEsMC40NDgtMSwxczAuNDQ4LDEsMSwxaDdDMjIuNTUyLDE3LDIzLDE2LjU1MiwyMywxNnoiIGZpbGw9IiMwMDAwMDAiLz4KCQk8cGF0aCBkPSJNMjMsMjhjLTAuNTUyLDAtMSwwLjQ0OC0xLDF2NWMwLDAuNTUyLDAuNDQ4LDEsMSwxczEtMC40NDgsMS0xdi01QzI0LDI4LjQ0OCwyMy41NTIsMjgsMjMsMjh6IiBmaWxsPSIjMDAwMDAwIi8+CgkJPHBhdGggZD0iTTU0LDBIMzFoLTJINnY1NmgydjRoNC42MThsMi00aDguNzY0bDIsNEgzMHYtNGgxdjRoNC42MThsMi00aDguNzY0bDIsNEg1M3YtNGgxVjB6IE0xMS4zODIsNThIMTB2LTJoMi4zODJMMTEuMzgyLDU4eiAgICAgTTE1LjYxOCw1NEg4VjJoMjF2NTJoLTYuNjE4SDE1LjYxOHogTTI4LDU4aC0xLjM4MmwtMS0ySDI4VjU4eiBNMzQuMzgyLDU4SDMzdi0yaDIuMzgyTDM0LjM4Miw1OHogTTM4LjYxOCw1NEgzMVYyaDIxdjUyaC02LjYxOCAgICBIMzguNjE4eiBNNTEsNThoLTEuMzgybC0xLTJINTFWNTh6IiBmaWxsPSIjMDAwMDAwIi8+CgkJPHBhdGggZD0iTTMyLDUzaDE5VjNIMzJWNTN6IE0zNCw1aDE1djQ2SDM0VjV6IiBmaWxsPSIjMDAwMDAwIi8+CgkJPHBhdGggZD0iTTM4LDExaDdjMC41NTIsMCwxLTAuNDQ4LDEtMXMtMC40NDgtMS0xLTFoLTdjLTAuNTUyLDAtMSwwLjQ0OC0xLDFTMzcuNDQ4LDExLDM4LDExeiIgZmlsbD0iIzAwMDAwMCIvPgoJCTxwYXRoIGQ9Ik0zOCwxNGg3YzAuNTUyLDAsMS0wLjQ0OCwxLTFzLTAuNDQ4LTEtMS0xaC03Yy0wLjU1MiwwLTEsMC40NDgtMSwxUzM3LjQ0OCwxNCwzOCwxNHoiIGZpbGw9IiMwMDAwMDAiLz4KCQk8cGF0aCBkPSJNNDYsMTZjMC0wLjU1Mi0wLjQ0OC0xLTEtMWgtN2MtMC41NTIsMC0xLDAuNDQ4LTEsMXMwLjQ0OCwxLDEsMWg3QzQ1LjU1MiwxNyw0NiwxNi41NTIsNDYsMTZ6IiBmaWxsPSIjMDAwMDAwIi8+CgkJPHBhdGggZD0iTTQ2LDI4Yy0wLjU1MiwwLTEsMC40NDgtMSwxdjVjMCwwLjU1MiwwLjQ0OCwxLDEsMXMxLTAuNDQ4LDEtMXYtNUM0NywyOC40NDgsNDYuNTUyLDI4LDQ2LDI4eiIgZmlsbD0iIzAwMDAwMCIvPgoJPC9nPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+Cjwvc3ZnPgo=" /><!-- wardrove -->
-
-                </div>
-            </div>
-            <div class="form-group">
-                <div class>
-                    <label class="col-sm-3 control-label" for="amount">Rango precio:</label>
-                    <div class="col-xs-3" >
-                        <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
-                        <div id="slider-range"></div>
-                    </div>
-                    <div class="col-xs-3">
-                        <select id="search_room_form_college" class="form-control" name="colleges">
-                        </select>
-                    </div>
-                    <div class="col-xs-3" >
-                        <div class="form-group">
-                            <div class="col-sm-offset-3 col-sm-9">
-                                <button type="button" onclick="search_rooms()"  class="btn btn-success">Buscar</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <hr /><!-- Horizontal separator -->
-        </fieldset>
-    </form>
-
-    <div id="search_room_table">
-
-        <div>
-
-            <div class="col-sm-8">
-                <div class="table_search_room">
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                              <th>Nombre</th>
-                              <th>Residencia</th>
-                              <th>Precio</th>
-                              <th>Fecha inicio</th>
-                            </tr>
-                        </thead>
-                        <tbody  id="student_element_table_list_rooms">
-                        </tbody>
-                    </table>
-                </div> <!-- end table_search_room -->
-            </div>
-
-            <div class="col-sm-4">
+    <div id="home">
+        <div class="row">
+            <div class="col-sm-6">
                 <div class="panel-group">
                     <div class="panel with panel-primary class">
-                        <div class="panel-heading">Mapa Residencia</div>
-                        <div id="search_room_table_map"></div>
+                        <div class="panel-heading">Informacion usuario</div>
+                        <div class="panel-body">
+                            <label>Nombre:   </label><label id="homeStudentName"></label></br>
+                            <label>Usuario:   </label><label id="homeStudentUSername"></label></br>
+                            <label>Email:   </label><label id="homeStudentEmail"></label></br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- end home -->
+
+    <div id="perfil">
+
+        <div class="elememt_profile">
+            <div class="col-sm-3">
+                <div class="panel-group">
+                    <div class="panel with panel-primary class">
+                        <div class="panel-heading">Informacion usuario</div>
+                        <div class="panel-body">
+                            <label>Nombre:   </label><label id="profileStudentName"></label></br>
+                            <label>Usuario:   </label><label id="profileStudentUSername"></label></br>
+                            <label>Email:   </label><label id="profileStudentEmail"></label></br>
+                        </div>
                     </div>
                 </div>
             </div>
 
-        </div>  <!-- end row -->
+            <div class="col-sm-3">
+                <button onclick="show_from_update('email')" type="button" class="button_margin_room btn btn-success">Cambiar email</button>
+                <button onclick="show_from_update('password')" type="button" class="button_margin_room btn btn-warning">Cambiar contraseña</button>
+            </div>
 
-    </div> <!-- end search_room_table -->
+            <div class="col-sm-3">
+                <div class="panel-group">
+                    <div class="panel with panel-primary class">
+                        <div class="panel-heading">Puntos</div>
+                        <div class="panel-body">
+                            <li class="list-group-item justify-content-between">
+                                Puntos<span  id="profileStudentPoint" class="badge badge-default badge-pill"></span>
+                            </li>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div id="from_update_password">
+            <div class="col-sm-7">
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-5">
+                        <div class="panel panel-login">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <form id="id_formUpdatePassword" action="javascript:void(0);" method="post" role="form" >
+                                            <div class="form-group">
+                                                <input  id="formUpdatePasswordOld" type="password" name="password" pattern=".{8,8}" tabindex="2" class="form-control" placeholder="contraseña actual" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="password" name="confirm-password" pattern=".{8,8}" id="formUpdatePasswordNew" tabindex="2" class="form-control" placeholder="Nueva contraeña" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="password" name="confirm-password" pattern=".{8,8}" id="formUpdatePasswordNewRepeat" tabindex="2" class="form-control" placeholder="Confirmar nueva contraseña" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <div class="col-sm-6 col-sm-offset-3">
+                                                        <input type="submit" onClick="updatePassword()" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-submit" value="Cambiar contraseña">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="from_update_email">
+            <div class="col-sm-7">
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-5">
+                        <div class="panel panel-login">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <form id="id_formUpdateEmail"action="javascript:void(0);" method="post" role="form" >
+                                            <div class="form-group">
+                                                <input  id="formUpdateEmail" type="email" name="email"  tabindex="2" class="form-control" placeholder="nuevo email" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <div class="col-sm-6 col-sm-offset-3">
+                                                        <input type="submit" onClick="updateEmail()" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-submit" value="Cambiar  email">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div> <!-- end Profile -->
 
 
-    <div id="student_search_room_specific">
 
-        <div>
+    <div id="search_room">
+
+        <form class="form-horizontal" role="form">
+            <fieldset>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label" >Equipamiento: </label>
+                    <div id="search_equipment" class="col-sm-9">
+                        <i id="search_icon_school" onclick="selected_icon_search('search_icon_school')" title="habitacion estudio"  class="icon material-icons">school</i>
+                        <i id="search_icon_gym" onclick="selected_icon_search('search_icon_gym')"title="gym" class="icon material-icons">fitness_center</i>
+                        <i id="search_icon_restaurant" onclick="selected_icon_search('search_icon_restaurant')" title="cantina"class="icon material-icons">restaurant_menu</i>
+                        <i id="search_icon_wifi" onclick="selected_icon_search('search_icon_wifi')"title="wifi" class="icon fa fa-wifi" aria-hidden="true"></i>
+                        <i id="search_icon_laundry" onclick="selected_icon_search('search_icon_laundry')"title="lavanderia" class="icon material-icons">local_laundry_service</i>
+                        <i  id="search_icon_heating" onclick="selected_icon_search('search_icon_heating')"title="calefaccion" class="icon fa fa-thermometer-full" aria-hidden="true"></i> <!-- heating -->
+                        <img id="search_icon_elevator" onclick="selected_icon_search('search_icon_elevator')" title="ascensor" class="selected icon_img" src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeD0iMHB4IiB5PSIwcHgiIHZpZXdCb3g9IjAgMCA1MDMuNjA3IDUwMy42MDciIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUwMy42MDcgNTAzLjYwNzsiIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSIyNHB4IiBoZWlnaHQ9IjI0cHgiPgo8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxIDEpIj4KCTxnPgoJCTxnPgoJCQk8cGF0aCBkPSJNNDc3LjQyNi0xSDI0LjE4QzkuOTExLTEtMSw5LjkxMS0xLDI0LjE4djQ1My4yNDZjMCwxNC4yNjksMTAuOTExLDI1LjE4LDI1LjE4LDI1LjE4aDgzLjkzNGgxNDIuNjg5aDE0Mi42ODloODMuOTM0ICAgICBjMTQuMjY5LDAsMjUuMTgtMTAuOTExLDI1LjE4LTI1LjE4VjI0LjE4QzUwMi42MDcsOS45MTEsNDkxLjY5NS0xLDQ3Ny40MjYtMXogTTI0Mi40MSw0ODUuODJIMTE2LjUwOFYxMjQuOTAyICAgICBjMC01LjAzNiwzLjM1Ny04LjM5Myw4LjM5My04LjM5M0gyNDIuNDFWNDg1LjgyeiBNMjU5LjE5Nyw0ODUuODJWMTE2LjUwOGgxMTcuNTA4YzUuMDM2LDAsOC4zOTMsMy4zNTcsOC4zOTMsOC4zOTNWNDg1LjgyICAgICBIMjU5LjE5N3ogTTQ4NS44Miw0NzcuNDI2YzAsNS4wMzYtMy4zNTcsOC4zOTMtOC4zOTMsOC4zOTNoLTc1LjU0MVYxMjQuOTAyYzAtMTQuMjY5LTEwLjkxMS0yNS4xOC0yNS4xOC0yNS4xOEgyNTAuODAzSDEyNC45MDIgICAgIGMtMTQuMjY5LDAtMjUuMTgsMTAuOTExLTI1LjE4LDI1LjE4VjQ4NS44MkgyNC4xOGMtNS4wMzYsMC04LjM5My0zLjM1Ny04LjM5My04LjM5M1YyNC4xOGMwLTUuMDM2LDQuMTk3LTguMzkzLDguMzkzLTguMzkzICAgICBoNDUzLjI0NmM1LjAzNiwwLDguMzkzLDMuMzU3LDguMzkzLDguMzkzVjQ3Ny40MjZ6IiBmaWxsPSIjMDAwMDAwIi8+CgkJCTxwYXRoIGQ9Ik00NjAuNjM5LDI1OS4xOTdoLTMzLjU3NGMtNS4wMzYsMC04LjM5MywzLjM1Ny04LjM5Myw4LjM5M3YzMy41NzR2MzMuNTc0YzAsNS4wMzYsMy4zNTcsOC4zOTMsOC4zOTMsOC4zOTNoMzMuNTc0ICAgICBjNS4wMzYsMCw4LjM5My0zLjM1Nyw4LjM5My04LjM5M3YtMzMuNTc0VjI2Ny41OUM0NjkuMDMzLDI2Mi41NTQsNDY1LjY3NSwyNTkuMTk3LDQ2MC42MzksMjU5LjE5N3ogTTQzNS40NTksMjc1Ljk4NGgxNi43ODcgICAgIHYxNi43ODdoLTE2Ljc4N1YyNzUuOTg0eiBNNDUyLjI0NiwzMjYuMzQ0aC0xNi43ODd2LTE2Ljc4N2gxNi43ODdWMzI2LjM0NHoiIGZpbGw9IiMwMDAwMDAiLz4KCQkJPHBhdGggZD0iTTMwOS41NTcsMzIuNTc0SDE5Mi4wNDljLTUuMDM2LDAtOC4zOTMsMy4zNTctOC4zOTMsOC4zOTN2MzMuNTc0YzAsNS4wMzYsMy4zNTcsOC4zOTMsOC4zOTMsOC4zOTNoMTE3LjUwOCAgICAgYzUuMDM2LDAsOC4zOTMtMy4zNTcsOC4zOTMtOC4zOTNWNDAuOTY3QzMxNy45NTEsMzUuOTMxLDMxNC41OTMsMzIuNTc0LDMwOS41NTcsMzIuNTc0eiBNMzAxLjE2NCw2Ni4xNDhIMjAwLjQ0M1Y0OS4zNjFoMTAwLjcyMSAgICAgVjY2LjE0OHoiIGZpbGw9IiMwMDAwMDAiLz4KCQk8L2c+Cgk8L2c+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg==" /><!-- elevator -->
+                        <img id="search_icon_24h" onclick="selected_icon_search('search_icon_24h')" title="recepcion 24 horas "class="icon_img" src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeD0iMHB4IiB5PSIwcHgiIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA1MTIgNTEyOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgd2lkdGg9IjI0cHgiIGhlaWdodD0iMjRweCI+CjxnPgoJPGc+CgkJPHBhdGggZD0iTTQ5OC45NDYsMjk0Ljk1OWMtNS41MjEtMS4xMTYtMTAuOTAyLDIuNDU1LTEyLjAxOCw3Ljk3N0M0NjQuODM0LDQxMi4yNTYsMzY3LjcxNSw0OTEuNjAyLDI1Niw0OTEuNjAyICAgIGMtMTI5LjkxMSwwLTIzNS42MDItMTA1LjY5LTIzNS42MDItMjM1LjYwMlMxMjYuMDg5LDIwLjM5OCwyNTYsMjAuMzk4YzYxLjI4NywwLDEyMC4wNDEsMjMuOTcsMTYzLjgxOCw2Ni4yOTVoLTI2LjM2MSAgICBjLTUuNjMzLDAtMTAuMTk5LDQuNTY2LTEwLjE5OSwxMC4xOTljMCw1LjYzMyw0LjU2NiwxMC4xOTksMTAuMTk5LDEwLjE5OWg1MS4yMjljNS42MzMsMCwxMC4xOTktNC41NjYsMTAuMTk5LTEwLjE5OVY0NS42NjQgICAgYzAtNS42MzMtNC41NjYtMTAuMTk5LTEwLjE5OS0xMC4xOTljLTUuNjMzLDAtMTAuMTk5LDQuNTY2LTEwLjE5OSwxMC4xOTl2MjYuODQ4QzM4Ni44NywyNi4yMjgsMzIyLjgyMywwLDI1NiwwICAgIEMxODcuNjIsMCwxMjMuMzMzLDI2LjYyOCw3NC45OCw3NC45OEMyNi42MjgsMTIzLjMzMywwLDE4Ny42MiwwLDI1NnMyNi42MjgsMTMyLjY2Nyw3NC45OCwxODEuMDIgICAgQzEyMy4zMzMsNDg1LjM3MiwxODcuNjIsNTEyLDI1Niw1MTJjNTkuNDM4LDAsMTE3LjM1Mi0yMC44MywxNjMuMDc0LTU4LjY1MmM0NS4xMTYtMzcuMzIxLDc2LjMxNS04OS4zMDQsODcuODQ5LTE0Ni4zNzIgICAgQzUwOC4wMzksMzAxLjQ1NSw1MDQuNDY3LDI5Ni4wNzUsNDk4Ljk0NiwyOTQuOTU5eiIgZmlsbD0iIzAwMDAwMCIvPgoJPC9nPgo8L2c+CjxnPgoJPGc+CgkJPHBhdGggZD0iTTUwMS44MDEsMjQ1LjgwMWMtNS42MzMsMC0xMC4xOTksNC41NjYtMTAuMTk5LDEwLjE5OWMwLDIuMjgxLTAuMDMzLDQuNTg1LTAuMDk4LDYuODQ4ICAgIGMtMC4xNjEsNS42MzEsNC4yNzMsMTAuMzI2LDkuOTAzLDEwLjQ4N2MwLjEsMC4wMDIsMC4xOTgsMC4wMDQsMC4yOTcsMC4wMDRjNS40OTcsMCwxMC4wMzEtNC4zNzYsMTAuMTktOS45MDcgICAgYzAuMDctMi40NTcsMC4xMDYtNC45NTcsMC4xMDYtNy40M0M1MTIsMjUwLjM2Nyw1MDcuNDM0LDI0NS44MDEsNTAxLjgwMSwyNDUuODAxeiIgZmlsbD0iIzAwMDAwMCIvPgoJPC9nPgo8L2c+CjxnPgoJPGc+CgkJPHBhdGggZD0iTTI0OC44NTgsMzUwLjQxNkgxNDUuMjM0di0yMC4xNGMwLTQzLjIwNCwxMDkuMTQ3LTY1LjI5MywxMDkuMTQ3LTEzNS4xMzRjMC0zNS4wODItMjcuMjg2LTYyLjM2OS02NC42NDQtNjIuMzY5ICAgIGMtMzQuNDM0LDAtNjEuMDcsMjIuNzM5LTYxLjA3LDUzLjkyNGMwLDkuNzQ1LDMuMjQ4LDEzLjMxOSw5Ljc0NSwxMy4zMTljNy40NzEsMCwxMS4zNjktNC41NDgsMTEuMzY5LTguNzcxICAgIGMwLTI1LjY2MiwxNi44OTItMzguMzMyLDM5LjMwNi0zOC4zMzJjMjkuODg2LDAsNDMuODU0LDIyLjQxNCw0My44NTQsNDIuODhjMCw1Ni44NDYtMTA5Ljc5Nyw4MC41Ni0xMDkuNzk3LDEzNC40ODR2MzEuNTEgICAgYzAsNS4xOTgsNS44NDcsOC40NDYsMTAuMDcsOC40NDZoMTE1LjY0NGM0LjIyMywwLDcuNzk2LTQuODcyLDcuNzk2LTEwLjA3MUMyNTYuNjU0LDM1NC45NjQsMjUzLjA4MSwzNTAuNDE2LDI0OC44NTgsMzUwLjQxNnoiIGZpbGw9IiMwMDAwMDAiLz4KCTwvZz4KPC9nPgo8Zz4KCTxnPgoJCTxwYXRoIGQ9Ik0zODguNTM4LDI5My44OTNoLTE3Ljg2NnYtNjIuNjk1YzAtNS41MjMtNS41MjMtOC4xMjEtMTAuNzItOC4xMjFjLTUuNTIzLDAtMTAuNzE5LDIuNTk5LTEwLjcxOSw4LjEyMXY2Mi42OTVoLTYzLjY2OSAgICBsNzUuMDM5LTE0OC4xMjdjMC42NS0xLjYyNSwwLjk3NS0yLjkyNCwwLjk3NS00LjIyM2MwLTUuMTk4LTYuMTczLTguNzcxLTEwLjM5NS04Ljc3MWMtMy44OTgsMC03Ljc5NiwxLjk0OS0xMC4wNzEsNi40OTcgICAgbC04MS41MzUsMTYwLjc5N2MtMC45NzQsMS42MjUtMS4yOTksMy41NzMtMS4yOTksNS41MjNjMCw0Ljg3MiwyLjkyNCw4Ljc3MSw4LjQ0Niw4Ljc3MWg4Mi41MXY0Ny40MjYgICAgYzAsNS41MjIsNS4xOTgsOC40NDYsMTAuNzE5LDguNDQ2YzUuMTk4LDAsMTAuNzItMi45MjQsMTAuNzItOC40NDZ2LTQ3LjQyNmgxNy44NjZjNC44NzIsMCw4LjEyMS01LjE5OCw4LjEyMS0xMC4zOTUgICAgQzM5Ni42NTgsMjk5LjA5MSwzOTQuMDU5LDI5My44OTMsMzg4LjUzOCwyOTMuODkzeiIgZmlsbD0iIzAwMDAwMCIvPgoJPC9nPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+Cjwvc3ZnPgo=" /><!-- 24hours -->
+                        <i  id="search_icon_tv" onclick="selected_icon_search('search_icon_tv')" title="television" class="icon fa fa-television" aria-hidden="true"></i>
+                        <i  id="search_icon_bath" onclick="selected_icon_search('search_icon_bath')" title="baño" class="icon fa fa-bath" aria-hidden="true"></i>
+                        <img id="search_icon_desk" onclick="selected_icon_search('search_icon_desk')" title="escritorio" class="icon_img" src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeD0iMHB4IiB5PSIwcHgiIHZpZXdCb3g9IjAgMCAyOTUuMjQgMjk1LjI0IiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCAyOTUuMjQgMjk1LjI0OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgd2lkdGg9IjI0cHgiIGhlaWdodD0iMjRweCI+CjxnPgoJPGc+CgkJPGc+CgkJCTxwYXRoIGQ9Ik0yMzMuMzM1LDIxNC4yODd2LTkuNTI0aDQ3LjYxN3YwYzcuODc2LDAsMTQuMjg2LTYuNDEsMTQuMjg2LTE0LjI4NnYtNzYuMTljMC03Ljg3Ni02LjQxLTE0LjI4Ni0xNC4yODYtMTQuMjg2SDE0Ny42MTkgICAgIGMtNy44NzYsMC0xNC4yODYsNi40MS0xNC4yODYsMTQuMjg2djc2LjE5YzAsNy44NzYsNi40MSwxNC4yODYsMTQuMjg2LDE0LjI4Nmg0Ny42MTl2OS41MjRoLTgwLjk1MnYtNC43NjIgICAgIGMwLTcuODc2LTYuNjg2LTE0LjI4Ni0xNC41NjItMTQuMjg2aC0xNi4xMWwtNDguOTI4LTc5LjY0OGMyLjEzOC0zLjA4MSwzLjQxLTYuODA1LDMuNDEtMTAuODI5YzAtMS4xNzEtMC4xNDMtMi4zMDUtMC4zNDgtMy40MTkgICAgIGwxOS45MzMtMzYuNTQyYzEuODM4LDkuMDUyLDYuODc2LDE3LjEzOCwxNC41MTksMjIuODUybDMuMTEsMi4zMjRsMTEuNzU3LTEwLjQ1MmMyLjU3NiwwLjkzMyw1LjIxNCwxLjQyOSw3Ljg5NSwxLjQyOSAgICAgYzEzLjEyOSwwLDIzLjgxLTEwLjY4MSwyMy44MS0yMy44MWMwLTEuNzI5LTAuMjcxLTMuNDY3LTAuNjc2LTUuMTk1bDExLjc4MS0xMC40NzFsLTEuOTQzLTMuMzY3ICAgICBjLTYuODA1LTExLjc1Ny0xOS40MzgtMTkuMDYyLTMyLjk3MS0xOS4wNjJjLTAuODk1LDAtMS43NzYsMC4wNzEtMi42NTcsMC4xMzNsLTE2LjEtMTYuMUw0MC44MiwzMi41NzJsNi41NTcsOC43NDNMMTYuMDg3LDg2LjAyICAgICBDNi45OSw4Ny40NTMsMCw5NS4yNzcsMCwxMDQuNzYzYzAsNy4xNDMsMy45OTUsMTMuMzA1LDkuODI5LDE2LjU2MmwzOS4zODEsNzMuOTE0SDMzLjA1N2MtNy44NzYsMC0xNC4wMSw2LjQxLTE0LjAxLDE0LjI4NiAgICAgdjQuNzYySDB2MjguNTcxaDE0LjI4NnY1Mi4zODFoOS41MjR2LTUyLjM4MWg5LjUyNHY1Mi4zODFoOS41MjR2LTUyLjM4MWgyMDkuNTI0djUyLjM4MWg5LjUyNHYtNTIuMzgxaDkuNTI0djUyLjM4MWg5LjUyNCAgICAgdi01Mi4zODFoMTQuMjg2di0yOC41NzFIMjMzLjMzNXogTTE0Mi44NTcsMTE0LjI4N2MwLTIuNjI0LDIuMTM4LTQuNzYyLDQuNzYyLTQuNzYyaDEzMy4zMzNjMi42MjQsMCw0Ljc2MiwyLjEzOCw0Ljc2Miw0Ljc2MiAgICAgdjYxLjkwNUgxNDIuODU3VjExNC4yODd6IE0xOTUuMjM4LDE5NS4yMzloLTQ3LjYxOWMtMi42MjQsMC00Ljc2Mi0yLjEzOC00Ljc2Mi00Ljc2MnYtNC43NjJoMTQyLjg1N3Y0Ljc2MiAgICAgYzAsMi42MjQtMi4xMzgsNC43NjItNC43NjIsNC43NjJoLTQ3LjYxOUgxOTUuMjM4eiBNMjIzLjgxLDIwNC43NjN2OS41MjRoLTE5LjA0OHYtOS41MjRIMjIzLjgxeiBNOTYuMjQzLDcxLjM3MmwxMi43LTExLjI5ICAgICBDMTA3LjY3MSw2Ni4xNDksMTAyLjUzOCw3MC44MTEsOTYuMjQzLDcxLjM3MnogTTk0Ljk2NywyOC41NzNjOC44NTctMC4wMDEsMTcuMjA0LDQuMTgsMjIuNTgxLDExLjExOEw3NC45ODYsNzcuNTI1ICAgICBjLTUuNS01LjM1Mi04LjU5LTEyLjYtOC41OS0yMC4zODFDNjYuMzk2LDQxLjM4Nyw3OS4yMSwyOC41NzMsOTQuOTY3LDI4LjU3M3ogTTc1LjYxOSwxNS45NjhsNS42NjIsNS42NjIgICAgIEM3MS43LDI1LjMzNCw2My45NjcsMzIuNzcyLDU5LjkyOSw0Mi4xODdsLTYuMDYyLTguMDlMNzUuNjE5LDE1Ljk2OHogTTUzLjM4NSw0OS4zMjlsMS4wOTEsMS40NTNMMzIuNDE5LDkxLjIyNSAgICAgYy0xLjYyOS0xLjYxLTMuNTQ4LTIuOTA1LTUuNjY3LTMuODQ4TDUzLjM4NSw0OS4zMjl6IE05LjUyNCwxMDQuNzYzYzAtNS4yNTIsNC4yNzEtOS41MjQsOS41MjQtOS41MjQgICAgIGM1LjI1MiwwLDkuNTI0LDQuMjcxLDkuNTI0LDkuNTI0YzAsNS4yNTItNC4yNzEsOS41MjQtOS41MjQsOS41MjRDMTMuNzk1LDExNC4yODcsOS41MjQsMTEwLjAxNiw5LjUyNCwxMDQuNzYzeiBNMjEuNzk1LDEyMy41MzQgICAgIGMxLjk2Ny0wLjI4NiwzLjgyNC0wLjg2Miw1LjU0OC0xLjcwNWw0NS4wOTUsNzMuNDFINjBMMjEuNzk1LDEyMy41MzR6IE0zMy4wNTcsMjA0Ljc2M2g2Ni42NjdjMi42MjQsMCw1LjAzOCwyLjEzOCw1LjAzOCw0Ljc2MiAgICAgdjQuNzYyaC03Ni4xOXYtNC43NjJoLTAuMDAxQzI4LjU3MSwyMDYuOTAxLDMwLjQzMywyMDQuNzYzLDMzLjA1NywyMDQuNzYzeiBNMjg1LjcxNCwyMzMuMzM1aC00Ljc2MmgtMjguNTcxSDQyLjg1N0gxNC4yODYgICAgIEg5LjUyNHYtOS41MjRoOS4yNDhoOTUuMjM4aDgxLjIyOWgzOC4wOTVoNTIuMzhWMjMzLjMzNXoiIGZpbGw9IiMwMDAwMDAiLz4KCQkJPHJlY3QgeD0iMTM4LjA5NSIgeT0iODAuOTUzIiB3aWR0aD0iMTUyLjM4MSIgaGVpZ2h0PSI5LjUyNCIgZmlsbD0iIzAwMDAwMCIvPgoJCQk8cGF0aCBkPSJNMjA0Ljc2MiwwLjAwMWgtMzguMDk1djc2LjE5aDM4LjA5NVYwLjAwMXogTTE5NS4yMzgsNjYuNjY4SDE3Ni4xOVY0Ny42MmgxOS4wNDhWNjYuNjY4eiBNMTk1LjIzOCwzOC4wOTZIMTc2LjE5VjkuNTI1ICAgICBoMTkuMDQ4VjM4LjA5NnoiIGZpbGw9IiMwMDAwMDAiLz4KCQkJPGNpcmNsZSBjeD0iMTg1LjcxNCIgY3k9IjU3LjE0NCIgcj0iNC43NjIiIGZpbGw9IiMwMDAwMDAiLz4KCQkJPHBhdGggZD0iTTI0Ny42MTksMC4wMDFoLTM4LjA5NXY3Ni4xOWgzOC4wOTVWMC4wMDF6IE0yMTkuMDQ3LDkuNTI1aDE5LjA0OHYyOC41NzFoLTE5LjA0OFY5LjUyNXogTTIzOC4wOTYsNjYuNjY4aC0xOS4wNDhWNDcuNjIgICAgIGgxOS4wNDhWNjYuNjY4eiIgZmlsbD0iIzAwMDAwMCIvPgoJCQk8Y2lyY2xlIGN4PSIyMjguNTcxIiBjeT0iNTcuMTQ0IiByPSI0Ljc2MiIgZmlsbD0iIzAwMDAwMCIvPgoJCQk8cGF0aCBkPSJNMjkwLjQ3NiwwLjAwMWgtMzguMDk1djc2LjE5aDM4LjA5NVYwLjAwMXogTTI2MS45MDQsOS41MjVoMTkuMDQ4djI4LjU3MWgtMTkuMDQ4VjkuNTI1eiBNMjgwLjk1Myw2Ni42NjhoLTE5LjA0OFY0Ny42MiAgICAgaDE5LjA0OFY2Ni42Njh6IiBmaWxsPSIjMDAwMDAwIi8+CgkJCTxjaXJjbGUgY3g9IjI3MS40MjkiIGN5PSI1Ny4xNDQiIHI9IjQuNzYyIiBmaWxsPSIjMDAwMDAwIi8+CgkJPC9nPgoJPC9nPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+Cjwvc3ZnPgo=" /><!--desk -->
+                        <img id="search_icon_wardrove" onclick="selected_icon_search('search_icon_wardrove')" title="armario"  class="icon_img" src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDYwIDYwIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA2MCA2MDsiIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSIyNHB4IiBoZWlnaHQ9IjI0cHgiPgo8Zz4KCTxnPgoJCTxwYXRoIGQ9Ik05LDUzaDE5VjNIOVY1M3ogTTExLDVoMTV2NDZIMTFWNXoiIGZpbGw9IiMwMDAwMDAiLz4KCQk8cGF0aCBkPSJNMTUsMTFoN2MwLjU1MiwwLDEtMC40NDgsMS0xcy0wLjQ0OC0xLTEtMWgtN2MtMC41NTIsMC0xLDAuNDQ4LTEsMVMxNC40NDgsMTEsMTUsMTF6IiBmaWxsPSIjMDAwMDAwIi8+CgkJPHBhdGggZD0iTTE1LDE0aDdjMC41NTIsMCwxLTAuNDQ4LDEtMXMtMC40NDgtMS0xLTFoLTdjLTAuNTUyLDAtMSwwLjQ0OC0xLDFTMTQuNDQ4LDE0LDE1LDE0eiIgZmlsbD0iIzAwMDAwMCIvPgoJCTxwYXRoIGQ9Ik0yMywxNmMwLTAuNTUyLTAuNDQ4LTEtMS0xaC03Yy0wLjU1MiwwLTEsMC40NDgtMSwxczAuNDQ4LDEsMSwxaDdDMjIuNTUyLDE3LDIzLDE2LjU1MiwyMywxNnoiIGZpbGw9IiMwMDAwMDAiLz4KCQk8cGF0aCBkPSJNMjMsMjhjLTAuNTUyLDAtMSwwLjQ0OC0xLDF2NWMwLDAuNTUyLDAuNDQ4LDEsMSwxczEtMC40NDgsMS0xdi01QzI0LDI4LjQ0OCwyMy41NTIsMjgsMjMsMjh6IiBmaWxsPSIjMDAwMDAwIi8+CgkJPHBhdGggZD0iTTU0LDBIMzFoLTJINnY1NmgydjRoNC42MThsMi00aDguNzY0bDIsNEgzMHYtNGgxdjRoNC42MThsMi00aDguNzY0bDIsNEg1M3YtNGgxVjB6IE0xMS4zODIsNThIMTB2LTJoMi4zODJMMTEuMzgyLDU4eiAgICAgTTE1LjYxOCw1NEg4VjJoMjF2NTJoLTYuNjE4SDE1LjYxOHogTTI4LDU4aC0xLjM4MmwtMS0ySDI4VjU4eiBNMzQuMzgyLDU4SDMzdi0yaDIuMzgyTDM0LjM4Miw1OHogTTM4LjYxOCw1NEgzMVYyaDIxdjUyaC02LjYxOCAgICBIMzguNjE4eiBNNTEsNThoLTEuMzgybC0xLTJINTFWNTh6IiBmaWxsPSIjMDAwMDAwIi8+CgkJPHBhdGggZD0iTTMyLDUzaDE5VjNIMzJWNTN6IE0zNCw1aDE1djQ2SDM0VjV6IiBmaWxsPSIjMDAwMDAwIi8+CgkJPHBhdGggZD0iTTM4LDExaDdjMC41NTIsMCwxLTAuNDQ4LDEtMXMtMC40NDgtMS0xLTFoLTdjLTAuNTUyLDAtMSwwLjQ0OC0xLDFTMzcuNDQ4LDExLDM4LDExeiIgZmlsbD0iIzAwMDAwMCIvPgoJCTxwYXRoIGQ9Ik0zOCwxNGg3YzAuNTUyLDAsMS0wLjQ0OCwxLTFzLTAuNDQ4LTEtMS0xaC03Yy0wLjU1MiwwLTEsMC40NDgtMSwxUzM3LjQ0OCwxNCwzOCwxNHoiIGZpbGw9IiMwMDAwMDAiLz4KCQk8cGF0aCBkPSJNNDYsMTZjMC0wLjU1Mi0wLjQ0OC0xLTEtMWgtN2MtMC41NTIsMC0xLDAuNDQ4LTEsMXMwLjQ0OCwxLDEsMWg3QzQ1LjU1MiwxNyw0NiwxNi41NTIsNDYsMTZ6IiBmaWxsPSIjMDAwMDAwIi8+CgkJPHBhdGggZD0iTTQ2LDI4Yy0wLjU1MiwwLTEsMC40NDgtMSwxdjVjMCwwLjU1MiwwLjQ0OCwxLDEsMXMxLTAuNDQ4LDEtMXYtNUM0NywyOC40NDgsNDYuNTUyLDI4LDQ2LDI4eiIgZmlsbD0iIzAwMDAwMCIvPgoJPC9nPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+Cjwvc3ZnPgo=" /><!-- wardrove -->
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class>
+                        <label class="col-sm-3 control-label" for="amount">Rango precio:</label>
+                        <div class="col-xs-3" >
+                            <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
+                            <div id="slider-range"></div>
+                        </div>
+                        <div class="col-xs-3">
+                            <select id="search_room_form_college" class="form-control" name="colleges">
+                            </select>
+                        </div>
+                        <div class="col-xs-3" >
+                            <div class="form-group">
+                                <div class="col-sm-offset-3 col-sm-9">
+                                    <button type="button" onclick="search_rooms()"  class="btn btn-success">Buscar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr /><!-- Horizontal separator -->
+            </fieldset>
+        </form>
+
+        <div id="search_room_table">
+
+            <div>
+
+                <div class="col-sm-8">
+                    <div class="table_search_room">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                  <th>Nombre</th>
+                                  <th>Residencia</th>
+                                  <th>Precio</th>
+                                  <th>Fecha inicio</th>
+                                </tr>
+                            </thead>
+                            <tbody  id="student_element_table_list_rooms">
+                            </tbody>
+                        </table>
+                    </div> <!-- end table_search_room -->
+                </div>
+
+                <div class="col-sm-4">
+                    <div class="panel-group">
+                        <div class="panel with panel-primary class">
+                            <div class="panel-heading">Mapa Residencia</div>
+                            <div id="search_room_table_map"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>  <!-- end row -->
+
+        </div> <!-- end search_room_table -->
+
+
+        <div id="student_search_room_specific">
+
+            <div>
+
+                <div class="col-sm-6">
+
+
+                    <div class="panel-group">
+                        <div class="panel with panel-primary class">
+                            <div class="panel-heading">Habitacion</div>
+                            <div class="panel-body">
+                                <div class="left_room" >
+                                    <label>Nombre:   </label><label id="student_search_room_specific_name"></label></br>
+                                    <label>tamaño:   </label><label id="student_search_room_specific_size"></label></br>
+                                    <label>planta:   </label><label id="student_search_room_specific_floor"></label></br>
+
+                                    <label>Equipmiento habitacion:</label></br>
+                                    <div id="student_search_room_specific_equipment_room">
+                                    </div>
+                                </div>
+                                <div class="right_room">
+                                    <div id="student_search_room_specific_slider_img">
+                                        <div id="student_search_room_specific_slidesContainer_img">
+                                            <div class="slide_img"><img id="student_search_room_specific_picture1"   width="230px" height="200px" alt="Imagen hotel" title="Imagen room"></div>
+                                            <div class="slide_img"><img id="student_search_room_specific_picture2"  width="230px" height="200px" alt="Imagen hotel" title="Imagen room"></div>
+                                            <div class="slide_img"><img id="student_search_room_specific_picture3"  width="230px" height="200px" alt="Imagen hotel" title="Imagen room"></div>
+                                        </div> <!-- /search_room_specific_slidesContainer-->
+                                    </div> <!-- /search_room_specific_slider -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel-group">
+                        <div class="panel with panel-primary class">
+                            <div class="panel-heading">Pujas</div>
+                            <div class="panel-body">
+                                <button id="search_room_specific_button_bid_new" type="button" class="button_margin_room btn btn-success">Pujar</button>
+                                <button id="search_room_specific_button_bid_remove" type="button" class="button_margin_room btn btn-danger">Eliminar</button>
+                                <ul id="search_room_specific_ul_bid" class="list-group">
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-sm-6">
+
+                    <div class="panel-group">
+                        <div class="panel with panel-primary class">
+                            <div class="panel-heading">Residencia</div>
+                            <div class="panel-body">
+                                <label>Nombre:   </label><label id="student_search_room_specific_college_company_name"></label></br>
+                                <label>Contacto:   </label><label id="student_search_room_specific_college_telephone"></label></br>
+                                <label>Url:   </label><a target="_blank" id="student_search_room_specific_college_url"></a></br>
+                                <label>email:   </label><label id="student_search_room_specific_college_email"></label></br>
+                                <label>Equipamiento:   </label></br>
+                                <div id="student_search_room_specific_equipment_college">
+                                </div>
+                            </div>
+                            <div id="student_search_room_specific_college_map"></div>
+                        </div>
+                    </div>
+
+                </div>
+            </div><!-- end row -->
+        </div> <!-- end search_room_specific -->
+
+
+    </div> <!-- end search_room -->
+
+
+    <div id="Room">
+        <div id="Room_accept_refuse">
+            <div class="room_wrapper_button">
+                <button onclick="show_upload_file_agreement()" type="button" class="button_margin_room btn btn-primary">Aceptar y firmar contrato</button>
+                <a  id= "Room_button_download_agreement" class="button_margin_room btn btn-success">Descargar contrato</a>
+                <button id= "Room_button_refuse_agreement" type="button" class="button_margin_room btn btn-warning">Rechazar habitacion</button>
+            </div>
+
+            <div id="Room_upload_file_agreement" class="col-sm-7">
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-5">
+                        <div class="panel panel-login">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <form id="Room_form_id_upload_file_agreement" action="javascript:void(0);" method="post" enctype="multipart/form-data"  novalidate>
+                                            <div class="form-group">
+                                                <input type="file"  id="formAgreementFilename" tabindex="2" class="form-control" placeholder="nombre archivo" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <div class="col-sm-6 col-sm-offset-3">
+                                                        <input type="submit"  tabindex="4" class="form-control btn btn-submit" value="subir contrato">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div><!-- end Room_accept_refuse -->
+
+        <div id="Room_room_specific">
 
             <div class="col-sm-6">
+
 
 
                 <div class="panel-group">
@@ -225,90 +337,128 @@
                         <div class="panel-heading">Habitacion</div>
                         <div class="panel-body">
                             <div class="left_room" >
-                                <label>Nombre:   </label><label id="student_search_room_specific_name"></label></br>
-                                <label>tamaño:   </label><label id="student_search_room_specific_size"></label></br>
-                                <label>planta:   </label><label id="student_search_room_specific_floor"></label></br>
+                                <label>Nombre:   </label><label id="Room_room_specific_name"></label></br>
+                                <label>tamaño:   </label><label id="Room_room_specific_size"></label></br>
+                                <label>planta:   </label><label id="Room_room_specific_floor"></label></br>
 
                                 <label>Equipmiento habitacion:</label></br>
-                                <div id="student_search_room_specific_equipment_room">
+                                <div id="Room_room_specific_equipment_room">
                                 </div>
                             </div>
+
                             <div class="right_room">
-                                <div id="student_search_room_specific_slider_img">
-                                    <div id="student_search_room_specific_slidesContainer_img">
-                                        <div class="slide_img"><img id="student_search_room_specific_picture1"   width="230px" height="200px" alt="Imagen hotel" title="Imagen room"></div>
-                                        <div class="slide_img"><img id="student_search_room_specific_picture2"  width="230px" height="200px" alt="Imagen hotel" title="Imagen room"></div>
-                                        <div class="slide_img"><img id="student_search_room_specific_picture3"  width="230px" height="200px" alt="Imagen hotel" title="Imagen room"></div>
-                                    </div> <!-- /search_room_specific_slidesContainer-->
-                                </div> <!-- /search_room_specific_slider -->
+                                <div id="Room_room_specific_slider_img">
+                                    <div id="Room_room_specific_slidesContainer_img">
+                                        <div class="slide_img"><img id="Room_room_specific_picture1"   width="230px" height="200px" alt="Imagen hotel" title="Imagen room"></div>
+                                        <div class="slide_img"><img id="Room_room_specific_picture2"   width="230px" height="200px" alt="Imagen hotel" title="Imagen room"></div>
+                                        <div class="slide_img"><img id="Room_room_specific_picture3"   width="230px" height="200px" alt="Imagen hotel" title="Imagen room"></div>
+                                    </div> <!-- /Room_slidesContainer-->
+                                </div> <!-- /Room_slider -->
                             </div>
                         </div>
                     </div>
                 </div>
+
 
                 <div class="panel-group">
                     <div class="panel with panel-primary class">
-                        <div class="panel-heading">Pujas</div>
+                        <div class="panel-heading">Contato</div>
                         <div class="panel-body">
-                            <button id="search_room_specific_button_bid_new" type="button" class="button_margin_room btn btn-success">Pujar</button>
-                            <button id="search_room_specific_button_bid_remove" type="button" class="button_margin_room btn btn-danger">Eliminar</button>
-                            <ul id="search_room_specific_ul_bid" class="list-group">
-                            </ul>
+                            <a id="Room_room_specific_agreement_file"> documento   </a></br>
+                            <label>fecha inicio:   </label><label id="Room_room_specific_agreement_dateStart"></label></br>
+                            <label>fecha fin:   </label><label id="Room_room_specific_agreement_dateEnd"></label></br>
+                            <label>Precio:   </label><label id="Room_room_specific_agreement_price"></label></br>
                         </div>
                     </div>
                 </div>
 
+
             </div>
 
+
+
             <div class="col-sm-6">
+
 
                 <div class="panel-group">
                     <div class="panel with panel-primary class">
                         <div class="panel-heading">Residencia</div>
                         <div class="panel-body">
-                            <label>Nombre:   </label><label id="student_search_room_specific_college_company_name"></label></br>
-                            <label>Contacto:   </label><label id="student_search_room_specific_college_telephone"></label></br>
-                            <label>Url:   </label><a target="_blank" id="student_search_room_specific_college_url"></a></br>
-                            <label>email:   </label><label id="student_search_room_specific_college_email"></label></br>
+                            <label>Nombre:   </label><label id="Room_room_specific_college_company_name"></label></br>
+                            <label>Contacto:   </label><label id="Room_room_specific_college_telephone"></label></br>
+                            <label>Url:   </label><a target="_blank" id="Room_room_specific_college_url"></a></br>
                             <label>Equipamiento:   </label></br>
-                            <div id="student_search_room_specific_equipment_college">
+                            <div id="Room_room_specific_equipment_college">
                             </div>
                         </div>
-                        <div id="student_search_room_specific_college_map"></div>
+                        <div id="Room_room_specific_college_map"></div>
                     </div>
                 </div>
 
             </div>
-        </div><!-- end row -->
-    </div> <!-- end search_room_specific -->
+
+        </div><!-- end Room_data -->
 
 
-</div> <!-- end search_room -->
+    </div><!-- end room -->
 
+    <div id="incidence">
 
-<div id="Room">
-    <div id="Room_accept_refuse">
-        <div class="room_wrapper_button">
-            <button onclick="show_upload_file_agreement()" type="button" class="button_margin_room btn btn-primary">Aceptar y firmar contrato</button>
-            <a  id= "Room_button_download_agreement" class="button_margin_room btn btn-success">Descargar contrato</a>
-            <button id= "Room_button_refuse_agreement" type="button" class="button_margin_room btn btn-warning">Rechazar habitacion</button>
+        <div >
+
+            <div class="col-sm-4">
+                <div class="panel-group">
+                    <div class="panel with panel-primary class">
+                        <div class="panel-heading">OPEN</div>
+                        <div class="panel-body" id="incidence_OPEN">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-4">
+                <div class="panel-group">
+                    <div class="panel with panel-primary class">
+                        <div class="panel-heading">IN PROGRESS</div>
+                        <div class="panel-body" id="incidence_IN_PROGRESS">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-4">
+                <div class="panel-group">
+                    <div class="panel with panel-primary class">
+                        <div class="panel-heading">DONE</div>
+                        <div class="panel-body" id="incidence_DONE">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
-        <div id="Room_upload_file_agreement" class="col-sm-7">
+
+
+
+        <div class="col-sm-7">
             <div class="row">
                 <div class="col-md-10 col-md-offset-5">
                     <div class="panel panel-login">
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <form id="Room_form_id_upload_file_agreement" action="javascript:void(0);" method="post" enctype="multipart/form-data"  novalidate>
+                                    <form id="id_form_createIncidence" action="javascript:void(0);" method="post" enctype="multipart/form-data" >
                                         <div class="form-group">
-                                            <input type="file"  id="formAgreementFilename" tabindex="2" class="form-control" placeholder="nombre archivo" required>
+                                            <input  id="formInicidenceDescription" type="text" name="descritption" tabindex="2" class="form-control" placeholder="Descripcion" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="file" name="file_name"  id="formIncidenceFilename" tabindex="2" class="form-control" placeholder="nombre archivo" required>
                                         </div>
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-sm-6 col-sm-offset-3">
-                                                    <input type="submit"  tabindex="4" class="form-control btn btn-submit" value="subir contrato">
+                                                    <input type="submit" onClick="createIncidence()" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-submit" value="Crear incidencia">
                                                 </div>
                                             </div>
                                         </div>
@@ -321,275 +471,128 @@
             </div>
         </div>
 
-    </div><!-- end Room_accept_refuse -->
-
-    <div id="Room_room_specific">
-
-        <div class="col-sm-6">
+    </div><!-- end inicidence -->
 
 
 
-            <div class="panel-group">
-                <div class="panel with panel-primary class">
-                    <div class="panel-heading">Habitacion</div>
-                    <div class="panel-body">
-                        <div class="left_room" >
-                            <label>Nombre:   </label><label id="Room_room_specific_name"></label></br>
-                            <label>tamaño:   </label><label id="Room_room_specific_size"></label></br>
-                            <label>planta:   </label><label id="Room_room_specific_floor"></label></br>
 
-                            <label>Equipmiento habitacion:</label></br>
-                            <div id="Room_room_specific_equipment_room">
-                            </div>
-                        </div>
-
-                        <div class="right_room">
-                            <div id="Room_room_specific_slider_img">
-                                <div id="Room_room_specific_slidesContainer_img">
-                                    <div class="slide_img"><img id="Room_room_specific_picture1"   width="230px" height="200px" alt="Imagen hotel" title="Imagen room"></div>
-                                    <div class="slide_img"><img id="Room_room_specific_picture2"   width="230px" height="200px" alt="Imagen hotel" title="Imagen room"></div>
-                                    <div class="slide_img"><img id="Room_room_specific_picture3"   width="230px" height="200px" alt="Imagen hotel" title="Imagen room"></div>
-                                </div> <!-- /Room_slidesContainer-->
-                            </div> <!-- /Room_slider -->
-                        </div>
-                    </div>
-                </div>
+    <div id="message">
+        <form id="id_form_sendMessage" class="pl-footer" action="javascript:void(0);" method="post" enctype="multipart/form-data" >
+            <div class="input-group">
+                <textarea form="id_form_sendMessage" required
+                 class="form-control input-sm" placeholder="Escribe tu mensaje aqui..."  id="formMessageText" rows="3" cols="50"></textarea>
             </div>
-
-
-            <div class="panel-group">
-                <div class="panel with panel-primary class">
-                    <div class="panel-heading">Contato</div>
-                    <div class="panel-body">
-                        <a id="Room_room_specific_agreement_file"> documento   </a></br>
-                        <label>fecha inicio:   </label><label id="Room_room_specific_agreement_dateStart"></label></br>
-                        <label>fecha fin:   </label><label id="Room_room_specific_agreement_dateEnd"></label></br>
-                        <label>Precio:   </label><label id="Room_room_specific_agreement_price"></label></br>
-                    </div>
-                </div>
+            <div class="input-group">
+                <span class="fileUpload input-group-btn">
+                    <button class="btn btn-warning btn-sm"><i class="icon_paperclip fa fa-paperclip" aria-hidden="true"></i> </button>
+                    <input id="formMessageFilename" type="file" class="upload" />
+                </span>
+                <span>
+                    <button class="btn btn-warning btn-sm"  onClick="sendMessage()">Enviar</button>
+                </span>
             </div>
-
-
-        </div>
-
-
-
-        <div class="col-sm-6">
-
-
-            <div class="panel-group">
-                <div class="panel with panel-primary class">
-                    <div class="panel-heading">Residencia</div>
-                    <div class="panel-body">
-                        <label>Nombre:   </label><label id="Room_room_specific_college_company_name"></label></br>
-                        <label>Contacto:   </label><label id="Room_room_specific_college_telephone"></label></br>
-                        <label>Url:   </label><a target="_blank" id="Room_room_specific_college_url"></a></br>
-                        <label>Equipamiento:   </label></br>
-                        <div id="Room_room_specific_equipment_college">
-                        </div>
-                    </div>
-                    <div id="Room_room_specific_college_map"></div>
-                </div>
-            </div>
-
-        </div>
-
-    </div><!-- end Room_data -->
-
-
-</div><!-- end room -->
-
-<div id="incidence">
-
-    <div >
-
-        <div class="col-sm-4">
-            <div class="panel-group">
-                <div class="panel with panel-primary class">
-                    <div class="panel-heading">OPEN</div>
-                    <div class="panel-body" id="incidence_OPEN">
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-sm-4">
-            <div class="panel-group">
-                <div class="panel with panel-primary class">
-                    <div class="panel-heading">IN PROGRESS</div>
-                    <div class="panel-body" id="incidence_IN_PROGRESS">
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-sm-4">
-            <div class="panel-group">
-                <div class="panel with panel-primary class">
-                    <div class="panel-heading">DONE</div>
-                    <div class="panel-body" id="incidence_DONE">
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div>
-
-
-
-
-    <div class="col-sm-7">
-        <div class="row">
-            <div class="col-md-10 col-md-offset-5">
-                <div class="panel panel-login">
-                    <div class="panel-body">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <form id="id_form_createIncidence" action="javascript:void(0);" method="post" enctype="multipart/form-data" >
-                                    <div class="form-group">
-                                        <input  id="formInicidenceDescription" type="text" name="descritption" tabindex="2" class="form-control" placeholder="Descripcion" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="file" name="file_name"  id="formIncidenceFilename" tabindex="2" class="form-control" placeholder="nombre archivo" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="row">
-                                            <div class="col-sm-6 col-sm-offset-3">
-                                                <input type="submit" onClick="createIncidence()" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-submit" value="Crear incidencia">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-</div><!-- end inicidence -->
-
-
-
-
-<div id="message">
-    <form id="id_form_sendMessage" class="pl-footer" action="javascript:void(0);" method="post" enctype="multipart/form-data" >
-        <div class="input-group">
-            <textarea form="id_form_sendMessage" required
-             class="form-control input-sm" placeholder="Escribe tu mensaje aqui..."  id="formMessageText" rows="3" cols="50"></textarea>
-        </div>
-        <div class="input-group">
-            <span class="fileUpload input-group-btn">
-                <button class="btn btn-warning btn-sm"><i class="icon_paperclip fa fa-paperclip" aria-hidden="true"></i> </button>
-                <input id="formMessageFilename" type="file" class="upload" />
-            </span>
-            <span>
-                <button class="btn btn-warning btn-sm"  onClick="sendMessage()">Enviar</button>
-            </span>
-        </div>
-    </form>
-
-    <div id="list_message">
-    </div>
-
-
-</div><!-- end message -->
-
-
-<div id="rent">
-        <div id="table_rent">
-            <table  class="table table-striped">
-                <thead>
-                <tr>
-                  <th>mes</th>
-                  <th>precio</th>
-                  <th>Fecha pago</th>
-                  <th>recibo</th>
-                </tr>
-                </thead>
-                <tbody  id="element_table_rent">
-                </tbody>
-            </table>
-        </div>
-
-    <div id="payment_rent">
-        <form id="form_id_payment_rent_submit" class="form-horizontal" role="form">
-            <fieldset>
-                <legend>
-                    <label>PAGO:   </label>
-                    <label>Mes:   </label><label id="payment_rent_month"></label>
-                    <label>Precio:   </label><label id="payment_rent_price"></label>
-                </legend>
-                <div class="form-group">
-                    <label class="col-sm-3 control-label" for="card-holder-name">Name on Card</label>
-                    <div class="col-sm-9">
-                        <input type="text" class="form-control" name="card-holder-name" id="card-holder-name" placeholder="Card Holder's Name">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-3 control-label" for="card-number">Card Number</label>
-                    <div class="col-sm-9">
-                        <input type="text" class="form-control" name="card-number" id="card-number" placeholder="Debit/Credit Card Number">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-3 control-label" for="expiry-month">Fecha expiracion</label>
-                    <div class="col-sm-9">
-                        <div class="row">
-                            <div class="col-xs-3">
-                                <select class="form-control col-sm-2" name="expiry-month" id="expiry-month">
-                                    <option value="01">Jan (01)</option>
-                                    <option value="02">Feb (02)</option>
-                                    <option value="03">Mar (03)</option>
-                                    <option value="04">Apr (04)</option>
-                                    <option value="05">May (05)</option>
-                                    <option value="06">June (06)</option>
-                                    <option value="07">July (07)</option>
-                                    <option value="08">Aug (08)</option>
-                                    <option value="09">Sep (09)</option>
-                                    <option value="10">Oct (10)</option>
-                                    <option value="11">Nov (11)</option>
-                                    <option value="12">Dec (12)</option>
-                                </select>
-                            </div>
-                            <div class="col-xs-3">
-                                <select class="form-control" name="expiry-year" id="expiry-year">
-                                    <option value="2017">2017</option>
-                                    <option value="2018">2018</option>
-                                    <option value="2019">2019</option>
-                                    <option value="2020">2020</option>
-                                    <option value="2021">2021</option>
-                                    <option value="2022">2022</option>
-                                    <option value="2023">2023</option>
-                                    <option value="2024">2024</option>
-                                    <option value="2025">2025</option>
-                                    <option value="2026">2026</option>
-                                    <option value="2027">2027</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="row">
-                        <label class="col-sm-3 control-label" for="cvv">Card CVV</label>
-                        <div class="col-sm-3">
-                            <input type="text" class="form-control" name="cvv" id="card_cvv" placeholder="Security Code">
-                        </div>
-                        <div class="col-sm-3">
-                            <button id="payment_rent_submit"type="button" class="btn btn-success">Pagar</button>
-                        </div>
-                    </div>
-                </div>
-            </fieldset>
         </form>
-    </div>
+
+        <div id="list_message">
+        </div>
+
+
+    </div><!-- end message -->
+
+
+    <div id="rent">
+            <div id="table_rent">
+                <table  class="table table-striped">
+                    <thead>
+                    <tr>
+                      <th>mes</th>
+                      <th>precio</th>
+                      <th>Fecha pago</th>
+                      <th>recibo</th>
+                    </tr>
+                    </thead>
+                    <tbody  id="element_table_rent">
+                    </tbody>
+                </table>
+            </div>
+
+        <div id="payment_rent">
+            <form id="form_id_payment_rent_submit" class="form-horizontal" role="form">
+                <fieldset>
+                    <legend>
+                        <label>PAGO:   </label>
+                        <label>Mes:   </label><label id="payment_rent_month"></label>
+                        <label>Precio:   </label><label id="payment_rent_price"></label>
+                    </legend>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" for="card-holder-name">Name on Card</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="card-holder-name" id="card-holder-name" placeholder="Card Holder's Name">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" for="card-number">Card Number</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="card-number" id="card-number" placeholder="Debit/Credit Card Number">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" for="expiry-month">Fecha expiracion</label>
+                        <div class="col-sm-9">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <select class="form-control col-sm-2" name="expiry-month" id="expiry-month">
+                                        <option value="01">Jan (01)</option>
+                                        <option value="02">Feb (02)</option>
+                                        <option value="03">Mar (03)</option>
+                                        <option value="04">Apr (04)</option>
+                                        <option value="05">May (05)</option>
+                                        <option value="06">June (06)</option>
+                                        <option value="07">July (07)</option>
+                                        <option value="08">Aug (08)</option>
+                                        <option value="09">Sep (09)</option>
+                                        <option value="10">Oct (10)</option>
+                                        <option value="11">Nov (11)</option>
+                                        <option value="12">Dec (12)</option>
+                                    </select>
+                                </div>
+                                <div class="col-xs-3">
+                                    <select class="form-control" name="expiry-year" id="expiry-year">
+                                        <option value="2017">2017</option>
+                                        <option value="2018">2018</option>
+                                        <option value="2019">2019</option>
+                                        <option value="2020">2020</option>
+                                        <option value="2021">2021</option>
+                                        <option value="2022">2022</option>
+                                        <option value="2023">2023</option>
+                                        <option value="2024">2024</option>
+                                        <option value="2025">2025</option>
+                                        <option value="2026">2026</option>
+                                        <option value="2027">2027</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <label class="col-sm-3 control-label" for="cvv">Card CVV</label>
+                            <div class="col-sm-3">
+                                <input type="text" class="form-control" name="cvv" id="card_cvv" placeholder="Security Code">
+                            </div>
+                            <div class="col-sm-3">
+                                <button id="payment_rent_submit"type="button" class="btn btn-success">Pagar</button>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
 
 
 
-</div> <!-- end rent -->
-
+    </div> <!-- end rent -->
+</div> <!-- end student_view_list_elements -->
 
 
 
