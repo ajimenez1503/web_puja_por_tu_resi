@@ -1256,23 +1256,6 @@ function out_selected_row_table(id){
 *Routing student
 */
 //////////////////////////////////////////////////////////////////////////////
-/**
-* Dispaly the Home view
-*/
-function displayHome(){
-    if("studentview"===globa_view){
-        console.log("displayhome");
-    	document.getElementById("home").style.display="block";
-    	document.getElementById("perfil").style.display="none";
-        document.getElementById("Room").style.display="none";
-        document.getElementById("incidence").style.display="none";
-        document.getElementById("message").style.display="none";
-        document.getElementById("rent").style.display="none";
-        document.getElementById("search_room").style.display="none";
-        countUnreadMessages();
-    	dataProfile("home");
-    }
-}
 
 /**
 * Dispaly the perfil view
@@ -1364,12 +1347,6 @@ page('/connection', function(){
 		logout();
 });
 
-/**
-* Display the Home page
-*/
-page('/home', function(){
- 	displayHome();
-});
 
 /**
 * Display the perfil page

@@ -1,7 +1,6 @@
 <nav class="nav nav-pills nav-justified">
     <div class="container-fluid">
         <ul class="nav navbar-nav">
-            <li onclick="page('/home')"> <a> <label>Home</label ></a> </li>
             <li onclick="page('/perfil')"> <a>  <label>Perfil</label> </a> </li>
             <li onclick="page('/search_room')"> <a>  <label>Buscar Habitacion</label> </a> </li>
             <li onclick="page('/Room')"> <a>  <label>Mi Habitacion</label> </a> </li>
@@ -14,23 +13,6 @@
 </nav> <!-- end nav -->
 
 <div id="student_view_list_elements">
-
-    <div id="home">
-        <div class="row">
-            <div class="col-sm-6">
-                <div class="panel-group">
-                    <div class="panel with panel-primary class">
-                        <div class="panel-heading">Informacion usuario</div>
-                        <div class="panel-body">
-                            <label>Nombre:   </label><label id="homeStudentName"></label></br>
-                            <label>Usuario:   </label><label id="homeStudentUSername"></label></br>
-                            <label>Email:   </label><label id="homeStudentEmail"></label></br>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> <!-- end home -->
 
     <div id="perfil">
 
@@ -387,6 +369,7 @@
                             <label>Nombre:   </label><label id="Room_room_specific_college_company_name"></label></br>
                             <label>Contacto:   </label><label id="Room_room_specific_college_telephone"></label></br>
                             <label>Url:   </label><a target="_blank" id="Room_room_specific_college_url"></a></br>
+                            <label>email:   </label><label id="Room_room_specific_college_email"></label></br>
                             <label>Equipamiento:   </label></br>
                             <div id="Room_room_specific_equipment_college">
                             </div>
