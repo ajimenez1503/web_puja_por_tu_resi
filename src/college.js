@@ -237,10 +237,10 @@ function college_create_row_room(data){
         tr.appendChild(td)
 
     tr.onmouseover = function() {
-        college_selected_outselected_row_table(tr.id)
+        selected_out_selected_row_table(tr.id)
     };
     tr.onmouseout = function() {
-        college_selected_outselected_row_table(tr.id)
+        selected_out_selected_row_table(tr.id)
     };
 
     tr.onclick = function() {
@@ -249,21 +249,6 @@ function college_create_row_room(data){
     return tr;
 }
 
-
-/**
-*Select a row in a table (red background-color)
-* out select a row in a table of the search
-*@param: id_element
-*/
-function college_selected_outselected_row_table(id_element){
-    class_name=document.getElementById(id_element).className;
-    if (class_name.includes(" selected_row_table")){
-        class_name=class_name.replace("selected_row_table","");
-        document.getElementById(id_element).className=class_name;
-    }else{
-        document.getElementById(id_element).className+= " selected_row_table";
-    }
-}
 
 
 /**
@@ -453,10 +438,10 @@ function college_create_row_student(data_student,unread){
         td.appendChild(span);
     tr.appendChild(td);
     tr.onmouseover = function() {
-        college_selected_outselected_row_table(tr.id)
+        selected_out_selected_row_table(tr.id)
     };
     tr.onmouseout = function() {
-        college_selected_outselected_row_table(tr.id)
+        selected_out_selected_row_table(tr.id)
     };
 
     tr.onclick = function() {

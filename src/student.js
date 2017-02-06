@@ -941,10 +941,10 @@ function create_row_room(data_college,data_room){
         td.appendChild(document.createTextNode(data_room.date_start_school.date.replace(" 00:00:00", "")));
         tr.appendChild(td)
     tr.onmouseover = function() {
-        selected_row_table(tr.id,data_college.latitude,data_college.longitude);
+        selected_out_selected_row_table(tr.id,data_college.latitude,data_college.longitude,"search_room_table_map");
     };
     tr.onmouseout = function() {
-        out_selected_row_table(tr.id);
+        selected_out_selected_row_table(tr.id);
     };
 
     tr.onclick = function() {
@@ -1228,22 +1228,6 @@ function get_display_bids(room_id,tab_id){
     		}
     	}
     }
-}
-
-/**
-* Select a row in a table of the search room (red background-color) and display its map
-*/
-function selected_row_table(id, latitude, longitude){
-    document.getElementById(id).className = " selected_row_table";
-    // display maps latitude, longitude
-    init_map("search_room_table_map",latitude,longitude);
-}
-
-/**
-* out select a row in a table of the search
-*/
-function out_selected_row_table(id){
-    document.getElementById(id).className = "";//any class
 }
 
 //////////////////////////////////////////////////////////////////////////////

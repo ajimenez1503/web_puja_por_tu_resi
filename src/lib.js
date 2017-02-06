@@ -21,6 +21,30 @@ function display_specific_div(father,id) {
 }
 
 
+
+/**
+*Select a row in a table (red background-color)
+* out select a row in a table of the search
+*Im the case that there paremeter latitude, longitude and id_map, display map
+*@param: id_element
+*@param:latitude
+*@param:longitude
+*@param:id_map
+*/
+function selected_out_selected_row_table(id_element,latitude, longitude,id_map){
+    class_name=document.getElementById(id_element).className;
+    if (class_name.includes(" selected_row_table")){
+        class_name=class_name.replace("selected_row_table","");
+        document.getElementById(id_element).className=class_name;
+
+    }else{
+        document.getElementById(id_element).className+= " selected_row_table";
+        if(latitude!==undefined && longitude!==undefined && id_map!==undefined){
+            init_map(id_map,latitude,longitude);
+        }
+    }
+}
+
 /**
 *Dispaly data of a specific student
 *@param: tab
