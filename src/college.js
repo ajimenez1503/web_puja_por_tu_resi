@@ -608,18 +608,19 @@ function college_display_messages_specific_student(student){
 //////////////////////////////////////////////////////////////////////////////
 
 /**
-* Display form to updload password and the email student
+* All the form display none
+* Display a specific form of the user in the profile
+*@param {fater} id of the div
 *@param {id} id of the div
 */
-function college_show_from_update(id) {
-    document.getElementById("college_profile_from_update_password").style.display="none";
-    document.getElementById("college_profile_from_update_email").style.display="none";
-    document.getElementById("college_profile_from_update_address").style.display="none";
-
-
-    document.getElementById(id).style.display="block";
-
-
+function college_display_specific_form(father,id) {
+    var list_elements=document.getElementById(father).childNodes;
+    for(i=1;i<list_elements.length;i+=2){//becasue childNodes have the nodes in the even elemetns
+        list_elements[i].style.display="none";
+    }
+    if (id!== undefined){
+        document.getElementById(id).style.display="block";
+    }
 }
 
 /**
@@ -705,7 +706,7 @@ function college_profile_updateEmail(){
         data.append("email", email);
 		xmlHttp.send(data);
 	}else{
-		showErrorMessagesPage("Student","updateEmail","Email no es valido.",false);
+		showErrorMessagesPage("College","updateEmail","Email no es valido.",false);
 	}
     document.getElementById("college_profile_id_formUpdateEmail").reset();//clean input
 }
@@ -736,6 +737,34 @@ function college_profile_updateAddress(){
 	xmlHttp.send(data);
 
     document.getElementById("college_profile_id_formUpdateAddress").reset();//clean input
+}
+
+
+/**
+* Update the telephone of the college user
+*The input is validate and show the error in case of problem
+*/
+function college_profile_updateTelephone(){
+	var telephone=document.getElementById("college_profile_formUpdateTelephone").value;
+	if(ValidatePhonenumber(telephone)){
+		var url=window.location.protocol+"//"+window.location.host+port+"/ProfileCollege/updateTelephone/";
+		var xmlHttp =new XMLHttpRequest();
+		xmlHttp.onreadystatechange = function() {
+			if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
+				var output= JSON.parse(xmlHttp.responseText);
+                console.log(output);
+				showErrorMessagesPage("College","updateTelephone",output.message,output.success);
+			}
+		}
+		xmlHttp.open("POST", url, true );
+        xmlHttp.withCredentials = true;
+        var data = new FormData();
+        data.append("telephone", telephone);
+		xmlHttp.send(data);
+	}else{
+		showErrorMessagesPage("Student","updateTelephone","Email no es valido.",false);
+	}
+    document.getElementById("college_profile_id_formUpdateTelephone").reset();//clean input
 }
 
 //////////////////////////////////////////////////////////////////////////////
@@ -806,12 +835,11 @@ function displayCollege_profile(){
         document.getElementById('college_create_room').style.display="none";
     	document.getElementById("college_list_rooms").style.display="none";
         document.getElementById('college_messages').style.display="none";
+        college_display_specific_form("college_profile_list_form",undefined);
         college_displayProfile();
 
 
-        document.getElementById("college_profile_from_update_password").style.display="none";
-        document.getElementById("college_profile_from_update_email").style.display="none";
-        document.getElementById("college_profile_from_update_address").style.display="none";
+
     }
 }
 
