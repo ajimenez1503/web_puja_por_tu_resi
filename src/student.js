@@ -85,7 +85,7 @@ function updatePassword(){
 */
 function updateEmail(){
 	var email=document.getElementById("formUpdateEmail").value;
-	if(validateEmail(email)){
+	if(validate_email(email)){
 		var url=window.location.protocol+"//"+window.location.host+port+"/ProfileStudent/updateEmail/";
 		var xmlHttp =new XMLHttpRequest();
 		xmlHttp.onreadystatechange = function() {
@@ -272,84 +272,6 @@ function sendMessage(){
     data.append("file_attached", file);
 	xmlHttp.send(data);
     document.getElementById("id_form_sendMessage").reset();//clean input
-}
-
-
-/**
-* create  html message from the mesage (message / date / id / read )
-* @return structure html
-*/
-function createHTMLMessage(message){
-    var div = document.createElement('div');
-    div.className += " div_message";
-
-    var div_elements= document.createElement("div");
-    div_elements.className+=" list_message_elements_div"
-        if (message.senderType=="ROLE_STUDENT"){
-            var p_from = document.createElement('p');
-            p_from.className+=" list_message_element_p";
-            p_from.appendChild(document.createTextNode("De: "+message.student_name));
-            div_elements.appendChild(p_from);
-
-            var p_to = document.createElement('p');
-            p_to.className+=" list_message_element_p";
-            p_to.appendChild(document.createTextNode("Para: "+message.college_name));
-            div_elements.appendChild(p_to);
-        }
-        else if (message.senderType=="ROLE_COLLEGE"){
-            var p_from = document.createElement('p');
-            p_from.className+=" list_message_element_p";
-            p_from.appendChild(document.createTextNode("De: "+message.college_name));
-            div_elements.appendChild(p_from);
-
-            var p_to = document.createElement('p');
-            p_to.className+=" list_message_element_p";
-            p_to.appendChild(document.createTextNode("Para: "+message.student_name));
-            div_elements.appendChild(p_to);
-        }
-
-        var p_time = document.createElement('div');
-        p_time.appendChild(document.createTextNode("Fecha: "+message.date.date));
-        p_time.className += " list_message_element_p";
-        div_elements.appendChild(p_time);
-
-
-        if (message.file_attached){
-            var p_file_attached = document.createElement('div');
-            p_file_attached.appendChild(document.createTextNode("Adjunto: "));
-            p_file_attached.className += " list_message_element_p";
-            div_elements.appendChild(p_file_attached);
-
-            var file_download = document.createElement('a');
-            file_download.setAttribute('href',window.location.protocol+"//"+window.location.host+port+"/Message/download/"+message.file_attached);
-            file_download.download="file"
-            file_download.appendChild(document.createTextNode("file_download"));
-            div_elements.appendChild(file_download);
-        }
-
-    div.appendChild(div_elements);
-
-
-    var p_text = document.createElement('p');
-    p_text.appendChild(document.createTextNode(message.message));
-    p_text.className+="list_messages_elements_text";
-    if (message.senderType=="ROLE_STUDENT"){
-        p_text.style.textAlign = "right";
-    }
-    else if (message.senderType=="ROLE_COLLEGE"){
-        p_text.style.textAlign="left";
-    }
-    if(message.read_by_student){
-        p_text.style.color = "#3c763d";
-    }
-    else{
-        p_text.style.color = "#c04021";
-    }
-    div.appendChild(p_text);
-
-
-    return div
-
 }
 
 
@@ -676,18 +598,18 @@ function pay_month(id){
     var e = document.getElementById("expiry-year");
     var expiry_year = e.options[e.selectedIndex].value;
     var cvv=document.getElementById("card_cvv").value;
-    if (!validateCreditCard(card_number)){
+    if (!validate_CreditCard(card_number)){
         showErrorMessagesPage("pay","Invalid credit card",false);
         return;
     }
     if(card_holder_name.length==0){
         showErrorMessagesPage("pay","Invalid card Holder name",false);
         return;
-    }if(!validateCVV(card_number,cvv)){
+    }if(!validate_CVV(card_number,cvv)){
         showErrorMessagesPage("pay","Invalid CCV",false);
         return;
     }
-    if(!validateExpiryDate(expiry_month,expiry_year)){
+    if(!validate_ExpiryDate(expiry_month,expiry_year)){
         showErrorMessagesPage("pay","Invalid fecha expiracion",false);
         return;
     }

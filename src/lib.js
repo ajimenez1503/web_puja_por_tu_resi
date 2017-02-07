@@ -4,9 +4,9 @@
 */
 
  /**
- *Dispaly data of a specific room
- *@param: tab
- *@param: data_room
+ * Dispaly data of a specific room
+ * @param: tab
+ * @param: data_room
  */
 function display_specific_room(tab,data_room){
     //panel room atributes:
@@ -16,7 +16,7 @@ function display_specific_room(tab,data_room){
 
     //panel room equipment
     room_equipment_father=document.getElementById(tab+"_equipment_room");
-    deleteAllChildElement(room_equipment_father);//clean all data
+    deleteAllChildElement(room_equipment_father);//clean all data, in the case of all icon
     if(data_room.tv){
         var icon_tv= document.createElement('i');
         icon_tv.className+="icon fa fa-television" ;
@@ -46,23 +46,21 @@ function display_specific_room(tab,data_room){
         room_equipment_father.appendChild(icon_wardrove);
     }
 
-
     //panel room img
-    //get imgs
     document.getElementById(tab+"_picture1").src=window.location.protocol+"//"+window.location.host+port+"/Room/download/"+data_room.picture1;
     document.getElementById(tab+"_picture2").src=window.location.protocol+"//"+window.location.host+port+"/Room/download/"+data_room.picture2;
     document.getElementById(tab+"_picture3").src=window.location.protocol+"//"+window.location.host+port+"/Room/download/"+data_room.picture3;
-    rotate(tab);
+    rotate(tab);//rotate images
 }
 
 
  /**
- *Dispaly data of a specific agreement
- *@param: tab
- *@param: data_agreement
+ * Dispaly data of a specific agreement
+ * @param: tab
+ * @param: data_agreement
  */
 function display_specific_agreement(tab,data_agreement){
-    //panel room atributes:
+    //panel agreeement atributes:
     document.getElementById(tab+"file").setAttribute('href', window.location.protocol+"//"+window.location.host+port+"/Incidence/download/"+data_agreement.file_agreement_signed);
     document.getElementById(tab+"file").download="file"
     document.getElementById(tab+"dateStart").innerHTML="   "+data_agreement.date_start_school.date.replace(" 00:00:00", "");
@@ -72,9 +70,9 @@ function display_specific_agreement(tab,data_agreement){
 
 
 /**
-*Dispaly data of a specific college
-*@param: tab
-*@param: data_college
+* Dispaly data of a specific college
+* @param: tab
+* @param: data_college
 */
 function display_specific_college(tab,data_college){
     //panel college  atributes:
@@ -148,14 +146,89 @@ function display_specific_college(tab,data_college){
 
 
 /**
-*Dispaly data of a specific student
-*@param: tab
-*@param: data_student
+* Dispaly data of a specific student
+* @param: tab
+* @param: data_student
 */
 function display_specific_student(tab,data_student){
+    //panel student atributes
    document.getElementById(tab+"name").innerHTML="   "+data_student.name;
    document.getElementById(tab+"username").innerHTML="   "+data_student.username;
    document.getElementById(tab+"email").innerHTML="   "+data_student.email;
+}
+
+
+
+/**
+* create  html message from the mesage (message / date / id / read )
+* @return structure html
+*/
+function createHTMLMessage(message){
+    var div = document.createElement('div');
+    div.className += " div_message";
+
+    var div_elements= document.createElement("div");
+    div_elements.className+=" list_message_elements_div"
+        if (message.senderType=="ROLE_STUDENT"){
+            var p_from = document.createElement('p');
+            p_from.className+=" list_message_element_p";
+            p_from.appendChild(document.createTextNode("De: "+message.student_name));
+            div_elements.appendChild(p_from);
+
+            var p_to = document.createElement('p');
+            p_to.className+=" list_message_element_p";
+            p_to.appendChild(document.createTextNode("Para: "+message.college_name));
+            div_elements.appendChild(p_to);
+        }
+        else if (message.senderType=="ROLE_COLLEGE"){
+            var p_from = document.createElement('p');
+            p_from.className+=" list_message_element_p";
+            p_from.appendChild(document.createTextNode("De: "+message.college_name));
+            div_elements.appendChild(p_from);
+
+            var p_to = document.createElement('p');
+            p_to.className+=" list_message_element_p";
+            p_to.appendChild(document.createTextNode("Para: "+message.student_name));
+            div_elements.appendChild(p_to);
+        }
+
+        var p_time = document.createElement('div');
+        p_time.appendChild(document.createTextNode("Fecha: "+message.date.date));
+        p_time.className += " list_message_element_p";
+        div_elements.appendChild(p_time);
+
+        if (message.file_attached){
+            var p_file_attached = document.createElement('div');
+            p_file_attached.appendChild(document.createTextNode("Adjunto: "));
+            p_file_attached.className += " list_message_element_p";
+            div_elements.appendChild(p_file_attached);
+
+            var file_download = document.createElement('a');
+            file_download.setAttribute('href',window.location.protocol+"//"+window.location.host+port+"/Message/download/"+message.file_attached);
+            file_download.download="file"
+            file_download.appendChild(document.createTextNode("file_download"));
+            div_elements.appendChild(file_download);
+        }
+
+    div.appendChild(div_elements);
+
+    var p_text = document.createElement('p');
+    p_text.appendChild(document.createTextNode(message.message));
+    p_text.className+="list_messages_elements_text";
+    if (message.senderType=="ROLE_STUDENT"){
+        p_text.style.textAlign = "right";
+    }
+    else if (message.senderType=="ROLE_COLLEGE"){
+        p_text.style.textAlign="left";
+    }
+    if(message.read_by_student){
+        p_text.style.color = "#3c763d";
+    }
+    else{
+        p_text.style.color = "#c04021";
+    }
+    div.appendChild(p_text);
+    return div
 }
 
 
@@ -177,4 +250,54 @@ function get_equipment_selected(tab){
     }
     console.log(result);
     return result;
+}
+
+
+var global_address_college = {
+  'formatted_address': "",
+  'lat':"",
+  'lng':"",
+};
+
+/**
+*Searchbox for the address of the college. When the user choose aa specific address
+*/
+function search_place(tab) {
+  // Create the search box and link it to the UI element.
+  var input = document.getElementById(tab);
+  var searchBox = new google.maps.places.SearchBox(input);
+
+  var markers = [];
+  // [START region_getplaces]
+  // Listen for the event fired when the user selects a prediction and retrieve
+  // more details for that place.
+  searchBox.addListener('places_changed', function() {
+    var places = searchBox.getPlaces();
+    if (places.length == 0) {
+      return;
+    }
+    // Clear out the old markers.
+    markers.forEach(function(marker) {
+      marker.setMap(null);
+    });
+    markers = [];
+
+    // For each place, get  name and location.
+    places.forEach(function(place) {
+
+      // Create a marker for each place.
+      markers.push(new google.maps.Marker({
+        title: place.name,
+        position: place.geometry.location
+      }));
+    });
+    if(places.length == 1)
+    {
+        console.log(places[0].formatted_address);
+        global_address_college.formatted_address=places[0].formatted_address;
+        global_address_college.lat=places[0].geometry.location.lat();
+        global_address_college.lng=places[0].geometry.location.lng();
+    }
+  });
+  // [END region_getplaces]
 }

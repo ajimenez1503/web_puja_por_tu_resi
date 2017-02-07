@@ -3,10 +3,9 @@
 * @version 0.1
 */
 
-var globa_view="welcomeview";//"studentview";//"collegeview";//"welcomeview";//global view
+var globa_view="welcomeview";//global view
 var sizePaswword=8; //global variable of size of password
 var port=":8000";
-
 //////////////////////////////////////////////////////////////////////////////
 /*
 *LOAD VIEWS
@@ -48,17 +47,14 @@ displayView = function(){
         });
    }
 };
-
 //////////////////////////////////////////////////////////////////////////////
 /*
 *SIGNIN SIGNUP LOGOUT
 */
 //////////////////////////////////////////////////////////////////////////////
-
-
-
 /**
 * Check if the user is logged in the system.
+* Display according to the role
 */
 function check_sesion(){
     var url= window.location.protocol+"//"+window.location.host+port+"/Security/checkSesion/";
@@ -83,33 +79,17 @@ function check_sesion(){
             reloadPage();
     	}
     }
-
 }
-/**
-* Display the register form of the student or the college.
-*@param {id} id of the div
-*/
-function display_form_login(id) {
-    if (id=="register_form_student"){
-        document.getElementById("register_form_student").style.display="block";
-        document.getElementById("register_form_college").style.display="none";
-    } else if (id=="register_form_college") {
-        document.getElementById("register_form_college").style.display="block";
-        document.getElementById("register_form_student").style.display="none";
 
-    }
-}
+
 /**
 * Login the user by email and password.
-*The input is validate and show the error in case of problem.
+* The input is validate and show the error in case of problem.
 */
 function login(){
 	var username=document.getElementById("loginUsername").value;
 	var password=document.getElementById("loginPassword").value;
-    if(password.length>=sizePaswword && (validateDNI(username) || validateCIF(username))){
-        var data = new FormData();
-        data.append("_username", username);
-        data.append("_password", password);
+    if(password.length>=sizePaswword && (validate_DNI(username) || validate_CIF(username))){
 		var url= window.location.protocol+"//"+window.location.host+port+"/login";
 		var xmlHttp =new XMLHttpRequest();
 		xmlHttp.onreadystatechange = function() {
@@ -118,14 +98,14 @@ function login(){
                 console.log(output);
 				if( output.success ){
                     if (output.data.ROLE[0]=="ROLE_STUDENT"){
-                            globa_view="studentview";
-                            reloadPage();
+                        globa_view="studentview";
+                        reloadPage();
                     }else if (output.data.ROLE[0]=="ROLE_COLLEGE"){
-                            globa_view="collegeview";
-                            reloadPage();
+                        globa_view="collegeview";
+                        reloadPage();
                     }else{
-                            console.log(output.data.ROLE[0]);
-                            showErrorMessagesPage("login","Role desconocido.",output.success);
+                        console.log(output.data.ROLE[0]);
+                        showErrorMessagesPage("login","Role desconocido.",output.success);
                     }
 				}else{
 					showErrorMessagesPage("login",output.message,output.success);
@@ -135,6 +115,9 @@ function login(){
 		}
 		xmlHttp.open("POST", url, true );
         xmlHttp.withCredentials = true;
+        var data = new FormData();
+        data.append("_username", username);
+        data.append("_password", password);
         xmlHttp.send(data);
     }else{
        showErrorMessagesPage("login","Invalid password o usuario.",false);
@@ -143,59 +126,9 @@ function login(){
 }
 
 
-
-var global_address_college = {
-  'formatted_address': "",
-  'lat':"",
-  'lng':"",
-};
-
 /**
-*Searchbox for the address of the college. When the user choose aa specific address
-*/
-function search_place(tab) {
-  // Create the search box and link it to the UI element.
-  var input = document.getElementById(tab);
-  var searchBox = new google.maps.places.SearchBox(input);
-
-  var markers = [];
-  // [START region_getplaces]
-  // Listen for the event fired when the user selects a prediction and retrieve
-  // more details for that place.
-  searchBox.addListener('places_changed', function() {
-    var places = searchBox.getPlaces();
-    if (places.length == 0) {
-      return;
-    }
-    // Clear out the old markers.
-    markers.forEach(function(marker) {
-      marker.setMap(null);
-    });
-    markers = [];
-
-    // For each place, get  name and location.
-    places.forEach(function(place) {
-
-      // Create a marker for each place.
-      markers.push(new google.maps.Marker({
-        title: place.name,
-        position: place.geometry.location
-      }));
-    });
-    if(places.length == 1)
-    {
-        console.log(places[0].formatted_address);
-        global_address_college.formatted_address=places[0].formatted_address;
-        global_address_college.lat=places[0].geometry.location.lat();
-        global_address_college.lng=places[0].geometry.location.lng();
-    }
-  });
-  // [END region_getplaces]
-}
-
-/**
-*Signin a new  user (college) by email, password company_name, CIF, telefone, address, url
-*The input is validate and show the error in case of problem
+* Signup a new  user (college) by email, password company_name, CIF, telefone, address, url
+* The input is validate and show the error in case of problem
 */
 function signup_college(){
         var user = {
@@ -210,20 +143,20 @@ function signup_college(){
           'url': document.getElementById("college_signupUrl").value,
           'telephone': document.getElementById("college_signupTelephone").value,
         };
-        if (!validateCIF(user.username)){
+        if (!validate_CIF(user.username)){
             showErrorMessagesPage("signup","Invalid CIF",false);
             return;
         }
-        if(!validateEmail(user.email)){
+        if(!validate_email(user.email)){
             showErrorMessagesPage("signup","Invalid email",false);
             return;
         }
         if(!user.password.length==sizePaswword){
-            showErrorMessagesPage("signup","password debe tener "+sizePaswword+" caracteres",false);
+            showErrorMessagesPage("signup","Password debe tener "+sizePaswword+" caracteres",false);
             return;
         }
 		if(user.repeat_password != user.password){
-            showErrorMessagesPage("signup","passwords no son iguales",false);
+            showErrorMessagesPage("signup","Passwords no son iguales",false);
             return;
         }
         if(user.name.length==0){
@@ -233,10 +166,10 @@ function signup_college(){
         if(user.address.length==0){
             showErrorMessagesPage("signup","Dirreccion esta vacia",false);
             return;
-        }if(!ValidURL(user.url)){
+        }if(!validate_URL(user.url)){
             showErrorMessagesPage("signup","URL no es valido",false);
             return;
-        }if(!ValidatePhonenumber(user.telephone)){
+        }if(!Validate_Phonenumber(user.telephone)){
             showErrorMessagesPage("signup","Telefono no es valido",false);
             return;
         }
@@ -287,11 +220,11 @@ function signup_student(){
           'name': document.getElementById("student_signupName").value,
           'username': document.getElementById("student_signupusername").value,
         };
-        if (!validateDNI(user.username)){
+        if (!validate_DNI(user.username)){
             showErrorMessagesPage("signup","Invalid DNI",false);
             return;
         }
-        if(!validateEmail(user.email)){
+        if(!validate_email(user.email)){
             showErrorMessagesPage("signup","Invalid email",false);
             return;
         }
@@ -346,6 +279,7 @@ function logout(){
     xmlHttp.withCredentials = true;
 	xmlHttp.send();
 }
+
 
 page('/welcome', function(){
 	console.log("welcome page")

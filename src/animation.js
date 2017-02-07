@@ -100,15 +100,16 @@ function rotate(tab){
 */
 function showErrorMessagesPage(element,message,success){
     if (typeof(message) === 'string' && typeof(element) === 'string'){
-        document.getElementById("showErrorMessage").style.display="block";
+        element_error_message=document.getElementById("showErrorMessage")
+        element_error_message.style.display="block";
         if(success){
-            document.getElementById("showErrorMessage").className +=" alert alert-success";
+            element_error_message.className +=" alert alert-success";
         }
         else{
-            document.getElementById("showErrorMessage").className+=" alert alert-danger";
+            element_error_message.className+=" alert alert-danger";
         }
         document.getElementById("errorMessage").innerHTML=element+" : "+message;
-		fade(document.getElementById("showErrorMessage"),300);
+		fade(element_error_message,300);
         return true;
     }else{
         console.log("Incorrect input showErrorMessage.");
@@ -173,6 +174,7 @@ function init_map(id,latitude,longitude) {
 
 /**
 * pause during the milisecond
+* @param: millis
 */
 function pause(millis){
   var date = new Date();

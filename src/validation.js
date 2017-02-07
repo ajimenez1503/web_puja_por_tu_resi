@@ -3,12 +3,13 @@
 * @version 0.1
 */
 
+
 /**
 * Check if the e-mail is valid
 * @param {String} email
 * @returns {boolean} if the e-mail is valid
 */
-function validateEmail(email)  {
+function validate_email(email)  {
     if (typeof(email) === 'string'){
         var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
         if(email.match(mailformat))  {
@@ -20,14 +21,12 @@ function validateEmail(email)  {
 }
 
 
-
-
 /**
 * Check if the DNI is valid
 * @param {String} DNI
 * @returns {boolean} if the DNI is valid
 */
-function validateDNI(dni){
+function validate_DNI(dni){
     expresion_regular_dni = /^\d{8}[A-Z]$/;
     if(expresion_regular_dni.test (dni) == true){
         return true;
@@ -42,7 +41,7 @@ function validateDNI(dni){
 * @param {String} cardNumber
 * @returns {boolean} if the cardNumber is valid
 */
-function validateCreditCard(cardNumber) {
+function validate_CreditCard(cardNumber) {
   // accept only digits, dashes or spaces
 	if (/[^0-9-\s]+/.test(cardNumber)) return false;
 
@@ -57,7 +56,6 @@ function validateCreditCard(cardNumber) {
 		if (bEven) {
 			if ((nDigit *= 2) > 9) nDigit -= 9;
 		}
-
 		nCheck += nDigit;
 		bEven = !bEven;
 	}
@@ -65,13 +63,14 @@ function validateCreditCard(cardNumber) {
 	return (nCheck % 10) == 0;
 }
 
+
 /**
 * Check if the security code is valid
 * @param {String} cardNumber
 * @param {String} cvv
 * @returns {boolean} if the cvv is valid
 */
-function validateCVV(cardNumber,cvv)
+function validate_CVV(cardNumber,cvv)
 {
     // Get the first number of the credit card so we know how many digits to look for
     var $firstnumber = Number(cardNumber.substr(0, 1));
@@ -98,7 +97,7 @@ function validateCVV(cardNumber,cvv)
 * @param {String} cvv
 * @returns {boolean} if the cvv is valid
 */
-function validateExpiryDate(expiry_month,expiry_year)
+function validate_ExpiryDate(expiry_month,expiry_year)
 {
     expiry_year=parseInt(expiry_year);
     expiry_month=parseInt(expiry_month);
@@ -112,13 +111,15 @@ function validateExpiryDate(expiry_month,expiry_year)
     }
 }
 
+
 /**
 * Check if the Url is valid by the Algorithm:
 *http://blog.mattheworiordan.com/post/13174566389/url-regular-expression-for-links-with-or-without
 * @param {String} Url
 * @returns {boolean} if the url is valid
 */
-function ValidURL(Url) {
+function validate_URL(Url)
+{
     var pattern = /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[\-;:&=\+\$,\w]+@)?[A-Za-z0-9\.\-]+|(?:www\.|[\-;:&=\+\$,\w]+@)[A-Za-z0-9\.\-]+)((?:\/[\+~%\/\.\w\-_]*)?\??(?:[\-\+=&;%@\.\w_]*)#?(?:[\.\!\/\\\w]*))?)/
     if(pattern.test(Url)) {
         return true;
@@ -133,7 +134,8 @@ function ValidURL(Url) {
 * @param {String} tel
 * @returns {boolean} if the tel is valid
 */
-function ValidatePhonenumber(tel){
+function Validate_Phonenumber(tel)
+{
     var phoneno1 = /^\d{9}$/; //XXXXXXXXX
     var phoneno2 = /^\+?([0-9]{2})\)?[-. ]?([0-9]{9})$/; //+XX-XXXXXXXXX
     if(tel.match(phoneno1) || tel.match(phoneno2)){
@@ -143,6 +145,7 @@ function ValidatePhonenumber(tel){
         return false;
     }
  }
+
 
 /**
 * Check if the CIF is valid by the Algorithm:
@@ -160,7 +163,8 @@ Letra de tipo de Organización, una de las siguientes:
 * @param {String} cif
 * @returns {boolean} if the cif is valid
 */
-function validateCIF(cif) {
+function validate_CIF(cif)
+{
     var CIF_regExp = "^[a-zA-Z]{1}\\d{7}[a-jA-J0-9]{1}$";
     var v1 = new Array(0,2,4,6,8,1,3,5,7,9);
     var tempStr = cif.toUpperCase(); // pasar a mayúsculas
@@ -186,10 +190,11 @@ function validateCIF(cif) {
 
 /**
 * Validate size and name of file.
-*@param {fileName} name of the file
-*@param {fileSize} size of the file
+* @param {fileName} name of the file
+* @param {fileSize} size of the file
 */
-function validate_file(fileName,fileSize){
+function validate_file(fileName,fileSize)
+{
     console.log("name:"+fileName+" . Size: "+fileSize)
 	var ext = fileName.substring(fileName.lastIndexOf('.') + 1);
     if( ext=="gif" || ext=="jpg" || ext=="JPG" || ext=="jpeg" || ext=="png" || ext=="pdf" ){
