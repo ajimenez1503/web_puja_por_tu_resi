@@ -164,67 +164,40 @@ function college_create_row_room(data_room){
     //tv
         var td = document.createElement('td');
         if(data_room.tv){
-            var icon_check_tv= document.createElement('i');
-            icon_check_tv.className+="icon fa fa-check-circle"       //<i class="fa fa-check-circle" aria-hidden="true"></i>
-            icon_check_tv.setAttribute("aria-hidden","true")
-            td.appendChild(icon_check_tv)
+            td.appendChild(icon_check())
         }else{
-            var icon_failed_tv= document.createElement('i');
-            icon_failed_tv.className+="icon fa fa-ban"       //<i class="fa fa-ban" aria-hidden="true"></i>
-            icon_failed_tv.setAttribute("aria-hidden","true")
-            td.appendChild(icon_failed_tv)
+            td.appendChild(icon_failed())
         }
         tr.appendChild(td)
     // bath
         var td = document.createElement('td');
         if(data_room.bath){
-            var icon_check_bath= document.createElement('i');
-            icon_check_bath.className+="icon fa fa-check-circle"       //<i class="fa fa-check-circle" aria-hidden="true"></i>
-            icon_check_bath.setAttribute("aria-hidden","true")
-            td.appendChild(icon_check_bath)
+            td.appendChild(icon_check())
         }else{
-            var icon_failed_bath= document.createElement('i');
-            icon_failed_bath.className+="icon fa fa-ban"       //<i class="fa fa-ban" aria-hidden="true"></i>
-            icon_failed_bath.setAttribute("aria-hidden","true")
-            td.appendChild(icon_failed_bath)
+            td.appendChild(icon_failed())
         }
         tr.appendChild(td)
     //desk
         var td = document.createElement('td');
         if(data_room.desk){
-            var icon_check_desk= document.createElement('i');
-            icon_check_desk.className+="icon fa fa-check-circle"       //<i class="fa fa-check-circle" aria-hidden="true"></i>
-            icon_check_desk.setAttribute("aria-hidden","true")
-            td.appendChild(icon_check_desk)
+            td.appendChild(icon_check())
         }else{
-            var icon_failed_desk= document.createElement('i');
-            icon_failed_desk.className+="icon fa fa-ban"       //<i class="fa fa-ban" aria-hidden="true"></i>
-            icon_failed_desk.setAttribute("aria-hidden","true")
-            td.appendChild(icon_failed_desk)
+            td.appendChild(icon_failed())
         }
         tr.appendChild(td)
     //wardrove
        var td = document.createElement('td');
        if(data_room.wardrove){
-           var icon_check_wardrove= document.createElement('i');
-           icon_check_wardrove.className+="icon fa fa-check-circle"       //<i class="fa fa-check-circle" aria-hidden="true"></i>
-           icon_check_wardrove.setAttribute("aria-hidden","true")
-           td.appendChild(icon_check_wardrove)
+           td.appendChild(icon_check())
        }else{
-           var icon_failed_wardrove= document.createElement('i');
-           icon_failed_wardrove.className+="icon fa fa-ban"       //<i class="fa fa-ban" aria-hidden="true"></i>
-           icon_failed_wardrove.setAttribute("aria-hidden","true")
-           td.appendChild(icon_failed_wardrove)
+           td.appendChild(icon_failed())
        }
        tr.appendChild(td)
      //buttom remove
         var td = document.createElement('td');
         remove_buttom=document.createElement('button');
         remove_buttom.className+=" btn btn-link"
-        var icon_failed_desk= document.createElement('i');
-        icon_failed_desk.className+="icon fa fa-times"       //<i class="fa fa-times" aria-hidden="true"></i>
-        icon_failed_desk.setAttribute("aria-hidden","true")
-        remove_buttom.appendChild(icon_failed_desk)
+        remove_buttom.appendChild(icon_cross())
         remove_buttom.onclick = function() {
             remove_room(data_room.id);
             collegeGetAllRooms();

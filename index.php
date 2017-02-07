@@ -32,6 +32,7 @@
     <link href="style/welcome.css" type="text/css" rel="stylesheet">
     <link href="style/student.css" type="text/css" rel="stylesheet">
     <link href="style/college.css" type="text/css" rel="stylesheet">
+    <script src="src/icon.js"></script>
 	<script src="src/page.js"></script>
     <script src="src/animation.js"></script>
     <script src="src/validation.js"></script>
