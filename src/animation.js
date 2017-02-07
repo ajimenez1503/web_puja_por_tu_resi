@@ -3,7 +3,6 @@
 * @version 0.1
 */
 
-
 /**
 * Get the element father and all the children style display none.
 * Display a specific element ( style. display=block)
@@ -44,9 +43,6 @@ function selected_out_selected_row_table(id_element,latitude, longitude,id_map){
         }
     }
 }
-
-
-
 
 
 /**
@@ -115,8 +111,8 @@ function showErrorMessagesPage(element,message,success){
         console.log("Incorrect input showErrorMessage.");
         return false;
     }
-
 }
+
 
 /**
 * Disappear the element with a speed
@@ -124,17 +120,18 @@ function showErrorMessagesPage(element,message,success){
 * @param {speed} speed to disappear
 */
 function fade(element, speed) {
-var op = 1,
-        timer = setInterval(function () {
-            if (op <= 0.1){
-                clearInterval(timer);
-                element.style.display = 'none';
-            }
-            element.style.opacity = op;
-            element.style.filter = 'alpha(opacity=' + op * 100 + ")";
-            op -= op * 0.1;
-        }, speed);
+    var op = 1,
+    timer = setInterval(function () {
+        if (op <= 0.1){
+            clearInterval(timer);
+            element.style.display = 'none';
+        }
+        element.style.opacity = op;
+        element.style.filter = 'alpha(opacity=' + op * 100 + ")";
+        op -= op * 0.1;
+    }, speed);
 }
+
 
 /**
 * Deleta all child of a node
@@ -181,5 +178,4 @@ function pause(millis){
   var curDate = null;
   do { curDate = new Date(); }
   while(curDate-date < millis);
-
 }

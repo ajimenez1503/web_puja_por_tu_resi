@@ -204,7 +204,6 @@ function college_create_row_room(data_room){
             tr.onclick = function() {
                 /*empty for the tv. It have onclic in the button -> remove_room*/
             };
-
         };
         td.appendChild(remove_buttom)
         tr.appendChild(td)
@@ -215,13 +214,11 @@ function college_create_row_room(data_room){
     tr.onmouseout = function() {
         selected_out_selected_row_table(tr.id)
     };
-
     tr.onclick = function() {
         college_display_specifiy_room(data_room);
     };
     return tr;
 }
-
 
 
 /**
@@ -250,8 +247,9 @@ function collegeGetAllRooms(){
     }
 }
 
+
 /**
-* remove a room by id
+* Remove a room by id
 * @param id of the room
 * @return bool (true if it is deleted)
 */
@@ -302,7 +300,6 @@ function college_display_specifiy_room(data_room){
                     document.getElementById("college_room_specific_agreement_student").style.display="block";
                     //display data agreement student
                      display_specific_student("college_room_specific_agreement_student_",output.data.student);
-
                 }else{
                     document.getElementById("college_room_specific_bids").style.display="block";
                     //get data of bids and display
@@ -412,7 +409,6 @@ function college_create_row_student(data_student,unread){
     tr.onmouseout = function() {
         selected_out_selected_row_table(tr.id)
     };
-
     tr.onclick = function() {
         college_display_messages_specific_student(data_student.username);
     };
@@ -473,7 +469,6 @@ function college_fill_list_student_select(list_student){
 }
 
 
-
 /**
 * reaad/open  all the list of message of the college with a specific student
 * @param: student
@@ -494,6 +489,7 @@ function college_open_messages_specific_student(student){
     xmlHttp.withCredentials = true;
 	xmlHttp.send();
 }
+
 
 /**
 * Display the list of message of the college with a specific student
@@ -521,9 +517,7 @@ function college_display_messages_specific_student(student){
     		}
     	}
     }
-
     college_open_messages_specific_student(student);
-
     //display the conversation
     display_specific_div("college_messages_list_messages",'college_messages_conversation')
 

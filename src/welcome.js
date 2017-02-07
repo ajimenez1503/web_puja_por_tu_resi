@@ -204,13 +204,12 @@ function signup_college(){
         data.append("heating", equipment.college_icon_heating);
 		xmlHttp.send(data);
         document.getElementById("register_form_college").reset();//clean input
-
 }
 
 
 /**
-*Signin a new  user (student) by email, password name, DNI, Address
-*The input is validate and show the error in case of problem
+* Signin a new  user (student) by email, password name, DNI, Address
+* The input is validate and show the error in case of problem
 */
 function signup_student(){
         var user = {
@@ -257,9 +256,9 @@ function signup_student(){
         data.append("name", user.name);
 		xmlHttp.send(data);
         document.getElementById("register_form_student").reset();//clean input
-
-
 }
+
+
 /**
 * Logout the user
 */
@@ -281,6 +280,9 @@ function logout(){
 }
 
 
+/**
+* Dispaly the welcome view
+*/
 page('/welcome', function(){
 	console.log("welcome page")
 });

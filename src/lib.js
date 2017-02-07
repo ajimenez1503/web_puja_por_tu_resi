@@ -54,6 +54,42 @@ function display_specific_agreement(tab,data_agreement){
 
 
 /**
+* Get the bid of a room (room_id) and display in a tab_id
+* @param: room id
+* @param: tab_id of the ul element
+*/
+function get_display_bids(room_id,tab_id){
+    var xmlHttp =new XMLHttpRequest();
+	var url=window.location.protocol+"//"+window.location.host+port+"/Bid/getBidsRoom/"+room_id;
+	xmlHttp.open("GET", url, true );
+    xmlHttp.withCredentials = true;
+	xmlHttp.send();
+	xmlHttp.onreadystatechange = function() {
+    	if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
+    		var output= JSON.parse(xmlHttp.responseText);
+            console.log(output)
+    		if(output.success){
+                var ul_element = document.getElementById(tab_id);
+                deleteAllChildElement(ul_element);
+                for (i = 0; i < output.data.length; i++) {
+                    var li = document.createElement("li");
+                    li.className="list-group-item justify-content-between";
+                    li.innerHTML="Puntos";
+                    var span = document.createElement("span");
+                    span.className="badge badge-default badge-pilln";
+                    span.innerHTML=output.data[i].point;
+                    li.appendChild(span);
+                    ul_element.appendChild(li);
+                }
+    		}else{
+    			showErrorMessagesPage("Get bids",output.message,output.success);
+    		}
+    	}
+    }
+}
+
+
+/**
 * Dispaly data of a specific college
 * @param: tab
 * @param: data_college
@@ -161,7 +197,6 @@ function createHTMLMessage(message){
             file_download.appendChild(document.createTextNode("file_download"));
             div_elements.appendChild(file_download);
         }
-
     div.appendChild(div_elements);
 
     var p_text = document.createElement('p');
@@ -185,9 +220,9 @@ function createHTMLMessage(message){
 
 
 /**
-*Get element selected of the equipment in a json structure
-@param tab: it is the id of the div with the elements
-@return json_structure with the list of element
+* Get element selected of the equipment in a json structure
+* @param tab: it is the id of the div with the elements
+* @return json_structure with the list of element
 */
 function get_equipment_selected(tab){
     child=document.getElementById(tab).children;;

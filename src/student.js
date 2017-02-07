@@ -8,20 +8,6 @@
 *PROFILE USER. SHOW, UPDATE
 */
 //////////////////////////////////////////////////////////////////////////////
-
-/**
-* Display form to updload password and the email student
-*@param {id} id of the div
-*/
-function show_from_update(id) {
-    if (id=="password"){
-        document.getElementById("from_update_password").style.display="block";
-        document.getElementById("from_update_email").style.display="none";
-    }else if (id=="email"){
-        document.getElementById("from_update_email").style.display="block";
-        document.getElementById("from_update_password").style.display="none";
-    }
-}
 /**
 * show the data of the student user
 */
@@ -45,9 +31,10 @@ function dataProfile(){
     }
 }
 
+
 /**
 * Update the pasword.
-*The input is validate and show the error in case of problem
+* The input is validate and show the error in case of problem
 */
 function updatePassword(){
 	var passwordOld=document.getElementById("formUpdatePasswordOld").value;
@@ -79,9 +66,10 @@ function updatePassword(){
     document.getElementById("id_formUpdatePassword").reset();//clean input
 }
 
+
 /**
 * Update the email.
-*The input is validate and show the error in case of problem
+* The input is validate and show the error in case of problem
 */
 function updateEmail(){
 	var email=document.getElementById("formUpdateEmail").value;
@@ -105,17 +93,14 @@ function updateEmail(){
 	}
     document.getElementById("id_formUpdateEmail").reset();//clean input
 }
-
-
 //////////////////////////////////////////////////////////////////////////////
 /*
 *INCIDENCE CREATE, SHOW
 */
 //////////////////////////////////////////////////////////////////////////////
-
 /**
-*Create Incidence from the Student to the college.
-*The input is validate and show the error in case of problem
+* Create Incidence from the Student to the college.
+* The input is validate and show the error in case of problem
 */
 function createIncidence(){
 	var description=document.getElementById("formInicidenceDescription").value;
@@ -141,45 +126,46 @@ function createIncidence(){
                 data.append("description", description);
                 data.append("file_name", file);
             	xmlHttp.send(data);
+                document.getElementById("id_form_createIncidence").reset();//clean input
             }
         }else{
             showErrorMessagesPage("Upload file","error file image.",false);
         }
     }else{
-        console.log("Enter a correct file.")
+        showErrorMessagesPage("Upload file","Enter a correct file image.",false);
     }
-    document.getElementById("id_form_createIncidence").reset();//clean input
+
 }
 
 /**
 * create the strucutre to show the incidences in the html structure
+* @param:data_incidence
 */
-function create_div_incidence(data){
+function create_div_incidence(data_incidence){
     var div = document.createElement('div');
     div.className += " localIncidence";
 
     var label_id= document.createElement('label');
-    label_id.appendChild(document.createTextNode("id: "+data.id));
+    label_id.appendChild(document.createTextNode("id: "+data_incidence.id));
     div.appendChild(label_id);
     div.appendChild(document.createElement('br'));
 
     var label_description= document.createElement('label');
-    label_description.appendChild(document.createTextNode("description: "+data.description));
+    label_description.appendChild(document.createTextNode("description: "+data_incidence.description));
     div.appendChild(label_description);
     div.appendChild(document.createElement('br'));
 
     var label_date= document.createElement('label');
-    label_date.appendChild(document.createTextNode("Fecha: "+data.date.date));
+    label_date.appendChild(document.createTextNode("Fecha: "+data_incidence.date.date));
     div.appendChild(label_date);
     div.appendChild(document.createElement('br'));
 
-    if (data.file_name){
+    if (data_incidence.file_name){
         var file_download = document.createElement('a');
-        file_download.setAttribute('href', window.location.protocol+"//"+window.location.host+port+"/Incidence/download/"+data.file_name);
+        file_download.setAttribute('href', window.location.protocol+"//"+window.location.host+port+"/Incidence/download/"+data_incidence.file_name);
         file_download.download="file"
         file_download.appendChild(document.createTextNode("file_download"));
         div.appendChild(file_download);
-        //downloadFile(message.file_attached,file_download);//TODO cannot read the image :Error al interpretar el archivo gráfico JPEG (Not a JPEG file: starts with 0xef 0xbf)
     }
     return div;
 }
@@ -205,7 +191,7 @@ function getIncidences(){
                 deleteAllChildElement(father_in_progress)
                 var father_done = document.getElementById("incidence_DONE");
                 deleteAllChildElement(father_done)
-                for (i = 0; i < output.data.length; i++) {
+                for (i = 0; i < output.data.length; i++) {//organize in the different div
                     if("OPEN"==output.data[i].status){
                         father_open.appendChild(create_div_incidence(output.data[i]));
                     }else if ("IN PROGRESS"==output.data[i].status){
@@ -221,7 +207,6 @@ function getIncidences(){
     	}
     }
 }
-
 //////////////////////////////////////////////////////////////////////////////
 /*
 *MESSAGE CREATE SHOW OPEN
@@ -229,7 +214,7 @@ function getIncidences(){
 //////////////////////////////////////////////////////////////////////////////
 /**
 * Create message from the Student to the college.
-*The input is validate and show the error in case of problem
+* The input is validate and show the error in case of problem
 */
 function sendMessage(){
 	var message=document.getElementById("formMessageText").value;
@@ -342,8 +327,6 @@ function countUnreadMessages(){
     	}
     }
 }
-
-
 //////////////////////////////////////////////////////////////////////////////
 /*
 *ROOM, SHOW DATA, DOWNLOAD FILE, ACEPT AGREEMENT, REJECT
@@ -351,10 +334,10 @@ function countUnreadMessages(){
 //////////////////////////////////////////////////////////////////////////////
 /**
 * verify if the student has a agreement:
-    -displat data of the college
-    -display data of the room
-    -display data of the agreement
-    -If the AGREEMENT is not signed yet display the button (accept, refuse, download)
+*    -displat data of the college
+*    -display data of the room
+*    -display data of the agreement
+*    -If the AGREEMENT is not signed yet display the button (accept, refuse, download)
 */
 function get_room_data(){
     var xmlHttp =new XMLHttpRequest();
@@ -375,8 +358,6 @@ function get_room_data(){
                 //displat data college
                 display_specific_college("Room_specific_",output.data.college);
                 display_button_accept_refuse(output.data.agreement_signed,output.data.agreement);
-
-
             }else{
                 showErrorMessagesPage("showdata",output.message,output.success);
             }
@@ -430,13 +411,9 @@ function refuse_agreement_room(room_id){
 
 
 /**
-* Display form to updload the agreement (signed)
+* Accept the agreement by updload the file signed.
+* @param: room_id
 */
-function show_upload_file_agreement() {
-    document.getElementById("Room_upload_file_agreement").style.display="block";
-}
-
-
 function upload_file_agreement(room_id){
     //update the file and everything
     var file=document.getElementById("formAgreementFilename");
@@ -469,17 +446,15 @@ function upload_file_agreement(room_id){
         console.log("Enter a correct file.")
     }
     document.getElementById("Room_form_id_upload_file_agreement").reset();//clean input
-    document.getElementById("Room_accept_refuse").style.display="none";//display button
     get_room_data();
 }
-
 //////////////////////////////////////////////////////////////////////////////
 /*
 *RENT, SHOW DATA, DOWNLOAD FILE, PAY
 */
 //////////////////////////////////////////////////////////////////////////////
 /**
-*Display the form to pay
+* Display the form to pay
 */
 function show_form_payment(){
     //check if there area any month available to pay.
@@ -492,14 +467,13 @@ function show_form_payment(){
     	if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
     		var output= JSON.parse(xmlHttp.responseText);
             console.log(output)
-    		if(output.success){//in the case that there are month available, show it
+    		if(output.success){//in the case that there are month available, show it at the form
                 if (output.data.length>=1){
                     document.getElementById("payment_rent_month").innerHTML="   "+output.data[0].month;
                     document.getElementById("payment_rent_price").innerHTML="   "+output.data[0].price.toString()+"€";
                     document.getElementById("payment_rent_submit").onclick = function(){
                         pay_month(output.data[0].id);
                     };
-                    console.log(output.data[0].id);
                     document.getElementById("payment_rent").style.display="block";
                     document.getElementById("table_rent").style.overflowY = "auto";
                 }else{
@@ -514,7 +488,7 @@ function show_form_payment(){
 }
 
 /**
-*Get every rent and display as a row in the table. Month/ price/ date_paid/ receipt_file
+* Get every rent and display as a row in the table. Month/ price/ date_paid/ receipt_file
 */
 function create_row_rent(data){
     var tr = document.createElement('tr');
@@ -550,19 +524,9 @@ function create_row_rent(data){
     return tr;
 }
 
-/**
-*Display all the rents in the table_rent
-*/
-function createTableRent(data) {
-    var father = document.getElementById("element_table_rent");
-    deleteAllChildElement(father)
-    for (i = 0; i < data.length; i++) {
-        father.appendChild( create_row_rent(data[i]));
-    }
-}
 
 /**
-*Get all the rents and display in the table
+* Get all the rents and display in the table
 */
 function getRents(){
     var xmlHttp =new XMLHttpRequest();
@@ -575,14 +539,17 @@ function getRents(){
     		var output= JSON.parse(xmlHttp.responseText);
             console.log(output)
     		if(output.success){
-                createTableRent(output.data)
+                var father = document.getElementById("element_table_rent");
+                deleteAllChildElement(father)
+                for (i = 0; i < output.data.length; i++) {
+                    father.appendChild( create_row_rent(output.data[i]));
+                }
     		}else{
     			showErrorMessagesPage("showdata",output.message,output.success);
     		}
     	}
     }
 }
-
 
 
 /**
@@ -634,19 +601,14 @@ function pay_month(id){
     xmlHttp.withCredentials = true;
 	xmlHttp.send(data);
     document.getElementById("form_id_payment_rent_submit").reset();//clean input form
-
 }
-
-
 //////////////////////////////////////////////////////////////////////////////
 /*
 *SEARCH_ROOM, SHOW DATA, DOWNLOAD FILE, PAY
 */
 //////////////////////////////////////////////////////////////////////////////
-
-
 /**
-*Get all colleges name and display the list in the form of search room
+* Get all colleges name and display the list in the form of search room
 */
 function display_list_colleges(){
     var xmlHttp =new XMLHttpRequest();
@@ -679,8 +641,9 @@ function display_list_colleges(){
     }
 }
 
+
 /**
-*Display the range of price
+* Display the range of price
 */
 function display_range_price(){
     $( "#slider-range" ).slider({
@@ -696,44 +659,43 @@ function display_range_price(){
 }
 
 /**
-*@return min price
+* @return min price
 */
 function get_min_range_prince(){
     return $( "#slider-range" ).slider( "values", 0 );
 }
 
 /**
-*@return max price
+* @return max price
 */
 function get_max_range_prince(){
     return $( "#slider-range" ).slider( "values", 1 );
 }
 /**
-*@return college selected
+* @return college selected
 */
 function get_college_selected(){
     var e = document.getElementById("search_room_form_college");
     return  e.options[e.selectedIndex].value;
 }
 /**
-*Select and selected a icon or image of the list of equipment. It will be shadow
+* Select and selected a icon or image of the list of equipment. It will be shadow
+* @param:id_element
 */
-function selected_icon_search(id){
-    if  (document.getElementById(id).className.includes(" selected_icon_search")){
-        document.getElementById(id).className.replace('selected_icon_search','');
+function selected_icon_search(id_element){
+    if  (document.getElementById(id_element).className.includes(" selected_icon_search")){
+        document.getElementById(id_element).className.replace('selected_icon_search','');
     }else{
-        document.getElementById(id).className+=' selected_icon_search';
+        document.getElementById(id_element).className+=' selected_icon_search';
     }
-
 }
 
+
 /**
-*Search room by the parementer of the form
+* Search room by the parementer of the form
 */
 function search_rooms() {
-    document.getElementById("search_room_table").style.display="block";
-    document.getElementById("student_search_room_specific").style.display="none";
-
+    display_specific_div("search_room_option","search_room_table");
     //get data form
     var equipment=get_equipment_selected('search_equipment');
 
@@ -771,14 +733,13 @@ function search_rooms() {
     		}
     	}
     }
-
-    init_map("search_room_table_map",37.176487,-3.597929);//By default GRANADA in the maps
 }
 
 
 /**
-*Get every room and display as a row in the table. nombre,inicio academico,fin academico,inicio puja,fin puja,tamaño,planta,tv, bath, desk, wardrove
-*@return tr element (row)
+* Get every room and display as a row in the table:
+* nombre,inicio academico,fin academico,inicio puja,fin puja,tamaño,planta,tv, bath, desk, wardrove
+* @return tr element (row)
 */
 function create_row_room(data_college,data_room){
     var tr = document.createElement('tr');
@@ -795,7 +756,7 @@ function create_row_room(data_college,data_room){
         var td = document.createElement('td');
         td.appendChild(document.createTextNode(data_room.price+"€"))
         tr.appendChild(td)
-    //fin puja
+    //fin school
         var td = document.createElement('td');
         td.appendChild(document.createTextNode(data_room.date_start_school.date.replace(" 00:00:00", "")));
         tr.appendChild(td)
@@ -805,7 +766,6 @@ function create_row_room(data_college,data_room){
     tr.onmouseout = function() {
         selected_out_selected_row_table(tr.id);
     };
-
     tr.onclick = function() {
         display_search_room_specific(data_college,data_room);
     };
@@ -813,7 +773,7 @@ function create_row_room(data_college,data_room){
 }
 
 /**
-*Display all the OFFERED room in the student_element_table_list_rooms
+* Display all the OFFERED room in the student_element_table_list_rooms
 */
 function display_table_list_rooms(data){
     var father = document.getElementById("student_element_table_list_rooms");
@@ -826,7 +786,7 @@ function display_table_list_rooms(data){
 }
 
 /**
-*Get all the OFFERED Rooms and display table
+* Get all the OFFERED Rooms and display table
 */
 function GetOFFEREDRooms(){
     var xmlHttp =new XMLHttpRequest();
@@ -847,12 +807,12 @@ function GetOFFEREDRooms(){
     }
 }
 
+
 /**
 * Dispaly search room table (table/ form / map)
 */
  function display_search_room_table() {
-     document.getElementById("search_room_table").style.display="block";
-     document.getElementById("student_search_room_specific").style.display="none";
+     display_specific_div("search_room_option","search_room_table");
      display_range_price();
      display_list_colleges();
      init_map("search_room_table_map",37.176487,-3.597929);//By default GRANADA in the maps
@@ -862,26 +822,31 @@ function GetOFFEREDRooms(){
 
 
 /**
-*Dispaly the features of a specific room
-*@param: data_college
-*@param: data_room
+* Dispaly the features of a specific room
+* @param: data_college
+* @param: data_room
 */
 function display_search_room_specific(data_college,data_room){
-    document.getElementById("search_room_table").style.display="none";
-    document.getElementById("student_search_room_specific").style.display="block";
+    display_specific_div("search_room_option","student_search_room_specific");
 
     display_specific_room("student_search_room_specific",data_room);
     display_specific_college("student_search_",data_college);
 
     //button of bid and remove bid
-    document.getElementById("search_room_specific_button_bid_new").onclick = function(){ create_bid(data_room.id)};
-    document.getElementById("search_room_specific_button_bid_remove").onclick = function(){ remove_bid(data_room.id)};
+    document.getElementById("search_room_specific_button_bid_new").onclick = function(){
+        create_bid(data_room.id)
+    };
+    document.getElementById("search_room_specific_button_bid_remove").onclick = function(){
+        remove_bid(data_room.id)
+    };
     //get data of bids and display
     get_display_bids(data_room.id,"search_room_specific_ul_bid");
 }
+
+
 /**
-*Create the a bid about the room with the user who call
-*@param: room id
+* Create a bid about the room with the user who call
+* @param: room id
 */
 function create_bid(room_id){
     var url=window.location.protocol+"//"+window.location.host+port+"/Bid/create/";
@@ -901,12 +866,12 @@ function create_bid(room_id){
     get_display_bids(room_id,"search_room_specific_ul_bid")
 }
 
+
 /**
-*Create the a bid about the room with the user who call
-*@param: room id
+* Remove the bid about the room with the user who call
+* @param: room id
 */
 function remove_bid(room_id){
-
     var url=window.location.protocol+"//"+window.location.host+port+"/Bid/removeBidRoomStudent/";
     var xmlHttp =new XMLHttpRequest();
     xmlHttp.onreadystatechange = function() {
@@ -923,125 +888,11 @@ function remove_bid(room_id){
     xmlHttp.send(data);
     get_display_bids(room_id,"search_room_specific_ul_bid")
 }
-
-/**
-*Get the bid of a room (room_id) and display in a tab_id
-*@param: room id
-*@param: tab_id of the ul element
-*/
-function get_display_bids(room_id,tab_id){
-    var xmlHttp =new XMLHttpRequest();
-	var url=window.location.protocol+"//"+window.location.host+port+"/Bid/getBidsRoom/"+room_id.toString();
-	xmlHttp.open("GET", url, true );
-    xmlHttp.withCredentials = true;
-	xmlHttp.send();
-	xmlHttp.onreadystatechange = function() {
-    	if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
-    		var output= JSON.parse(xmlHttp.responseText);
-            console.log(output)
-    		if(output.success){
-                var ul_element = document.getElementById(tab_id);
-                deleteAllChildElement(ul_element);
-                for (i = 0; i < output.data.length; i++) {
-                    var li = document.createElement("li");
-                    li.className="list-group-item justify-content-between";
-                    li.innerHTML="Puntos";
-                    var span = document.createElement("span");
-                    span.className="badge badge-default badge-pilln";
-                    span.innerHTML=output.data[i].point;
-                    li.appendChild(span);
-                    ul_element.appendChild(li);
-                }
-    		}else{
-    			showErrorMessagesPage("Get bids",output.message,output.success);
-    		}
-    	}
-    }
-}
-
 //////////////////////////////////////////////////////////////////////////////
 /*
 *Routing student
 */
 //////////////////////////////////////////////////////////////////////////////
-
-/**
-* Dispaly the profile view
-*/
-function displayProfile(){
-    if("studentview"===globa_view){
-        console.log("displayProfile");
-        display_specific_div("student_view_list_elements","profile");
-        countUnreadMessages();
-        dataProfile("profile");
-        display_specific_div('profile_student_list_form',undefined);
-    }
-}
-
-/**
-* Dispaly the Room view
-*/
-function displayRoom(){
-    if("studentview"===globa_view){
-        console.log("displayRoom");
-        display_specific_div("student_view_list_elements","Room");
-        get_room_data();
-        countUnreadMessages();
-    }
-}
-
-
-/**
-* Dispaly the search_room view
-*/
-function displaySearch_room(){
-    if("studentview"===globa_view){
-        console.log("displaysearch_room");
-        display_specific_div("student_view_list_elements","search_room");
-        countUnreadMessages();
-        display_search_room_table();
-    }
-}
-
-/**
-* Dispaly the inicidence view
-*/
-function displayIncidence(){
-    if("studentview"===globa_view){
-        console.log("displayIncidence");
-        display_specific_div("student_view_list_elements","incidence");
-        countUnreadMessages();
-        getIncidences();
-    }
-}
-
-/**
-* Dispaly the messsage view
-*/
-function displayMessage(){
-    if("studentview"===globa_view){
-        console.log("displayMessage");
-        display_specific_div("student_view_list_elements","message");
-        countUnreadMessages();
-        getMessages();
-        OpenAllMessages();
-    }
-}
-
-/**
-* Dispaly the rent view
-*/
-function displayRent(){
-    if("studentview"===globa_view){
-        console.log("displayRent");
-        display_specific_div("student_view_list_elements","rent");
-        countUnreadMessages();
-        getRents();
-        show_form_payment();
-    }
-}
-
-
 /**
 * When only the address of the server is enter, redirection to the connection page (logout)
 */
@@ -1053,30 +904,47 @@ page('/', function(){
 * This page disconnect the user when he is connected
 */
 page('/connection', function(){
-		logout();
+	logout();
 });
-
 
 
 /**
 * Display the profile page
 */
 page('/profile', function(){
- 	displayProfile();
+    if("studentview"===globa_view){
+        console.log("displayProfile");
+        display_specific_div("student_view_list_elements","profile");
+        countUnreadMessages();
+        dataProfile("profile");
+        display_specific_div('profile_student_list_form',undefined);
+    }
 });
+
 
 /**
 * Display the room page
 */
 page('/Room', function(){
- 	displayRoom();
+    if("studentview"===globa_view){
+        console.log("displayRoom");
+        display_specific_div("student_view_list_elements","Room");
+        get_room_data();
+        countUnreadMessages();
+    }
 });
+
 
 /**
 * Display the search_room page
 */
 page('/search_room', function(){
- 	displaySearch_room();
+    if("studentview"===globa_view){
+        console.log("displaysearch_room");
+        display_specific_div("student_view_list_elements","search_room");
+        countUnreadMessages();
+        display_search_room_table();
+    }
 });
 
 
@@ -1084,7 +952,12 @@ page('/search_room', function(){
 * Display the inicidence page
 */
 page('/inicidence', function(){
- 	displayIncidence();
+    if("studentview"===globa_view){
+        console.log("displayIncidence");
+        display_specific_div("student_view_list_elements","incidence");
+        countUnreadMessages();
+        getIncidences();
+    }
 });
 
 
@@ -1092,12 +965,25 @@ page('/inicidence', function(){
 * Display the message page
 */
 page('/message', function(){
- 	displayMessage();
+    if("studentview"===globa_view){
+        console.log("displayMessage");
+        display_specific_div("student_view_list_elements","message");
+        countUnreadMessages();
+        getMessages();
+        OpenAllMessages();
+    }
 });
+
 
 /**
 * Display the message page
 */
 page('/rent', function(){
- 	displayRent();
+    if("studentview"===globa_view){
+        console.log("displayRent");
+        display_specific_div("student_view_list_elements","rent");
+        countUnreadMessages();
+        getRents();
+        show_form_payment();
+    }
 });
