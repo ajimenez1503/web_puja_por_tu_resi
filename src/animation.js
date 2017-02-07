@@ -94,23 +94,21 @@ function rotate(tab){
 
 /**
 * show the error in a div
-* @param {string} page of the view, 3possibility Student or Welcome or College
 * @param {string} the element of the error, such as: login, message, etc
 * @param {message} message of error
 * @returns {boolean} bool
 */
-function showErrorMessagesPage(page,element,message,success){
-    if (typeof(message) === 'string' && typeof(element) === 'string' && typeof(page) === 'string' &&
-        (page=="Welcome" || page=="Student" || page=="College")){
-        document.getElementById("showErrorMessage"+page+"Page").style.display="block";
+function showErrorMessagesPage(element,message,success){
+    if (typeof(message) === 'string' && typeof(element) === 'string'){
+        document.getElementById("showErrorMessage").style.display="block";
         if(success){
-            document.getElementById("showErrorMessage"+page+"Page").className +=" alert alert-success";
+            document.getElementById("showErrorMessage").className +=" alert alert-success";
         }
         else{
-            document.getElementById("showErrorMessage"+page+"Page").className+=" alert alert-danger";
+            document.getElementById("showErrorMessage").className+=" alert alert-danger";
         }
-        document.getElementById("errorMessage"+page+"Page").innerHTML=element+" : "+message;
-		fade(document.getElementById("showErrorMessage"+page+"Page"),300);
+        document.getElementById("errorMessage").innerHTML=element+" : "+message;
+		fade(document.getElementById("showErrorMessage"),300);
         return true;
     }else{
         console.log("Incorrect input showErrorMessage.");

@@ -32,15 +32,15 @@ function create_new_room(){
         picture.picture1=picture.picture1.files[0];
         if ('name' in picture.picture1 && 'size' in picture.picture1) {
             if (!validate_file(picture.picture1.name,picture.picture1.size)){
-                showErrorMessagesPage("College","Upload file","error validation pciture1.",false);
+                showErrorMessagesPage("Upload file","error validation pciture1.",false);
                 return;
             }
         }else{
-            showErrorMessagesPage("College","Upload file"," picture1 error.",false);
+            showErrorMessagesPage("Upload file"," picture1 error.",false);
             return;
         }
     }else{
-        showErrorMessagesPage("College","Upload file","No hay picture1.",false);
+        showErrorMessagesPage("Upload file","No hay picture1.",false);
         console.log(picture);
         return;
     }
@@ -48,15 +48,15 @@ function create_new_room(){
         picture.picture2=picture.picture2.files[0];
         if ('name' in picture.picture2 && 'size' in picture.picture2) {
             if (!validate_file(picture.picture2.name,picture.picture2.size)){
-                showErrorMessagesPage("College","Upload file","error validation pciture1.",false);
+                showErrorMessagesPage("Upload file","error validation pciture1.",false);
                 return;
             }
         }else{
-            showErrorMessagesPage("College","Upload file"," picture2 error.",false);
+            showErrorMessagesPage("Upload file"," picture2 error.",false);
             return;
         }
     }else{
-        showErrorMessagesPage("College","Upload file","No hay picture2.",false);
+        showErrorMessagesPage("Upload file","No hay picture2.",false);
         console.log(picture);
         return;
     }
@@ -64,26 +64,26 @@ function create_new_room(){
         picture.picture3=picture.picture3.files[0];
         if ('name' in picture.picture3 && 'size' in picture.picture3) {
             if (!validate_file(picture.picture3.name,picture.picture3.size)){
-                showErrorMessagesPage("College","Upload file","error validation pciture1.",false);
+                showErrorMessagesPage("Upload file","error validation pciture1.",false);
                 return;
             }
         }else{
-            showErrorMessagesPage("College","Upload file"," picture3 error.",false);
+            showErrorMessagesPage("Upload file"," picture3 error.",false);
             return;
         }
     }else{
-        showErrorMessagesPage("College","Upload file","No hay picture3.",false);
+        showErrorMessagesPage("Upload file","No hay picture3.",false);
         console.log(picture);
         return;
     }
 
     if (room.name=="" ||  room.floor=="" ||  room.size=="" ||  room.price==""){
-        showErrorMessagesPage("College","Input room","Valores de entrada incorrectos (Habitacion-general).",false);
+        showErrorMessagesPage("Input room","Valores de entrada incorrectos (Habitacion-general).",false);
         console.log(room)
         return;
     }
     if (room.date_start_school=="" ||  room.date_end_school=="" ||  room.date_start_bid=="" ||  room.date_start_bid==""){
-        showErrorMessagesPage("College","Input room","Valores de entrada incorrectos (Fechas).",false);
+        showErrorMessagesPage("Input room","Valores de entrada incorrectos (Fechas).",false);
         console.log(room)
         return;
     }
@@ -93,7 +93,7 @@ function create_new_room(){
         if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
             var output= JSON.parse(xmlHttp.responseText);
             console.log(output);
-            showErrorMessagesPage("College","create new room",output.message,output.success);
+            showErrorMessagesPage("create new room",output.message,output.success);
         }
     }
     xmlHttp.open("POST", url, true );
@@ -271,7 +271,7 @@ function collegeGetAllRooms(){
                     father.appendChild( college_create_row_room(output.data[i]));
                 }
     		}else{
-    			showErrorMessagesPage("College","showdata",output.message,output.success);
+    			showErrorMessagesPage("showdata",output.message,output.success);
     		}
     	}
     }
@@ -293,7 +293,7 @@ function remove_room(id){
     		var output= JSON.parse(xmlHttp.responseText);
             console.log(output)
     		if(!output.success){
-    			showErrorMessagesPage("College","remove_roome",output.message,output.success);
+    			showErrorMessagesPage("remove_roome",output.message,output.success);
                 return false;
     		}else{
                 return true;
@@ -373,18 +373,18 @@ function college_sendMessage(tab, specific_student){
 	var url=window.location.protocol+"//"+window.location.host+port+"/Message/create/";
 
     if (message ===""){
-        showErrorMessagesPage("College","message","ERROR: necesita un mensaje texto.",false);
+        showErrorMessagesPage("message","ERROR: necesita un mensaje texto.",false);
         return;
     }
     if ('files' in file && file.files.length>=1){
         file=file.files[0];
         if ('name' in file && 'size' in file) {
             if (!validate_file(file.name,file.size)){
-                showErrorMessagesPage("College","Upload file","error validation file image format.",false);
+                showErrorMessagesPage("Upload file","error validation file image format.",false);
                 return;
             }
         }else{
-            showErrorMessagesPage("College","Upload file","error file image.",false);
+            showErrorMessagesPage("Upload file","error file image.",false);
             return;
         }
         console.log("file "+file.name)
@@ -399,7 +399,7 @@ function college_sendMessage(tab, specific_student){
     		if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
     			var output= JSON.parse(xmlHttp.responseText);
                 console.log(output);
-    			showErrorMessagesPage("College","createMessage",output.message,output.success);
+    			showErrorMessagesPage("createMessage",output.message,output.success);
     		}
     	}
     	xmlHttp.open("POST", url, true );
@@ -480,7 +480,7 @@ function college_get_list_student(){
                 //add all the studnt to the select option
                 college_fill_list_student_select(list_student);
     		}else{
-    			showErrorMessagesPage("College","showdata",output.message,output.success);
+    			showErrorMessagesPage("showdata",output.message,output.success);
     		}
     	}
     }
@@ -517,7 +517,7 @@ function college_open_messages_specific_student(student){
     		var output= JSON.parse(xmlHttp.responseText);
             console.log(output)
     		if(!output.success){
-    			showErrorMessagesPage("College","displayMessages",output.message,output.success);
+    			showErrorMessagesPage("displayMessages",output.message,output.success);
     		}
     	}
     }
@@ -547,7 +547,7 @@ function college_display_messages_specific_student(student){
                     father.appendChild( createHTMLMessage(output.data[i]));
                 }
     		}else{
-    			showErrorMessagesPage("College","displayMessages",output.message,output.success);
+    			showErrorMessagesPage("displayMessages",output.message,output.success);
     		}
     	}
     }
@@ -586,7 +586,7 @@ function college_displayProfile(){
     		if(output.success){
     			display_specific_college("college_profile_",output.data);
     		}else{
-    			showErrorMessagesPage("College","showdata",output.message,output.success);
+    			showErrorMessagesPage("showdata",output.message,output.success);
     		}
     	}
     }
@@ -611,7 +611,7 @@ function college_profile_updatePassword(){
 				if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
 					var output= JSON.parse(xmlHttp.responseText);
                     console.log(output);
-					showErrorMessagesPage("College","updatePassword",output.message,output.success);
+					showErrorMessagesPage("updatePassword",output.message,output.success);
 				}
 			}
 			xmlHttp.open("POST", url, true );
@@ -621,10 +621,10 @@ function college_profile_updatePassword(){
             data.append("new_password", passwordNew);
 			xmlHttp.send(data);
 		}else{
-		    showErrorMessagesPage("College","updatePassword","error input",false);
+		    showErrorMessagesPage("updatePassword","error input",false);
 		}
 	}else{
-		showErrorMessagesPage("College","updatePassword","passwords not identical ",false);
+		showErrorMessagesPage("updatePassword","passwords not identical ",false);
 	}
     document.getElementById("college_profile_id_formUpdatePassword").reset();//clean input
 }
@@ -644,7 +644,7 @@ function college_profile_updateEmail(){
 			if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
 				var output= JSON.parse(xmlHttp.responseText);
                 console.log(output);
-				showErrorMessagesPage("College","updateEmail",output.message,output.success);
+				showErrorMessagesPage("updateEmail",output.message,output.success);
 			}
 		}
 		xmlHttp.open("POST", url, true );
@@ -653,7 +653,7 @@ function college_profile_updateEmail(){
         data.append("email", email);
 		xmlHttp.send(data);
 	}else{
-		showErrorMessagesPage("College","updateEmail","Email no es valido.",false);
+		showErrorMessagesPage("updateEmail","Email no es valido.",false);
 	}
     document.getElementById("college_profile_id_formUpdateEmail").reset();//clean input
 }
@@ -671,7 +671,7 @@ function college_profile_updateAddress(){
 		if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
 			var output= JSON.parse(xmlHttp.responseText);
             console.log(output);
-			showErrorMessagesPage("College","updateEmail",output.message,output.success);
+			showErrorMessagesPage("updateEmail",output.message,output.success);
 		}
     }
 	xmlHttp.open("POST", url, true );
@@ -700,7 +700,7 @@ function college_profile_updateTelephone(){
 			if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
 				var output= JSON.parse(xmlHttp.responseText);
                 console.log(output);
-				showErrorMessagesPage("College","updateTelephone",output.message,output.success);
+				showErrorMessagesPage("updateTelephone",output.message,output.success);
 			}
 		}
 		xmlHttp.open("POST", url, true );
@@ -709,7 +709,7 @@ function college_profile_updateTelephone(){
         data.append("telephone", telephone);
 		xmlHttp.send(data);
 	}else{
-		showErrorMessagesPage("College","updateTelephone","Telefono no es valido.",false);
+		showErrorMessagesPage("updateTelephone","Telefono no es valido.",false);
 	}
     document.getElementById("college_profile_id_formUpdateTelephone").reset();//clean input
 }
@@ -728,7 +728,7 @@ function college_profile_updateURL(){
 			if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
 				var output= JSON.parse(xmlHttp.responseText);
                 console.log(output);
-				showErrorMessagesPage("College","updateURL",output.message,output.success);
+				showErrorMessagesPage("updateURL",output.message,output.success);
 			}
 		}
 		xmlHttp.open("POST", url, true );
@@ -737,7 +737,7 @@ function college_profile_updateURL(){
         data.append("URL", URL);
 		xmlHttp.send(data);
 	}else{
-		showErrorMessagesPage("College","updateURL","URL no es valido.",false);
+		showErrorMessagesPage("updateURL","URL no es valido.",false);
 	}
     document.getElementById("college_profile_id_formUpdateURL").reset();//clean input
 }
@@ -757,7 +757,7 @@ function college_profile_updateEquipment(){
 		if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
 			var output= JSON.parse(xmlHttp.responseText);
             console.log(output);
-			showErrorMessagesPage("College","updateURL",output.message,output.success);
+			showErrorMessagesPage("updateURL",output.message,output.success);
 		}
 	}
 	xmlHttp.open("POST", url, true );

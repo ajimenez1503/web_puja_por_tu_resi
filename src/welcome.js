@@ -77,7 +77,7 @@ function check_sesion(){
                         globa_view="collegeview";
                 }else{
                     console.log(output.data.ROLE[0]);
-                    showErrorMessagesPage("Welcome","login","Role desconocido.",output.success);
+                    showErrorMessagesPage("login","Role desconocido.",output.success);
                 }
     		}
             reloadPage();
@@ -125,10 +125,10 @@ function login(){
                             reloadPage();
                     }else{
                             console.log(output.data.ROLE[0]);
-                            showErrorMessagesPage("Welcome","login","Role desconocido.",output.success);
+                            showErrorMessagesPage("login","Role desconocido.",output.success);
                     }
 				}else{
-					showErrorMessagesPage("Welcome","login",output.message,output.success);
+					showErrorMessagesPage("login",output.message,output.success);
                     console.log(output);
 				}
 			}
@@ -137,7 +137,7 @@ function login(){
         xmlHttp.withCredentials = true;
         xmlHttp.send(data);
     }else{
-       showErrorMessagesPage("Welcome","login","Invalid password o usuario.",false);
+       showErrorMessagesPage("login","Invalid password o usuario.",false);
     }
     //TODO document.getElementById("login-form").reset();//clean input
 }
@@ -211,33 +211,33 @@ function signup_college(){
           'telephone': document.getElementById("college_signupTelephone").value,
         };
         if (!validateCIF(user.username)){
-            showErrorMessagesPage("Welcome","signup","Invalid CIF",false);
+            showErrorMessagesPage("signup","Invalid CIF",false);
             return;
         }
         if(!validateEmail(user.email)){
-            showErrorMessagesPage("Welcome","signup","Invalid email",false);
+            showErrorMessagesPage("signup","Invalid email",false);
             return;
         }
         if(!user.password.length==sizePaswword){
-            showErrorMessagesPage("Welcome","signup","password debe tener "+sizePaswword+" caracteres",false);
+            showErrorMessagesPage("signup","password debe tener "+sizePaswword+" caracteres",false);
             return;
         }
 		if(user.repeat_password != user.password){
-            showErrorMessagesPage("Welcome","signup","passwords no son iguales",false);
+            showErrorMessagesPage("signup","passwords no son iguales",false);
             return;
         }
         if(user.name.length==0){
-            showErrorMessagesPage("Welcome","signup","Nombre de la compañia esta vacio",false);
+            showErrorMessagesPage("signup","Nombre de la compañia esta vacio",false);
             return;
         }
         if(user.address.length==0){
-            showErrorMessagesPage("Welcome","signup","Dirreccion esta vacia",false);
+            showErrorMessagesPage("signup","Dirreccion esta vacia",false);
             return;
         }if(!ValidURL(user.url)){
-            showErrorMessagesPage("Welcome","signup","URL no es valido",false);
+            showErrorMessagesPage("signup","URL no es valido",false);
             return;
         }if(!ValidatePhonenumber(user.telephone)){
-            showErrorMessagesPage("Welcome","signup","Telefono no es valido",false);
+            showErrorMessagesPage("signup","Telefono no es valido",false);
             return;
         }
         var equipment=get_equipment_selected('college_equipment');
@@ -247,7 +247,7 @@ function signup_college(){
 			if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
 				var output= JSON.parse(xmlHttp.responseText);
                 console.log(output);
-                showErrorMessagesPage("Welcome","signup",output.message,output.success);
+                showErrorMessagesPage("signup",output.message,output.success);
 			}
 		}
 		xmlHttp.open("POST", url, true );
@@ -288,23 +288,23 @@ function signup_student(){
           'username': document.getElementById("student_signupusername").value,
         };
         if (!validateDNI(user.username)){
-            showErrorMessagesPage("Welcome","signup","Invalid DNI",false);
+            showErrorMessagesPage("signup","Invalid DNI",false);
             return;
         }
         if(!validateEmail(user.email)){
-            showErrorMessagesPage("Welcome","signup","Invalid email",false);
+            showErrorMessagesPage("signup","Invalid email",false);
             return;
         }
         if(!user.password.length==sizePaswword){
-            showErrorMessagesPage("Welcome","signup","password debe tener "+sizePaswword+" caracteres",false);
+            showErrorMessagesPage("signup","password debe tener "+sizePaswword+" caracteres",false);
             return;
         }
 		if(user.repeat_password != user.password){
-            showErrorMessagesPage("Welcome","signup","Contraseñas no son iguales",false);
+            showErrorMessagesPage("signup","Contraseñas no son iguales",false);
             return;
         }
         if(user.name.length==0){
-            showErrorMessagesPage("Welcome","signup","El nombre esta vacio",false);
+            showErrorMessagesPage("signup","El nombre esta vacio",false);
             return;
         }
 		var url=window.location.protocol+"//"+window.location.host+port+"/Signin/student/";
@@ -313,7 +313,7 @@ function signup_student(){
 			if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
 				var output= JSON.parse(xmlHttp.responseText);
                 console.log(output);
-                showErrorMessagesPage("Welcome","signup",output.message,output.success);
+                showErrorMessagesPage("signup",output.message,output.success);
 			}
 		}
 		xmlHttp.open("POST", url, true );

@@ -43,6 +43,14 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDau09DcBHg-wQ8wHUsl6SUCYOPPlDFiWQ&libraries=places"async defer></script>
     <link rel="icon" type="image/ico" href="img/logo.ico">
     </head>
-    <body  id="viewBase" >
+    <body >
+        <div  id="viewBase" ></div>
+        <div class="error_footer" id="showErrorMessage" style="display:none;">
+            <strong>
+                <center>
+                    <p id="errorMessage"> Error </p>
+                </center>
+            </strong>
+        </div>
     </body>
 </html>
