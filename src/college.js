@@ -743,6 +743,8 @@ page('/college_create_room', function(){
         display_specific_div("college_view_list_elements","college_create_room");
     }
 });
+
+
 /**
 * Display list rooms of the college
 */
@@ -754,6 +756,7 @@ page('/college_list_rooms', function(){
         collegeGetAllRooms();// display table list rooms
     }
 });
+
 
 /**
 * Display the college_create_room view
@@ -770,6 +773,7 @@ page('/college_messages', function(){
     }
 });
 
+
 /**
 * Display the college_profile view
 */
@@ -779,5 +783,17 @@ page('/college_profile', function(){
         display_specific_div("college_view_list_elements","college_profile");
         display_specific_div("college_profile_list_form",undefined);
         college_displayProfile();
+    }
+});
+
+
+/**
+* Display the inicidence page
+*/
+page('/college_inicidence', function(){
+    if("collegeview"===globa_view){
+        console.log("displayIncidence");
+        display_specific_div("college_view_list_elements","college_incidence");
+        getIncidences("college_");
     }
 });

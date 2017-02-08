@@ -90,6 +90,86 @@ function get_display_bids(room_id,tab_id){
 
 
 /**
+* create the strucutre to show the incidences in the html structure
+* @param:data_incidence
+* @param: tab
+*/
+function create_div_incidence(data_incidence,tab){
+    var div = document.createElement('div');
+    div.className += " localIncidence";
+
+    var label_id= document.createElement('label');
+    label_id.appendChild(document.createTextNode("id: "+data_incidence.id));
+    div.appendChild(label_id);
+    div.appendChild(document.createElement('br'));
+
+    var label_description= document.createElement('label');
+    label_description.appendChild(document.createTextNode("description: "+data_incidence.description));
+    div.appendChild(label_description);
+    div.appendChild(document.createElement('br'));
+
+    var label_date= document.createElement('label');
+    label_date.appendChild(document.createTextNode("Fecha: "+data_incidence.date.date));
+    div.appendChild(label_date);
+    div.appendChild(document.createElement('br'));
+
+    if (data_incidence.file_name){
+        var file_download = document.createElement('a');
+        file_download.setAttribute('href', window.location.protocol+"//"+window.location.host+port+"/Incidence/download/"+data_incidence.file_name);
+        file_download.download="file"
+        file_download.appendChild(document.createTextNode("file_download"));
+        div.appendChild(file_download);
+    }
+    if(tab.includes("college")){
+        var label_date= document.createElement('label');
+        label_date.appendChild(document.createTextNode("Estudiante: "+data_incidence.student_username));
+        div.appendChild(label_date);
+        div.appendChild(document.createElement('br'));
+    }
+    return div;
+}
+
+
+/**
+* Display the list of incidences of the user
+* @param: tab
+*/
+function getIncidences(tab){
+	var xmlHttp =new XMLHttpRequest();
+	var url=window.location.protocol+"//"+window.location.host+port+"/Incidence/get/";
+	xmlHttp.open("GET", url, true );
+    xmlHttp.withCredentials = true;
+	xmlHttp.send();
+	xmlHttp.onreadystatechange = function() {
+    	if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
+    		var output= JSON.parse(xmlHttp.responseText);
+            console.log(output)
+    		if(output.success){
+                var father_open = document.getElementById(tab+"incidence_OPEN");
+                deleteAllChildElement(father_open)
+                var father_in_progress = document.getElementById(tab+"incidence_IN_PROGRESS");
+                deleteAllChildElement(father_in_progress)
+                var father_done = document.getElementById(tab+"incidence_DONE");
+                deleteAllChildElement(father_done)
+                for (i = 0; i < output.data.length; i++) {//organize in the different div
+                    if("OPEN"==output.data[i].status){
+                        father_open.appendChild(create_div_incidence(output.data[i],tab));
+                    }else if ("IN PROGRESS"==output.data[i].status){
+                        father_in_progress.appendChild(create_div_incidence(output.data[i],tab));
+                    }else if ("DONE"==output.data[i].status){
+                        father_done.appendChild(create_div_incidence(output.data[i],tab));
+                    }
+                }
+
+    		}else{
+    			showErrorMessagesPage("showdata",output.message,output.success);
+    		}
+    	}
+    }
+}
+
+
+/**
 * Dispaly data of a specific college
 * @param: tab
 * @param: data_college

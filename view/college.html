@@ -9,6 +9,7 @@
             <li onclick="page('/college_create_room')"> <a> <label>Nueva habitacion</label> </a> </li>
             <li onclick="page('/college_list_rooms')"> <a> <label>Lista habitaciones</label> </a> </li>
             <li onclick="page('/college_messages')"> <a> <label>Mensajes</label> </a> </li>
+            <li onclick="page('/college_inicidence')"> <a> <label>Incidencias</label> </a> </li>
             <li onclick="page('/connection')"> <a> <label>Log out</label> </a> </li>
         </ul>
     </div>
@@ -492,5 +493,50 @@
         </div><!-- end college_messages_list_messages -->
 
     </div><!-- end college_messages -->
+
+
+
+
+
+    <div id="college_incidence">
+
+        <div >
+
+            <div class="col-sm-4">
+                <div class="panel-group">
+                    <div class="panel with panel-primary class">
+                        <div class="panel-heading">OPEN</div>
+                        <div class="panel-body" id="college_incidence_OPEN">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-4">
+                <div class="panel-group">
+                    <div class="panel with panel-primary class">
+                        <div class="panel-heading">IN PROGRESS</div>
+                        <div class="panel-body" id="college_incidence_IN_PROGRESS">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-4">
+                <div class="panel-group">
+                    <div class="panel with panel-primary class">
+                        <div class="panel-heading">DONE</div>
+                        <div class="panel-body" id="college_incidence_DONE">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div><!-- end inicidence -->
+
+
 
 </div><!-- end college_view_list_elements -->
