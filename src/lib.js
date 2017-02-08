@@ -97,6 +97,9 @@ function get_display_bids(room_id,tab_id){
 function create_div_incidence(data_incidence,tab){
     var div = document.createElement('div');
     div.className += " localIncidence";
+    div.id="div_inicdence_"+data_incidence.id;
+    div.setAttribute('draggable', true);//graggable
+
 
     var label_id= document.createElement('label');
     label_id.appendChild(document.createTextNode("id: "+data_incidence.id));
@@ -126,6 +129,10 @@ function create_div_incidence(data_incidence,tab){
         div.appendChild(label_date);
         div.appendChild(document.createElement('br'));
     }
+
+    div.ondragstart = function(){
+        drag(event,data_incidence.id);
+    };
     return div;
 }
 

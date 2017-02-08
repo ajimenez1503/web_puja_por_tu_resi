@@ -179,3 +179,27 @@ function pause(millis){
   do { curDate = new Date(); }
   while(curDate-date < millis);
 }
+
+
+
+
+//////////////////////////////////////////////////////////////////////////////
+/*
+*Drag and Drop
+*/
+//////////////////////////////////////////////////////////////////////////////
+function allowDrop(ev) {
+    ev.preventDefault();
+}
+
+function drag(ev) {
+    ev.dataTransfer.setData("text", ev.target.id);
+}
+
+function drop(ev,new_status) {
+    ev.preventDefault();
+    var data = ev.dataTransfer.getData("text");
+    id=data.replace("div_inicdence_","")
+    ev.target.appendChild(document.getElementById(data));
+    console.log(new_status)
+}
