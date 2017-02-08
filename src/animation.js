@@ -199,7 +199,8 @@ function drag(ev) {
 function drop(ev,new_status) {
     ev.preventDefault();
     var data = ev.dataTransfer.getData("text");
-    id=data.replace("div_inicdence_","")
+    id_inicidence=data.replace("div_inicdence_","")
+    update_inicidence(id_inicidence, new_status);
     ev.target.appendChild(document.getElementById(data));
     console.log(new_status)
 }

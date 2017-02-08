@@ -98,7 +98,7 @@ function create_div_incidence(data_incidence,tab){
     var div = document.createElement('div');
     div.className += " localIncidence";
     div.id="div_inicdence_"+data_incidence.id;
-    div.setAttribute('draggable', true);//graggable
+
 
 
     var label_id= document.createElement('label');
@@ -128,13 +128,20 @@ function create_div_incidence(data_incidence,tab){
         label_date.appendChild(document.createTextNode("Estudiante: "+data_incidence.student_username));
         div.appendChild(label_date);
         div.appendChild(document.createElement('br'));
+
+        div.ondragstart = function(){
+            drag(event,data_incidence.id);
+        };
+
+        div.setAttribute('draggable', true);//graggable
     }
 
-    div.ondragstart = function(){
-        drag(event,data_incidence.id);
-    };
+
     return div;
 }
+
+
+
 
 
 /**
@@ -175,6 +182,29 @@ function getIncidences(tab){
     }
 }
 
+
+/**
+* Update the a inicidence .
+* @param id_inicidence
+* @param new_status
+*/
+function update_inicidence(id_inicidence, new_status){
+	var url=window.location.protocol+"//"+window.location.host+port+"/Incidence/updateState/";
+	var xmlHttp =new XMLHttpRequest();
+	xmlHttp.onreadystatechange = function() {
+		if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
+			var output= JSON.parse(xmlHttp.responseText);
+            console.log(output);
+			showErrorMessagesPage("updateInicidence",output.message,output.success);
+		}
+	}
+	xmlHttp.open("POST", url, true );
+    xmlHttp.withCredentials = true;
+    var data = new FormData();
+    data.append("id", id_inicidence);
+    data.append("status",new_status);
+	xmlHttp.send(data);
+}
 
 /**
 * Dispaly data of a specific college
