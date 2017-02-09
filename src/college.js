@@ -281,7 +281,7 @@ function remove_room(id){
 */
 function college_display_specifiy_room(data_room){
     display_specific_div("college_list_rooms","college_room_specific")
-    display_specific_room("college_room_specific",data_room);
+    display_specific_room("college_room_specific",data_room,true);
 
     var xmlHttp =new XMLHttpRequest();
     var url=window.location.protocol+"//"+window.location.host+port+"/Agreement/roomVerifyUnsigned/"+data_room.id;
@@ -294,19 +294,18 @@ function college_display_specifiy_room(data_room){
             console.log(output)
             if(output.success){//choose if display agreemtn or bid or anything according to the dates
                 if(output.data.agreement_signed){
-                    document.getElementById("college_room_specific_agreement").style.display="block";
+                    display_specific_div("college_room_agreemet_bids","college_room_agreement_signed");
                     //display data agreement
                     display_specific_agreement("college_room_specific_agreement_",output.data.agreement);
-                    document.getElementById("college_room_specific_agreement_student").style.display="block";
                     //display data agreement student
-                     display_specific_student("college_room_specific_agreement_student_",output.data.student);
+                    display_specific_student("college_room_specific_agreement_student_",output.data.student);
                 }else{
-                    document.getElementById("college_room_specific_bids").style.display="block";
+                    display_specific_div("college_room_agreemet_bids","college_room_specific_bids");
                     //get data of bids and display
                     get_display_bids(data_room.id,"college_room_specific_ul");
                 }
             }else{
-                document.getElementById("college_room_specific_bids").style.display="block";
+                display_specific_div("college_room_agreemet_bids","college_room_specific_bids");
                 //get data of bids and display
                 get_display_bids(data_room.id,"college_room_specific_ul");
             }

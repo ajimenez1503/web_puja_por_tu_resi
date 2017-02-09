@@ -262,11 +262,12 @@ function get_room_data(){
                 //display data agreement
                 display_specific_agreement("Room_specific_agreement_",output.data.agreement);
                 //display data room
-                display_specific_room("Room_specific",output.data.room);
+                display_specific_room("Room_specific",output.data.room,false);
                 //displat data college
                 display_specific_college("Room_specific_",output.data.college);
                 display_button_accept_refuse(output.data.agreement_signed,output.data.agreement);
             }else{
+                document.getElementById("Room_specific").style.display="none";
                 showErrorMessagesPage("showdata",output.message,output.success);
             }
         }
@@ -289,6 +290,8 @@ function display_button_accept_refuse(agreement_signed, agreement_data){
             refuse_agreement_room(agreement_data.room_id);
         };
 
+    }else{
+        document.getElementById("Room_accept_refuse").style.display="none";//display button
     }
 
 }
@@ -378,6 +381,7 @@ function show_form_payment(){
     		if(output.success){//in the case that there are month available, show it at the form
                 if (output.data.length>=1){
                     document.getElementById("payment_rent_month").innerHTML="   "+output.data[0].month;
+                    document.getElementById("payment_rent_year").innerHTML="   "+output.data[0].year;
                     document.getElementById("payment_rent_price").innerHTML="   "+output.data[0].price.toString()+"€";
                     document.getElementById("payment_rent_submit").onclick = function(){
                         pay_month(output.data[0].id);
@@ -403,6 +407,10 @@ function create_row_rent(data){
     //month
         var td = document.createElement('td');
         td.appendChild(document.createTextNode(data.month))
+        tr.appendChild(td)
+    //year
+        var td = document.createElement('td');
+        td.appendChild(document.createTextNode(data.year))
         tr.appendChild(td)
     //price
         var td = document.createElement('td');
@@ -737,7 +745,7 @@ function GetOFFEREDRooms(){
 function display_search_room_specific(data_college,data_room){
     display_specific_div("search_room_option","student_search_room_specific");
 
-    display_specific_room("student_search_room_specific",data_room);
+    display_specific_room("student_search_room_specific",data_room,true);
     display_specific_college("student_search_",data_college);
 
     //button of bid and remove bid

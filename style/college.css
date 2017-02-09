@@ -57,19 +57,6 @@
   	border-color: rgb(150, 172, 219);
 }
 
-#college_room_specific_agreement{
-	display:none;
-}
-
-#college_room_specific_agreement_student{
-	display:none;
-}
-
-#college_room_specific_bids{
-	display:none;
-
-}
-
 /*////////////////////////////////////////////////////////////////
 *create new room
 ////////////////////////////////////////////////////////////////*/
