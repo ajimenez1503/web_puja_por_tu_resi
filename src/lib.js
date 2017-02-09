@@ -141,7 +141,26 @@ function create_div_incidence(data_incidence,tab){
 }
 
 
-
+/**
+* Get number message wihout open, and write in menu whith the message.
+* @param: tab
+*/
+function countUnreadMessages(tab){
+	var xmlHttp =new XMLHttpRequest();
+	var url=window.location.protocol+"//"+window.location.host+port+"/Message/countUnread/";
+	xmlHttp.open("GET", url, true );
+    xmlHttp.withCredentials = true;
+	xmlHttp.send();
+	xmlHttp.onreadystatechange = function() {
+    	if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
+    		var output= JSON.parse(xmlHttp.responseText);
+            console.log(output)
+    		if(output.success){
+    			document.getElementById(tab+"numberMessage").textContent=output.data;
+    		}
+    	}
+    }
+}
 
 
 /**

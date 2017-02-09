@@ -731,9 +731,39 @@ function college_profile_updateEquipment(){
 }
 //////////////////////////////////////////////////////////////////////////////
 /*
+*Inicidences College
+*/
+//////////////////////////////////////////////////////////////////////////////
+/**
+* Get number inicidences open.
+* @param: tab
+*/
+function countOpenIncidences(tab){
+	var xmlHttp =new XMLHttpRequest();
+	var url=window.location.protocol+"//"+window.location.host+port+"/Incidence/getNumberOpen/";
+	xmlHttp.open("GET", url, true );
+    xmlHttp.withCredentials = true;
+	xmlHttp.send();
+	xmlHttp.onreadystatechange = function() {
+    	if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
+    		var output= JSON.parse(xmlHttp.responseText);
+            console.log(output)
+    		if(output.success){
+    			document.getElementById(tab+"numberIncideces").textContent=output.data;
+    		}
+    	}
+    }
+}
+//////////////////////////////////////////////////////////////////////////////
+/*
 *Routing College
 */
 //////////////////////////////////////////////////////////////////////////////
+
+function get_notification(tab){
+    countUnreadMessages(tab);
+    countOpenIncidences(tab);
+}
 /**
 * Display the college_create_room view
 */
@@ -741,6 +771,7 @@ page('/college_create_room', function(){
     if("collegeview"===globa_view ){
         console.log("display college_create_room");
         display_specific_div("college_view_list_elements","college_create_room");
+        get_notification("college_");
     }
 });
 
@@ -754,6 +785,7 @@ page('/college_list_rooms', function(){
         display_specific_div("college_view_list_elements","college_list_rooms");
         display_specific_div("college_list_rooms","college_table_list_rooms");
         collegeGetAllRooms();// display table list rooms
+        get_notification("college_");
     }
 });
 
@@ -770,6 +802,7 @@ page('/college_messages', function(){
             //get number of message without read of every student
             college_get_list_student();
         //display the list of messgaes of every student
+        get_notification("college_");
     }
 });
 
@@ -783,6 +816,7 @@ page('/college_profile', function(){
         display_specific_div("college_view_list_elements","college_profile");
         display_specific_div("college_profile_list_form",undefined);
         college_displayProfile();
+        get_notification("college_");
     }
 });
 
@@ -795,5 +829,6 @@ page('/college_inicidence', function(){
         console.log("displayIncidence");
         display_specific_div("college_view_list_elements","college_incidence");
         getIncidences("college_");
+        get_notification("college_");
     }
 });

@@ -235,27 +235,6 @@ function OpenAllMessages(){
     	}
     }
 }
-
-
-/**
-* Get number message wihout open, and write in menu whith the message.
-*/
-function countUnreadMessages(){
-	var xmlHttp =new XMLHttpRequest();
-	var url=window.location.protocol+"//"+window.location.host+port+"/Message/countUnread/";
-	xmlHttp.open("GET", url, true );
-    xmlHttp.withCredentials = true;
-	xmlHttp.send();
-	xmlHttp.onreadystatechange = function() {
-    	if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
-    		var output= JSON.parse(xmlHttp.responseText);
-            console.log(output)
-    		if(output.success){
-    			document.getElementById("numberMessage").textContent=output.data;
-    		}
-    	}
-    }
-}
 //////////////////////////////////////////////////////////////////////////////
 /*
 *ROOM, SHOW DATA, DOWNLOAD FILE, ACEPT AGREEMENT, REJECT
@@ -844,7 +823,7 @@ page('/profile', function(){
     if("studentview"===globa_view){
         console.log("displayProfile");
         display_specific_div("student_view_list_elements","profile");
-        countUnreadMessages();
+        countUnreadMessages("student_");
         dataProfile("profile");
         display_specific_div('profile_student_list_form',undefined);
     }
@@ -859,7 +838,7 @@ page('/Room', function(){
         console.log("displayRoom");
         display_specific_div("student_view_list_elements","Room");
         get_room_data();
-        countUnreadMessages();
+        countUnreadMessages("student_");
     }
 });
 
@@ -871,7 +850,7 @@ page('/search_room', function(){
     if("studentview"===globa_view){
         console.log("displaysearch_room");
         display_specific_div("student_view_list_elements","search_room");
-        countUnreadMessages();
+        countUnreadMessages("student_");
         display_search_room_table();
     }
 });
@@ -884,7 +863,7 @@ page('/inicidence', function(){
     if("studentview"===globa_view){
         console.log("displayIncidence");
         display_specific_div("student_view_list_elements","incidence");
-        countUnreadMessages();
+        countUnreadMessages("student_");
         getIncidences("student_");
     }
 });
@@ -897,7 +876,7 @@ page('/message', function(){
     if("studentview"===globa_view){
         console.log("displayMessage");
         display_specific_div("student_view_list_elements","message");
-        countUnreadMessages();
+        countUnreadMessages("student_");
         getMessages();
         OpenAllMessages();
     }
@@ -911,7 +890,7 @@ page('/rent', function(){
     if("studentview"===globa_view){
         console.log("displayRent");
         display_specific_div("student_view_list_elements","rent");
-        countUnreadMessages();
+        countUnreadMessages("student_");
         getRents();
         show_form_payment();
     }
