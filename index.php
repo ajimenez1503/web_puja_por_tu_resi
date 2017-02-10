@@ -24,6 +24,10 @@
     <!-- Latest compiled and minified JavaScript  select options -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js" integrity="sha256-JD3g+rB9BjW6/cGEuwCue1sGtitb2aQVNs/pl4114XQ=" crossorigin="anonymous"></script>
 
+    <!-- Latest compiled and minified CSS  floatthead for table thead-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/floatthead/2.0.1/jquery.floatThead.js" integrity="sha256-LJqhf2wTTlYWKcYHAt4bKFleZAKxPnd7SylslyFneqM=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/floatthead/2.0.1/jquery.floatThead.min.js" integrity="sha256-dhuDgc2Dyz+qwrJkYr0wtEilIq+4MqcTknTKeNgUQ/Y=" crossorigin="anonymous"></script>
+    
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"><!-- icons  -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"><!-- icons  -->

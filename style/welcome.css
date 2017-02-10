@@ -122,3 +122,8 @@
 	text-align: center;
   	margin: 4%;
 }
+
+thead{
+	background-color: rgb(51, 122, 183);
+	color: white;
+}

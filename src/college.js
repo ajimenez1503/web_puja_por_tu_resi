@@ -241,6 +241,7 @@ function collegeGetAllRooms(){
                 for (i = 0; i < output.data.length; i++) {
                     father.appendChild( college_create_row_room(output.data[i]));
                 }
+                floatThead_table("college_table_list_rooms");
     		}else{
     			showErrorMessagesPage("showdata",output.message,output.success);
     		}
@@ -442,6 +443,7 @@ function college_message_get_list_student(){
                     list_student.push(output.data[i].student)
                     father.appendChild( college_message_create_row_student(output.data[i].student,output.data[i].unread));
                 }
+                floatThead_table("college_messages_table");
                 //add all the studnt to the select option
                 college_fill_list_student_select(list_student);
     		}else{
@@ -809,7 +811,7 @@ function college_create_row_student(data_student,data_room,data_agreement,list_r
         display_specific_student("college_student_specific_student_",data_student)
         display_specific_agreement("college_student_specific_agreement_",data_agreement)
         display_specific_room("college_student_specific_room",data_room,false);
-        display_table_rents("college_student_specific_element_table_rent",list_rents)
+        display_table_rents("college_student_specific_element_table_rent","college_student_specific_table_rent",list_rents);
     };
     return tr;
 }
@@ -836,6 +838,7 @@ function collegeGetAllStudents(){
                 for (i = 0; i < output.data.length; i++) {
                     father.appendChild( college_create_row_student(output.data[i].student,output.data[i].room,output.data[i].agreement,output.data[i].rents));
                 }
+                floatThead_table("college_table_list_students");
     		}else{
     			showErrorMessagesPage("showdata",output.message,output.success);
     		}

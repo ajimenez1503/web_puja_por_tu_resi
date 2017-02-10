@@ -93,12 +93,13 @@ function create_row_rent(data_rent){
 * @param: tab
 * @param: list_rents
 */
-function display_table_rents(tab,list_rents){
-	var father = document.getElementById(tab);
+function display_table_rents(tab_element,tab_table,list_rents){
+	var father = document.getElementById(tab_element);
 	deleteAllChildElement(father)
 	for (i = 0; i < list_rents.length; i++) {
 		father.appendChild( create_row_rent(list_rents[i]));
 	}
+    floatThead_table(tab_table);
 }
 
 

@@ -87,6 +87,19 @@ function rotate(tab){
     }
 }
 
+/**
+* keep in the top the thead of the table
+* @param tab_table
+*/
+function floatThead_table(tab_table) {
+    var $table = $('#'+tab_table+' table');
+    $table.floatThead({
+        scrollContainer: function($table){
+            return $table.closest('.wrapper');
+        }
+    });
+}
+
 
 /**
 * show the error in a div

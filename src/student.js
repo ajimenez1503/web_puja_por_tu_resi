@@ -414,7 +414,7 @@ function getRents(){
     		var output= JSON.parse(xmlHttp.responseText);
             console.log(output)
     		if(output.success){
-                display_table_rents("student_element_table_rent",output.data)
+                display_table_rents("student_element_table_rent","table_rent",output.data)
     		}else{
     			showErrorMessagesPage("showdata",output.message,output.success);
     		}
@@ -654,6 +654,7 @@ function display_table_list_rooms(data){
             father.appendChild( create_row_room(data[i],data[i].rooms[j]));
         }
     }
+	floatThead_table("student_table_list_rooms");
 }
 
 /**
