@@ -804,10 +804,11 @@ function college_create_row_student(data_student,data_room,data_agreement,list_r
         selected_out_selected_row_table(tr.id)
     };
     tr.onclick = function() {
+        document.getElementById("college_student_specific_room").style.display="block";
         display_specific_div("college_list_students","college_student_specific");
-        //TODO display_specific_student(tab,data_student)
-        //TODO display_specific_agreement(tab,data_agreement)
-        //TODO display_specific_room(tab,data_room,display_shcool_date)
+        display_specific_student("college_student_specific_student_",data_student)
+        display_specific_agreement("college_student_specific_agreement_",data_agreement)
+        display_specific_room("college_student_specific_room",data_room,false);
     };
     return tr;
 }

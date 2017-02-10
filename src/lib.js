@@ -139,7 +139,6 @@ function create_div_incidence(data_incidence,tab){
         div.setAttribute('draggable', true);//graggable
     }
 
-
     return div;
 }
 
