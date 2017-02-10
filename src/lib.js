@@ -43,6 +43,65 @@ function display_specific_room(tab,data_room,display_shcool_date){
 }
 
 
+
+/**
+* Get every rent and display as a row in the table. Month/ price/ date_paid/ receipt_file
+* @param data_rent
+* @return tr
+*/
+function create_row_rent(data_rent){
+    var tr = document.createElement('tr');
+    //month
+        var td = document.createElement('td');
+        td.appendChild(document.createTextNode(data_rent.month))
+        tr.appendChild(td)
+    //year
+        var td = document.createElement('td');
+        td.appendChild(document.createTextNode(data_rent.year))
+        tr.appendChild(td)
+    //price
+        var td = document.createElement('td');
+        td.appendChild(document.createTextNode(data_rent.price.toString()+"€"));
+        tr.appendChild(td)
+    //date paid
+        var td = document.createElement('td');
+        if (data_rent.date_paid == null){
+            td.appendChild(document.createTextNode(""))
+        }else{
+            td.appendChild(document.createTextNode(data_rent.date_paid.date))
+        }
+        tr.appendChild(td)
+    //file_paid
+        var td = document.createElement('td');
+        if (data_rent.file_receipt == null){
+            td.appendChild(document.createTextNode(""))
+        }else{
+            var file_download = document.createElement('a');
+            file_download.setAttribute('href',window.location.protocol+"//"+window.location.host+port+"/Rent/download/"+data_rent.file_receipt);
+            file_download.download="file"
+            file_download.appendChild(document.createTextNode("file_download"));
+            td.appendChild(file_download);
+        }
+        tr.appendChild(td)
+    return tr;
+}
+
+
+
+/**
+* Dsiplay table rents in the tab
+* @param: tab
+* @param: list_rents
+*/
+function display_table_rents(tab,list_rents){
+	var father = document.getElementById(tab);
+	deleteAllChildElement(father)
+	for (i = 0; i < list_rents.length; i++) {
+		father.appendChild( create_row_rent(list_rents[i]));
+	}
+}
+
+
  /**
  * Dispaly data of a specific agreement
  * @param: tab

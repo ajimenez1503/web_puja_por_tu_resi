@@ -70,6 +70,14 @@
 	border-radius: 21px;
   	border-color: rgb(150, 172, 219);
 }
+
+#college_student_specific_table_rent{
+	margin-left: 5%;
+	margin-right: 5%;
+	height: 310px;
+	margin-bottom: 5%;
+	overflow-y: auto;
+}
 /*////////////////////////////////////////////////////////////////
 *college_room_specific
 ////////////////////////////////////////////////////////////////*/
