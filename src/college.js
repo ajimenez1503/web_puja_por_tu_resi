@@ -123,6 +123,7 @@ function create_new_room(){
 //////////////////////////////////////////////////////////////////////////////
 /**
 * Get every room and display as a row in the table. nombre,inicio academico,fin academico,inicio puja,fin puja,tamaño,planta,tv, bath, desk, wardrove
+* @param data_room
 * @return tr element (row)
 */
 function college_create_row_room(data_room){
@@ -388,7 +389,7 @@ function college_sendMessage(tab, specific_student){
 * @param: unread
 * @return tr
 */
-function college_create_row_student(data_student,unread){
+function college_message_create_row_student(data_student,unread){
     var tr = document.createElement('tr');
     tr.className+=" college_messages_tr";
     tr.id="college_messages_tr_"+data_student.username;
@@ -410,6 +411,8 @@ function college_create_row_student(data_student,unread){
     };
     tr.onclick = function() {
         college_display_messages_specific_student(data_student.username);
+        span.innerHTML=0;//all the message are read
+
     };
     return tr;
 }
@@ -421,7 +424,7 @@ function college_create_row_student(data_student,unread){
 * save the list of student of another uses
 * add all the studnt to the select option
 */
-function college_get_list_student(){
+function college_message_get_list_student(){
     var list_student=[]
     var xmlHttp =new XMLHttpRequest();
 	var url=window.location.protocol+"//"+window.location.host+port+"/Message/countUnreadStudent/";
@@ -437,7 +440,7 @@ function college_get_list_student(){
                 deleteAllChildElement(father);
                 for (i = 0; i < output.data.length; i++) {
                     list_student.push(output.data[i].student)
-                    father.appendChild( college_create_row_student(output.data[i].student,output.data[i].unread));
+                    father.appendChild( college_message_create_row_student(output.data[i].student,output.data[i].unread));
                 }
                 //add all the studnt to the select option
                 college_fill_list_student_select(list_student);
@@ -755,10 +758,93 @@ function countOpenIncidences(tab){
 }
 //////////////////////////////////////////////////////////////////////////////
 /*
+*college_list_students
+*/
+//////////////////////////////////////////////////////////////////////////////
+/**
+* Get every student and display as a row in the table. nombre, DNI, email, room,inicio academico,fin academico
+* @param data_student
+* @param data_room
+* @param data_agreement
+* @param list_rents
+* @return tr element (row)
+*/
+function college_create_row_student(data_student,data_room,data_agreement,list_rents){
+    var tr = document.createElement('tr');
+    tr.id="college_list_students_id"+data_room.id.toString();
+    //nombre
+        var td = document.createElement('td');
+        td.appendChild(document.createTextNode(data_student.name))
+        tr.appendChild(td)
+    //DNI
+        var td = document.createElement('td');
+        td.appendChild(document.createTextNode(data_student.username))
+        tr.appendChild(td)
+    //Email
+        var td = document.createElement('td');
+        td.appendChild(document.createTextNode(data_student.email))
+        tr.appendChild(td)
+    //room
+        var td = document.createElement('td');
+        td.appendChild(document.createTextNode(data_room.name))
+        tr.appendChild(td)
+    //inicio academico
+        var td = document.createElement('td');
+        td.appendChild(document.createTextNode(data_agreement.date_start_school.date.replace(" 00:00:00", "")));
+        tr.appendChild(td)
+    //fin academico
+        var td = document.createElement('td');
+        td.appendChild(document.createTextNode(data_agreement.date_end_school.date.replace(" 00:00:00", "")));
+        tr.appendChild(td)
+
+    tr.onmouseover = function() {
+        selected_out_selected_row_table(tr.id)
+    };
+    tr.onmouseout = function() {
+        selected_out_selected_row_table(tr.id)
+    };
+    tr.onclick = function() {
+        display_specific_div("college_list_students","college_student_specific");
+        //TODO display_specific_student(tab,data_student)
+        //TODO display_specific_agreement(tab,data_agreement)
+        //TODO display_specific_room(tab,data_room,display_shcool_date)
+    };
+    return tr;
+}
+
+
+
+
+/**
+*Get all the students of the college and display in the table
+*/
+function collegeGetAllStudents(){
+    var xmlHttp =new XMLHttpRequest();
+	var url=window.location.protocol+"//"+window.location.host+port+"/ProfileCollege/getStudentsComplete/";
+	xmlHttp.open("GET", url, true );
+    xmlHttp.withCredentials = true;
+	xmlHttp.send();
+	xmlHttp.onreadystatechange = function() {
+    	if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
+    		var output= JSON.parse(xmlHttp.responseText);
+            console.log(output)
+    		if(output.success){
+                var father = document.getElementById("college_element_table_list_students");
+                deleteAllChildElement(father)
+                for (i = 0; i < output.data.length; i++) {
+                    father.appendChild( college_create_row_student(output.data[i].student,output.data[i].room,output.data[i].agreement,output.data[i].rents));
+                }
+    		}else{
+    			showErrorMessagesPage("showdata",output.message,output.success);
+    		}
+    	}
+    }
+}
+//////////////////////////////////////////////////////////////////////////////
+/*
 *Routing College
 */
 //////////////////////////////////////////////////////////////////////////////
-
 function get_notification(tab){
     countUnreadMessages(tab);
     countOpenIncidences(tab);
@@ -790,6 +876,19 @@ page('/college_list_rooms', function(){
 
 
 /**
+* Display list students of the student
+*/
+page('/college_list_students', function(){
+    if("collegeview"===globa_view ){
+        console.log("display college_list_students");
+        display_specific_div("college_view_list_elements","college_list_students");
+        display_specific_div("college_list_students","college_table_list_students");
+        collegeGetAllStudents();// display table list students
+        get_notification("college_");
+    }
+});
+
+/**
 * Display the college_create_room view
 */
 page('/college_messages', function(){
@@ -799,7 +898,7 @@ page('/college_messages', function(){
         display_specific_div("college_messages_list_messages",'college_messages_send_message');
         // get list student
             //get number of message without read of every student
-            college_get_list_student();
+            college_message_get_list_student();
         //display the list of messgaes of every student
         get_notification("college_");
     }

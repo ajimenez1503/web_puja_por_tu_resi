@@ -8,6 +8,7 @@
             <li onclick="page('/college_profile')"> <a> <label>Perfil</label> </a> </li>
             <li onclick="page('/college_create_room')"> <a> <label>Nueva habitacion</label> </a> </li>
             <li onclick="page('/college_list_rooms')"> <a> <label>Lista habitaciones</label> </a> </li>
+            <li onclick="page('/college_list_students')"> <a> <label>Lista estudiantes</label> </a> </li>
             <li onclick="page('/college_messages')"> <a> <label>Mensajes <span id="college_numberMessage">0</span></label> </a> </li>
             <li onclick="page('/college_inicidence')"> <a> <label>Incidencias <span id="college_numberIncideces"></label> </a> </li>
             <li onclick="page('/connection')"> <a> <label>Log out</label> </a> </li>
@@ -332,7 +333,7 @@
                     </div>
 
                 </div>
-                
+
                 <div  id="college_room_specific_bids" class="panel-group">
                     <div class="panel with panel-primary class">
                         <div class="panel-heading">Pujas</div>
@@ -539,6 +540,31 @@
 
 
     </div><!-- end inicidence -->
+
+
+
+
+    <div id="college_list_students">
+        <div id="college_table_list_students">
+            <table  class="table table-striped">
+                <thead>
+                <tr>
+                  <th>nombre</th>
+                  <th>DNI</th>
+                  <th>email</th>
+                  <th>habitacion</th>
+                  <th>fecha inicio</th>
+                  <th>fecha fin</th>
+                </tr>
+                </thead>
+                <tbody  id="college_element_table_list_students">
+                </tbody>
+            </table>
+        </div><!-- end college_table_list_students -->
+        <div id="college_student_specific">
+
+        </div><!-- end college_student_specific -->
+    </div> <!-- end college_list_students -->
 
 
 

@@ -104,8 +104,6 @@ function create_div_incidence(data_incidence,tab){
     div.className += " localIncidence";
     div.id="div_inicdence_"+data_incidence.id;
 
-
-
     var label_id= document.createElement('label');
     label_id.appendChild(document.createTextNode("id: "+data_incidence.id));
     div.appendChild(label_id);
