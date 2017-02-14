@@ -266,7 +266,7 @@ function remove_room(id){
     		var output= JSON.parse(xmlHttp.responseText);
             console.log(output)
     		if(!output.success){
-    			showErrorMessagesPage("remove_roome",output.message,output.success);
+    			showErrorMessagesPage("remove_room",output.message,output.success);
                 return false;
     		}else{
                 return true;
@@ -540,7 +540,7 @@ function college_display_messages_specific_student(student){
 */
 function college_displayProfile(){
 	var xmlHttp =new XMLHttpRequest();
-	var url=window.location.protocol+"//"+window.location.host+port+"/ProfileStudent/get/";
+	var url=window.location.protocol+"//"+window.location.host+port+"/ProfileCollege/get/";
 	xmlHttp.open("GET", url, true );
     xmlHttp.withCredentials = true;
 	xmlHttp.send();
@@ -733,6 +733,93 @@ function college_profile_updateEquipment(){
 
     document.getElementById("college_profile_id_formUpdateEquipment").reset();//clean input
 }
+
+/**
+* Remove a responsiblePerson by id
+* @param id of theResponsiblePerson
+* @return bool (true if it is deleted)
+*/
+function remove_ResponsiblePerson(DNI){
+	var xmlHttp =new XMLHttpRequest();
+	var url=window.location.protocol+"//"+window.location.host+port+"/ResponsiblePerson/remove/"+DNI;
+	xmlHttp.open("POST", url, true );
+    xmlHttp.withCredentials = true;
+	xmlHttp.send();
+	xmlHttp.onreadystatechange = function() {
+    	if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
+    		var output= JSON.parse(xmlHttp.responseText);
+            console.log(output)
+    		showErrorMessagesPage("remove_ResponsiblePerson",output.message,output.success);
+    	}
+    }
+}
+
+
+/**
+* create row in  table responsible person
+* @param: data_responsiblePerson
+* @return tr
+*/
+function college_create_row_responsiblePerson(data_responsiblePerson){
+    var tr = document.createElement('tr');
+    tr.id="college_profile_element_table_responsiblePerson_"+data_responsiblePerson.DNI;
+    //DNI
+        var td = document.createElement('td');
+        td.appendChild(document.createTextNode(data_responsiblePerson.DNI))
+        tr.appendChild(td)
+    //Email
+        var td = document.createElement('td');
+        td.appendChild(document.createTextNode(data_responsiblePerson.email))
+        tr.appendChild(td)
+    //nombre
+        var td = document.createElement('td');
+        td.appendChild(document.createTextNode(data_responsiblePerson.name))
+        tr.appendChild(td)
+    //nombre
+        var td = document.createElement('td');
+        td.appendChild(document.createTextNode(data_responsiblePerson.job_position))
+        tr.appendChild(td)
+    //buttom remove
+       var td = document.createElement('td');
+       remove_buttom=document.createElement('button');
+       remove_buttom.className+=" btn btn-link"
+       remove_buttom.appendChild(icon_cross())
+       remove_buttom.onclick = function() {
+           remove_ResponsiblePerson(data_responsiblePerson.DNI);
+           display_table_responsiblePerson();
+       };
+       td.appendChild(remove_buttom)
+       tr.appendChild(td)
+
+    return tr;
+}
+
+/**
+* Display table responsible person
+*/
+function display_table_responsiblePerson(){
+    var xmlHttp =new XMLHttpRequest();
+	var url=window.location.protocol+"//"+window.location.host+port+"/ResponsiblePerson/get/";
+	xmlHttp.open("GET", url, true );
+    xmlHttp.withCredentials = true;
+	xmlHttp.send();
+	xmlHttp.onreadystatechange = function() {
+    	if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
+    		var output= JSON.parse(xmlHttp.responseText);
+            console.log(output)
+    		if(output.success){
+                var father = document.getElementById("college_profile_element_table_responsiblePerson");
+                deleteAllChildElement(father)
+                for (i = 0; i < output.data.length; i++) {
+                    father.appendChild( college_create_row_responsiblePerson(output.data[i]));
+                }
+                floatThead_table("college_profile_table_responsiblePerson");
+    		}else{
+    			showErrorMessagesPage("showdata",output.message,output.success);
+    		}
+    	}
+    }
+}
 //////////////////////////////////////////////////////////////////////////////
 /*
 *Inicidences College
@@ -919,6 +1006,7 @@ page('/college_profile', function(){
         display_specific_div("college_view_list_elements","college_profile");
         display_specific_div("college_profile_list_form",undefined);
         college_displayProfile();
+        display_table_responsiblePerson();
         get_notification("college_");
     }
 });

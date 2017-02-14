@@ -168,3 +168,11 @@ textarea{
 .college_profile_set_button{
 	text-align: center;
 }
+
+#college_profile_table_responsiblePerson{
+	margin-left: 5%;
+	margin-right: 2%;
+	height: 250px;
+	margin-bottom: 5%;
+	overflow-y: auto;
+}

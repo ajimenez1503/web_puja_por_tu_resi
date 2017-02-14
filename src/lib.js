@@ -89,7 +89,7 @@ function create_row_rent(data_rent){
 
 
 /**
-* Dsiplay table rents in the tab
+* Display table rents in the tab
 * @param: tab
 * @param: list_rents
 */

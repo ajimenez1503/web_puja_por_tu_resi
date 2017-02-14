@@ -21,20 +21,41 @@
 
     <div id="college_profile">
 
-        <div class="college_elememt_profile panel-group">
-            <div class="panel with panel-primary class">
-                <div class="panel-heading">Residencia</div>
-                <div class="panel-body">
-                    <label>Nombre:   </label><label id="college_profile_college_company_name"></label></br>
-                    <label>Contacto:   </label><label id="college_profile_college_telephone"></label></br>
-                    <label>Url:   </label><a target="_blank" id="college_profile_college_url"></a></br>
-                    <label>email:   </label><label id="college_profile_college_email"></label></br>
-                    <label>Equipamiento:   </label></br>
-                    <div id="college_profile_college_equipment">
+        <div class="col-sm-6">
+            <div class="college_elememt_profile panel-group">
+                <div class="panel with panel-primary class">
+                    <div class="panel-heading">Residencia</div>
+                    <div class="panel-body">
+                        <label>Nombre:   </label><label id="college_profile_college_company_name"></label></br>
+                        <label>Contacto:   </label><label id="college_profile_college_telephone"></label></br>
+                        <label>Url:   </label><a target="_blank" id="college_profile_college_url"></a></br>
+                        <label>email:   </label><label id="college_profile_college_email"></label></br>
+                        <label>Equipamiento:   </label></br>
+                        <div id="college_profile_college_equipment">
+                        </div>
                     </div>
+                    <div id="college_profile_college_map"></div>
                 </div>
-                <div id="college_profile_college_map"></div>
             </div>
+        </div>
+
+        <div class="col-sm-6">
+            <div id="college_profile_table_responsiblePerson">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                      <th>DNI</th>
+                      <th>email</th>
+                      <th>nombre</th>
+                      <th>puesto de trabajo</th>
+                      <th>eliminar</th>
+                    </tr>
+                    </thead>
+                    <tbody  id="college_profile_element_table_responsiblePerson">
+                    </tbody>
+                </table>
+            </div>
+
         </div>
         <div class="college_profile_set_button">
             <button onclick="display_specific_div('college_profile_list_form','college_profile_form_update_email')" type="button" class="button_margin_room btn btn-primary">Cambiar email</button>
@@ -620,7 +641,7 @@
                 </div>
 
                 <div id="college_student_specific_table_rent">
-                    <table id="blabla" class="table table-striped">
+                    <table class="table table-striped">
                         <thead>
                         <tr>
                           <th>mes</th>
