@@ -47,7 +47,7 @@
                       <th>DNI</th>
                       <th>email</th>
                       <th>nombre</th>
-                      <th>puesto de trabajo</th>
+                      <th>trabajo</th>
                       <th>eliminar</th>
                     </tr>
                     </thead>
@@ -64,6 +64,7 @@
             <button onclick="display_specific_div('college_profile_list_form','college_profile_form_update_telephone')" type="button" class="button_margin_room btn btn-success">Cambiar telefono</button>
             <button onclick="display_specific_div('college_profile_list_form','college_profile_form_update_url')" type="button" class="button_margin_room btn btn-danger">Cambiar URL</button>
             <button onclick="display_specific_div('college_profile_list_form','college_profile_form_update_equipment')" type="button" class="button_margin_room btn btn-info">Cambiar equipamiento</button>
+            <button onclick="display_specific_div('college_profile_list_form','college_profile_form_new_ReposiblePerson')" type="button" class="button_margin_room btn btn-info button_responsiblePerson">Nuevo responsable</button>
 
 
             <div id="college_profile_list_form">
@@ -246,6 +247,45 @@
                                                         <div class="row">
                                                             <div class="col-sm-6 col-sm-offset-3">
                                                                 <input type="submit" onClick="college_profile_updateEquipment()" name="register-submit"  tabindex="4" class="form-control btn btn-submit" value="Cambiar equipamiento">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div id="college_profile_form_new_ReposiblePerson">
+                    <div class="col-sm-7">
+                        <div class="row">
+                            <div class="col-md-10 col-md-offset-5">
+                                <div class="panel panel-login">
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <form id="college_profile_id_formReposiblePerson"action="javascript:void(0);" method="post" role="form" >
+                                                    <div class="form-group">
+                                                        <input  id="college_profile_form_ReposiblePerson_DNI" type="email" name="text"  tabindex="2" class="form-control" placeholder="DNI" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input  id="college_profile_form_ReposiblePerson_email" type="email" name="email"  tabindex="2" class="form-control" placeholder="email" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input  id="college_profile_form_ReposiblePerson_name" type="email" name="text"  tabindex="2" class="form-control" placeholder="nombre" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input  id="college_profile_form_ReposiblePerson_job_position" type="text" name="text"  tabindex="2" class="form-control" placeholder="puesto de trabajo" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="row">
+                                                            <div class="col-sm-6 col-sm-offset-3">
+                                                                <input type="submit" onClick="college_profile_create_responsiblePerson()" name="register-submit"  tabindex="4" class="form-control btn btn-submit" value="crear responsable">
                                                             </div>
                                                         </div>
                                                     </div>

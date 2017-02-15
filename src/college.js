@@ -734,6 +734,51 @@ function college_profile_updateEquipment(){
     document.getElementById("college_profile_id_formUpdateEquipment").reset();//clean input
 }
 
+
+/**
+* Create a responsiblePerson
+*/
+function college_profile_create_responsiblePerson(){
+    var DNI=document.getElementById("college_profile_form_ReposiblePerson_DNI").value;
+    var email=document.getElementById("college_profile_form_ReposiblePerson_email").value;
+    var name=document.getElementById("college_profile_form_ReposiblePerson_name").value;
+    var job_position=document.getElementById("college_profile_form_ReposiblePerson_job_position").value;
+    if (!validate_DNI(DNI)){
+        showErrorMessagesPage("new responsiblePerson","Invalid DNI",false);
+        return;
+    }
+    if(!validate_email(email)){
+        showErrorMessagesPage("new responsiblePerson","Invalid email",false);
+        return;
+    }
+    if(name.length==0){
+        showErrorMessagesPage("new responsiblePerson","El nombre esta vacio",false);
+        return;
+    }
+    if(job_position.length==0){
+        showErrorMessagesPage("new responsiblePerson","El trabajo esta vacio",false);
+        return;
+    }
+	var url=window.location.protocol+"//"+window.location.host+port+"/ResponsiblePerson/create/";
+	var xmlHttp =new XMLHttpRequest();
+	xmlHttp.onreadystatechange = function() {
+		if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
+			var output= JSON.parse(xmlHttp.responseText);
+            console.log(output);
+			showErrorMessagesPage("updateURL",output.message,output.success);
+		}
+	}
+	xmlHttp.open("POST", url, true );
+    xmlHttp.withCredentials = true;
+    var data = new FormData();
+    data.append("DNI", DNI);
+    data.append("email",email);
+    data.append("name", name);
+    data.append("job_position", job_position);
+    xmlHttp.send(data);
+    document.getElementById("college_profile_id_formReposiblePerson").reset();//clean input
+}
+
 /**
 * Remove a responsiblePerson by id
 * @param id of theResponsiblePerson
