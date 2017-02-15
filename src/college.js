@@ -575,6 +575,11 @@ function college_profile_updatePassword(){
 					var output= JSON.parse(xmlHttp.responseText);
                     console.log(output);
 					showErrorMessagesPage("updatePassword",output.message,output.success);
+                    if(output.success){
+                        document.getElementById("college_profile_id_formUpdatePassword").reset();//clean input
+                        display_specific_div("college_profile_list_form",undefined);
+                        college_displayProfile();
+                    }
 				}
 			}
 			xmlHttp.open("POST", url, true );
@@ -589,8 +594,6 @@ function college_profile_updatePassword(){
 	}else{
 		showErrorMessagesPage("updatePassword","passwords not identical ",false);
 	}
-    document.getElementById("college_profile_id_formUpdatePassword").reset();//clean input
-    display_specific_div("college_profile_list_form",undefined);
 }
 
 
@@ -608,6 +611,11 @@ function college_profile_updateEmail(){
 				var output= JSON.parse(xmlHttp.responseText);
                 console.log(output);
 				showErrorMessagesPage("updateEmail",output.message,output.success);
+                if(output.success){
+                    document.getElementById("college_profile_id_formUpdateEmail").reset();//clean input
+                    display_specific_div("college_profile_list_form",undefined);
+                    college_displayProfile();
+                }
 			}
 		}
 		xmlHttp.open("POST", url, true );
@@ -618,8 +626,6 @@ function college_profile_updateEmail(){
 	}else{
 		showErrorMessagesPage("updateEmail","Email no es valido.",false);
 	}
-    document.getElementById("college_profile_id_formUpdateEmail").reset();//clean input
-    display_specific_div("college_profile_list_form",undefined);
 }
 
 
@@ -634,6 +640,11 @@ function college_profile_updateAddress(){
 			var output= JSON.parse(xmlHttp.responseText);
             console.log(output);
 			showErrorMessagesPage("updateEmail",output.message,output.success);
+            if(output.success){
+                document.getElementById("college_profile_id_formUpdateAddress").reset();//clean input
+                display_specific_div("college_profile_list_form",undefined);
+                college_displayProfile();
+            }
 		}
     }
 	xmlHttp.open("POST", url, true );
@@ -642,11 +653,8 @@ function college_profile_updateAddress(){
     data.append("address", global_address_college.formatted_address);
     data.append("lat", global_address_college.lat);
     data.append("lng", global_address_college.lng);
-
 	xmlHttp.send(data);
 
-    document.getElementById("college_profile_id_formUpdateAddress").reset();//clean input
-    display_specific_div("college_profile_list_form",undefined);
 }
 
 
@@ -664,6 +672,11 @@ function college_profile_updateTelephone(){
 				var output= JSON.parse(xmlHttp.responseText);
                 console.log(output);
 				showErrorMessagesPage("updateTelephone",output.message,output.success);
+                if(output.success){
+                    document.getElementById("college_profile_id_formUpdateTelephone").reset();//clean input
+                    display_specific_div("college_profile_list_form",undefined);
+                    college_displayProfile();
+                }
 			}
 		}
 		xmlHttp.open("POST", url, true );
@@ -674,8 +687,6 @@ function college_profile_updateTelephone(){
 	}else{
 		showErrorMessagesPage("updateTelephone","Telefono no es valido.",false);
 	}
-    document.getElementById("college_profile_id_formUpdateTelephone").reset();//clean input
-    display_specific_div("college_profile_list_form",undefined);
 }
 
 
@@ -693,6 +704,11 @@ function college_profile_updateURL(){
 				var output= JSON.parse(xmlHttp.responseText);
                 console.log(output);
 				showErrorMessagesPage("updateURL",output.message,output.success);
+                if(output.success){
+                    document.getElementById("v").reset();//clean input
+                    display_specific_div("college_profile_list_form",undefined);
+                    college_displayProfile();
+                }
 			}
 		}
 		xmlHttp.open("POST", url, true );
@@ -703,8 +719,6 @@ function college_profile_updateURL(){
 	}else{
 		showErrorMessagesPage("updateURL","URL no es valido.",false);
 	}
-    document.getElementById("college_profile_id_formUpdateURL").reset();//clean input
-    display_specific_div("college_profile_list_form",undefined);
 }
 
 
@@ -721,6 +735,11 @@ function college_profile_updateEquipment(){
 			var output= JSON.parse(xmlHttp.responseText);
             console.log(output);
 			showErrorMessagesPage("updateURL",output.message,output.success);
+            if(output.success){
+                document.getElementById("v").reset();//clean input
+                display_specific_div("college_profile_id_formUpdateEquipment",undefined);
+                college_displayProfile();
+            }
 		}
 	}
 	xmlHttp.open("POST", url, true );
@@ -735,9 +754,6 @@ function college_profile_updateEquipment(){
     data.append("study_room", equipment.college_profile_icon_school);
     data.append("heating", equipment.college_profile_icon_heating);
 	xmlHttp.send(data);
-
-    document.getElementById("college_profile_id_formUpdateEquipment").reset();//clean input
-    display_specific_div("college_profile_list_form",undefined);
 }
 
 
@@ -774,6 +790,8 @@ function college_profile_create_responsiblePerson(){
 			showErrorMessagesPage("new responsiblePerso",output.message,output.success);
             if (output.success){
                 display_table_responsiblePerson();
+                document.getElementById("college_profile_id_formReposiblePerson").reset();//clean input
+                display_specific_div("college_profile_list_form",undefined);
             }
 		}
 	}
@@ -785,8 +803,7 @@ function college_profile_create_responsiblePerson(){
     data.append("name", name);
     data.append("job_position", job_position);
     xmlHttp.send(data);
-    document.getElementById("college_profile_id_formReposiblePerson").reset();//clean input
-    display_specific_div("college_profile_list_form",undefined);
+
 }
 
 /**
@@ -907,6 +924,8 @@ function college_profile_create_bank(){
             console.log(output);
 			showErrorMessagesPage("Create bank",output.message,output.success);
             if (output.success){
+                document.getElementById("college_profile_id_formBank").reset();//clean input
+                display_specific_div("college_profile_list_form",undefined);
                 display_table_bank();
             }
 		}
@@ -918,8 +937,6 @@ function college_profile_create_bank(){
     data.append("BIC", BIC);
     data.append("account_holder", account_holder);
     xmlHttp.send(data);
-    document.getElementById("college_profile_id_formBank").reset();//clean input
-    display_specific_div("college_profile_list_form",undefined);
 }
 
 

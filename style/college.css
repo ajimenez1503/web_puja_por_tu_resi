@@ -154,6 +154,11 @@ textarea{
 /*////////////////////////////////////////////////////////////////
 * College profile
 ////////////////////////////////////////////////////////////////*/
+.nav_profile_z_index{
+	position: absolute;
+	z-index: 1002;
+}
+
 .college_elememt_profile{
 	padding: 5%;
 }
@@ -170,11 +175,10 @@ textarea{
 }
 
 #college_profile_table_responsiblePerson{
-	margin-left: 5%;
-	margin-right: 2%;
 	height: 250px;
 	margin-bottom: 5%;
 	overflow-y: auto;
+	margin-top: 5%;
 }
 
 .button_responsiblePerson{
@@ -182,11 +186,10 @@ textarea{
 }
 
 #college_profile_table_bank{
-	margin-left: 5%;
-	margin-right: 2%;
 	height: 250px;
 	margin-bottom: 5%;
 	overflow-y: auto;
+	margin-top: 5%;
 }
 
 .button_bank{

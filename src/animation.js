@@ -112,10 +112,10 @@ function showErrorMessagesPage(element,message,success){
         element_error_message=document.getElementById("showErrorMessage")
         element_error_message.style.display="block";
         if(success){
-            element_error_message.className =" alert alert-success";
+            element_error_message.className ="error_footer alert alert-success";
         }
         else{
-            element_error_message.className =" alert alert-danger";
+            element_error_message.className ="error_footer alert alert-danger";
         }
         document.getElementById("errorMessage").innerHTML=element+" : "+message;
 		fade(element_error_message,300);
