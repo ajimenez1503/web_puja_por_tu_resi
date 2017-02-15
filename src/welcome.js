@@ -181,6 +181,9 @@ function signup_college(){
 				var output= JSON.parse(xmlHttp.responseText);
                 console.log(output);
                 showErrorMessagesPage("signup",output.message,output.success);
+                if(output.success){
+                    document.getElementById("register_form_college").reset();//clean input
+                }
 			}
 		}
 		xmlHttp.open("POST", url, true );
@@ -203,7 +206,6 @@ function signup_college(){
         data.append("study_room", equipment.college_icon_school);
         data.append("heating", equipment.college_icon_heating);
 		xmlHttp.send(data);
-        document.getElementById("register_form_college").reset();//clean input
 }
 
 
@@ -246,6 +248,9 @@ function signup_student(){
 				var output= JSON.parse(xmlHttp.responseText);
                 console.log(output);
                 showErrorMessagesPage("signup",output.message,output.success);
+                if(output.success){
+                    document.getElementById("register_form_student").reset();//clean input
+                }
 			}
 		}
 		xmlHttp.open("POST", url, true );
@@ -255,7 +260,6 @@ function signup_student(){
         data.append("email",user.email);
         data.append("name", user.name);
 		xmlHttp.send(data);
-        document.getElementById("register_form_student").reset();//clean input
 }
 
 

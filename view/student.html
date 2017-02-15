@@ -1,7 +1,16 @@
 <nav class="nav nav-pills nav-justified">
     <div class="container-fluid">
         <ul class="nav navbar-nav">
-            <li onclick="page('/profile')"> <a>  <label>Perfil</label> </a> </li>
+            <li role="presentation" class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                    <label>Perfil</label> <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu nav_profile_z_index">
+                    <li onclick="page('/profile');"> <a> <label>Ver perfil</label> </a> </li>
+                    <li onclick="page('/profile'); display_specific_div('profile_student_list_form','profile_student_from_update_password')"> <a> <label>Cambiar contraseña</label> </a> </li>
+                    <li onclick="page('/profile'); display_specific_div('profile_student_list_form','profile_student_from_update_email')"> <a> <label>Cambiar email</label> </a> </li>
+                </ul>
+             </li>
             <li onclick="page('/search_room')"> <a>  <label>Buscar Habitacion</label> </a> </li>
             <li onclick="page('/Room')"> <a>  <label>Mi Habitacion</label> </a> </li>
             <li onclick="page('/inicidence')"> <a> <label>Incidencias</label> </a> </li>
@@ -17,7 +26,7 @@
     <div id="profile">
 
         <div class="elememt_profile">
-            <div class="col-sm-4">
+            <div class="col-sm-5">
                 <div class="panel-group">
                     <div class="panel with panel-primary class">
                         <div class="panel-heading">Informacion usuario</div>
@@ -28,11 +37,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="col-sm-5">
-                <button onclick="display_specific_div('profile_student_list_form','profile_student_from_update_password')" type="button" class="button_margin_room btn btn-success">Cambiar email</button>
-                <button onclick="display_specific_div('profile_student_list_form','profile_student_from_update_email')" type="button" class="button_margin_room btn btn-warning">Cambiar contraseña</button>
             </div>
 
             <div class="col-sm-3">
@@ -117,7 +121,6 @@
         </div> <!-- end profile_student_list_form-->
 
     </div> <!-- end Profile -->
-
 
 
     <div id="search_room">
@@ -390,67 +393,69 @@
 
     </div><!-- end room -->
 
+
     <div id="incidence">
+        <div class="elememt_profile">
+            <div >
 
-        <div >
-
-            <div class="col-sm-4">
-                <div class="panel-group">
-                    <div class="panel with panel-primary class">
-                        <div class="panel-heading">OPEN</div>
-                        <div class="panel-body" id="student_incidence_OPEN">
+                <div class="col-sm-4">
+                    <div class="panel-group">
+                        <div class="panel with panel-primary class">
+                            <div class="panel-heading">OPEN</div>
+                            <div class="panel-body" id="student_incidence_OPEN">
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="col-sm-4">
-                <div class="panel-group">
-                    <div class="panel with panel-primary class">
-                        <div class="panel-heading">IN PROGRESS</div>
-                        <div class="panel-body" id="student_incidence_IN_PROGRESS">
+                <div class="col-sm-4">
+                    <div class="panel-group">
+                        <div class="panel with panel-primary class">
+                            <div class="panel-heading">IN PROGRESS</div>
+                            <div class="panel-body" id="student_incidence_IN_PROGRESS">
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="col-sm-4">
-                <div class="panel-group">
-                    <div class="panel with panel-primary class">
-                        <div class="panel-heading">DONE</div>
-                        <div class="panel-body" id="student_incidence_DONE">
+                <div class="col-sm-4">
+                    <div class="panel-group">
+                        <div class="panel with panel-primary class">
+                            <div class="panel-heading">DONE</div>
+                            <div class="panel-body" id="student_incidence_DONE">
+                            </div>
                         </div>
                     </div>
                 </div>
+
             </div>
 
-        </div>
 
 
 
-
-        <div class="col-sm-7 form_footer">
-            <div class="row">
-                <div class="col-md-10 col-md-offset-5">
-                    <div class="panel panel-login">
-                        <div class="panel-body">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <form id="id_form_createIncidence" action="javascript:void(0);" method="post" enctype="multipart/form-data" >
-                                        <div class="form-group">
-                                            <input  id="formInicidenceDescription" type="text" name="descritption" tabindex="2" class="form-control" placeholder="Descripcion" required>
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="file" name="file_name"  id="formIncidenceFilename" tabindex="2" class="form-control" placeholder="nombre archivo" required>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="row">
-                                                <div class="col-sm-6 col-sm-offset-3">
-                                                    <input type="submit" onClick="createIncidence()" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-submit" value="Crear incidencia">
+            <div class="col-sm-7 form_footer">
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-5">
+                        <div class="panel panel-login">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <form id="id_form_createIncidence" action="javascript:void(0);" method="post" enctype="multipart/form-data" >
+                                            <div class="form-group">
+                                                <input  id="formInicidenceDescription" type="text" name="descritption" tabindex="2" class="form-control" placeholder="Descripcion" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="file" name="file_name"  id="formIncidenceFilename" tabindex="2" class="form-control" placeholder="nombre archivo" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <div class="col-sm-6 col-sm-offset-3">
+                                                        <input type="submit" onClick="createIncidence()" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-submit" value="Crear incidencia">
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </form>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -458,10 +463,7 @@
                 </div>
             </div>
         </div>
-
     </div><!-- end inicidence -->
-
-
 
 
     <div id="message">

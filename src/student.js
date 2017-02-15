@@ -49,6 +49,11 @@ function updatePassword(){
 					var output= JSON.parse(xmlHttp.responseText);
                     console.log(output);
 					showErrorMessagesPage("updatePassword",output.message,output.success);
+					if(output.success){
+						document.getElementById("id_formUpdatePassword").reset();//clean input
+						display_specific_div('profile_student_list_form',undefined);
+						dataProfile();
+					}
 				}
 			}
 			xmlHttp.open("POST", url, true );
@@ -63,7 +68,6 @@ function updatePassword(){
 	}else{
 		showErrorMessagesPage("updatePassword","passwords not identical ",false);
 	}
-    document.getElementById("id_formUpdatePassword").reset();//clean input
 }
 
 
@@ -81,6 +85,11 @@ function updateEmail(){
 				var output= JSON.parse(xmlHttp.responseText);
                 console.log(output);
 				showErrorMessagesPage("updateEmail",output.message,output.success);
+				if(output.success){
+					document.getElementById("id_formUpdateEmail").reset();//clean input
+					display_specific_div('profile_student_list_form',undefined);
+					dataProfile();
+				}
 			}
 		}
 		xmlHttp.open("POST", url, true );
@@ -91,7 +100,7 @@ function updateEmail(){
 	}else{
 		showErrorMessagesPage("updateEmail","Email no es valido.",false);
 	}
-    document.getElementById("id_formUpdateEmail").reset();//clean input
+
 }
 //////////////////////////////////////////////////////////////////////////////
 /*
@@ -118,6 +127,9 @@ function createIncidence(){
             			var output= JSON.parse(xmlHttp.responseText);
                         console.log(output);
             			showErrorMessagesPage("createIncidence",output.message,output.success);
+						if(output.success){
+							document.getElementById("id_form_createIncidence").reset();//clean input
+						}
             		}
             	}
             	xmlHttp.open("POST", url, true );
@@ -126,7 +138,6 @@ function createIncidence(){
                 data.append("description", description);
                 data.append("file_name", file);
             	xmlHttp.send(data);
-                document.getElementById("id_form_createIncidence").reset();//clean input
             }
         }else{
             showErrorMessagesPage("Upload file","error file image.",false);
@@ -134,7 +145,6 @@ function createIncidence(){
     }else{
         showErrorMessagesPage("Upload file","Enter a correct file image.",false);
     }
-
 }
 //////////////////////////////////////////////////////////////////////////////
 /*
@@ -177,6 +187,9 @@ function sendMessage(){
 			var output= JSON.parse(xmlHttp.responseText);
             console.log(output);
 			showErrorMessagesPage("createMessage",output.message,output.success);
+			if(output.success){
+				document.getElementById("id_form_sendMessage").reset();//clean input
+			}
 		}
 	}
 	xmlHttp.open("POST", url, true );
@@ -185,7 +198,6 @@ function sendMessage(){
     data.append("message", message);
     data.append("file_attached", file);
 	xmlHttp.send(data);
-    document.getElementById("id_form_sendMessage").reset();//clean input
 }
 
 
@@ -341,6 +353,10 @@ function upload_file_agreement(room_id){
             			var output= JSON.parse(xmlHttp.responseText);
                         console.log(output);
             			showErrorMessagesPage("accept Agreement",output.message,output.success);
+						if(output.success){
+							document.getElementById("Room_form_id_upload_file_agreement").reset();//clean input
+							get_room_data();
+						}
             		}
             	}
             	xmlHttp.open("POST", url, false );
@@ -356,8 +372,6 @@ function upload_file_agreement(room_id){
     }else{
         console.log("Enter a correct file.")
     }
-    document.getElementById("Room_form_id_upload_file_agreement").reset();//clean input
-    get_room_data();
 }
 //////////////////////////////////////////////////////////////////////////////
 /*
@@ -392,8 +406,6 @@ function show_form_payment(){
                     document.getElementById("payment_rent").style.display="none";
                     document.getElementById("table_rent").style.overflowY = "visible";
                 }
-    		}else{
-    			showErrorMessagesPage("showdata",output.message,output.success);
     		}
     	}
     }
@@ -466,12 +478,15 @@ function pay_month(id){
 			var output= JSON.parse(xmlHttp.responseText);
             console.log(output);
 			showErrorMessagesPage("pay rent",output.message,output.success);
+			if(output.success){
+				document.getElementById("form_id_payment_rent_submit").reset();//clean input form
+				show_form_payment();
+			}
 		}
 	}
 	xmlHttp.open("POST", url, true );
     xmlHttp.withCredentials = true;
 	xmlHttp.send(data);
-    document.getElementById("form_id_payment_rent_submit").reset();//clean input form
 }
 //////////////////////////////////////////////////////////////////////////////
 /*
