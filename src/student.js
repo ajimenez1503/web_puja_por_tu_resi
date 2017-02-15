@@ -129,6 +129,7 @@ function createIncidence(){
             			showErrorMessagesPage("createIncidence",output.message,output.success);
 						if(output.success){
 							document.getElementById("id_form_createIncidence").reset();//clean input
+							page('/inicidence_list')
 						}
             		}
             	}
@@ -836,14 +837,28 @@ page('/search_room', function(){
 
 
 /**
-* Display the inicidence page
+* Display the list of inicidences page
 */
-page('/inicidence', function(){
+page('/inicidence_list', function(){
     if("studentview"===globa_view){
         console.log("displayIncidence");
         display_specific_div("student_view_list_elements","incidence");
+		display_specific_div("incidence","student_inicidence_list");
         countUnreadMessages("student_");
         getIncidences("student_");
+    }
+});
+
+
+/**
+* Display the list of inicidences page
+*/
+page('/inicidence_create', function(){
+    if("studentview"===globa_view){
+        console.log("displayIncidence");
+        display_specific_div("student_view_list_elements","incidence");
+		display_specific_div("incidence","student_inicidence_create");
+        countUnreadMessages("student_");
     }
 });
 
