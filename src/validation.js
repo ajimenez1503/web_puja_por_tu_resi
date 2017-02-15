@@ -22,6 +22,17 @@ function validate_email(email)  {
 
 
 /**
+* Check if the BIC is valid
+* @param {String} bic
+* @returns {boolean} if the bic is valid
+*/
+function validate_bic(bic)
+{
+    var regBIC= /^([a-zA-Z]){4}([a-zA-Z]){2}([0-9a-zA-Z]){2}([0-9a-zA-Z]{3})?$/;
+    return regBIC.test(bic)
+}
+
+/**
 * Check if the DNI is valid
 * @param {String} DNI
 * @returns {boolean} if the DNI is valid

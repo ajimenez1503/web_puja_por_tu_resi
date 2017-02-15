@@ -180,3 +180,20 @@ textarea{
 .button_responsiblePerson{
 	background-color: rgb(60, 168, 30);
 }
+
+#college_profile_table_bank{
+	margin-left: 5%;
+	margin-right: 2%;
+	height: 250px;
+	margin-bottom: 5%;
+	overflow-y: auto;
+}
+
+.button_bank{
+	background-color: rgb(255, 0, 0);
+}
+
+.row_activate_bank{
+	background-color: rgb(36, 150, 17) !important;
+  	color: #FFF !important;
+}

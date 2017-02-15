@@ -45,10 +45,10 @@
                     <thead>
                     <tr>
                       <th>DNI</th>
-                      <th>email</th>
-                      <th>nombre</th>
-                      <th>trabajo</th>
-                      <th>eliminar</th>
+                      <th>Email</th>
+                      <th>Nombre</th>
+                      <th>Trabajo</th>
+                      <th>Eliminar</th>
                     </tr>
                     </thead>
                     <tbody  id="college_profile_element_table_responsiblePerson">
@@ -56,8 +56,27 @@
                 </table>
             </div>
 
+
+            <div id="college_profile_table_bank">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                      <th>IBAN</th>
+                      <th>BIC</th>
+                      <th>Propietario</th>
+                      <th>Activar</th>
+                      <th>Eliminar</th>
+                    </tr>
+                    </thead>
+                    <tbody  id="college_profile_element_table_bank">
+                    </tbody>
+                </table>
+            </div>
+
         </div>
+
         <div class="college_profile_set_button">
+
             <button onclick="display_specific_div('college_profile_list_form','college_profile_form_update_email')" type="button" class="button_margin_room btn btn-primary">Cambiar email</button>
             <button onclick="display_specific_div('college_profile_list_form','college_profile_form_update_password')" type="button" class="button_margin_room btn btn-warning">Cambiar contraseña</button>
             <button onclick="display_specific_div('college_profile_list_form','college_profile_form_update_address')" type="button" class="button_margin_room btn btn-default">Cambiar Direccion</button>
@@ -65,6 +84,7 @@
             <button onclick="display_specific_div('college_profile_list_form','college_profile_form_update_url')" type="button" class="button_margin_room btn btn-danger">Cambiar URL</button>
             <button onclick="display_specific_div('college_profile_list_form','college_profile_form_update_equipment')" type="button" class="button_margin_room btn btn-info">Cambiar equipamiento</button>
             <button onclick="display_specific_div('college_profile_list_form','college_profile_form_new_ReposiblePerson')" type="button" class="button_margin_room btn btn-info button_responsiblePerson">Nuevo responsable</button>
+            <button onclick="display_specific_div('college_profile_list_form','college_profile_form_new_bank')" type="button" class="button_margin_room btn btn-info button_bank">Nueva cuenta bancaria</button>
 
 
             <div id="college_profile_list_form">
@@ -271,13 +291,13 @@
                                             <div class="col-lg-12">
                                                 <form id="college_profile_id_formReposiblePerson"action="javascript:void(0);" method="post" role="form" >
                                                     <div class="form-group">
-                                                        <input  id="college_profile_form_ReposiblePerson_DNI" type="email" name="text"  tabindex="2" class="form-control" placeholder="DNI" required>
+                                                        <input  id="college_profile_form_ReposiblePerson_DNI" type="text" name="text"  tabindex="2" class="form-control" placeholder="DNI" required>
                                                     </div>
                                                     <div class="form-group">
                                                         <input  id="college_profile_form_ReposiblePerson_email" type="email" name="email"  tabindex="2" class="form-control" placeholder="email" required>
                                                     </div>
                                                     <div class="form-group">
-                                                        <input  id="college_profile_form_ReposiblePerson_name" type="email" name="text"  tabindex="2" class="form-control" placeholder="nombre" required>
+                                                        <input  id="college_profile_form_ReposiblePerson_name" type="text" name="text"  tabindex="2" class="form-control" placeholder="nombre" required>
                                                     </div>
                                                     <div class="form-group">
                                                         <input  id="college_profile_form_ReposiblePerson_job_position" type="text" name="text"  tabindex="2" class="form-control" placeholder="puesto de trabajo" required>
@@ -299,8 +319,44 @@
                     </div>
                 </div>
 
+                <div id="college_profile_form_new_bank">
+                    <div class="col-sm-7">
+                        <div class="row">
+                            <div class="col-md-10 col-md-offset-5">
+                                <div class="panel panel-login">
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <form id="college_profile_id_formBank"action="javascript:void(0);" method="post" role="form" >
+                                                    <div class="form-group">
+                                                        <input  id="college_profile_form_bank_IBAN" type="text" name="text"  tabindex="2" class="form-control" placeholder="IBAN" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input  id="college_profile_form_bank_BIC" type="text" name="email"  tabindex="2" class="form-control" placeholder="BIC" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input  id="college_profile_form_bank_account_holder" type="text" name="text"  tabindex="2" class="form-control" placeholder="propietario" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="row">
+                                                            <div class="col-sm-6 col-sm-offset-3">
+                                                                <input type="submit" onClick="college_profile_create_bank()" name="register-submit"  tabindex="4" class="form-control btn btn-submit" value="crear cuenta bancaria">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
 
             </div> <!-- end colleg_profile_list_form -->
+
         </div> <!-- end textAlign center  -->
     </div> <!-- end Profile -->
 

@@ -590,6 +590,7 @@ function college_profile_updatePassword(){
 		showErrorMessagesPage("updatePassword","passwords not identical ",false);
 	}
     document.getElementById("college_profile_id_formUpdatePassword").reset();//clean input
+    display_specific_div("college_profile_list_form",undefined);
 }
 
 
@@ -618,6 +619,7 @@ function college_profile_updateEmail(){
 		showErrorMessagesPage("updateEmail","Email no es valido.",false);
 	}
     document.getElementById("college_profile_id_formUpdateEmail").reset();//clean input
+    display_specific_div("college_profile_list_form",undefined);
 }
 
 
@@ -644,6 +646,7 @@ function college_profile_updateAddress(){
 	xmlHttp.send(data);
 
     document.getElementById("college_profile_id_formUpdateAddress").reset();//clean input
+    display_specific_div("college_profile_list_form",undefined);
 }
 
 
@@ -672,6 +675,7 @@ function college_profile_updateTelephone(){
 		showErrorMessagesPage("updateTelephone","Telefono no es valido.",false);
 	}
     document.getElementById("college_profile_id_formUpdateTelephone").reset();//clean input
+    display_specific_div("college_profile_list_form",undefined);
 }
 
 
@@ -700,6 +704,7 @@ function college_profile_updateURL(){
 		showErrorMessagesPage("updateURL","URL no es valido.",false);
 	}
     document.getElementById("college_profile_id_formUpdateURL").reset();//clean input
+    display_specific_div("college_profile_list_form",undefined);
 }
 
 
@@ -732,6 +737,7 @@ function college_profile_updateEquipment(){
 	xmlHttp.send(data);
 
     document.getElementById("college_profile_id_formUpdateEquipment").reset();//clean input
+    display_specific_div("college_profile_list_form",undefined);
 }
 
 
@@ -765,7 +771,10 @@ function college_profile_create_responsiblePerson(){
 		if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
 			var output= JSON.parse(xmlHttp.responseText);
             console.log(output);
-			showErrorMessagesPage("updateURL",output.message,output.success);
+			showErrorMessagesPage("new responsiblePerso",output.message,output.success);
+            if (output.success){
+                display_table_responsiblePerson();
+            }
 		}
 	}
 	xmlHttp.open("POST", url, true );
@@ -777,12 +786,12 @@ function college_profile_create_responsiblePerson(){
     data.append("job_position", job_position);
     xmlHttp.send(data);
     document.getElementById("college_profile_id_formReposiblePerson").reset();//clean input
+    display_specific_div("college_profile_list_form",undefined);
 }
 
 /**
 * Remove a responsiblePerson by id
 * @param id of theResponsiblePerson
-* @return bool (true if it is deleted)
 */
 function remove_ResponsiblePerson(DNI){
 	var xmlHttp =new XMLHttpRequest();
@@ -795,6 +804,9 @@ function remove_ResponsiblePerson(DNI){
     		var output= JSON.parse(xmlHttp.responseText);
             console.log(output)
     		showErrorMessagesPage("remove_ResponsiblePerson",output.message,output.success);
+            if (output.success){
+                display_table_responsiblePerson();
+            }
     	}
     }
 }
@@ -831,7 +843,6 @@ function college_create_row_responsiblePerson(data_responsiblePerson){
        remove_buttom.appendChild(icon_cross())
        remove_buttom.onclick = function() {
            remove_ResponsiblePerson(data_responsiblePerson.DNI);
-           display_table_responsiblePerson();
        };
        td.appendChild(remove_buttom)
        tr.appendChild(td)
@@ -859,6 +870,173 @@ function display_table_responsiblePerson(){
                     father.appendChild( college_create_row_responsiblePerson(output.data[i]));
                 }
                 floatThead_table("college_profile_table_responsiblePerson");
+    		}else{
+    			showErrorMessagesPage("showdata",output.message,output.success);
+    		}
+    	}
+    }
+}
+
+
+
+
+/**
+* Create a responsiblePerson
+*/
+function college_profile_create_bank(){
+    var value_IBAN=document.getElementById("college_profile_form_bank_IBAN").value.replace(" ", "");
+    var BIC=document.getElementById("college_profile_form_bank_BIC").value;
+    var account_holder=document.getElementById("college_profile_form_bank_account_holder").value;
+    if (!IBAN.isValid(value_IBAN)){
+        showErrorMessagesPage("Create bank","Invalid IBAN",false);
+        return;
+    }
+    if(!validate_bic(BIC)){
+        showErrorMessagesPage("Create bank","Invalid BIC",false);
+        return;
+    }
+    if(account_holder.length==0){
+        showErrorMessagesPage("Create bank","El propietario esta vacio",false);
+        return;
+    }
+	var url=window.location.protocol+"//"+window.location.host+port+"/Bank/create/";
+	var xmlHttp =new XMLHttpRequest();
+	xmlHttp.onreadystatechange = function() {
+		if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
+			var output= JSON.parse(xmlHttp.responseText);
+            console.log(output);
+			showErrorMessagesPage("Create bank",output.message,output.success);
+            if (output.success){
+                display_table_bank();
+            }
+		}
+	}
+	xmlHttp.open("POST", url, true );
+    xmlHttp.withCredentials = true;
+    var data = new FormData();
+    data.append("IBAN", value_IBAN);
+    data.append("BIC", BIC);
+    data.append("account_holder", account_holder);
+    xmlHttp.send(data);
+    document.getElementById("college_profile_id_formBank").reset();//clean input
+    display_specific_div("college_profile_list_form",undefined);
+}
+
+
+/**
+* Remove a bank by id
+* @param id of bank
+*/
+function remove_bank(id){
+	var xmlHttp =new XMLHttpRequest();
+	var url=window.location.protocol+"//"+window.location.host+port+"/Bank/remove/"+id;
+	xmlHttp.open("POST", url, true );
+    xmlHttp.withCredentials = true;
+	xmlHttp.send();
+	xmlHttp.onreadystatechange = function() {
+    	if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
+    		var output= JSON.parse(xmlHttp.responseText);
+            console.log(output)
+    		showErrorMessagesPage("remove_bank",output.message,output.success);
+            if (output.success){
+                display_table_bank();
+            }
+    	}
+    }
+}
+
+
+/**
+* activate a bank by id
+* @param id of bank
+*/
+function activate_bank(id){
+	var xmlHttp =new XMLHttpRequest();
+	var url=window.location.protocol+"//"+window.location.host+port+"/Bank/activate/"+id;
+	xmlHttp.open("POST", url, true );
+    xmlHttp.withCredentials = true;
+	xmlHttp.send();
+	xmlHttp.onreadystatechange = function() {
+    	if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
+    		var output= JSON.parse(xmlHttp.responseText);
+            console.log(output)
+    		showErrorMessagesPage("activate_bank",output.message,output.success);
+            if (output.success){
+                display_table_bank();
+            }
+    	}
+    }
+}
+
+/**
+* create row in  table bank
+* @param: data_bank
+* @return tr
+*/
+function college_create_row_bank(data_bank){
+    var tr = document.createElement('tr');
+    tr.id="college_profile_element_table_bank_"+data_bank.id;
+    //IBAN
+        var td = document.createElement('td');
+        td.appendChild(document.createTextNode(data_bank.IBAN))
+        tr.appendChild(td)
+    //BIC
+        var td = document.createElement('td');
+        td.appendChild(document.createTextNode(data_bank.BIC))
+        tr.appendChild(td)
+    //nombre
+        var td = document.createElement('td');
+        td.appendChild(document.createTextNode(data_bank.account_holder))
+        tr.appendChild(td)
+    //activate
+        var td = document.createElement('td');
+        activate_buttom=document.createElement('button');
+        activate_buttom.className+=" btn btn-link"
+        activate_buttom.appendChild(icon_check())
+        activate_buttom.onclick = function() {
+            activate_bank(data_bank.id);
+        };
+        td.appendChild(activate_buttom)
+        tr.appendChild(td);
+    //buttom remove
+       var td = document.createElement('td');
+       remove_buttom=document.createElement('button');
+       remove_buttom.className+=" btn btn-link"
+       remove_buttom.appendChild(icon_cross())
+       remove_buttom.onclick = function() {
+           remove_bank(data_bank.id);
+       };
+       td.appendChild(remove_buttom);
+       tr.appendChild(td);
+
+
+   if(data_bank.activate){
+       tr.className+=" row_activate_bank";
+   }
+
+    return tr;
+}
+
+/**
+* Display table responsible person
+*/
+function display_table_bank(){
+    var xmlHttp =new XMLHttpRequest();
+	var url=window.location.protocol+"//"+window.location.host+port+"/Bank/get/";
+	xmlHttp.open("GET", url, true );
+    xmlHttp.withCredentials = true;
+	xmlHttp.send();
+	xmlHttp.onreadystatechange = function() {
+    	if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
+    		var output= JSON.parse(xmlHttp.responseText);
+            console.log(output)
+    		if(output.success){
+                var father = document.getElementById("college_profile_element_table_bank");
+                deleteAllChildElement(father)
+                for (i = 0; i < output.data.length; i++) {
+                    father.appendChild( college_create_row_bank(output.data[i]));
+                }
+                floatThead_table("college_profile_table_bank");
     		}else{
     			showErrorMessagesPage("showdata",output.message,output.success);
     		}
@@ -1052,6 +1230,7 @@ page('/college_profile', function(){
         display_specific_div("college_profile_list_form",undefined);
         college_displayProfile();
         display_table_responsiblePerson();
+        display_table_bank();
         get_notification("college_");
     }
 });
