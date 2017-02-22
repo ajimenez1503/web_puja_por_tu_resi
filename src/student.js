@@ -645,7 +645,7 @@ function create_row_room(data_college,data_room){
         tr.appendChild(td)
     //fin school
         var td = document.createElement('td');
-        td.appendChild(document.createTextNode(data_room.date_start_school.date.replace(" 00:00:00", "")));
+        td.appendChild(document.createTextNode(data_room.date_start_school.date.replace(" 00:00:00", "").replace(".000000", "")));
         tr.appendChild(td)
     tr.onmouseover = function() {
         selected_out_selected_row_table(tr.id,data_college.latitude,data_college.longitude,"search_room_table_map");

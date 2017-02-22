@@ -15,8 +15,8 @@ function display_specific_room(tab,data_room,display_shcool_date){
     document.getElementById(tab+"_size").innerHTML="   "+data_room.size;
 
     if (display_shcool_date){
-        document.getElementById(tab+"_dateStart").innerHTML="   "+data_room.date_start_school.date.replace(" 00:00:00", "");
-        document.getElementById(tab+"_dateEnd").innerHTML="   "+data_room.date_end_school.date.replace(" 00:00:00", "");
+        document.getElementById(tab+"_dateStart").innerHTML="   "+data_room.date_start_school.date.replace(" 00:00:00", "").replace(".000000", "");
+        document.getElementById(tab+"_dateEnd").innerHTML="   "+data_room.date_end_school.date.replace(" 00:00:00", "").replace(".000000", "");
     }
 
     //panel room equipment
@@ -112,8 +112,8 @@ function display_specific_agreement(tab,data_agreement){
     //panel agreeement atributes:
     document.getElementById(tab+"file").setAttribute('href', window.location.protocol+"//"+window.location.host+port+"/Incidence/download/"+data_agreement.file_agreement_signed);
     document.getElementById(tab+"file").download="file"
-    document.getElementById(tab+"dateStart").innerHTML="   "+data_agreement.date_start_school.date.replace(" 00:00:00", "");
-    document.getElementById(tab+"dateEnd").innerHTML="   "+data_agreement.date_end_school.date.replace(" 00:00:00", "");
+    document.getElementById(tab+"dateStart").innerHTML="   "+data_agreement.date_start_school.date.replace(" 00:00:00", "").replace(".000000", "");
+    document.getElementById(tab+"dateEnd").innerHTML="   "+data_agreement.date_end_school.date.replace(" 00:00:00", "").replace(".000000", "");
     document.getElementById(tab+"price").innerHTML="   "+data_agreement.price+"€";
 }
 

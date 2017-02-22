@@ -135,19 +135,19 @@ function college_create_row_room(data_room){
         tr.appendChild(td)
     //inicio academico
         var td = document.createElement('td');
-        td.appendChild(document.createTextNode(data_room.date_start_school.date.replace(" 00:00:00", "")));
+        td.appendChild(document.createTextNode(data_room.date_start_school.date.replace(" 00:00:00", "").replace(".000000", "")));
         tr.appendChild(td)
     //fin academico
         var td = document.createElement('td');
-        td.appendChild(document.createTextNode(data_room.date_end_school.date.replace(" 00:00:00", "")));
+        td.appendChild(document.createTextNode(data_room.date_end_school.date.replace(" 00:00:00", "").replace(".000000", "")));
         tr.appendChild(td)
     //inicio puja
         var td = document.createElement('td');
-        td.appendChild(document.createTextNode(data_room.date_start_bid.date.replace(" 00:00:00", "")));
+        td.appendChild(document.createTextNode(data_room.date_start_bid.date.replace(" 00:00:00", "").replace(".000000", "")));
         tr.appendChild(td)
     //fin puja
         var td = document.createElement('td');
-        td.appendChild(document.createTextNode(data_room.date_end_bid.date.replace(" 00:00:00", "")));
+        td.appendChild(document.createTextNode(data_room.date_end_bid.date.replace(" 00:00:00", "").replace(".000000", "")));
         tr.appendChild(td)
     //tamaño
         var td = document.createElement('td');
@@ -1119,11 +1119,11 @@ function college_create_row_student(data_student,data_room,data_agreement,list_r
         tr.appendChild(td)
     //inicio academico
         var td = document.createElement('td');
-        td.appendChild(document.createTextNode(data_agreement.date_start_school.date.replace(" 00:00:00", "")));
+        td.appendChild(document.createTextNode(data_agreement.date_start_school.date.replace(" 00:00:00", "").replace(".000000", "")));
         tr.appendChild(td)
     //fin academico
         var td = document.createElement('td');
-        td.appendChild(document.createTextNode(data_agreement.date_end_school.date.replace(" 00:00:00", "")));
+        td.appendChild(document.createTextNode(data_agreement.date_end_school.date.replace(" 00:00:00", "").replace(".000000", "")));
         tr.appendChild(td)
 
     tr.onmouseover = function() {
