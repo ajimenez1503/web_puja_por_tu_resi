@@ -337,7 +337,7 @@ function college_sendMessage(tab, specific_student){
     }
     console.log(student_targets)
 
-    var message=document.getElementById(tab+"_form_text").value;
+    var message=escape(document.getElementById(tab+"_form_text").value);
     var file=document.getElementById(tab+"_form_filename");
 	var url=window.location.protocol+"//"+window.location.host+port+"/Message/create/";
     if (message ===""){
