@@ -4,7 +4,7 @@
 */
 
 /*////////////////////////////////////////////////////////////////
-*WELCOME VIEW
+*WELCOME VIEW header
 ////////////////////////////////////////////////////////////////*/
 .margin_top{
 	margin-top:3%;
@@ -126,4 +126,48 @@
 thead{
 	background-color: rgb(51, 122, 183);
 	color: white;
+}
+
+/*////////////////////////////////////////////////////////////////
+*WELCOME VIEW container
+////////////////////////////////////////////////////////////////*/
+#container_welcome_view_register{
+	display: none;
+}
+
+#container_welcome_view_slogan{
+	background: url("http://www.cienciaqueconta.com/wp-content/uploads/2013/10/white-polygon-background_02.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+	padding-bottom: 20%;
+}
+
+.slogan{
+	font-family: initial;
+  font-size: xx-large;
+	margin-top: 10%;
+	font-style: italic;
+	font-weight: bold;
+}
+
+.img_slogan{
+	height: 150px;
+	width: 150px;
+	margin-bottom: 10%;
+}
+
+.container_welcome_view_slogan_table_th{
+    width: 1%;
+		text-align: center;
+}
+
+.atribute{
+	font-size: x-large;
+}
+
+.container_welcome_view_slogan_table{
+	margin-top: 10%;
+	margin-left: 7%;
 }
