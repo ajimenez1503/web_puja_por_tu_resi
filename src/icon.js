@@ -23,6 +23,7 @@ function icon_failed() {
     return icon;
 }
 
+
 /**
 * Generate a icon delete
 * @return icon_trash
