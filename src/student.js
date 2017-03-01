@@ -23,7 +23,7 @@ function dataProfile(){
             console.log(output)
     		if(output.success){
                 display_specific_student("profile_student_",output.data);
-                document.getElementById("profile_student_point").innerHTML="   "+output.data.point;
+                document.getElementById("profile_student_point").innerHTML=output.data.point;
 								display_username("tab_profile_student_username",output.data.username);
     		}else{
     			showErrorMessagesPage("showdata",output.message,output.success);
@@ -75,7 +75,7 @@ function updatePassword(){
 /**
 * Update the email.
 * The input is validate and show the error in case of problem
-*/
+
 function updateEmail(){
 	var email=document.getElementById("formUpdateEmail").value;
 	if(validate_email(email)){
@@ -101,7 +101,48 @@ function updateEmail(){
 	}else{
 		showErrorMessagesPage("updateEmail","Email no es valido.",false);
 	}
+}*/
 
+/**
+* Update the email.
+* The input is validate and show the error in case of problem
+*/
+function student_update_email(){
+	button=document.getElementById("student_profile_update_email").textContent;
+	if (button=="Actualizar"){
+		document.getElementById("student_profile_update_email").textContent="Cambiar";
+		document.getElementById("profile_student_email").style.display="none";
+		document.getElementById("profile_student_email_new").style.display="block";
+		document.getElementById("profile_student_email_new").value=document.getElementById("profile_student_email").textContent;
+
+	}else{
+		var email=document.getElementById("profile_student_email_new").value;
+		if(validate_email(email)){
+			var url=window.location.protocol+"//"+window.location.host+port+"/ProfileStudent/updateEmail/";
+			var xmlHttp =new XMLHttpRequest();
+			xmlHttp.onreadystatechange = function() {
+				if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
+					var output= JSON.parse(xmlHttp.responseText);
+	                console.log(output);
+					showErrorMessagesPage("updateEmail",output.message,output.success);
+					if(output.success){
+						document.getElementById("student_profile_update_email").textContent="Actualizar"
+						document.getElementById("profile_student_email").style.display="block";
+						document.getElementById("profile_student_email_new").style.display="none";
+						document.getElementById("profile_student_email").textContent=email;
+					}
+				}
+			}
+			xmlHttp.open("POST", url, true );
+      xmlHttp.withCredentials = true;
+      var data = new FormData();
+      data.append("email", email);
+			xmlHttp.send(data);
+		}else{
+			showErrorMessagesPage("updateEmail","Email no es valido.",false);
+		}
+
+	}
 }
 //////////////////////////////////////////////////////////////////////////////
 /*
@@ -396,9 +437,9 @@ function show_form_payment(){
             console.log(output)
     		if(output.success){//in the case that there are month available, show it at the form
                 if (output.data.length>=1){
-                    document.getElementById("payment_rent_month").innerHTML="   "+output.data[0].month;
-                    document.getElementById("payment_rent_year").innerHTML="   "+output.data[0].year;
-                    document.getElementById("payment_rent_price").innerHTML="   "+output.data[0].price.toString()+"€";
+                    document.getElementById("payment_rent_month").innerHTML=output.data[0].month;
+                    document.getElementById("payment_rent_year").innerHTML=output.data[0].year;
+                    document.getElementById("payment_rent_price").innerHTML=output.data[0].price.toString()+"€";
                     document.getElementById("payment_rent_submit").onclick = function(){
                         pay_month(output.data[0].id);
                     };

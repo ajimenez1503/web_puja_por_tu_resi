@@ -8,7 +8,7 @@
                 <ul class="dropdown-menu nav_profile_z_index">
                     <li onclick="page('/profile');"> <a> <label>Ver perfil</label> </a> </li>
                     <li onclick="page('/profile'); display_specific_div('profile_student_list_form','profile_student_from_update_password')"> <a> <label>Cambiar contraseña</label> </a> </li>
-                    <li onclick="page('/profile'); display_specific_div('profile_student_list_form','profile_student_from_update_email')"> <a> <label>Cambiar email</label> </a> </li>
+                    <!--<li onclick="page('/profile'); display_specific_div('profile_student_list_form','profile_student_from_update_email')"> <a> <label>Cambiar email</label> </a> </li>-->
                 </ul>
              </li>
             <li onclick="page('/search_room')"> <a>  <label>Buscar Habitacion</label> </a> </li>
@@ -40,11 +40,13 @@
             <div class="col-sm-5">
                 <div class="panel-group">
                     <div class="panel with panel-primary class">
-                        <div class="panel-heading">Informacion usuario</div>
+                        <div class="panel-heading">Informacion usuario
+                          <button id="student_profile_update_email" type="button" onclick="student_update_email()"  class="btn btn-success">Actualizar</button>
+                        </div>
                         <div class="panel-body">
                             <label>Nombre:   </label><label id="profile_student_name"></label></br>
                             <label>Usuario:   </label><label id="profile_student_username"></label></br>
-                            <label>Email:   </label><label id="profile_student_email"></label></br>
+                            <label>Email:   </label><label id="profile_student_email"></label><input type="email" name="email" id="profile_student_email_new" required></br>
                         </div>
                     </div>
                 </div>
@@ -101,7 +103,7 @@
                 </div>
             </div>
 
-            <div id="profile_student_from_update_email">
+            <!--<div id="profile_student_from_update_email">
                 <div class="col-sm-7">
                     <div class="row">
                         <div class="col-md-10 col-md-offset-5">
@@ -128,7 +130,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>-->
         </div> <!-- end profile_student_list_form-->
 
     </div> <!-- end Profile -->

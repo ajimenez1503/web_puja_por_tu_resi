@@ -10,13 +10,13 @@
  */
 function display_specific_room(tab,data_room,display_shcool_date){
     //panel room atributes:
-    document.getElementById(tab+"_name").innerHTML="   "+data_room.name;
-    document.getElementById(tab+"_floor").innerHTML="   "+data_room.floor;
-    document.getElementById(tab+"_size").innerHTML="   "+data_room.size;
+    document.getElementById(tab+"_name").innerHTML=data_room.name;
+    document.getElementById(tab+"_floor").innerHTML=data_room.floor;
+    document.getElementById(tab+"_size").innerHTML=data_room.size;
 
     if (display_shcool_date){
-        document.getElementById(tab+"_dateStart").innerHTML="   "+data_room.date_start_school.date.replace(" 00:00:00", "").replace(".000000", "");
-        document.getElementById(tab+"_dateEnd").innerHTML="   "+data_room.date_end_school.date.replace(" 00:00:00", "").replace(".000000", "");
+        document.getElementById(tab+"_dateStart").innerHTML=data_room.date_start_school.date.replace(" 00:00:00", "").replace(".000000", "");
+        document.getElementById(tab+"_dateEnd").innerHTML=data_room.date_end_school.date.replace(" 00:00:00", "").replace(".000000", "");
     }
 
     //panel room equipment
@@ -112,9 +112,9 @@ function display_specific_agreement(tab,data_agreement){
     //panel agreeement atributes:
     document.getElementById(tab+"file").setAttribute('href', window.location.protocol+"//"+window.location.host+port+"/Incidence/download/"+data_agreement.file_agreement_signed);
     document.getElementById(tab+"file").download="file"
-    document.getElementById(tab+"dateStart").innerHTML="   "+data_agreement.date_start_school.date.replace(" 00:00:00", "").replace(".000000", "");
-    document.getElementById(tab+"dateEnd").innerHTML="   "+data_agreement.date_end_school.date.replace(" 00:00:00", "").replace(".000000", "");
-    document.getElementById(tab+"price").innerHTML="   "+data_agreement.price+"€";
+    document.getElementById(tab+"dateStart").innerHTML=data_agreement.date_start_school.date.replace(" 00:00:00", "").replace(".000000", "");
+    document.getElementById(tab+"dateEnd").innerHTML=data_agreement.date_end_school.date.replace(" 00:00:00", "").replace(".000000", "");
+    document.getElementById(tab+"price").innerHTML=data_agreement.price+"€";
 }
 
 
@@ -302,11 +302,11 @@ function update_inicidence(id_inicidence, new_status){
 function display_specific_college(tab,data_college){
     //panel college  atributes:
     init_map(tab+"college_map",data_college.latitude,data_college.longitude);
-    document.getElementById(tab+"college_company_name").innerHTML="   "+data_college.companyName;
-    document.getElementById(tab+"college_telephone").innerHTML="   "+data_college.telephone;
+    document.getElementById(tab+"college_company_name").innerHTML=data_college.companyName;
+    document.getElementById(tab+"college_telephone").innerHTML=data_college.telephone;
     document.getElementById(tab+"college_url").setAttribute('href', data_college.url);
-    document.getElementById(tab+"college_url").innerHTML="   "+data_college.url;
-    document.getElementById(tab+"college_email").innerHTML="   "+data_college.email;
+    document.getElementById(tab+"college_url").innerHTML=data_college.url;
+    document.getElementById(tab+"college_email").innerHTML=data_college.email;
 
     //panel college equipment
     college_equipment_father=document.getElementById(tab+"college_equipment");
@@ -345,9 +345,9 @@ function display_specific_college(tab,data_college){
 */
 function display_specific_student(tab,data_student){
     //panel student atributes
-   document.getElementById(tab+"name").innerHTML="   "+data_student.name;
-   document.getElementById(tab+"username").innerHTML="   "+data_student.username;
-   document.getElementById(tab+"email").innerHTML="   "+data_student.email;
+   document.getElementById(tab+"name").innerHTML=data_student.name;
+   document.getElementById(tab+"username").innerHTML=data_student.username;
+   document.getElementById(tab+"email").innerHTML=data_student.email;
 }
 
 
