@@ -223,5 +223,12 @@ function drop(ev,new_status) {
     id_inicidence=data.replace("div_inicdence_","")
     update_inicidence(id_inicidence, new_status);
     ev.target.appendChild(document.getElementById(data));
+    if("OPEN"==new_status){
+        document.getElementById(data).style.backgroundColor ="rgb(116, 207, 234)";
+    }else if ("IN PROGRESS"==new_status){
+        document.getElementById(data).style.backgroundColor ="rgb(255, 186, 23)";
+    }else if ("DONE"==new_status){
+        document.getElementById(data).style.backgroundColor ="rgb(39, 156, 38)";
+    }
     console.log(new_status)
 }

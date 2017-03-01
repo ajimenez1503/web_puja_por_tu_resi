@@ -164,10 +164,10 @@ function create_div_incidence(data_incidence,tab){
     div.className += " localIncidence";
     div.id="div_inicdence_"+data_incidence.id;
 
-    var label_id= document.createElement('label');
+    /*var label_id= document.createElement('label');
     label_id.appendChild(document.createTextNode("id: "+data_incidence.id));
     div.appendChild(label_id);
-    div.appendChild(document.createElement('br'));
+    div.appendChild(document.createElement('br'));*/
 
     var label_description= document.createElement('label');
     label_description.appendChild(document.createTextNode("description: "+data_incidence.description));
@@ -175,7 +175,7 @@ function create_div_incidence(data_incidence,tab){
     div.appendChild(document.createElement('br'));
 
     var label_date= document.createElement('label');
-    label_date.appendChild(document.createTextNode("Fecha: "+data_incidence.date.date));
+    label_date.appendChild(document.createTextNode("Fecha: "+data_incidence.date.date.replace(".000000", "")));
     div.appendChild(label_date);
     div.appendChild(document.createElement('br'));
 
@@ -197,6 +197,13 @@ function create_div_incidence(data_incidence,tab){
         };
 
         div.setAttribute('draggable', true);//graggable
+    }
+    if("OPEN"==data_incidence.status){
+        div.style.backgroundColor ="rgb(116, 207, 234)";
+    }else if ("IN PROGRESS"==data_incidence.status){
+        div.style.backgroundColor ="rgb(255, 186, 23)";
+    }else if ("DONE"==data_incidence.status){
+        div.style.backgroundColor ="rgb(39, 156, 38)";
     }
 
     return div;
