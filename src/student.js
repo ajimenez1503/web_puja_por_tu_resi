@@ -24,6 +24,7 @@ function dataProfile(){
     		if(output.success){
                 display_specific_student("profile_student_",output.data);
                 document.getElementById("profile_student_point").innerHTML="   "+output.data.point;
+								display_username("profile_student_username",output.data.username);
     		}else{
     			showErrorMessagesPage("showdata",output.message,output.success);
     		}

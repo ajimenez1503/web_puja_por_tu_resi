@@ -551,6 +551,7 @@ function college_displayProfile(){
             console.log(output)
     		if(output.success){
     			display_specific_college("college_profile_",output.data);
+          display_username("profile_college_username",output.data.username);
     		}else{
     			showErrorMessagesPage("showdata",output.message,output.success);
     		}

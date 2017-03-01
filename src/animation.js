@@ -20,6 +20,14 @@ function display_specific_div(father,id) {
 }
 
 
+/**
+* Display the username in the profile tab
+* @param  id of the span
+* @param username of the user
+*/
+function display_username (id, username){
+  var span_element=document.getElementById(id).textContent=username;
+}
 
 /**
 * Select a row in a table (red background-color)
