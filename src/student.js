@@ -112,7 +112,7 @@ function updateEmail(){
 * The input is validate and show the error in case of problem
 */
 function createIncidence(){
-	var description=escape(document.getElementById("formInicidenceDescription").value);
+	var description=(document.getElementById("formInicidenceDescription").value).escape();
     var file=document.getElementById("formIncidenceFilename");
 	var url=window.location.protocol+"//"+window.location.host+port+"/Incidence/create/";
 	var xmlHttp =new XMLHttpRequest();
@@ -157,7 +157,7 @@ function createIncidence(){
 * The input is validate and show the error in case of problem
 */
 function sendMessage(){
-	var message=escape(document.getElementById("formMessageText").value);
+	var message=(document.getElementById("formMessageText").value).escape();
     document.getElementById("formMessageText").value= "";//clean input
     var file=document.getElementById("formMessageFilename");
 	var url=window.location.protocol+"//"+window.location.host+port+"/Message/create/";

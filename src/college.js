@@ -337,7 +337,7 @@ function college_sendMessage(tab, specific_student){
     }
     console.log(student_targets)
 
-    var message=escape(document.getElementById(tab+"_form_text").value);
+    var message=(document.getElementById(tab+"_form_text").value).escape();
     var file=document.getElementById(tab+"_form_filename");
 	var url=window.location.protocol+"//"+window.location.host+port+"/Message/create/";
     if (message ===""){
@@ -528,6 +528,7 @@ function college_display_messages_specific_student(student){
     //update the button send messages
     document.getElementById('college_messages_conversation_form_button').onclick = function(){
         college_sendMessage("college_messages_conversation", student);
+        college_display_messages_specific_student(student);
     }
 }
 //////////////////////////////////////////////////////////////////////////////
