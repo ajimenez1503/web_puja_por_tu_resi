@@ -23,6 +23,18 @@ function icon_failed() {
     return icon;
 }
 
+/**
+* Generate a icon delete
+* @return icon_trash
+*/
+function icon_delete() {
+    var icon= document.createElement('i');
+    icon.className+="icon fa fa-trash";
+    icon.setAttribute("aria-hidden","true");
+    icon.title="eliminar";
+    return icon;
+}
+
 
 /**
 * Generate a icon cross

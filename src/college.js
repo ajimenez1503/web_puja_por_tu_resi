@@ -198,7 +198,7 @@ function college_create_row_room(data_room){
         var td = document.createElement('td');
         remove_buttom=document.createElement('button');
         remove_buttom.className+=" btn btn-link"
-        remove_buttom.appendChild(icon_cross())
+        remove_buttom.appendChild(icon_delete())
         remove_buttom.onclick = function() {
             remove_room(data_room.id);
             collegeGetAllRooms();
@@ -859,7 +859,7 @@ function college_create_row_responsiblePerson(data_responsiblePerson){
        var td = document.createElement('td');
        remove_buttom=document.createElement('button');
        remove_buttom.className+=" btn btn-link"
-       remove_buttom.appendChild(icon_cross())
+       remove_buttom.appendChild(icon_delete())
        remove_buttom.onclick = function() {
            remove_ResponsiblePerson(data_responsiblePerson.DNI);
        };
@@ -1021,7 +1021,7 @@ function college_create_row_bank(data_bank){
        var td = document.createElement('td');
        remove_buttom=document.createElement('button');
        remove_buttom.className+=" btn btn-link"
-       remove_buttom.appendChild(icon_cross())
+       remove_buttom.appendChild(icon_delete())
        remove_buttom.onclick = function() {
            remove_bank(data_bank.id);
        };
