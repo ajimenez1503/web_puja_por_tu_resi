@@ -19,7 +19,7 @@
                     <li onclick="page('/college_profile'); display_specific_div('college_profile_list_form','college_profile_form_update_url')"> <a> <label>Cambiar URL</label> </a> </li>
                     <li onclick="page('/college_profile'); display_specific_div('college_profile_list_form','college_profile_form_update_equipment')"> <a> <label>Cambiar equipamiento </label> </a> </li>
                     <li onclick="page('/college_profile'); display_specific_div('college_profile_list_form','college_profile_form_new_ReposiblePerson')"> <a> <label>Nuevo responsable</label> </a> </li>
-                    <li onclick="page('/college_profile'); display_specific_div('college_profile_list_form','college_profile_form_new_bank')"> <a> <labelv</label> </a> </li>
+                    <li onclick="page('/college_profile'); display_specific_div('college_profile_list_form','college_profile_form_new_bank')"> <a> <label>Nueva cuenta bancaria</label> </a> </li>
                 </ul>
             </li>
             <li onclick="page('/college_create_room')"> <a> <label>Nueva habitacion</label> </a> </li>
@@ -307,12 +307,24 @@
         <div class="col-sm-6">
             <div class="college_elememt_profile panel-group">
                 <div class="panel with panel-primary class">
-                    <div class="panel-heading">Residencia</div>
+                    <div class="panel-heading">Residencia
+                      <button id="college_update_profile" type="button" onclick="college_update_profile()"  class="btn btn-success">Actualizar</button>
+
+                    </div>
                     <div class="panel-body">
                         <label>Nombre:   </label><label id="college_profile_college_company_name"></label></br>
-                        <label>Contacto:   </label><label id="college_profile_college_telephone"></label></br>
-                        <label>Url:   </label><a target="_blank" id="college_profile_college_url"></a></br>
-                        <label>email:   </label><label id="college_profile_college_email"></label></br>
+                        <label>Contacto:   </label>
+                          <label id="college_profile_college_telephone"></label>
+                          <input type="text" name="telephone" id="college_profile_college_telephone_new" required></br>
+                          </br>
+                        <label>Url:   </label>
+                          <a target="_blank" id="college_profile_college_url"></a>
+                          <input  maxlength="400" size="60" maxle type="url" name="url" id="college_profile_college_url_new" required></br>
+                          </br>
+                        <label>email:   </label>
+                          <label id="college_profile_college_email"></label>
+                          <input type="email" name="email" id="college_profile_college_email_new" required></br>
+                          </br>
                         <label>Equipamiento:   </label></br>
                         <div id="college_profile_college_equipment">
                         </div>

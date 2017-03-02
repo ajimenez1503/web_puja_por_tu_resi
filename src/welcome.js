@@ -43,7 +43,7 @@ displayView = function(){
         });
    }else if("collegeview"===globa_view){
        $( "#viewBase" ).load( "view/college.html" , function() {
-          page("/college_list_rooms");//display view until is load
+          page("/college_profile");//display view until is load
         });
    }
 };

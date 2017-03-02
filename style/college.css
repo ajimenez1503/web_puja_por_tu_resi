@@ -148,6 +148,17 @@ textarea{
 /*////////////////////////////////////////////////////////////////
 * College profile
 ////////////////////////////////////////////////////////////////*/
+#college_profile_college_email_new{
+	display: none;
+}
+
+#college_profile_college_telephone_new{
+	display: none;
+}
+
+#college_profile_college_url_new{
+	display: none;
+}
 .nav_profile_z_index{
 	position: absolute;
 	z-index: 1002;
@@ -156,6 +167,7 @@ textarea{
 .college_elememt_profile{
 	padding: 5%;
 }
+
 #college_profile_college_map {
 	width: 80%;
 	height: 287px;

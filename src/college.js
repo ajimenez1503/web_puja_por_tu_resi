@@ -536,6 +536,59 @@ function college_display_messages_specific_student(student){
 * College Profile
 */
 //////////////////////////////////////////////////////////////////////////////
+
+
+/**
+* Update the email,telephone, url and equipment .
+* The input is validate and show the error in case of problem
+*/
+function college_update_profile(){
+	button=document.getElementById("college_update_profile").textContent;
+	if (button=="Actualizar"){
+		document.getElementById("college_update_profile").textContent="Cambiar";
+
+    //email
+		document.getElementById("college_profile_college_email").style.display="none";
+		document.getElementById("college_profile_college_email_new").style.display="block";
+		document.getElementById("college_profile_college_email_new").value=document.getElementById("college_profile_college_email").textContent;
+
+    //telephone
+		document.getElementById("college_profile_college_telephone").style.display="none";
+		document.getElementById("college_profile_college_telephone_new").style.display="block";
+		document.getElementById("college_profile_college_telephone_new").value=document.getElementById("college_profile_college_telephone").textContent;
+
+    //url
+		document.getElementById("college_profile_college_url").style.display="none";
+		document.getElementById("college_profile_college_url_new").style.display="block";
+		document.getElementById("college_profile_college_url_new").value=document.getElementById("college_profile_college_url").textContent;
+
+
+	}else{
+		document.getElementById("college_update_profile").textContent="Actualizar"
+    var email=document.getElementById("college_profile_college_email_new").value;
+    var telephone=document.getElementById("college_profile_college_telephone_new").value;
+    var url=document.getElementById("college_profile_college_url_new").value;
+
+
+
+    //email
+		document.getElementById("college_profile_college_email").style.display="block";
+		document.getElementById("college_profile_college_email_new").style.display="none";
+		document.getElementById("college_profile_college_email").textContent=email;
+
+    //telephone
+    document.getElementById("college_profile_college_telephone").style.display="block";
+    document.getElementById("college_profile_college_telephone_new").style.display="none";
+    document.getElementById("college_profile_college_telephone").textContent=telephone;
+
+    //url
+    document.getElementById("college_profile_college_url").style.display="block";
+    document.getElementById("college_profile_college_url_new").style.display="none";
+    document.getElementById("college_profile_college_url").textContent=url;
+
+	}
+}
+
 /**
 * show the data of the college user
 */
