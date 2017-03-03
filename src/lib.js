@@ -312,28 +312,28 @@ function display_specific_college(tab,data_college){
     college_equipment_father=document.getElementById(tab+"college_equipment");
     deleteAllChildElement(college_equipment_father);//clean all data
     if(data_college.equipment_college.study_room){
-        college_equipment_father.appendChild(icon_study_room());
+        college_equipment_father.appendChild(icon_study_room(tab+"college_equipment"+"_study_room"));
     }
     if(data_college.equipment_college.gym){
-        college_equipment_father.appendChild(icon_gym());
+        college_equipment_father.appendChild(icon_gym(tab+"college_equipment"+"_gym"));
     }
     if(data_college.equipment_college.canteen){
-        college_equipment_father.appendChild(icon_canteen());
+        college_equipment_father.appendChild(icon_canteen(tab+"college_equipment"+"_canteen"));
     }
     if(data_college.equipment_college.wifi){
-        college_equipment_father.appendChild(icon_wifi());
+        college_equipment_father.appendChild(icon_wifi(tab+"college_equipment"+"_wifi"));
     }
     if(data_college.equipment_college.laundry){
-        college_equipment_father.appendChild(icon_laundry());
+        college_equipment_father.appendChild(icon_laundry(tab+"college_equipment"+"_laundry"));
     }
     if(data_college.equipment_college.heating){
-        college_equipment_father.appendChild(icon_heating());
+        college_equipment_father.appendChild(icon_heating(tab+"college_equipment"+"_heating"));
     }
     if(data_college.equipment_college.elevator){
-        college_equipment_father.appendChild(icon_elevator());
+        college_equipment_father.appendChild(icon_elevator(tab+"college_equipment"+"_elevator"));
     }
     if(data_college.equipment_college.hours24){
-        college_equipment_father.appendChild(icon_hours24());
+        college_equipment_father.appendChild(icon_hours24(tab+"college_equipment"+"_hours24"));
     }
 }
 

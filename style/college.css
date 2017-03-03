@@ -159,6 +159,10 @@ textarea{
 #college_profile_college_url_new{
 	display: none;
 }
+
+#college_profile_college_equipment_new{
+	display: none;
+}
 .nav_profile_z_index{
 	position: absolute;
 	z-index: 1002;

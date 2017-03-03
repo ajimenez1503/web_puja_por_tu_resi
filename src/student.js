@@ -613,7 +613,7 @@ function get_college_selected(){
 */
 function selected_icon_search(id_element){
     if  (document.getElementById(id_element).className.includes(" selected_icon_search")){
-        document.getElementById(id_element).className.replace('selected_icon_search','');
+        document.getElementById(id_element).className=document.getElementById(id_element).className.replace('selected_icon_search','');
     }else{
         document.getElementById(id_element).className+=' selected_icon_search';
     }
@@ -634,9 +634,9 @@ function search_rooms() {
     url+="?college_company_name="+get_college_selected();
     url+="&price_min="+get_min_range_prince();
     url+="&price_max="+get_max_range_prince();
-    url+="&study_room="+equipment.search_icon_school;
+    url+="&study_room="+equipment.search_icon_study_room;
     url+="&gym="+equipment.search_icon_gym;
-    url+="&canteen="+equipment.search_icon_restaurant;
+    url+="&canteen="+equipment.search_icon_canteen;
     url+="&wifi="+equipment.search_icon_wifi;
     url+="&laundry="+ equipment.search_icon_laundry;
     url+="&heating="+ equipment.search_icon_heating;

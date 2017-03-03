@@ -199,11 +199,11 @@ function signup_college(){
         data.append("telephone", user.telephone);
         data.append("wifi", equipment.college_icon_wifi);
         data.append("elevator", equipment.college_icon_elevator);
-        data.append("canteen", equipment.college_icon_restaurant);
+        data.append("canteen", equipment.college_icon_canteen);
         data.append("hours24", equipment.college_icon_24h);
         data.append("laundry", equipment.college_icon_laundry);
         data.append("gym", equipment.college_icon_gym);
-        data.append("study_room", equipment.college_icon_school);
+        data.append("study_room", equipment.college_icon_study_room);
         data.append("heating", equipment.college_icon_heating);
 		xmlHttp.send(data);
 }

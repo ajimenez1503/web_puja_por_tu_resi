@@ -562,30 +562,102 @@ function college_update_profile(){
 		document.getElementById("college_profile_college_url_new").style.display="block";
 		document.getElementById("college_profile_college_url_new").value=document.getElementById("college_profile_college_url").textContent;
 
+    //equipment
+    document.getElementById("college_profile_college_equipment").style.display="none";
+		document.getElementById("college_profile_college_equipment_new").style.display="block";
+    old_equipment=get_equipment_selected("college_profile_college_equipment");
+
+
+    //panel college equipment
+    college_equipment_father=document.getElementById("college_profile_college_equipment_new");
+    if(old_equipment.college_profile_college_equipment_study_room){
+        document.getElementById("college_profile_icon_study_room").className+=" selected_icon_search"
+    }
+    if(old_equipment.college_profile_college_equipment_gym){
+        document.getElementById("college_profile_icon_gym").className+=" selected_icon_search"
+    }
+    if(old_equipment.college_profile_college_equipment_canteen){
+        document.getElementById("college_profile_icon_canteen").className+=" selected_icon_search"
+    }
+    if(old_equipment.college_profile_college_equipment_wifi){
+        document.getElementById("college_profile_icon_wifi").className+=" selected_icon_search"
+    }
+    if(old_equipment.college_profile_college_equipment_laundry){
+        document.getElementById("college_profile_icon_laundry").className+=" selected_icon_search"
+    }
+    if(old_equipment.college_profile_college_equipment_heating){
+        document.getElementById("college_profile_icon_heating").className+=" selected_icon_search"
+    }
+    if(old_equipment.college_profile_college_equipment_elevator){
+        document.getElementById("college_profile_icon_elevator").className+=" selected_icon_search"
+    }
+    if(old_equipment.college_profile_college_equipment_hours24){
+        document.getElementById("college_profile_icon_hours24").className+=" selected_icon_search"
+    }
+
 
 	}else{
 		document.getElementById("college_update_profile").textContent="Actualizar"
     var email=document.getElementById("college_profile_college_email_new").value;
+    if(!validate_email(email)){
+      showErrorMessagesPage("updateEmail","Email no es valido.",false);
+      return
+    }
     var telephone=document.getElementById("college_profile_college_telephone_new").value;
+    if(!Validate_Phonenumber(telephone)){
+      showErrorMessagesPage("updateTelephone","Telefono no es valido.",false);
+      return
+    }
     var url=document.getElementById("college_profile_college_url_new").value;
+    if(validate_URL(URL)){
+      showErrorMessagesPage("updateURL","URL no es valido.",false);
+      return
+    }
 
+    college_equipment_new=  get_equipment_selected("college_profile_college_equipment_new");
 
+    var url=window.location.protocol+"//"+window.location.host+port+"/ProfileCollege/updateProfile/";
+		var xmlHttp =new XMLHttpRequest();
+		xmlHttp.onreadystatechange = function() {
+			if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
+				var output= JSON.parse(xmlHttp.responseText);
+        console.log(output);
+				showErrorMessagesPage("updateProfile",output.message,output.success);
+          if(output.success){
+            //email
+            document.getElementById("college_profile_college_email").style.display="block";
+            document.getElementById("college_profile_college_email_new").style.display="none";
 
-    //email
-		document.getElementById("college_profile_college_email").style.display="block";
-		document.getElementById("college_profile_college_email_new").style.display="none";
-		document.getElementById("college_profile_college_email").textContent=email;
+            //telephone
+            document.getElementById("college_profile_college_telephone").style.display="block";
+            document.getElementById("college_profile_college_telephone_new").style.display="none";
 
-    //telephone
-    document.getElementById("college_profile_college_telephone").style.display="block";
-    document.getElementById("college_profile_college_telephone_new").style.display="none";
-    document.getElementById("college_profile_college_telephone").textContent=telephone;
+            //url
+            document.getElementById("college_profile_college_url").style.display="block";
+            document.getElementById("college_profile_college_url_new").style.display="none";
 
-    //url
-    document.getElementById("college_profile_college_url").style.display="block";
-    document.getElementById("college_profile_college_url_new").style.display="none";
-    document.getElementById("college_profile_college_url").textContent=url;
-
+            //panel college equipment
+            document.getElementById("college_profile_college_equipment").style.display="block";
+            document.getElementById("college_profile_college_equipment_new").style.display="none";
+            college_displayProfile();
+          }
+			}
+		}
+		xmlHttp.open("POST", url, true );
+    xmlHttp.withCredentials = true;
+    var data = new FormData();
+    data.append("email", email);
+    data.append("telephone", telephone);
+    data.append("URL", url);
+    data.append("wifi", college_equipment_new.college_profile_icon_wifi);
+    data.append("elevator", college_equipment_new.college_profile_icon_elevator);
+    data.append("canteen", college_equipment_new.college_profile_icon_canteen);
+    data.append("hours24", college_equipment_new.college_profile_icon_24h);
+    data.append("laundry", college_equipment_new.college_profile_icon_laundry);
+    data.append("gym", college_equipment_new.college_profile_icon_gym);
+    data.append("study_room", college_equipment_new.college_profile_icon_study_room);
+    data.append("heating", college_equipment_new.college_profile_icon_heating);
+		xmlHttp.send(data);
 	}
 }
 
@@ -655,7 +727,7 @@ function college_profile_updatePassword(){
 /**
 * Update the email of the college user
 *The input is validate and show the error in case of problem
-*/
+
 function college_profile_updateEmail(){
 	var email=document.getElementById("college_profile_formUpdateEmail").value;
 	if(validate_email(email)){
@@ -682,7 +754,7 @@ function college_profile_updateEmail(){
 		showErrorMessagesPage("updateEmail","Email no es valido.",false);
 	}
 }
-
+*/
 
 /**
 * Update the address of the college user
@@ -716,7 +788,7 @@ function college_profile_updateAddress(){
 /**
 * Update the telephone of the college user
 *The input is validate and show the error in case of problem
-*/
+
 function college_profile_updateTelephone(){
 	var telephone=document.getElementById("college_profile_formUpdateTelephone").value;
 	if(Validate_Phonenumber(telephone)){
@@ -743,12 +815,12 @@ function college_profile_updateTelephone(){
 		showErrorMessagesPage("updateTelephone","Telefono no es valido.",false);
 	}
 }
-
+*/
 
 /**
 * Update the URL of the college user
 *The input is validate and show the error in case of problem
-*/
+
 function college_profile_updateURL(){
 	var URL=document.getElementById("college_profile_formUpdateURL").value;
 	if(validate_URL(URL)){
@@ -775,12 +847,12 @@ function college_profile_updateURL(){
 		showErrorMessagesPage("updateURL","URL no es valido.",false);
 	}
 }
-
+*/
 
 /**
 * Update the equipemnt of the college user
 *The input is validate and show the error in case of problem
-*/
+
 function college_profile_updateEquipment(){
 	var equipment=get_equipment_selected("college_profile_formUpdateEquipment");
 	var url=window.location.protocol+"//"+window.location.host+port+"/ProfileCollege/updateEquipment/";
@@ -802,15 +874,15 @@ function college_profile_updateEquipment(){
     var data = new FormData();
     data.append("wifi", equipment.college_profile_icon_wifi);
     data.append("elevator", equipment.college_profile_icon_elevator);
-    data.append("canteen", equipment.college_profile_icon_restaurant);
+    data.append("canteen", equipment.college_profile_icon_canteen);
     data.append("hours24", equipment.college_profile_icon_24h);
     data.append("laundry", equipment.college_profile_icon_laundry);
     data.append("gym", equipment.college_profile_icon_gym);
-    data.append("study_room", equipment.college_profile_icon_school);
+    data.append("study_room", equipment.college_profile_icon_study_room);
     data.append("heating", equipment.college_profile_icon_heating);
 	xmlHttp.send(data);
 }
-
+*/
 
 /**
 * Create a responsiblePerson
