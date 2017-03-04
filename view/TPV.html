@@ -1,0 +1,124 @@
+<!-- /**
+  * @author antonio Jimenez (softwarejimenez)
+    * @version 0.1
+ */-->
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+    <!-- Latest compiled and minified CSS bootstrap-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Latest compiled and minified JavaScript bootstrap -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+
+    <!-- Latest compiled and minified CSS  select options -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css" integrity="sha256-an4uqLnVJ2flr7w0U74xiF4PJjO2N5Df91R2CUmCLCA=" crossorigin="anonymous" />
+    <!-- Latest compiled and minified JavaScript  select options -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js" integrity="sha256-JD3g+rB9BjW6/cGEuwCue1sGtitb2aQVNs/pl4114XQ=" crossorigin="anonymous"></script>
+
+    <!-- Latest compiled and minified CSS  floatthead for table thead-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/floatthead/2.0.1/jquery.floatThead.js" integrity="sha256-LJqhf2wTTlYWKcYHAt4bKFleZAKxPnd7SylslyFneqM=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/floatthead/2.0.1/jquery.floatThead.min.js" integrity="sha256-dhuDgc2Dyz+qwrJkYr0wtEilIq+4MqcTknTKeNgUQ/Y=" crossorigin="anonymous"></script>
+
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"><!-- icons  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"><!-- icons  -->
+
+    <title>Puja por tu resi</title>
+    <script src="../src/iban.js"></script>
+    <script src="../src/TPV.js" ></script>
+
+    <link rel="icon" type="image/ico" href="../img/logo.ico">
+    </head>
+    <body >
+
+      <div id="payment_rent">
+          <form id="form_id_payment_rent_submit" class="form-horizontal" role="form">
+              <fieldset>
+                  <legend>
+                      <label>PAGO:   </label>
+                      <label>Mes:   </label><label id="payment_rent_month"></label><label> - </label><label id="payment_rent_year"></label>
+                      <label>Precio:   </label><label id="payment_rent_price"></label>
+                  </legend>
+                  <div class="form-group">
+                      <label class="col-sm-3 control-label" for="card-holder-name">Name on Card</label>
+                      <div class="col-sm-9">
+                          <input type="text" class="form-control" name="card-holder-name" id="card-holder-name" placeholder="Propietario de la tarjeta">
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <label class="col-sm-3 control-label" for="card-number">Card Number</label>
+                      <div class="col-sm-9">
+                          <input type="text" class="form-control" name="card-number" id="card-number" placeholder="numero de tarjeta de Debit/Credit">
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <label class="col-sm-3 control-label" for="expiry-month">Fecha expiracion</label>
+                      <div class="col-sm-9">
+                          <div class="row">
+                              <div class="col-xs-3">
+                                  <select class="form-control col-sm-2" name="expiry-month" id="expiry-month">
+                                      <option value="01">Jan (01)</option>
+                                      <option value="02">Feb (02)</option>
+                                      <option value="03">Mar (03)</option>
+                                      <option value="04">Apr (04)</option>
+                                      <option value="05">May (05)</option>
+                                      <option value="06">June (06)</option>
+                                      <option value="07">July (07)</option>
+                                      <option value="08">Aug (08)</option>
+                                      <option value="09">Sep (09)</option>
+                                      <option value="10">Oct (10)</option>
+                                      <option value="11">Nov (11)</option>
+                                      <option value="12">Dec (12)</option>
+                                  </select>
+                              </div>
+                              <div class="col-xs-3">
+                                  <select class="form-control" name="expiry-year" id="expiry-year">
+                                      <option value="2017">2017</option>
+                                      <option value="2018">2018</option>
+                                      <option value="2019">2019</option>
+                                      <option value="2020">2020</option>
+                                      <option value="2021">2021</option>
+                                      <option value="2022">2022</option>
+                                      <option value="2023">2023</option>
+                                      <option value="2024">2024</option>
+                                      <option value="2025">2025</option>
+                                      <option value="2026">2026</option>
+                                      <option value="2027">2027</option>
+                                  </select>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <div class="row">
+                          <label class="col-sm-3 control-label" for="cvv">Card CVV</label>
+                          <div class="col-sm-3">
+                              <input type="text" class="form-control" name="cvv" id="card_cvv" placeholder="Codigo de seguridad">
+                          </div>
+                          <div class="col-sm-3">
+                              <button id="payment_rent_submit"type="button" class="btn btn-success">Pagar</button>
+                          </div>
+                      </div>
+                  </div>
+              </fieldset>
+          </form>
+      </div>
+
+      <div class="error_footer" id="showErrorMessage" style="display:none;">
+          <strong>
+              <center>
+                  <p id="errorMessage"> Error </p>
+              </center>
+          </strong>
+      </div>
+    </body>
+</html>

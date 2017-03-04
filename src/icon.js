@@ -77,6 +77,21 @@ function icon_tv(new_id) {
     return icon;
 }
 
+/**
+* Generate a icon pay
+* @return icon_pay
+*/
+function icon_pay(new_id) {
+    var icon= document.createElement('i');
+    icon.className+="icon fa fa-money"
+    icon.setAttribute("aria-hidden","true")
+    icon.title="pagar";
+    if (new_id){
+      icon.id=new_id;
+    }
+    return icon;
+}
+
 
 /**
 * Generate a icon bath

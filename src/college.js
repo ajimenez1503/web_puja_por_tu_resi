@@ -1265,7 +1265,7 @@ function college_create_row_student(data_student,data_room,data_agreement,list_r
         display_specific_student("college_student_specific_student_",data_student)
         display_specific_agreement("college_student_specific_agreement_",data_agreement)
         display_specific_room("college_student_specific_room",data_room,false);
-        display_table_rents("college_student_specific_element_table_rent","college_student_specific_table_rent",list_rents);
+        display_table_rents("college_student_specific_element_table_rent","college_student_specific_table_rent",list_rents,false);
     };
     return tr;
 }

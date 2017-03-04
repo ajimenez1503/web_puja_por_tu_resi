@@ -422,40 +422,6 @@ function upload_file_agreement(room_id){
 */
 //////////////////////////////////////////////////////////////////////////////
 /**
-* Display the form to pay
-*/
-function show_form_payment(){
-    //check if there area any month available to pay.
-    var xmlHttp =new XMLHttpRequest();
-	var url=window.location.protocol+"//"+window.location.host+port+"/Rent/getUnpaid/";
-	xmlHttp.open("GET", url, true );
-    xmlHttp.withCredentials = true;
-	xmlHttp.send();
-	xmlHttp.onreadystatechange = function() {
-    	if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
-    		var output= JSON.parse(xmlHttp.responseText);
-            console.log(output)
-    		if(output.success){//in the case that there are month available, show it at the form
-                if (output.data.length>=1){
-                    document.getElementById("payment_rent_month").innerHTML=output.data[0].month;
-                    document.getElementById("payment_rent_year").innerHTML=output.data[0].year;
-                    document.getElementById("payment_rent_price").innerHTML=output.data[0].price.toString()+"€";
-                    document.getElementById("payment_rent_submit").onclick = function(){
-                        pay_month(output.data[0].id);
-                    };
-                    document.getElementById("payment_rent").style.display="block";
-                    document.getElementById("table_rent").style.overflowY = "auto";
-                }else{
-                    document.getElementById("payment_rent").style.display="none";
-                    document.getElementById("table_rent").style.overflowY = "visible";
-                }
-    		}
-    	}
-    }
-}
-
-
-/**
 * Get all the rents and display in the table
 */
 function getRents(){
@@ -469,7 +435,7 @@ function getRents(){
     		var output= JSON.parse(xmlHttp.responseText);
             console.log(output)
     		if(output.success){
-                display_table_rents("student_element_table_rent","table_rent",output.data)
+                display_table_rents("student_element_table_rent","table_rent",output.data,true)
     		}else{
     			showErrorMessagesPage("showdata",output.message,output.success);
     		}
@@ -481,55 +447,24 @@ function getRents(){
 /**
 * Pay the month of the last rent
 * @param {id} id of the rent in the database
+* @param {month} month of the rent in the database
+* @param {year} year of the rent in the database
+* @param {price} price of the rent in the database
+* @param {college_IBAM} college_IBAM of the bank account of the college
+* @param {college_BIC} college_BIC of the bank account of the college
+* @param {college_accountHolder} college_accountHolder of the bank account of the college
 */
-function pay_month(id){
-	var card_holder_name=document.getElementById("card-holder-name").value;
-    var card_number=document.getElementById("card-number").value;
-    card_number= card_number.replace(/\D/g, "");//get only the digit
-    var e = document.getElementById("expiry-month");
-    var expiry_month = e.options[e.selectedIndex].value;
-    var e = document.getElementById("expiry-year");
-    var expiry_year = e.options[e.selectedIndex].value;
-    var cvv=document.getElementById("card_cvv").value;
-    if (!validate_CreditCard(card_number)){
-        showErrorMessagesPage("pay","Invalid credit card",false);
-        return;
-    }
-    if(card_holder_name.length==0){
-        showErrorMessagesPage("pay","Invalid card Holder name",false);
-        return;
-    }if(!validate_CVV(card_number,cvv)){
-        showErrorMessagesPage("pay","Invalid CCV",false);
-        return;
-    }
-    if(!validate_ExpiryDate(expiry_month,expiry_year)){
-        showErrorMessagesPage("pay","Invalid fecha expiracion",false);
-        return;
-    }
-    var data = new FormData();
-    data.append("id", id);
-    data.append("cardHolder", card_holder_name);
-    data.append("cardNumber", card_number);
-    data.append("cvv", cvv);
-    data.append("expiry_year", expiry_year);
-    data.append("expiry_month", expiry_month);
-
-	var url=window.location.protocol+"//"+window.location.host+port+"/Rent/pay/";
-	var xmlHttp =new XMLHttpRequest();
-    xmlHttp.onreadystatechange = function() {
-		if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
-			var output= JSON.parse(xmlHttp.responseText);
-            console.log(output);
-			showErrorMessagesPage("pay rent",output.message,output.success);
-			if(output.success){
-				document.getElementById("form_id_payment_rent_submit").reset();//clean input form
-				show_form_payment();
-			}
-		}
+function open_TPV(id,month, year,price, college_IBAM, college_BIC, college_accountHolder){
+	//TODO open module
+	var window_TPV=window.open(window.location.protocol+"//"+window.location.host+"/web_puja_por_tu_resi/view/TPV.html","_blank", "width=800,height=500,left=1000");
+	window_TPV.onload = function() {
+		window_TPV.document.getElementById("payment_rent_month").innerHTML=month;
+		window_TPV.document.getElementById("payment_rent_year").innerHTML=year;
+		window_TPV.document.getElementById("payment_rent_price").innerHTML=price.toString()+"€";
+		window_TPV.document.getElementById("payment_rent_submit").onclick = function(){
+				pay_tpv(id,window_TPV);
+		};
 	}
-	xmlHttp.open("POST", url, true );
-    xmlHttp.withCredentials = true;
-	xmlHttp.send(data);
 }
 //////////////////////////////////////////////////////////////////////////////
 /*
@@ -928,6 +863,5 @@ page('/rent', function(){
         display_specific_div("student_view_list_elements","rent");
         countUnreadMessages("student_");
         getRents();
-        show_form_payment();
     }
 });

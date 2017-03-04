@@ -45,6 +45,7 @@
     <script src="src/welcome.js" ></script>
     <script src="src/student.js" ></script>
     <script src="src/college.js" ></script>
+    <script src="src/TPV.js" ></script>
     <!--<script async defer  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDau09DcBHg-wQ8wHUsl6SUCYOPPlDFiWQ&callback=init_map"></script>-->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDau09DcBHg-wQ8wHUsl6SUCYOPPlDFiWQ&libraries=places"async defer></script>
     <link rel="icon" type="image/ico" href="img/logo.ico">

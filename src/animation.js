@@ -115,9 +115,13 @@ function floatThead_table(tab_table) {
 * @param {message} message of error
 * @returns {boolean} bool
 */
-function showErrorMessagesPage(element,message,success){
+function showErrorMessagesPage(element,message,success,new_window){
     if (typeof(message) === 'string' && typeof(element) === 'string'){
-        element_error_message=document.getElementById("showErrorMessage")
+        if(new_window){
+          element_error_message=new_window.document.getElementById("showErrorMessage")
+        }else{
+          element_error_message=document.getElementById("showErrorMessage")
+        }
         element_error_message.style.display="block";
         if(success){
             element_error_message.className ="error_footer alert alert-success";
@@ -125,8 +129,13 @@ function showErrorMessagesPage(element,message,success){
         else{
             element_error_message.className ="error_footer alert alert-danger";
         }
-        document.getElementById("errorMessage").innerHTML=element+" : "+message;
-		fade(element_error_message,300);
+        if(new_window){
+          new_window.document.getElementById("errorMessage").innerHTML=element+" : "+message;
+        }else{
+          document.getElementById("errorMessage").innerHTML=element+" : "+message;
+        }
+
+		    fade(element_error_message,300);
         return true;
     }else{
         console.log("Incorrect input showErrorMessage.");

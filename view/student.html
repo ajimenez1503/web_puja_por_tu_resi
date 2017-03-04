@@ -509,87 +509,13 @@
                   <th>precio</th>
                   <th>Fecha pago</th>
                   <th>recibo</th>
+                  <th>pagar</th>
                 </tr>
                 </thead>
                 <tbody  id="student_element_table_rent">
                 </tbody>
             </table>
         </div>
-
-        <div id="payment_rent">
-            <form id="form_id_payment_rent_submit" class="form-horizontal" role="form">
-                <fieldset>
-                    <legend>
-                        <label>PAGO:   </label>
-                        <label>Mes:   </label><label id="payment_rent_month"></label><label> - </label><label id="payment_rent_year"></label>
-                        <label>Precio:   </label><label id="payment_rent_price"></label>
-                    </legend>
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label" for="card-holder-name">Name on Card</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" name="card-holder-name" id="card-holder-name" placeholder="Propietario de la tarjeta">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label" for="card-number">Card Number</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" name="card-number" id="card-number" placeholder="numero de tarjeta de Debit/Credit">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label" for="expiry-month">Fecha expiracion</label>
-                        <div class="col-sm-9">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <select class="form-control col-sm-2" name="expiry-month" id="expiry-month">
-                                        <option value="01">Jan (01)</option>
-                                        <option value="02">Feb (02)</option>
-                                        <option value="03">Mar (03)</option>
-                                        <option value="04">Apr (04)</option>
-                                        <option value="05">May (05)</option>
-                                        <option value="06">June (06)</option>
-                                        <option value="07">July (07)</option>
-                                        <option value="08">Aug (08)</option>
-                                        <option value="09">Sep (09)</option>
-                                        <option value="10">Oct (10)</option>
-                                        <option value="11">Nov (11)</option>
-                                        <option value="12">Dec (12)</option>
-                                    </select>
-                                </div>
-                                <div class="col-xs-3">
-                                    <select class="form-control" name="expiry-year" id="expiry-year">
-                                        <option value="2017">2017</option>
-                                        <option value="2018">2018</option>
-                                        <option value="2019">2019</option>
-                                        <option value="2020">2020</option>
-                                        <option value="2021">2021</option>
-                                        <option value="2022">2022</option>
-                                        <option value="2023">2023</option>
-                                        <option value="2024">2024</option>
-                                        <option value="2025">2025</option>
-                                        <option value="2026">2026</option>
-                                        <option value="2027">2027</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="row">
-                            <label class="col-sm-3 control-label" for="cvv">Card CVV</label>
-                            <div class="col-sm-3">
-                                <input type="text" class="form-control" name="cvv" id="card_cvv" placeholder="Codigo de seguridad">
-                            </div>
-                            <div class="col-sm-3">
-                                <button id="payment_rent_submit"type="button" class="btn btn-success">Pagar</button>
-                            </div>
-                        </div>
-                    </div>
-                </fieldset>
-            </form>
-        </div>
-
-
 
     </div> <!-- end rent -->
 </div> <!-- end student_view_list_elements -->
