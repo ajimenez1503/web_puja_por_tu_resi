@@ -49,7 +49,7 @@ function display_specific_room(tab,data_room,display_shcool_date){
 * @param data_rent
 * @return tr
 */
-function create_row_rent(data_rent,paid_button){
+function create_row_rent(data_rent,paid_button,college_bank_account){
     var tr = document.createElement('tr');
     //month
         var td = document.createElement('td');
@@ -88,9 +88,11 @@ function create_row_rent(data_rent,paid_button){
         var td = document.createElement('td');
         if (data_rent.date_paid == null && data_rent.file_receipt == null){
           td.appendChild(icon_pay());
-          //TODO function open TPV module
+          td.title="IBAN: "+college_bank_account.IBAN+"\nBIC: "+college_bank_account.BIC+"\naccount Holder: "+college_bank_account.account_holder
+          td.style.cursor = "pointer";
+          //function open TPV module
           td.onclick = function(){
-            open_TPV(data_rent.id,data_rent.month, data_rent.year,data_rent.price);
+            open_TPV(data_rent.id,data_rent.month, data_rent.year,data_rent.price,college_bank_account.IBAN,college_bank_account.BIC,college_bank_account.account_holder);
           };
         }else{
           td.appendChild(icon_check());
@@ -107,11 +109,11 @@ function create_row_rent(data_rent,paid_button){
 * @param: tab
 * @param: list_rents
 */
-function display_table_rents(tab_element,tab_table,list_rents,paid_button){
+function display_table_rents(tab_element,tab_table,list_rents,paid_button,college_bank_account){
 	var father = document.getElementById(tab_element);
 	deleteAllChildElement(father)
 	for (i = 0; i < list_rents.length; i++) {
-		father.appendChild(create_row_rent(list_rents[i],paid_button));
+		father.appendChild(create_row_rent(list_rents[i],paid_button,college_bank_account));
 	}
     floatThead_table(tab_table);
 }

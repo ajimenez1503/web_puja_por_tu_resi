@@ -425,17 +425,33 @@ function upload_file_agreement(room_id){
 * Get all the rents and display in the table
 */
 function getRents(){
-    var xmlHttp =new XMLHttpRequest();
-	var url=window.location.protocol+"//"+window.location.host+port+"/Rent/get/";
+	var xmlHttp =new XMLHttpRequest();
+	var url=window.location.protocol+"//"+window.location.host+port+"/Rent/getReveiverBankAccount/";
 	xmlHttp.open("GET", url, true );
-    xmlHttp.withCredentials = true;
+  xmlHttp.withCredentials = true;
 	xmlHttp.send();
 	xmlHttp.onreadystatechange = function() {
     	if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
     		var output= JSON.parse(xmlHttp.responseText);
-            console.log(output)
+        console.log(output)
     		if(output.success){
-                display_table_rents("student_element_table_rent","table_rent",output.data,true)
+					college_bank_account=output.data;
+					var xmlHttp2 =new XMLHttpRequest();
+					var url2=window.location.protocol+"//"+window.location.host+port+"/Rent/get/";
+					xmlHttp2.open("GET", url2, true );
+					xmlHttp2.withCredentials = true;
+					xmlHttp2.send();
+					xmlHttp2.onreadystatechange = function() {
+							if ( xmlHttp2.readyState == 4 && xmlHttp2.status == 200 ){
+								var output= JSON.parse(xmlHttp2.responseText);
+								console.log(output)
+								if(output.success){
+												display_table_rents("student_element_table_rent","table_rent",output.data,true,college_bank_account)
+								}else{
+									showErrorMessagesPage("showdata",output.message,output.success);
+								}
+							}
+						}
     		}else{
     			showErrorMessagesPage("showdata",output.message,output.success);
     		}
@@ -454,13 +470,17 @@ function getRents(){
 * @param {college_BIC} college_BIC of the bank account of the college
 * @param {college_accountHolder} college_accountHolder of the bank account of the college
 */
-function open_TPV(id,month, year,price, college_IBAM, college_BIC, college_accountHolder){
+function open_TPV(id,month, year,price, college_IBAM, college_BIC, college_account_holder){
 	//TODO open module
 	var window_TPV=window.open(window.location.protocol+"//"+window.location.host+"/web_puja_por_tu_resi/view/TPV.html","_blank", "width=800,height=500,left=1000");
 	window_TPV.onload = function() {
 		window_TPV.document.getElementById("payment_rent_month").innerHTML=month;
 		window_TPV.document.getElementById("payment_rent_year").innerHTML=year;
 		window_TPV.document.getElementById("payment_rent_price").innerHTML=price.toString()+"€";
+		window_TPV.document.getElementById("payment_rent_college_IBAM").innerHTML=college_IBAM;
+		window_TPV.document.getElementById("payment_rent_college_BIC").innerHTML=college_BIC;
+		window_TPV.document.getElementById("payment_rent_college_account_holder").innerHTML=college_account_holder;
+
 		window_TPV.document.getElementById("payment_rent_submit").onclick = function(){
 				pay_tpv(id,window_TPV);
 		};
