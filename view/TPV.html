@@ -35,6 +35,7 @@
     <title>Puja por tu resi</title>
     <script src="../src/iban.js"></script>
     <script src="../src/TPV.js" ></script>
+    <link href="../style/TPV.css" type="text/css" rel="stylesheet">
 
     <link rel="icon" type="image/ico" href="../img/logo.ico">
     </head>
@@ -115,7 +116,10 @@
               </fieldset>
           </form>
       </div>
-
+      <div id="payment_rent_confirm">
+          <h3> El pago se ha realizado correctemente</h3>
+          <p> con Id de transaccion: <span  id="payment_rent_confirm_idTransaction"></span></p> 
+      </div>
       <div class="error_footer" id="showErrorMessage" style="display:none;">
           <strong>
               <center>

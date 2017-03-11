@@ -2,7 +2,7 @@
 /**
 * Pay the month of the last rent
 * @param {id} id of the rent in the database
-* @param {window_TPV} new window_TPV  
+* @param {window_TPV} new window_TPV
 */
 function pay_tpv(id,window_TPV){
 	  var card_holder_name=window_TPV.document.getElementById("card-holder-name").value;
@@ -28,9 +28,10 @@ function pay_tpv(id,window_TPV){
         showErrorMessagesPage("pay","Invalid fecha expiracion",false,window_TPV);
         return;
     }
+		var idTransaction=Math.floor((Math.random() * 10000) + 1);
     var data = new FormData();
     data.append("id", id);
-    data.append("idTransaction", Math.floor((Math.random() * 10000) + 1));
+    data.append("idTransaction", idTransaction);
 
 	var url=window.location.protocol+"//"+window.location.host+port+"/Rent/pay/";
 	var xmlHttp =new XMLHttpRequest();
@@ -41,7 +42,10 @@ function pay_tpv(id,window_TPV){
 			showErrorMessagesPage("pay rent",output.message,output.success,window_TPV);
       showErrorMessagesPage("pay rent",output.message,output.success);
 			if(output.success){
-        window_TPV.close()//close window
+        //window_TPV.close()//close window
+				window_TPV.document.getElementById("payment_rent").style.display="none";
+				window_TPV.document.getElementById("payment_rent_confirm").style.display="block";
+				window_TPV.document.getElementById("payment_rent_confirm_idTransaction").createTextNode=idTransaction;
         getRents();
 			}
 		}
