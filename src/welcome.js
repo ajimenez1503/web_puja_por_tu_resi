@@ -291,10 +291,47 @@ function logout(){
 	xmlHttp.send();
 }
 
-
+//////////////////////////////////////////////////////////////////////////////
+/*
+*Routing
+*/
+//////////////////////////////////////////////////////////////////////////////
 /**
 * Dispaly the welcome view
 */
 page('/welcome', function(){
 	console.log("welcome page")
+  display_specific_div('all_footer_full_element')
+});
+
+/**
+* Dispaly the Politica_de_privadidad
+*/
+page('/Politica_de_privadidad', function(){
+	console.log("Politica_de_privadidad")
+  display_specific_div('all_footer_full_element','Politica_de_privadidad')
+});
+
+/**
+* Dispaly the Politica_de_cookies
+*/
+page('/Politica_de_cookies', function(){
+	console.log("Politica_de_cookies")
+  display_specific_div('all_footer_full_element','Politica_de_cookies')
+});
+
+/**
+* Dispaly the condiciones_generareales
+*/
+page('/condiciones_generareales', function(){
+	console.log("condiciones_generareales")
+  display_specific_div('all_footer_full_element','condiciones_generareales')
+});
+
+/**
+* Dispaly the aviso_legal
+*/
+page('/aviso_legal', function(){
+	console.log("aviso_legal")
+  display_specific_div('all_footer_full_element','aviso_legal')
 });

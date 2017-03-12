@@ -71,6 +71,7 @@
 	position: fixed;
 	bottom: 0;
 	width: 100%;
+	z-index: 1;
 }
 #map {
 	height: 100%;
@@ -170,4 +171,42 @@ thead{
 .container_welcome_view_slogan_table{
 	margin-top: 10%;
 	margin-left: 7%;
+}
+
+/*////////////////////////////////////////////////////////////////
+*Footer
+////////////////////////////////////////////////////////////////*/
+.footer{
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	background: #444444;
+  color: white;
+	display: inline-flex;
+}
+
+.footer_element{
+	cursor: pointer;
+	text-align: center;
+	margin: auto;
+	margin-top: 1%;
+	margin-bottom: 1%;
+}
+
+.footer_full_element{
+	z-index: 9999999;
+	height: 100%;
+	width: 100%;
+	background: #e2e2e2;
+	position: absolute;
+	bottom: 0;
+	top: 0;
+	padding: 2%;
+}
+
+.button_footer_full_element{
+	margin-left: 90%;
+	font-size: x-large;
+	border: none;
+	background-color: transparent;
 }
