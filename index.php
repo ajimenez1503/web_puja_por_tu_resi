@@ -59,7 +59,7 @@
           <p onclick="page('/aviso_legal')" class="footer_element"> aviso legal </p>
         </div>
         <div id="all_footer_full_element">
-          <div id="Politica_de_privadidad" class="footer_full_element">
+          <div id="Politica_de_privadidad" class="footer_full_element" style="display:none;" >
               <button class="button_footer_full_element"onclick="page('/welcome')" type="button" class="btn btn-link"><i class="fa fa-arrow-left" aria-hidden="true"></i> volver </button>
               <p>
                 De acuerdo a la Ley Orgánica 15/1999, de 13 de diciembre, de protección de datos de carácter personal (LOPD), se informa a los usuarios que los datos personales que nos faciliten serán incorporados al fichero PujaPorTuResi el cual está registrado ante la Agencia Española de Protección de Datos, propiedad y responsabilidad para PujaPorTuResi, S.L.
@@ -109,7 +109,7 @@
                 <li >Correo: PujaPorTuResi@gmail.com</li>
               </ul>
           </div>
-          <div id="Politica_de_cookies" class="footer_full_element">
+          <div id="Politica_de_cookies" class="footer_full_element" style="display:none;" >
               <button class="button_footer_full_element"onclick="page('/welcome')" type="button" class="btn btn-link"><i class="fa fa-arrow-left" aria-hidden="true"></i> volver </button>
               <p>
                 Cookies es un fichero que se alojan en la memoria del dispositivo cuando se accede a la web para administrar servicios y funcionalidades de la aplicación web. PujaPorTuResi S. L. utiliza solo un cookies para la autentificación, este tiene como objetivo que el usuario pueda acceder a la web y que se mantenga conectado de mantera constante hasta el cierre de sesión.  Esta es unicamente utilizada por PujaPorTuResi S. L. y en ningún momento por terceros.
@@ -119,7 +119,7 @@
               </p>
           </div>
 
-          <div id="condiciones_generareales" class="footer_full_element">
+          <div id="condiciones_generareales" class="footer_full_element" style="display:none;" >
               <button class="button_footer_full_element"onclick="page('/welcome')" type="button" class="btn btn-link"><i class="fa fa-arrow-left" aria-hidden="true"></i> volver </button>
               <p>
                 Se expone el documento contractual que regirá la contratación de una habitación de una residencia a través del a empresa PujaPorTuResi S. L. La aceptación del documento conlleva que el usuario:
@@ -153,7 +153,7 @@
               </p>
           </div>
 
-          <div id="aviso_legal" class="footer_full_element">
+          <div id="aviso_legal" style="display:none;" class="footer_full_element">
               <button class="button_footer_full_element"onclick="display_specific_div('all_footer_full_element')" type="button" class="btn btn-link"><i class="fa fa-arrow-left" aria-hidden="true"></i> volver </button>
               <p>
                 El titular de la página web es PujaPorTuResi S L con domicilio en XXX y con número CIF XXX. Los datos se encuentra registrados en el registro mercantil de Granada, XXX.
