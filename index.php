@@ -38,7 +38,7 @@
     <link href="style/college.css" type="text/css" rel="stylesheet">
     <script src="src/icon.js"></script>
     <script src="src/iban.js"></script>
-	<script src="src/page.js"></script>
+	  <script src="src/page.js"></script>
     <script src="src/animation.js"></script>
     <script src="src/validation.js"></script>
     <script src="src/lib.js"></script>
@@ -69,18 +69,6 @@
                 <li >Nombre y apellidos: utilizados para nombrar quien firma el contrato.</li>
                 <li >DNI: para identificar a una persona de forma individual y necesario para firmar el contrato.</li>
                 <li >Email: para contratar en caso de problemas.</li>
-              </ul>
-              <h3> Residencia:</h3>
-              <ul>
-                <li >Nombre compañía: utilizados para nombrar quien firma el contrato.</li>
-                <li >CIF: para identificar a una persona o entidad jurídica de forma individual y necesario para firmar el contrato.</li>
-                <li >Email: para que los estudiantes puedan contactar en caso de problema.</li>
-                <li >Teléfono: para que los estudiantes puedan contactar en caso de problema.</li>
-                <li >URL: para que los estudiantes puedan tener más información sobre la residencia.</li>
-                <li >Equipamiento: para que los estudiantes conozcan las características de la residencia.</li>
-                <li >Direccion: para que los estidiantes conozcan donde esta situada la residencia.</li>
-                <li >IBAN y BIC y propietario de la cuenta bancaria donde debe realizarse el pago mensual.</li>
-                <li >Información sobre la habitación: tamaño, precio, planta en la que se encuentra y equipamiento de la habitación. Con el objetivo de que el estudiante conozca la habitación.</li>
               </ul>
               <p>
                 Le avisamos que la información provista por los usuarios es no cedida a terceros para su análisis, esta es utilizada unicamente por la aplicación y la empresa PujaPorTuResi S. L. La información es requerida en el formulario de registro, el de añadir cuenta bancaria y el de crear una habitación.

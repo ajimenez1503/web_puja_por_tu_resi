@@ -18,7 +18,7 @@
                       </td>
                       <td>
                         <div class="header_welcomeview_right_form">
-                            <input required name="_password" id="loginPassword" type="text" pattern=".{8,8}" tabindex="2" class="form-control" placeholder="Contraseña"  value="password" required>
+                            <input required name="_password" id="loginPassword" type="password" pattern=".{8,8}" tabindex="2" class="form-control" placeholder="Contraseña"  value="password" required>
                         </div>
                       </td>
                       <td>
@@ -64,7 +64,7 @@
                                             <input type="password" name="confirm-password" pattern=".{8,8}" id="student_signupRepeatPSW" tabindex="2" class="form-control" placeholder="Confirma Contraseña" required>
                                         </div>
                                         <div class="form-group">
-                                            <input type="checkbox" id="student_checkbox_política_privacidad"  >aceptar política de privacidad<br>
+                                            <input type="checkbox" id="student_checkbox_política_privacidad"><a onclick="page('/Politica_de_privadidad')"> aceptar política de privacidad</a><br>
                                         </div>
 
                                         <div class="form-group">
@@ -115,9 +115,6 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <input type="checkbox" id="college_checkbox_política_privacidad"  >aceptar política de privacidad<br>
-                                        </div>
-                                        <div class="form-group">
                                             <div class="row">
                                                 <div class="col-sm-6 col-sm-offset-3">
                                                     <input type="submit" onClick="signup_college()" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-submit" value="Registrar">
@@ -145,8 +142,8 @@
                   <p class="atribute">Mejores habitaciones</p>
                 </th>
                 <th class="container_welcome_view_slogan_table_th">
-                  <img class="img_slogan" src="img/cubo.png" alt="Rapido">
-                  <p class="atribute" >Rapido</p>
+                  <img class="img_slogan" src="img/cubo.png" alt="Rápido">
+                  <p class="atribute" >Rápido</p>
                 </th>
                 <th class="container_welcome_view_slogan_table_th">
                   <img class="img_slogan" src="img/cubo.png" alt="Todas las residencias">

@@ -131,10 +131,6 @@ function login(){
 * The input is validate and show the error in case of problem
 */
 function signup_college(){
-        if (!document.getElementById("college_checkbox_política_privacidad").checked){
-            showErrorMessagesPage("signup","Debes aceptar la politica de privavidad",false);
-            return;
-        }
         var user = {
           'email': document.getElementById("college_signupEmail").value,
           'password':document.getElementById("college_signupPassword").value,
