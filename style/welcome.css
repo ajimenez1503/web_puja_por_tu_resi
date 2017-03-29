@@ -26,10 +26,16 @@
 .header_welcomeview_right{
 	float: right;
     padding-top: 8%;
+		padding-right: 2%;
 }
 
-.header_welcomeview_right_form{
-	padding-right: 5%;
+.header_welcomeview_right_slogan
+{
+	float: left;
+	font-size: 17.5px;
+	padding-top: 4%;
+	padding-left: 9%;
+	color: white;
 }
 
 .btn-login {
@@ -132,6 +138,10 @@ thead{
 /*////////////////////////////////////////////////////////////////
 *WELCOME VIEW container
 ////////////////////////////////////////////////////////////////*/
+#container_welcome_view_login{
+	display: none;
+}
+
 #container_welcome_view_register{
 	display: none;
 }

@@ -55,8 +55,8 @@
         <div class="footer" >
           <p onclick="page('/Politica_de_privadidad')" class="footer_element" > Politica de privadidad </p>
           <p onclick="page('/Politica_de_cookies')" class="footer_element"> Politica de cookies </p>
-          <p onclick="page('/condiciones_generareales')" class="footer_element"> condiciones generareales </p>
-          <p onclick="page('/aviso_legal')" class="footer_element"> aviso legal </p>
+          <p onclick="page('/condiciones_generareales')" class="footer_element"> Condiciones generareales </p>
+          <p onclick="page('/aviso_legal')" class="footer_element"> Aviso legal </p>
         </div>
         <div id="all_footer_full_element">
           <div id="Politica_de_privadidad" class="footer_full_element" style="display:none;" >
