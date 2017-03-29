@@ -314,15 +314,19 @@
 
 
 .table_search_room{
-	margin: 5%;
-	height: 201px;
+	margin: 1%;
+	height: 610px;
 	overflow-y: auto;
 }
 
 #search_room_table{
 	margin-left: auto;
-    margin-right: auto;
+  margin-right: auto;
 	display:block;
+}
+
+.search_room_table_map{
+	margin-top: 6%;
 }
 
 #student_search_room_specific{
