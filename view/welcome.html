@@ -5,14 +5,15 @@
 <div id="welcome_view">
   <div class="header_welcomeview">
       <div class="header_welcomeview_left">
-          <img onclick="page('/welcome');" class="img_header_welcomeview_left" src="img/logo2.png" alt="log and slogan">
+          <img onClick="display_specific_div('container_welcome_view','container_welcome_view_search_room')" class="img_header_welcomeview_left" src="img/logo2.png" alt="log and slogan">
       </div>
       <div class="header_welcomeview_right_slogan">
           <p class="slogan mb-0">"Consigue tu mejor residencia solo pujando"</p>
       </div>
       <div class="header_welcomeview_right">
-          <button class="header_welcomeview_right_button" onClick="display_specific_div('container_welcome_view','container_welcome_view_login')">Iniciar sesion</button>
-          <button class="header_welcomeview_right_button" onClick="display_specific_div('container_welcome_view','container_welcome_view_register')" >Registrarse</button>
+          <button type="button" onClick="display_specific_div('container_welcome_view','container_welcome_view_login')" class="btn btn-default">Iniciar sesion</button>
+          <button type="button" onClick="display_specific_div('container_welcome_view','container_welcome_view_register')" class="btn btn-default" >Registrarse</button>
+
       </div>
   </div>
   <div id="container_welcome_view">
@@ -192,7 +193,7 @@
                         </div> <!-- end container_welcome_view_table_search_room -->
                     </div>
 
-                    <div class="search_room_table_map col-sm-4">
+                    <div class="col-sm-4">
                         <div class="panel-group">
                             <div class="panel with panel-primary class">
                                 <div class="panel-heading">Mapa Residencia</div>
