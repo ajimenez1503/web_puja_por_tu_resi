@@ -2,6 +2,9 @@
 * @author antonio Jimenez (softwarejimenez)
 * @version 0.1
 */
+.body{
+	font-family: 'Open Sans', sans-serif !important;
+}
 
 /*////////////////////////////////////////////////////////////////
 *WELCOME VIEW header
@@ -146,15 +149,6 @@ thead{
 	display: none;
 }
 
-#container_welcome_view_slogan{
-	background: url("http://www.cienciaqueconta.com/wp-content/uploads/2013/10/white-polygon-background_02.jpg") no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-	padding-bottom: 20%;
-}
-
 .slogan{
 	font-family: initial;
   font-size: xx-large;
@@ -162,27 +156,20 @@ thead{
 	font-style: italic;
 	font-weight: bold;
 }
-
-.img_slogan{
-	height: 150px;
-	width: 150px;
-	margin-bottom: 10%;
+#container_welcome_view_search_room_table_map{
+	margin-top: 5%;
+	width: 80%;
+	height: 287px;
+	margin-left:  10%;
+	margin-bottom: 15px;
+	background-color: grey;
 }
 
-.container_welcome_view_slogan_table_th{
-    width: 1%;
-		text-align: center;
+.container_welcome_view_table_search_room{
+	margin: 1%;
+	height: 410px;
+	overflow-y: auto;
 }
-
-.atribute{
-	font-size: x-large;
-}
-
-.container_welcome_view_slogan_table{
-	margin-top: 10%;
-	margin-left: 7%;
-}
-
 /*////////////////////////////////////////////////////////////////
 *Footer
 ////////////////////////////////////////////////////////////////*/

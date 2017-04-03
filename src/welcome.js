@@ -296,16 +296,20 @@ function logout(){
 * Dispaly the welcome view
 */
 page('/welcome', function(){
-	console.log("welcome page")
-  display_specific_div('all_footer_full_element')
+    console.log("welcome page")
+    display_specific_div('all_footer_full_element')
+    if( document.getElementById("container_welcome_view")!=null){
+        display_specific_div('container_welcome_view','container_welcome_view_search_room')
+        display_search_room_table("container_welcome_view_search_",false);
+    }
 });
 
 /**
 * Dispaly the Politica_de_privadidad
 */
 page('/Politica_de_privadidad', function(){
-	console.log("Politica_de_privadidad")
-  display_specific_div('all_footer_full_element','Politica_de_privadidad')
+    console.log("Politica_de_privadidad")
+    display_specific_div('all_footer_full_element','Politica_de_privadidad')
 });
 
 /**

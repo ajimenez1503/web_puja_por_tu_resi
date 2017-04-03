@@ -494,18 +494,18 @@ function open_TPV(id,month, year,price, college_IBAM, college_BIC, college_accou
 /**
 * Get all colleges name and display the list in the form of search room
 */
-function display_list_colleges(){
+function display_list_colleges(prefix_id){
     var xmlHttp =new XMLHttpRequest();
-	var url=window.location.protocol+"//"+window.location.host+port+"/Room/getAllCompanyName/";
-	xmlHttp.open("GET", url, true );
+    var url=window.location.protocol+"//"+window.location.host+port+"/Room/getAllCompanyName/";
+    xmlHttp.open("GET", url, true );
     xmlHttp.withCredentials = true;
 	xmlHttp.send();
-	xmlHttp.onreadystatechange = function() {
-    	if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
-    		var output= JSON.parse(xmlHttp.responseText);
+    xmlHttp.onreadystatechange = function() {
+        if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
+        	var output= JSON.parse(xmlHttp.responseText);
             console.log(output)
-    		if(output.success){
-                var search_room_form_college = document.getElementById("search_room_form_college");
+        	if(output.success){
+                var search_room_form_college = document.getElementById(prefix_id+"room_form_college");
                 deleteAllChildElement(search_room_form_college);
                 //Add TODAS
                 var option = document.createElement("option");
@@ -518,10 +518,10 @@ function display_list_colleges(){
                     option.text = output.data[i];
                     search_room_form_college.add(option);
                 }
-    		}else{
-    			showErrorMessagesPage("Get Colleges",output.message,output.success);
-    		}
-    	}
+        	}else{
+        	    showErrorMessagesPage("Get Colleges",output.message,output.success);
+        	}
+        }
     }
 }
 
@@ -529,8 +529,8 @@ function display_list_colleges(){
 /**
 * Display the range of price
 */
-function display_range_price(){
-    $( "#slider-range" ).slider({
+function display_range_price(id){
+    $( "#"+id ).slider({
         range: true,
         min: 0,
         max: 2000,
@@ -539,27 +539,27 @@ function display_range_price(){
             $( "#amount" ).val(  ui.values[ 0 ] + "€ -" + ui.values[ 1 ]+" €" );
         }
     });
-    $( "#amount" ).val( get_min_range_prince() +" € - " + get_max_range_prince() +" € " );
+    $( "#amount" ).val( get_min_range_prince(id) +" € - " + get_max_range_prince(id) +" € " );
 }
 
 /**
 * @return min price
 */
-function get_min_range_prince(){
-    return $( "#slider-range" ).slider( "values", 0 );
+function get_min_range_prince(id){
+    return $( "#"+id).slider( "values", 0 );
 }
 
 /**
 * @return max price
 */
-function get_max_range_prince(){
-    return $( "#slider-range" ).slider( "values", 1 );
+function get_max_range_prince(id){
+    return $( "#"+id).slider( "values", 1 );
 }
 /**
 * @return college selected
 */
-function get_college_selected(){
-    var e = document.getElementById("search_room_form_college");
+function get_college_selected(prefix_id){
+    var e = document.getElementById(prefix_id+"room_form_college");
     return  e.options[e.selectedIndex].value;
 }
 /**
@@ -578,17 +578,17 @@ function selected_icon_search(id_element){
 /**
 * Search room by the parementer of the form
 */
-function search_rooms() {
-    display_specific_div("search_room_option","search_room_table");
+function search_rooms(prefix_id,display_specific_room) {
+    display_specific_div(prefix_id+"room_option",prefix_id+"room_table");
     //get data form
-    var equipment=get_equipment_selected('search_equipment');
+    var equipment=get_equipment_selected(prefix_id+"equipment");
 
     // get all residences availables whith the paramenter
     // create the row of the table
     var url=window.location.protocol+"//"+window.location.host+port+"/Room/getSearch/";
-    url+="?college_company_name="+get_college_selected();
-    url+="&price_min="+get_min_range_prince();
-    url+="&price_max="+get_max_range_prince();
+    url+="?college_company_name="+get_college_selected(prefix_id);
+    url+="&price_min="+get_min_range_prince(prefix_id+"slider-range");
+    url+="&price_max="+get_max_range_prince(prefix_id+"slider-range");
     url+="&study_room="+equipment.search_icon_study_room;
     url+="&gym="+equipment.search_icon_gym;
     url+="&canteen="+equipment.search_icon_canteen;
@@ -605,17 +605,17 @@ function search_rooms() {
     var xmlHttp =new XMLHttpRequest();
     xmlHttp.withCredentials = true;
     xmlHttp.open("GET", url, true );
-	xmlHttp.send();
-	xmlHttp.onreadystatechange = function() {
-    	if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
-    		var output= JSON.parse(xmlHttp.responseText);
+    xmlHttp.send();
+    xmlHttp.onreadystatechange = function() {
+        if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
+        	var output= JSON.parse(xmlHttp.responseText);
             console.log(output)
-    		if(output.success){
-                display_table_list_rooms(output.data)
-    		}else{
-    			showErrorMessagesPage("showrooms",output.message,output.success);
-    		}
-    	}
+        	if(output.success){
+                display_table_list_rooms(prefix_id,output.data,display_specific_room)
+        	}else{
+        	    showErrorMessagesPage("showrooms",output.message,output.success);
+        	}
+        }
     }
 }
 
@@ -663,14 +663,14 @@ function create_row_room(data_college,data_room){
 * nombre,inicio academico,fin academico,inicio puja,fin puja,tamaño,planta,tv, bath, desk, wardrove
 * @return td element (column)
 */
-function create_room_element(data_college,data_room){
+function create_room_element(data_college,data_room,display_specific_room,prefix_id){
     var td = document.createElement('td');
-		td.style.textAlign = "center";
-		td.id="student_list_room_id"+data_room.id.toString();
-		var div_img = document.createElement('div');
-		var img = document.createElement("img")
-		img.src=window.location.protocol+"//"+window.location.host+port+"/Room/download/"+data_room.picture1;
-		img.style.width='300px';
+    	td.style.textAlign = "center";
+    	td.id="student_list_room_id"+data_room.id.toString();
+    	var div_img = document.createElement('div');
+    	var img = document.createElement("img")
+    	img.src=window.location.protocol+"//"+window.location.host+port+"/Room/download/"+data_room.picture1;
+    	img.style.width='300px';
 		img.style.height='300px';
 		img.title="imagen room";
 		img.alt="imagen room";
@@ -684,31 +684,34 @@ function create_room_element(data_college,data_room){
 
 
     td.onmouseover = function() {
-        selected_out_selected_row_table(td.id,data_college.latitude,data_college.longitude,"search_room_table_map");
+        selected_out_selected_row_table(td.id,data_college.latitude,data_college.longitude,prefix_id+"room_table_map");
     };
     td.onmouseout = function() {
         selected_out_selected_row_table(td.id);
     };
-    td.onclick = function() {
-        display_search_room_specific(data_college,data_room);
-    };
+    if(display_specific_room){
+        td.onclick = function() {
+            display_search_room_specific(data_college,data_room);
+        };
+    }
+
     return td;
 }
 
 /**
-* Display all the OFFERED room in the student_element_table_list_rooms
+* Display all the OFFERED room in the search_room_table_list_rooms
 */
-function display_table_list_rooms(data){
-    var father = document.getElementById("student_element_table_list_rooms");
-    deleteAllChildElement(father)
+function display_table_list_rooms(prefix_id,data,display_specific_room){
+    var father = document.getElementById(prefix_id+"room_table_list_rooms");
+    deleteAllChildElement(father);
     for (i = 0; i < data.length; i++) {
         for (j=0;j< data[i].rooms.length; j=j+2){
-						var tr = document.createElement('tr');
-            tr.appendChild( create_room_element(data[i],data[i].rooms[j]));
-						if(j+1< data[i].rooms.length){
-								tr.appendChild( create_room_element(data[i],data[i].rooms[j+1]));
-						}
-						father.appendChild(tr);
+            var tr = document.createElement('tr');
+            tr.appendChild( create_room_element(data[i],data[i].rooms[j],display_specific_room,prefix_id));
+            if(j+1< data[i].rooms.length){
+                tr.appendChild( create_room_element(data[i],data[i].rooms[j+1],display_specific_room,prefix_id));
+            }
+            father.appendChild(tr);
         }
     }
 }
@@ -716,7 +719,7 @@ function display_table_list_rooms(data){
 /**
 * Get all the OFFERED Rooms and display table
 */
-function GetOFFEREDRooms(){
+function GetOFFEREDRooms(prefix_id,display_specific_room){
     var xmlHttp =new XMLHttpRequest();
 	var url=window.location.protocol+"//"+window.location.host+port+"/Room/getSearchAll/";
 	xmlHttp.open("GET", url, true );
@@ -727,7 +730,7 @@ function GetOFFEREDRooms(){
     		var output= JSON.parse(xmlHttp.responseText);
             console.log(output)
     		if(output.success){
-                display_table_list_rooms(output.data)
+                display_table_list_rooms(prefix_id,output.data,display_specific_room)
     		}else{
     			showErrorMessagesPage("showrooms",output.message,output.success);
     		}
@@ -739,15 +742,13 @@ function GetOFFEREDRooms(){
 /**
 * Dispaly search room table (table/ form / map)
 */
- function display_search_room_table() {
-     display_specific_div("search_room_option","search_room_table");
-     display_range_price();
-     display_list_colleges();
-     init_map("search_room_table_map",37.176487,-3.597929);//By default GRANADA in the maps
+ function display_search_room_table(prefix_id,display_specific_room) {
+     display_range_price(prefix_id+"slider-range" );
+     display_list_colleges(prefix_id);
+     init_map(prefix_id+"room_table_map",37.176487,-3.597929);//By default GRANADA in the maps
      // display all the availables room in the table
-     GetOFFEREDRooms();
+     GetOFFEREDRooms(prefix_id,display_specific_room);
  }
-
 
 /**
 * Dispaly the features of a specific room
@@ -871,7 +872,8 @@ page('/search_room', function(){
         console.log("displaysearch_room");
         display_specific_div("student_view_list_elements","search_room");
         countUnreadMessages("student_");
-        display_search_room_table();
+        display_specific_div("search_room_option","search_room_table");
+        display_search_room_table("search_",true);
     }
 });
 

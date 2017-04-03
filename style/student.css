@@ -336,7 +336,7 @@
 }
 
 .selected_row_table{
-	background-color: rgb(224, 56, 56) !important;
+	background-color: #bac3cc !important;
 	color: #FFF !important;
 	cursor: pointer;
 }
