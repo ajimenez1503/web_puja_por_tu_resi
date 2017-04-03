@@ -110,11 +110,11 @@ function create_row_rent(data_rent,paid_button,college_bank_account){
 * @param: list_rents
 */
 function display_table_rents(tab_element,tab_table,list_rents,paid_button,college_bank_account){
-	var father = document.getElementById(tab_element);
-	deleteAllChildElement(father)
-	for (i = 0; i < list_rents.length; i++) {
-		father.appendChild(create_row_rent(list_rents[i],paid_button,college_bank_account));
-	}
+    var father = document.getElementById(tab_element);
+    deleteAllChildElement(father)
+    for (i = 0; i < list_rents.length; i++) {
+        father.appendChild(create_row_rent(list_rents[i],paid_button,college_bank_account));
+    }
     floatThead_table(tab_table);
 }
 
@@ -141,15 +141,15 @@ function display_specific_agreement(tab,data_agreement){
 */
 function get_display_bids(room_id,tab_id){
     var xmlHttp =new XMLHttpRequest();
-	var url=window.location.protocol+"//"+window.location.host+port+"/Bid/getBidsRoom/"+room_id;
-	xmlHttp.open("GET", url, true );
+    var url=window.location.protocol+"//"+window.location.host+port+"/Bid/getBidsRoom/"+room_id;
+    xmlHttp.open("GET", url, true );
     xmlHttp.withCredentials = true;
-	xmlHttp.send();
-	xmlHttp.onreadystatechange = function() {
-    	if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
-    		var output= JSON.parse(xmlHttp.responseText);
+    xmlHttp.send();
+    xmlHttp.onreadystatechange = function() {
+        if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
+            var output= JSON.parse(xmlHttp.responseText);
             console.log(output)
-    		if(output.success){
+            if(output.success){
                 var ul_element = document.getElementById(tab_id);
                 deleteAllChildElement(ul_element);
                 for (i = 0; i < output.data.length; i++) {
@@ -162,10 +162,10 @@ function get_display_bids(room_id,tab_id){
                     li.appendChild(span);
                     ul_element.appendChild(li);
                 }
-    		}else{
-    			showErrorMessagesPage("Get bids",output.message,output.success);
-    		}
-    	}
+            }else{
+                showErrorMessagesPage("Get bids",output.message,output.success);
+            }
+        }
     }
 }
 
@@ -231,19 +231,19 @@ function create_div_incidence(data_incidence,tab){
 * @param: tab
 */
 function countUnreadMessages(tab){
-	var xmlHttp =new XMLHttpRequest();
-	var url=window.location.protocol+"//"+window.location.host+port+"/Message/countUnread/";
-	xmlHttp.open("GET", url, true );
+    var xmlHttp =new XMLHttpRequest();
+    var url=window.location.protocol+"//"+window.location.host+port+"/Message/countUnread/";
+    xmlHttp.open("GET", url, true );
     xmlHttp.withCredentials = true;
-	xmlHttp.send();
-	xmlHttp.onreadystatechange = function() {
-    	if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
-    		var output= JSON.parse(xmlHttp.responseText);
+    xmlHttp.send();
+    xmlHttp.onreadystatechange = function() {
+        if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
+            var output= JSON.parse(xmlHttp.responseText);
             console.log(output)
-    		if(output.success){
-    			document.getElementById(tab+"numberMessage").textContent=output.data;
-    		}
-    	}
+            if(output.success){
+                document.getElementById(tab+"numberMessage").textContent=output.data;
+            }
+        }
     }
 }
 
@@ -253,16 +253,16 @@ function countUnreadMessages(tab){
 * @param: tab
 */
 function getIncidences(tab){
-	var xmlHttp =new XMLHttpRequest();
-	var url=window.location.protocol+"//"+window.location.host+port+"/Incidence/get/";
-	xmlHttp.open("GET", url, true );
+    var xmlHttp =new XMLHttpRequest();
+    var url=window.location.protocol+"//"+window.location.host+port+"/Incidence/get/";
+    xmlHttp.open("GET", url, true );
     xmlHttp.withCredentials = true;
-	xmlHttp.send();
-	xmlHttp.onreadystatechange = function() {
-    	if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
-    		var output= JSON.parse(xmlHttp.responseText);
+    xmlHttp.send();
+    xmlHttp.onreadystatechange = function() {
+        if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
+            var output= JSON.parse(xmlHttp.responseText);
             console.log(output)
-    		if(output.success){
+            if(output.success){
                 var father_open = document.getElementById(tab+"incidence_OPEN");
                 deleteAllChildElement(father_open)
                 var father_in_progress = document.getElementById(tab+"incidence_IN_PROGRESS");
@@ -279,10 +279,10 @@ function getIncidences(tab){
                     }
                 }
 
-    		}else{
-    			showErrorMessagesPage("showdata",output.message,output.success);
-    		}
-    	}
+            }else{
+                showErrorMessagesPage("showdata",output.message,output.success);
+            }
+        }
     }
 }
 
@@ -293,21 +293,21 @@ function getIncidences(tab){
 * @param new_status
 */
 function update_inicidence(id_inicidence, new_status){
-	var url=window.location.protocol+"//"+window.location.host+port+"/Incidence/updateState/";
-	var xmlHttp =new XMLHttpRequest();
-	xmlHttp.onreadystatechange = function() {
-		if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
-			var output= JSON.parse(xmlHttp.responseText);
+    var url=window.location.protocol+"//"+window.location.host+port+"/Incidence/updateState/";
+    var xmlHttp =new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function() {
+        if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
+            var output= JSON.parse(xmlHttp.responseText);
             console.log(output);
-			showErrorMessagesPage("updateInicidence",output.message,output.success);
-		}
-	}
-	xmlHttp.open("POST", url, true );
+            showErrorMessagesPage("updateInicidence",output.message,output.success);
+        }
+    }
+    xmlHttp.open("POST", url, true );
     xmlHttp.withCredentials = true;
     var data = new FormData();
     data.append("id", id_inicidence);
     data.append("status",new_status);
-	xmlHttp.send(data);
+    xmlHttp.send(data);
 }
 
 /**

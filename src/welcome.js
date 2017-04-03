@@ -16,7 +16,7 @@ var port=":8000";
 */
 window.onload = function(){
     check_sesion();
-	page({hashbang: true});
+    page({hashbang: true});
 };
 
 
@@ -61,12 +61,12 @@ function check_sesion(){
     var xmlHttp =new XMLHttpRequest();
     xmlHttp.open("GET", url, true );
     xmlHttp.withCredentials = true;
-	xmlHttp.send();
+    xmlHttp.send();
     xmlHttp.onreadystatechange = function() {
-    	if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
-    		var output= JSON.parse(xmlHttp.responseText);
+        if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
+            var output= JSON.parse(xmlHttp.responseText);
             console.log(output);
-    		if( output.success ){
+            if( output.success ){
                 if (output.data.ROLE[0]=="ROLE_STUDENT"){
                         globa_view="studentview";
                 }else if (output.data.ROLE[0]=="ROLE_COLLEGE"){
@@ -75,9 +75,9 @@ function check_sesion(){
                     console.log(output.data.ROLE[0]);
                     showErrorMessagesPage("login","Role desconocido.",output.success);
                 }
-    		}
+            }
             reloadPage();
-    	}
+        }
     }
 }
 
@@ -87,16 +87,16 @@ function check_sesion(){
 * The input is validate and show the error in case of problem.
 */
 function login(){
-	var username=document.getElementById("loginUsername").value;
-	var password=document.getElementById("loginPassword").value;
+    var username=document.getElementById("loginUsername").value;
+    var password=document.getElementById("loginPassword").value;
     if(password.length>=sizePaswword && (validate_DNI(username) || validate_CIF(username))){
-		var url= window.location.protocol+"//"+window.location.host+port+"/login";
-		var xmlHttp =new XMLHttpRequest();
-		xmlHttp.onreadystatechange = function() {
-			if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
-				var output= JSON.parse(xmlHttp.responseText);
+        var url= window.location.protocol+"//"+window.location.host+port+"/login";
+        var xmlHttp =new XMLHttpRequest();
+        xmlHttp.onreadystatechange = function() {
+            if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
+                var output= JSON.parse(xmlHttp.responseText);
                 console.log(output);
-				if( output.success ){
+                if( output.success ){
                     if (output.data.ROLE[0]=="ROLE_STUDENT"){
                         globa_view="studentview";
                         reloadPage();
@@ -107,13 +107,13 @@ function login(){
                         console.log(output.data.ROLE[0]);
                         showErrorMessagesPage("login","Role desconocido.",output.success);
                     }
-				}else{
-					showErrorMessagesPage("login",output.message,output.success);
+                }else{
+                    showErrorMessagesPage("login",output.message,output.success);
                     console.log(output);
-				}
-			}
-		}
-		xmlHttp.open("POST", url, true );
+                }
+            }
+        }
+        xmlHttp.open("POST", url, true );
         xmlHttp.withCredentials = true;
         var data = new FormData();
         data.append("_username", username);
@@ -134,7 +134,7 @@ function signup_college(){
         var user = {
           'email': document.getElementById("college_signupEmail").value,
           'password':document.getElementById("college_signupPassword").value,
-		  'repeat_password':document.getElementById("college_signupRepeatPSW").value,
+          'repeat_password':document.getElementById("college_signupRepeatPSW").value,
           'name': document.getElementById("college_signupName").value,
           'username': document.getElementById("college_signupusername").value,
           'address': global_address_college.formatted_address,
@@ -155,7 +155,7 @@ function signup_college(){
             showErrorMessagesPage("signup","Password debe tener "+sizePaswword+" caracteres",false);
             return;
         }
-		if(user.repeat_password != user.password){
+        if(user.repeat_password != user.password){
             showErrorMessagesPage("signup","Passwords no son iguales",false);
             return;
         }
@@ -174,19 +174,19 @@ function signup_college(){
             return;
         }
         var equipment=get_equipment_selected('college_equipment');
-		var url=window.location.protocol+"//"+window.location.host+port+"/Signin/college/";
-		var xmlHttp =new XMLHttpRequest();
-		xmlHttp.onreadystatechange = function() {
-			if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
-				var output= JSON.parse(xmlHttp.responseText);
+        var url=window.location.protocol+"//"+window.location.host+port+"/Signin/college/";
+        var xmlHttp =new XMLHttpRequest();
+        xmlHttp.onreadystatechange = function() {
+            if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
+                var output= JSON.parse(xmlHttp.responseText);
                 console.log(output);
                 showErrorMessagesPage("signup",output.message,output.success);
                 if(output.success){
                     document.getElementById("register_form_college").reset();//clean input
                 }
-			}
-		}
-		xmlHttp.open("POST", url, true );
+            }
+        }
+        xmlHttp.open("POST", url, true );
         var data = new FormData();
         data.append("username", user.username);
         data.append("password", user.password);
@@ -205,7 +205,7 @@ function signup_college(){
         data.append("gym", equipment.college_icon_gym);
         data.append("study_room", equipment.college_icon_study_room);
         data.append("heating", equipment.college_icon_heating);
-		xmlHttp.send(data);
+        xmlHttp.send(data);
 }
 
 
@@ -221,7 +221,7 @@ function signup_student(){
         var user = {
           'email': document.getElementById("student_signupEmail").value,
           'password':document.getElementById("student_signupPassword").value,
-		  'repeat_password':document.getElementById("student_signupRepeatPSW").value,
+          'repeat_password':document.getElementById("student_signupRepeatPSW").value,
           'name': document.getElementById("student_signupName").value,
           'username': document.getElementById("student_signupusername").value,
         };
@@ -237,7 +237,7 @@ function signup_student(){
             showErrorMessagesPage("signup","password debe tener "+sizePaswword+" caracteres",false);
             return;
         }
-		if(user.repeat_password != user.password){
+        if(user.repeat_password != user.password){
             showErrorMessagesPage("signup","Contraseñas no son iguales",false);
             return;
         }
@@ -245,25 +245,25 @@ function signup_student(){
             showErrorMessagesPage("signup","El nombre esta vacio",false);
             return;
         }
-		var url=window.location.protocol+"//"+window.location.host+port+"/Signin/student/";
-		var xmlHttp =new XMLHttpRequest();
-		xmlHttp.onreadystatechange = function() {
-			if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
-				var output= JSON.parse(xmlHttp.responseText);
+        var url=window.location.protocol+"//"+window.location.host+port+"/Signin/student/";
+        var xmlHttp =new XMLHttpRequest();
+        xmlHttp.onreadystatechange = function() {
+            if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
+                var output= JSON.parse(xmlHttp.responseText);
                 console.log(output);
                 showErrorMessagesPage("signup",output.message,output.success);
                 if(output.success){
                     document.getElementById("register_form_student").reset();//clean input
                 }
-			}
-		}
-		xmlHttp.open("POST", url, true );
+            }
+        }
+        xmlHttp.open("POST", url, true );
         var data = new FormData();
         data.append("username", user.username);
         data.append("password", user.password);
         data.append("email",user.email);
         data.append("name", user.name);
-		xmlHttp.send(data);
+        xmlHttp.send(data);
 }
 
 
@@ -273,18 +273,18 @@ function signup_student(){
 function logout(){
     var url=window.location.protocol+"//"+window.location.host+port+"/logout";
     var xmlHttp =new XMLHttpRequest();
-	xmlHttp.onreadystatechange = function() {
-		if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
+    xmlHttp.onreadystatechange = function() {
+        if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
             console.log(JSON.parse(xmlHttp.responseText));
-			//TODO when success is true
-			console.log("logout");
+            //TODO when success is true
+            console.log("logout");
             globa_view="welcomeview";
             reloadPage();
-		}
-	}
-	xmlHttp.open("GET", url, true );
+        }
+    }
+    xmlHttp.open("GET", url, true );
     xmlHttp.withCredentials = true;
-	xmlHttp.send();
+    xmlHttp.send();
 }
 
 //////////////////////////////////////////////////////////////////////////////
@@ -316,7 +316,7 @@ page('/Politica_de_privadidad', function(){
 * Dispaly the Politica_de_cookies
 */
 page('/Politica_de_cookies', function(){
-	console.log("Politica_de_cookies")
+    console.log("Politica_de_cookies")
   display_specific_div('all_footer_full_element','Politica_de_cookies')
 });
 
@@ -324,7 +324,7 @@ page('/Politica_de_cookies', function(){
 * Dispaly the condiciones_generareales
 */
 page('/condiciones_generareales', function(){
-	console.log("condiciones_generareales")
+    console.log("condiciones_generareales")
   display_specific_div('all_footer_full_element','condiciones_generareales')
 });
 
@@ -332,6 +332,6 @@ page('/condiciones_generareales', function(){
 * Dispaly the aviso_legal
 */
 page('/aviso_legal', function(){
-	console.log("aviso_legal")
+    console.log("aviso_legal")
   display_specific_div('all_footer_full_element','aviso_legal')
 });

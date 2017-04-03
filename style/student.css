@@ -8,115 +8,115 @@
 
 #home{
 
-	margin-left: auto;
+    margin-left: auto;
     margin-right: auto;
-	display:block;
+    display:block;
 }
 #browse{
 
-	margin-left: auto;
+    margin-left: auto;
     margin-right: auto;
-	display:none;
+    display:none;
 }
 #profile{
 
-	margin-left: auto;
+    margin-left: auto;
     margin-right: auto;
-	display:none;
+    display:none;
 }
 
 #incidence{
-	margin-left: auto;
+    margin-left: auto;
     margin-right: auto;
-	display:none;
+    display:none;
 }
 #search_room{
-	margin-left: auto;
+    margin-left: auto;
     margin-right: auto;
-	display:none;
+    display:none;
 }
 
 #Room{
-	margin-left: auto;
+    margin-left: auto;
     margin-right: auto;
-	display:none;
+    display:none;
 }
 #rent{
-	margin-left: auto;
+    margin-left: auto;
     margin-right: auto;
-	display:none;
+    display:none;
 }
 
 .panel-login {
-	border-color: #ccc;
-	-webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
-	-moz-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
-	box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+    border-color: #ccc;
+    -webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+    -moz-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
 }
 .panel-login>.panel-heading {
-	color: #00415d;
-	background-color: #fff;
-	border-color: #fff;
-	text-align:center;
+    color: #00415d;
+    background-color: #fff;
+    border-color: #fff;
+    text-align:center;
 }
 .panel-login>.panel-heading a{
-	text-decoration: none;
-	color: #666;
-	font-weight: bold;
-	font-size: 15px;
-	-webkit-transition: all 0.1s linear;
-	-moz-transition: all 0.1s linear;
-	transition: all 0.1s linear;
+    text-decoration: none;
+    color: #666;
+    font-weight: bold;
+    font-size: 15px;
+    -webkit-transition: all 0.1s linear;
+    -moz-transition: all 0.1s linear;
+    transition: all 0.1s linear;
 }
 .panel-login>.panel-heading a.active{
-	color: #029f5b;
-	font-size: 18px;
+    color: #029f5b;
+    font-size: 18px;
 }
 .panel-login>.panel-heading hr{
-	margin-top: 10px;
-	margin-bottom: 0px;
-	clear: both;
-	border: 0;
-	height: 1px;
-	background-image: -webkit-linear-gradient(left,rgba(0, 0, 0, 0),rgba(0, 0, 0, 0.15),rgba(0, 0, 0, 0));
-	background-image: -moz-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
-	background-image: -ms-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
-	background-image: -o-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
+    margin-top: 10px;
+    margin-bottom: 0px;
+    clear: both;
+    border: 0;
+    height: 1px;
+    background-image: -webkit-linear-gradient(left,rgba(0, 0, 0, 0),rgba(0, 0, 0, 0.15),rgba(0, 0, 0, 0));
+    background-image: -moz-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
+    background-image: -ms-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
+    background-image: -o-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
 }
 .panel-login input[type="text"],.panel-login input[type="email"],.panel-login input[type="password"] {
-	height: 45px;
-	border: 1px solid #ddd;
-	font-size: 16px;
-	-webkit-transition: all 0.1s linear;
-	-moz-transition: all 0.1s linear;
-	transition: all 0.1s linear;
+    height: 45px;
+    border: 1px solid #ddd;
+    font-size: 16px;
+    -webkit-transition: all 0.1s linear;
+    -moz-transition: all 0.1s linear;
+    transition: all 0.1s linear;
 }
 .panel-login input:hover,
 .panel-login input:focus {
-	outline:none;
-	-webkit-box-shadow: none;
-	-moz-box-shadow: none;
-	box-shadow: none;
-	border-color: #ccc;
+    outline:none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    border-color: #ccc;
 }
 
 
 .btn-submit {
-	background-color: #1CB94E;
-	outline: none;
-	color: #fff;
-	font-size: 14px;
-	height: auto;
-	font-weight: normal;
-	padding: 14px 0;
-	text-transform: uppercase;
-	border-color: #1CB94A;
+    background-color: #1CB94E;
+    outline: none;
+    color: #fff;
+    font-size: 14px;
+    height: auto;
+    font-weight: normal;
+    padding: 14px 0;
+    text-transform: uppercase;
+    border-color: #1CB94A;
 }
 .btn-submit:hover,
 .btn-submit:focus {
-	color: #fff;
-	background-color: #1CA347;
-	border-color: #1CA347;
+    color: #fff;
+    background-color: #1CA347;
+    border-color: #1CA347;
 }
 
 
@@ -126,31 +126,31 @@
 *STUDENT VIEW / PROFILE
 ////////////////////////////////////////////////////////////////*/
 .elememt_profile{
-	padding-bottom: 20%;
-	text-align: center;
+    padding-bottom: 20%;
+    text-align: center;
 }
 
 #profile_student_email_new{
-	display: none;
+    display: none;
 }
 /*////////////////////////////////////////////////////////////////
 *STUDENT VIEW / MESSAGE
 ////////////////////////////////////////////////////////////////*/
 
 .div_message{
-	background-color: #dff0d8;
-	border-color: #d6e9c6;
-	padding: 15px;
-	margin-bottom: 20px;
-	border: 1px solid transparent;
-	border-radius: 4px;
-	margin: 5%;
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    margin: 5%;
 }
 
 .fileUpload {
     position: relative;
     overflow: hidden;
-	cursor: pointer;
+    cursor: pointer;
 }
 .fileUpload input.upload {
     position: absolute;
@@ -158,15 +158,15 @@
     right: 0;
     margin: 0;
     padding: 0;
-	width: 100%;
-  	height: 100%;
+    width: 100%;
+      height: 100%;
     font-size: 20px;
     cursor: pointer;
     opacity: 0;
     filter: alpha(opacity=0);
 }
 .icon_paperclip{
-	font-size: 15px !important;
+    font-size: 15px !important;
 }
 
 .label_tab{
@@ -174,11 +174,11 @@
 }
 
 .list_message_element_p{
-	margin-left: 2%;
-	margin-right: 1%;
+    margin-left: 2%;
+    margin-right: 1%;
 }
 .list_message_elements_div{
-	display: flex;
+    display: flex;
     text-align: center;
 }
 
@@ -192,76 +192,76 @@
 ////////////////////////////////////////////////////////////////*/
 
 .localIncidence{
-	/*background-color: rgb(116, 207, 234);*/
-	border-radius: 10px;
-	padding: 1%;
-	margin: 2%;
+    /*background-color: rgb(116, 207, 234);*/
+    border-radius: 10px;
+    padding: 1%;
+    margin: 2%;
 }
 
 .localIncidence label {
-	font-weight: 100;
+    font-weight: 100;
 }
 
 .form_margin{
-	margin: 5%;
+    margin: 5%;
 }
 
 .form_footer{
-	position: fixed;
-	bottom: 0;
-	width: 100%;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 }
 /*////////////////////////////////////////////////////////////////
 *STUDENT VIEW / ROOM
 ////////////////////////////////////////////////////////////////*/
 
 #Room_accept_refuse{
-	display:none;
+    display:none;
 }
 
 #Room_data{
-	display:none;
+    display:none;
 }
 
 .button_margin_room{
-	margin-left: 5%;
-	margin-right: 5%;
-	margin-bottom: 4%;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-bottom: 4%;
 }
 .room_wrapper_button{
-	text-align: center;
+    text-align: center;
 }
 
 .icon{
-	font-size: 24px !important;
-	margin: 1% !important;
+    font-size: 24px !important;
+    margin: 1% !important;
 }
 .icon_img{
-	  margin-top: -10px !important;
-	  margin-left: 1% !important;
-  	  margin-right: 1% !important;
+      margin-top: -10px !important;
+      margin-left: 1% !important;
+        margin-right: 1% !important;
 }
 
 #Room_specific_college_map {
-	width: 80%;
-	height: 287px;
-	margin-left:  10%;
-	margin-bottom: 15px;
-	background-color: grey;
+    width: 80%;
+    height: 287px;
+    margin-left:  10%;
+    margin-bottom: 15px;
+    background-color: grey;
 }
 
 #Room_upload_file_agreement{
-	display:none;
+    display:none;
 }
 .left_room{
-	float: left;
+    float: left;
 }
 .right_room{
-	float: right;
+    float: right;
 
 }
 .img_room{
-	width: 150px;
+    width: 150px;
     height: 150px;
     margin: 5%;
     border-radius: 15%;
@@ -269,18 +269,18 @@
 
 
 .slide_img{
-	width: 230px;
-	height: 200px;
-	float: left;
+    width: 230px;
+    height: 200px;
+    float: left;
 }
 #Room_specific_slider_img{
-	width: 230px;
-	height: 200px;
-	overflow: hidden;
-	position: relative;
-	margin: 10px 0 0 0;
-	border-radius: 21px;
-  	border-color: rgb(150, 172, 219);
+    width: 230px;
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+    margin: 10px 0 0 0;
+    border-radius: 21px;
+      border-color: rgb(150, 172, 219);
 
 }
 
@@ -288,84 +288,84 @@
 *STUDENT VIEW / RENT
 ////////////////////////////////////////////////////////////////*/
 #table_rent{
-	margin-left: 5%;
-	margin-right: 5%;
-	height: 160px;
-	margin-bottom: 5%;
-	overflow-y: visible;
+    margin-left: 5%;
+    margin-right: 5%;
+    height: 160px;
+    margin-bottom: 5%;
+    overflow-y: visible;
 }
 
 
 #payment_rent{
-	margin-left: 4%;
-  	margin-right: 4%;
-	display: none;
+    margin-left: 4%;
+      margin-right: 4%;
+    display: none;
 }
 
 /*////////////////////////////////////////////////////////////////
 *STUDENT VIEW / SEARCH_ROOM
 ////////////////////////////////////////////////////////////////*/
 .form_search_room{
-	margin: 2%;
+    margin: 2%;
 }
 .selected_icon_search{
-	box-shadow: 3px 3px 22px 6px #347;
+    box-shadow: 3px 3px 22px 6px #347;
 }
 
 
 .table_search_room{
-	margin: 1%;
-	height: 610px;
-	overflow-y: auto;
+    margin: 1%;
+    height: 610px;
+    overflow-y: auto;
 }
 
 #search_room_table{
-	margin-left: auto;
+    margin-left: auto;
   margin-right: auto;
-	display:block;
+    display:block;
 }
 
 .search_room_table_map{
-	margin-top: 6%;
+    margin-top: 6%;
 }
 
 #student_search_room_specific{
-	margin-left: auto;
+    margin-left: auto;
     margin-right: auto;
-	display:none;
+    display:none;
 }
 
 .selected_row_table{
-	background-color: #bac3cc !important;
-	color: #FFF !important;
-	cursor: pointer;
+    background-color: #bac3cc !important;
+    color: #FFF !important;
+    cursor: pointer;
 }
 
 
 #search_room_table_map{
-	margin-top: 5%;
-	width: 80%;
-	height: 287px;
-	margin-left:  10%;
-	margin-bottom: 15px;
-	background-color: grey;
+    margin-top: 5%;
+    width: 80%;
+    height: 287px;
+    margin-left:  10%;
+    margin-bottom: 15px;
+    background-color: grey;
 }
 
 #student_search_college_map{
-	width: 80%;
-	height: 287px;
-	margin-left:  10%;
-	margin-bottom: 15px;
-	background-color: grey;
+    width: 80%;
+    height: 287px;
+    margin-left:  10%;
+    margin-bottom: 15px;
+    background-color: grey;
 }
 
 #student_search_room_specific_slider_img{
-	width: 230px;
-	height: 200px;
-	overflow: hidden;
-	position: relative;
-	margin: 10px 0 0 0;
-	border-radius: 21px;
-  	border-color: rgb(150, 172, 219);
+    width: 230px;
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+    margin: 10px 0 0 0;
+    border-radius: 21px;
+      border-color: rgb(150, 172, 219);
 
 }

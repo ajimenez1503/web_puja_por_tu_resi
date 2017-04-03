@@ -37,7 +37,7 @@
     <link href="style/college.css" type="text/css" rel="stylesheet">
     <script src="src/icon.js"></script>
     <script src="src/iban.js"></script>
-	  <script src="src/page.js"></script>
+    <script src="src/page.js"></script>
     <script src="src/animation.js"></script>
     <script src="src/validation.js"></script>
     <script src="src/lib.js"></script>

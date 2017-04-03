@@ -12,23 +12,23 @@
 * show the data of the student user
 */
 function dataProfile(){
-	var xmlHttp =new XMLHttpRequest();
-	var url=window.location.protocol+"//"+window.location.host+port+"/ProfileStudent/get/";
-	xmlHttp.open("GET", url, true );
+    var xmlHttp =new XMLHttpRequest();
+    var url=window.location.protocol+"//"+window.location.host+port+"/ProfileStudent/get/";
+    xmlHttp.open("GET", url, true );
     xmlHttp.withCredentials = true;
-	xmlHttp.send();
-	xmlHttp.onreadystatechange = function() {
-    	if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
-    		var output= JSON.parse(xmlHttp.responseText);
+    xmlHttp.send();
+    xmlHttp.onreadystatechange = function() {
+        if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
+            var output= JSON.parse(xmlHttp.responseText);
             console.log(output)
-    		if(output.success){
+            if(output.success){
                 display_specific_student("profile_student_",output.data);
                 document.getElementById("profile_student_point").innerHTML=output.data.point;
-								display_username("tab_profile_student_username",output.data.username);
-    		}else{
-    			showErrorMessagesPage("showdata",output.message,output.success);
-    		}
-    	}
+                                display_username("tab_profile_student_username",output.data.username);
+            }else{
+                showErrorMessagesPage("showdata",output.message,output.success);
+            }
+        }
     }
 }
 
@@ -38,37 +38,37 @@ function dataProfile(){
 * The input is validate and show the error in case of problem
 */
 function updatePassword(){
-	var passwordOld=document.getElementById("formUpdatePasswordOld").value;
-	var passwordNew=document.getElementById("formUpdatePasswordNew").value;
-	var passwordNewRepeat=document.getElementById("formUpdatePasswordNewRepeat").value;
-	if(passwordNew==passwordNewRepeat){
-		if(passwordNew.length>=sizePaswword){
-			var url=window.location.protocol+"//"+window.location.host+port+"/ProfileStudent/updatePassword/";
-			var xmlHttp =new XMLHttpRequest();
-			xmlHttp.onreadystatechange = function() {
-				if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
-					var output= JSON.parse(xmlHttp.responseText);
+    var passwordOld=document.getElementById("formUpdatePasswordOld").value;
+    var passwordNew=document.getElementById("formUpdatePasswordNew").value;
+    var passwordNewRepeat=document.getElementById("formUpdatePasswordNewRepeat").value;
+    if(passwordNew==passwordNewRepeat){
+        if(passwordNew.length>=sizePaswword){
+            var url=window.location.protocol+"//"+window.location.host+port+"/ProfileStudent/updatePassword/";
+            var xmlHttp =new XMLHttpRequest();
+            xmlHttp.onreadystatechange = function() {
+                if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
+                    var output= JSON.parse(xmlHttp.responseText);
                     console.log(output);
-					showErrorMessagesPage("updatePassword",output.message,output.success);
-					if(output.success){
-						document.getElementById("id_formUpdatePassword").reset();//clean input
-						display_specific_div('profile_student_list_form',undefined);
-						dataProfile();
-					}
-				}
-			}
-			xmlHttp.open("POST", url, true );
+                    showErrorMessagesPage("updatePassword",output.message,output.success);
+                    if(output.success){
+                        document.getElementById("id_formUpdatePassword").reset();//clean input
+                        display_specific_div('profile_student_list_form',undefined);
+                        dataProfile();
+                    }
+                }
+            }
+            xmlHttp.open("POST", url, true );
             xmlHttp.withCredentials = true;
             var data = new FormData();
             data.append("old_password", passwordOld);
             data.append("new_password", passwordNew);
-			xmlHttp.send(data);
-		}else{
-		    showErrorMessagesPage("updatePassword","error input",false);
-		}
-	}else{
-		showErrorMessagesPage("updatePassword","passwords not identical ",false);
-	}
+            xmlHttp.send(data);
+        }else{
+            showErrorMessagesPage("updatePassword","error input",false);
+        }
+    }else{
+        showErrorMessagesPage("updatePassword","passwords not identical ",false);
+    }
 }
 
 
@@ -77,30 +77,30 @@ function updatePassword(){
 * The input is validate and show the error in case of problem
 
 function updateEmail(){
-	var email=document.getElementById("formUpdateEmail").value;
-	if(validate_email(email)){
-		var url=window.location.protocol+"//"+window.location.host+port+"/ProfileStudent/updateEmail/";
-		var xmlHttp =new XMLHttpRequest();
-		xmlHttp.onreadystatechange = function() {
-			if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
-				var output= JSON.parse(xmlHttp.responseText);
+    var email=document.getElementById("formUpdateEmail").value;
+    if(validate_email(email)){
+        var url=window.location.protocol+"//"+window.location.host+port+"/ProfileStudent/updateEmail/";
+        var xmlHttp =new XMLHttpRequest();
+        xmlHttp.onreadystatechange = function() {
+            if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
+                var output= JSON.parse(xmlHttp.responseText);
                 console.log(output);
-				showErrorMessagesPage("updateEmail",output.message,output.success);
-				if(output.success){
-					document.getElementById("id_formUpdateEmail").reset();//clean input
-					display_specific_div('profile_student_list_form',undefined);
-					dataProfile();
-				}
-			}
-		}
-		xmlHttp.open("POST", url, true );
+                showErrorMessagesPage("updateEmail",output.message,output.success);
+                if(output.success){
+                    document.getElementById("id_formUpdateEmail").reset();//clean input
+                    display_specific_div('profile_student_list_form',undefined);
+                    dataProfile();
+                }
+            }
+        }
+        xmlHttp.open("POST", url, true );
         xmlHttp.withCredentials = true;
         var data = new FormData();
         data.append("email", email);
-		xmlHttp.send(data);
-	}else{
-		showErrorMessagesPage("updateEmail","Email no es valido.",false);
-	}
+        xmlHttp.send(data);
+    }else{
+        showErrorMessagesPage("updateEmail","Email no es valido.",false);
+    }
 }*/
 
 /**
@@ -108,41 +108,41 @@ function updateEmail(){
 * The input is validate and show the error in case of problem
 */
 function student_update_email(){
-	button=document.getElementById("student_profile_update_email").textContent;
-	if (button=="Actualizar"){
-		document.getElementById("student_profile_update_email").textContent="Cambiar";
-		document.getElementById("profile_student_email").style.display="none";
-		document.getElementById("profile_student_email_new").style.display="block";
-		document.getElementById("profile_student_email_new").value=document.getElementById("profile_student_email").textContent;
+    button=document.getElementById("student_profile_update_email").textContent;
+    if (button=="Actualizar"){
+        document.getElementById("student_profile_update_email").textContent="Cambiar";
+        document.getElementById("profile_student_email").style.display="none";
+        document.getElementById("profile_student_email_new").style.display="block";
+        document.getElementById("profile_student_email_new").value=document.getElementById("profile_student_email").textContent;
 
-	}else{
-		var email=document.getElementById("profile_student_email_new").value;
-		if(validate_email(email)){
-			var url=window.location.protocol+"//"+window.location.host+port+"/ProfileStudent/updateEmail/";
-			var xmlHttp =new XMLHttpRequest();
-			xmlHttp.onreadystatechange = function() {
-				if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
-					var output= JSON.parse(xmlHttp.responseText);
-	                console.log(output);
-					showErrorMessagesPage("updateEmail",output.message,output.success);
-					if(output.success){
-						document.getElementById("student_profile_update_email").textContent="Actualizar"
-						document.getElementById("profile_student_email").style.display="block";
-						document.getElementById("profile_student_email_new").style.display="none";
-						document.getElementById("profile_student_email").textContent=email;
-					}
-				}
-			}
-			xmlHttp.open("POST", url, true );
+    }else{
+        var email=document.getElementById("profile_student_email_new").value;
+        if(validate_email(email)){
+            var url=window.location.protocol+"//"+window.location.host+port+"/ProfileStudent/updateEmail/";
+            var xmlHttp =new XMLHttpRequest();
+            xmlHttp.onreadystatechange = function() {
+                if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
+                    var output= JSON.parse(xmlHttp.responseText);
+                    console.log(output);
+                    showErrorMessagesPage("updateEmail",output.message,output.success);
+                    if(output.success){
+                        document.getElementById("student_profile_update_email").textContent="Actualizar"
+                        document.getElementById("profile_student_email").style.display="block";
+                        document.getElementById("profile_student_email_new").style.display="none";
+                        document.getElementById("profile_student_email").textContent=email;
+                    }
+                }
+            }
+            xmlHttp.open("POST", url, true );
       xmlHttp.withCredentials = true;
       var data = new FormData();
       data.append("email", email);
-			xmlHttp.send(data);
-		}else{
-			showErrorMessagesPage("updateEmail","Email no es valido.",false);
-		}
+            xmlHttp.send(data);
+        }else{
+            showErrorMessagesPage("updateEmail","Email no es valido.",false);
+        }
 
-	}
+    }
 }
 //////////////////////////////////////////////////////////////////////////////
 /*
@@ -154,10 +154,10 @@ function student_update_email(){
 * The input is validate and show the error in case of problem
 */
 function createIncidence(){
-	var description=(document.getElementById("formInicidenceDescription").value).escape();
+    var description=(document.getElementById("formInicidenceDescription").value).escape();
     var file=document.getElementById("formIncidenceFilename");
-	var url=window.location.protocol+"//"+window.location.host+port+"/Incidence/create/";
-	var xmlHttp =new XMLHttpRequest();
+    var url=window.location.protocol+"//"+window.location.host+port+"/Incidence/create/";
+    var xmlHttp =new XMLHttpRequest();
     if ('files' in file && file.files.length>=1){
         file=file.files[0];
         if ('name' in file && 'size' in file) {
@@ -165,22 +165,22 @@ function createIncidence(){
                 showErrorMessagesPage("Upload file","error validation file image format.",false);
             }else{
                 xmlHttp.onreadystatechange = function() {
-            		if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
-            			var output= JSON.parse(xmlHttp.responseText);
+                    if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
+                        var output= JSON.parse(xmlHttp.responseText);
                         console.log(output);
-            			showErrorMessagesPage("createIncidence",output.message,output.success);
-						if(output.success){
-							document.getElementById("id_form_createIncidence").reset();//clean input
-							page('/inicidence_list')
-						}
-            		}
-            	}
-            	xmlHttp.open("POST", url, true );
+                        showErrorMessagesPage("createIncidence",output.message,output.success);
+                        if(output.success){
+                            document.getElementById("id_form_createIncidence").reset();//clean input
+                            page('/inicidence_list')
+                        }
+                    }
+                }
+                xmlHttp.open("POST", url, true );
                 xmlHttp.withCredentials = true;
                 var data = new FormData();
                 data.append("description", description);
                 data.append("file_name", file);
-            	xmlHttp.send(data);
+                xmlHttp.send(data);
             }
         }else{
             showErrorMessagesPage("Upload file","error file image.",false);
@@ -199,11 +199,11 @@ function createIncidence(){
 * The input is validate and show the error in case of problem
 */
 function sendMessage(){
-	var message=(document.getElementById("formMessageText").value).escape();
+    var message=(document.getElementById("formMessageText").value).escape();
     document.getElementById("formMessageText").value= "";//clean input
     var file=document.getElementById("formMessageFilename");
-	var url=window.location.protocol+"//"+window.location.host+port+"/Message/create/";
-	var xmlHttp =new XMLHttpRequest();
+    var url=window.location.protocol+"//"+window.location.host+port+"/Message/create/";
+    var xmlHttp =new XMLHttpRequest();
     if (message ===""){
         showErrorMessagesPage("message","ERROR: necesita un mensaje texto.",false);
         return;
@@ -226,21 +226,21 @@ function sendMessage(){
         file=null;
     }
     xmlHttp.onreadystatechange = function() {
-		if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
-			var output= JSON.parse(xmlHttp.responseText);
+        if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
+            var output= JSON.parse(xmlHttp.responseText);
             console.log(output);
-			showErrorMessagesPage("createMessage",output.message,output.success);
-			if(output.success){
-				document.getElementById("id_form_sendMessage").reset();//clean input
-			}
-		}
-	}
-	xmlHttp.open("POST", url, true );
+            showErrorMessagesPage("createMessage",output.message,output.success);
+            if(output.success){
+                document.getElementById("id_form_sendMessage").reset();//clean input
+            }
+        }
+    }
+    xmlHttp.open("POST", url, true );
     xmlHttp.withCredentials = true;
     var data = new FormData();
     data.append("message", message);
     data.append("file_attached", file);
-	xmlHttp.send(data);
+    xmlHttp.send(data);
 }
 
 
@@ -248,25 +248,25 @@ function sendMessage(){
 * Display the list of message of the user
 */
 function getMessages(){
-	var xmlHttp =new XMLHttpRequest();
-	var url=window.location.protocol+"//"+window.location.host+port+"/Message/get/";
-	xmlHttp.open("GET", url, true );
+    var xmlHttp =new XMLHttpRequest();
+    var url=window.location.protocol+"//"+window.location.host+port+"/Message/get/";
+    xmlHttp.open("GET", url, true );
     xmlHttp.withCredentials = true;
-	xmlHttp.send();
-	xmlHttp.onreadystatechange = function() {
-    	if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
-    		var output= JSON.parse(xmlHttp.responseText);
+    xmlHttp.send();
+    xmlHttp.onreadystatechange = function() {
+        if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
+            var output= JSON.parse(xmlHttp.responseText);
             console.log(output)
-    		if(output.success){
+            if(output.success){
                 var father = document.getElementById("list_message");
                 deleteAllChildElement(father);
                 for (i = 0; i < output.data.length; i++) {
                     father.appendChild( createHTMLMessage(output.data[i]));
                 }
-    		}else{
-    			showErrorMessagesPage("showdata",output.message,output.success);
-    		}
-    	}
+            }else{
+                showErrorMessagesPage("showdata",output.message,output.success);
+            }
+        }
     }
 }
 
@@ -275,19 +275,19 @@ function getMessages(){
 * Open all the messages of the user
 */
 function OpenAllMessages(){
-	var xmlHttp =new XMLHttpRequest();
-	var url=window.location.protocol+"//"+window.location.host+port+"/Message/openAll/";
-	xmlHttp.open("POST", url, true );
+    var xmlHttp =new XMLHttpRequest();
+    var url=window.location.protocol+"//"+window.location.host+port+"/Message/openAll/";
+    xmlHttp.open("POST", url, true );
     xmlHttp.withCredentials = true;
-	xmlHttp.send();
-	xmlHttp.onreadystatechange = function() {
-    	if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
-    		var output= JSON.parse(xmlHttp.responseText);
+    xmlHttp.send();
+    xmlHttp.onreadystatechange = function() {
+        if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
+            var output= JSON.parse(xmlHttp.responseText);
             console.log(output)
-    		if(!output.success){
-    			showErrorMessagesPage("Open_message",output.message,output.success);
-    		}
-    	}
+            if(!output.success){
+                showErrorMessagesPage("Open_message",output.message,output.success);
+            }
+        }
     }
 }
 //////////////////////////////////////////////////////////////////////////////
@@ -383,8 +383,8 @@ function refuse_agreement_room(room_id){
 function upload_file_agreement(room_id){
     //update the file and everything
     var file=document.getElementById("formAgreementFilename");
-	var url=window.location.protocol+"//"+window.location.host+port+"/Agreement/accept/";
-	var xmlHttp =new XMLHttpRequest();
+    var url=window.location.protocol+"//"+window.location.host+port+"/Agreement/accept/";
+    var xmlHttp =new XMLHttpRequest();
     if ('files' in file && file.files.length>=1){
         file=file.files[0];
         if ('name' in file && 'size' in file) {
@@ -392,22 +392,22 @@ function upload_file_agreement(room_id){
                 showErrorMessagesPage("Upload file","error validation file pdf format.",false);
             }else{
                 xmlHttp.onreadystatechange = function() {
-            		if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
-            			var output= JSON.parse(xmlHttp.responseText);
+                    if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
+                        var output= JSON.parse(xmlHttp.responseText);
                         console.log(output);
-            			showErrorMessagesPage("accept Agreement",output.message,output.success);
-						if(output.success){
-							document.getElementById("Room_form_id_upload_file_agreement").reset();//clean input
-							get_room_data();
-						}
-            		}
-            	}
-            	xmlHttp.open("POST", url, false );
+                        showErrorMessagesPage("accept Agreement",output.message,output.success);
+                        if(output.success){
+                            document.getElementById("Room_form_id_upload_file_agreement").reset();//clean input
+                            get_room_data();
+                        }
+                    }
+                }
+                xmlHttp.open("POST", url, false );
                 xmlHttp.withCredentials = true;
                 var data = new FormData();
                 data.append("room_id", room_id);
                 data.append("file_agreement_signed", file);
-            	xmlHttp.send(data);
+                xmlHttp.send(data);
             }
         }else{
             showErrorMessagesPage("Upload file","error file pdf.",false);
@@ -425,37 +425,37 @@ function upload_file_agreement(room_id){
 * Get all the rents and display in the table
 */
 function getRents(){
-	var xmlHttp =new XMLHttpRequest();
-	var url=window.location.protocol+"//"+window.location.host+port+"/Rent/getReveiverBankAccount/";
-	xmlHttp.open("GET", url, true );
+    var xmlHttp =new XMLHttpRequest();
+    var url=window.location.protocol+"//"+window.location.host+port+"/Rent/getReveiverBankAccount/";
+    xmlHttp.open("GET", url, true );
   xmlHttp.withCredentials = true;
-	xmlHttp.send();
-	xmlHttp.onreadystatechange = function() {
-    	if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
-    		var output= JSON.parse(xmlHttp.responseText);
+    xmlHttp.send();
+    xmlHttp.onreadystatechange = function() {
+        if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
+            var output= JSON.parse(xmlHttp.responseText);
         console.log(output)
-    		if(output.success){
-					college_bank_account=output.data;
-					var xmlHttp2 =new XMLHttpRequest();
-					var url2=window.location.protocol+"//"+window.location.host+port+"/Rent/get/";
-					xmlHttp2.open("GET", url2, true );
-					xmlHttp2.withCredentials = true;
-					xmlHttp2.send();
-					xmlHttp2.onreadystatechange = function() {
-							if ( xmlHttp2.readyState == 4 && xmlHttp2.status == 200 ){
-								var output= JSON.parse(xmlHttp2.responseText);
-								console.log(output)
-								if(output.success){
-												display_table_rents("student_element_table_rent","table_rent",output.data,true,college_bank_account)
-								}else{
-									showErrorMessagesPage("showdata",output.message,output.success);
-								}
-							}
-						}
-    		}else{
-    			showErrorMessagesPage("showdata",output.message,output.success);
-    		}
-    	}
+            if(output.success){
+                    college_bank_account=output.data;
+                    var xmlHttp2 =new XMLHttpRequest();
+                    var url2=window.location.protocol+"//"+window.location.host+port+"/Rent/get/";
+                    xmlHttp2.open("GET", url2, true );
+                    xmlHttp2.withCredentials = true;
+                    xmlHttp2.send();
+                    xmlHttp2.onreadystatechange = function() {
+                            if ( xmlHttp2.readyState == 4 && xmlHttp2.status == 200 ){
+                                var output= JSON.parse(xmlHttp2.responseText);
+                                console.log(output)
+                                if(output.success){
+                                                display_table_rents("student_element_table_rent","table_rent",output.data,true,college_bank_account)
+                                }else{
+                                    showErrorMessagesPage("showdata",output.message,output.success);
+                                }
+                            }
+                        }
+            }else{
+                showErrorMessagesPage("showdata",output.message,output.success);
+            }
+        }
     }
 }
 
@@ -471,20 +471,20 @@ function getRents(){
 * @param {college_accountHolder} college_accountHolder of the bank account of the college
 */
 function open_TPV(id,month, year,price, college_IBAM, college_BIC, college_account_holder){
-	//TODO open module
-	var window_TPV=window.open(window.location.protocol+"//"+window.location.host+"/web_puja_por_tu_resi/view/TPV.html","_blank", "width=800,height=500,left=1000");
-	window_TPV.onload = function() {
-		window_TPV.document.getElementById("payment_rent_month").innerHTML=month;
-		window_TPV.document.getElementById("payment_rent_year").innerHTML=year;
-		window_TPV.document.getElementById("payment_rent_price").innerHTML=price.toString()+"€";
-		window_TPV.document.getElementById("payment_rent_college_IBAM").innerHTML=college_IBAM;
-		window_TPV.document.getElementById("payment_rent_college_BIC").innerHTML=college_BIC;
-		window_TPV.document.getElementById("payment_rent_college_account_holder").innerHTML=college_account_holder;
+    //TODO open module
+    var window_TPV=window.open(window.location.protocol+"//"+window.location.host+"/web_puja_por_tu_resi/view/TPV.html","_blank", "width=800,height=500,left=1000");
+    window_TPV.onload = function() {
+        window_TPV.document.getElementById("payment_rent_month").innerHTML=month;
+        window_TPV.document.getElementById("payment_rent_year").innerHTML=year;
+        window_TPV.document.getElementById("payment_rent_price").innerHTML=price.toString()+"€";
+        window_TPV.document.getElementById("payment_rent_college_IBAM").innerHTML=college_IBAM;
+        window_TPV.document.getElementById("payment_rent_college_BIC").innerHTML=college_BIC;
+        window_TPV.document.getElementById("payment_rent_college_account_holder").innerHTML=college_account_holder;
 
-		window_TPV.document.getElementById("payment_rent_submit").onclick = function(){
-				pay_tpv(id,window_TPV);
-		};
-	}
+        window_TPV.document.getElementById("payment_rent_submit").onclick = function(){
+                pay_tpv(id,window_TPV);
+        };
+    }
 }
 //////////////////////////////////////////////////////////////////////////////
 /*
@@ -499,12 +499,12 @@ function display_list_colleges(prefix_id){
     var url=window.location.protocol+"//"+window.location.host+port+"/Room/getAllCompanyName/";
     xmlHttp.open("GET", url, true );
     xmlHttp.withCredentials = true;
-	xmlHttp.send();
+    xmlHttp.send();
     xmlHttp.onreadystatechange = function() {
         if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
-        	var output= JSON.parse(xmlHttp.responseText);
+            var output= JSON.parse(xmlHttp.responseText);
             console.log(output)
-        	if(output.success){
+            if(output.success){
                 var search_room_form_college = document.getElementById(prefix_id+"room_form_college");
                 deleteAllChildElement(search_room_form_college);
                 //Add TODAS
@@ -518,9 +518,9 @@ function display_list_colleges(prefix_id){
                     option.text = output.data[i];
                     search_room_form_college.add(option);
                 }
-        	}else{
-        	    showErrorMessagesPage("Get Colleges",output.message,output.success);
-        	}
+            }else{
+                showErrorMessagesPage("Get Colleges",output.message,output.success);
+            }
         }
     }
 }
@@ -608,13 +608,13 @@ function search_rooms(prefix_id,display_specific_room) {
     xmlHttp.send();
     xmlHttp.onreadystatechange = function() {
         if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
-        	var output= JSON.parse(xmlHttp.responseText);
+            var output= JSON.parse(xmlHttp.responseText);
             console.log(output)
-        	if(output.success){
+            if(output.success){
                 display_table_list_rooms(prefix_id,output.data,display_specific_room)
-        	}else{
-        	    showErrorMessagesPage("showrooms",output.message,output.success);
-        	}
+            }else{
+                showErrorMessagesPage("showrooms",output.message,output.success);
+            }
         }
     }
 }
@@ -665,22 +665,22 @@ function create_row_room(data_college,data_room){
 */
 function create_room_element(data_college,data_room,display_specific_room,prefix_id){
     var td = document.createElement('td');
-    	td.style.textAlign = "center";
-    	td.id="student_list_room_id"+data_room.id.toString();
-    	var div_img = document.createElement('div');
-    	var img = document.createElement("img")
-    	img.src=window.location.protocol+"//"+window.location.host+port+"/Room/download/"+data_room.picture1;
-    	img.style.width='300px';
-		img.style.height='300px';
-		img.title="imagen room";
-		img.alt="imagen room";
-		div_img.appendChild(img);
-		td.appendChild(div_img);
-		var div_info = document.createElement('div');
-		div_info.appendChild(document.createTextNode(data_room.price+"€   "+data_room.name));
-		div_info.appendChild(document.createElement('br'));
-		div_info.appendChild(document.createTextNode(data_college.companyName));
-  	td.appendChild(div_info);
+        td.style.textAlign = "center";
+        td.id="student_list_room_id"+data_room.id.toString();
+        var div_img = document.createElement('div');
+        var img = document.createElement("img")
+        img.src=window.location.protocol+"//"+window.location.host+port+"/Room/download/"+data_room.picture1;
+        img.style.width='300px';
+        img.style.height='300px';
+        img.title="imagen room";
+        img.alt="imagen room";
+        div_img.appendChild(img);
+        td.appendChild(div_img);
+        var div_info = document.createElement('div');
+        div_info.appendChild(document.createTextNode(data_room.price+"€   "+data_room.name));
+        div_info.appendChild(document.createElement('br'));
+        div_info.appendChild(document.createTextNode(data_college.companyName));
+      td.appendChild(div_info);
 
 
     td.onmouseover = function() {
@@ -721,20 +721,20 @@ function display_table_list_rooms(prefix_id,data,display_specific_room){
 */
 function GetOFFEREDRooms(prefix_id,display_specific_room){
     var xmlHttp =new XMLHttpRequest();
-	var url=window.location.protocol+"//"+window.location.host+port+"/Room/getSearchAll/";
-	xmlHttp.open("GET", url, true );
+    var url=window.location.protocol+"//"+window.location.host+port+"/Room/getSearchAll/";
+    xmlHttp.open("GET", url, true );
     xmlHttp.withCredentials = true;
-	xmlHttp.send();
-	xmlHttp.onreadystatechange = function() {
-    	if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
-    		var output= JSON.parse(xmlHttp.responseText);
+    xmlHttp.send();
+    xmlHttp.onreadystatechange = function() {
+        if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
+            var output= JSON.parse(xmlHttp.responseText);
             console.log(output)
-    		if(output.success){
+            if(output.success){
                 display_table_list_rooms(prefix_id,output.data,display_specific_room)
-    		}else{
-    			showErrorMessagesPage("showrooms",output.message,output.success);
-    		}
-    	}
+            }else{
+                showErrorMessagesPage("showrooms",output.message,output.success);
+            }
+        }
     }
 }
 
@@ -826,14 +826,14 @@ function remove_bid(room_id){
 * When only the address of the server is enter, redirection to the connection page (logout)
 */
 page('/', function(){
-	page('/connection');
+    page('/connection');
 });
 
 /**
 * This page disconnect the user when he is connected
 */
 page('/connection', function(){
-	logout();
+    logout();
 });
 
 
@@ -885,7 +885,7 @@ page('/inicidence_list', function(){
     if("studentview"===globa_view){
         console.log("displayIncidence");
         display_specific_div("student_view_list_elements","incidence");
-		display_specific_div("incidence","student_inicidence_list");
+        display_specific_div("incidence","student_inicidence_list");
         countUnreadMessages("student_");
         getIncidences("student_");
     }
@@ -899,7 +899,7 @@ page('/inicidence_create', function(){
     if("studentview"===globa_view){
         console.log("displayIncidence");
         display_specific_div("student_view_list_elements","incidence");
-		display_specific_div("incidence","student_inicidence_create");
+        display_specific_div("incidence","student_inicidence_create");
         countUnreadMessages("student_");
     }
 });

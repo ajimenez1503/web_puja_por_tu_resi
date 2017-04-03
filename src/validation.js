@@ -54,24 +54,24 @@ function validate_DNI(dni){
 */
 function validate_CreditCard(cardNumber) {
   // accept only digits, dashes or spaces
-	if (/[^0-9-\s]+/.test(cardNumber)) return false;
+    if (/[^0-9-\s]+/.test(cardNumber)) return false;
 
-	// The Luhn Algorithm. It's so pretty.
-	var nCheck = 0, nDigit = 0, bEven = false;
-	cardNumber = cardNumber.replace(/\D/g, "");
+    // The Luhn Algorithm. It's so pretty.
+    var nCheck = 0, nDigit = 0, bEven = false;
+    cardNumber = cardNumber.replace(/\D/g, "");
 
-	for (var n = cardNumber.length - 1; n >= 0; n--) {
-		var cDigit = cardNumber.charAt(n),
-			  nDigit = parseInt(cDigit, 10);
+    for (var n = cardNumber.length - 1; n >= 0; n--) {
+        var cDigit = cardNumber.charAt(n),
+              nDigit = parseInt(cDigit, 10);
 
-		if (bEven) {
-			if ((nDigit *= 2) > 9) nDigit -= 9;
-		}
-		nCheck += nDigit;
-		bEven = !bEven;
-	}
+        if (bEven) {
+            if ((nDigit *= 2) > 9) nDigit -= 9;
+        }
+        nCheck += nDigit;
+        bEven = !bEven;
+    }
 
-	return (nCheck % 10) == 0;
+    return (nCheck % 10) == 0;
 }
 
 
@@ -207,13 +207,13 @@ function validate_CIF(cif)
 function validate_file(fileName,fileSize)
 {
     console.log("name:"+fileName+" . Size: "+fileSize)
-	var ext = fileName.substring(fileName.lastIndexOf('.') + 1);
+    var ext = fileName.substring(fileName.lastIndexOf('.') + 1);
     if( ext=="gif" || ext=="jpg" || ext=="JPG" || ext=="jpeg" || ext=="png" || ext=="pdf" ){
-		if(fileSize>0 && fileSize<1000000000){//The file size can not exceed 1GB.
-			 return true;
-		}else{
-			return false;
-		}
+        if(fileSize>0 && fileSize<1000000000){//The file size can not exceed 1GB.
+             return true;
+        }else{
+            return false;
+        }
     }
     else{
         return false;

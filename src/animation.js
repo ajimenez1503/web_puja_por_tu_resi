@@ -65,25 +65,25 @@ function rotate(tab){
     var number_image=3;
     var size_width=230;
     var slider =document.getElementById(tab+"_slider_img");
-	document.getElementById(tab+"_slidesContainer_img").style.width=(size_width*number_image).toString()+"px";//230*3=690 totalWidth* number images
-	var totalWidth =size_width*number_image-size_width;//3*230-230=460//The total width, less one
+    document.getElementById(tab+"_slidesContainer_img").style.width=(size_width*number_image).toString()+"px";//230*3=690 totalWidth* number images
+    var totalWidth =size_width*number_image-size_width;//3*230-230=460//The total width, less one
     animate=setTimeout(sliderScroll,20); // call moveRight in 20msec
 
-	function sliderScroll(){
-		position=parseInt(slider.scrollLeft);
+    function sliderScroll(){
+        position=parseInt(slider.scrollLeft);
         //console.log(position);
 
-		if(position%size_width==0){//start of a image, pause 1seg
-			pause(1000);
+        if(position%size_width==0){//start of a image, pause 1seg
+            pause(1000);
             //console.log("pause")
-		}
-		if(position+1>=totalWidth){//at the end, start again
-			slider.scrollLeft=0;
+        }
+        if(position+1>=totalWidth){//at the end, start again
+            slider.scrollLeft=0;
             //console.log("start")
-		}
-		else{
-	    	slider.scrollLeft=position+1;//move scroll
-		}
+        }
+        else{
+            slider.scrollLeft=position+1;//move scroll
+        }
         if( (globa_view=="studentview" || globa_view=="collegeview") && document.getElementById(tab).style.display=="block"){//still in tab
                 animate = setTimeout(sliderScroll,20); // call moveRight in 20msec
                 //console.log("repeat");
@@ -135,7 +135,7 @@ function showErrorMessagesPage(element,message,success,new_window){
           document.getElementById("errorMessage").innerHTML=element+" : "+message;
         }
 
-		    fade(element_error_message,300);
+            fade(element_error_message,300);
         return true;
     }else{
         console.log("Incorrect input showErrorMessage.");
@@ -168,9 +168,9 @@ function fade(element, speed) {
 * @param {element} father of the element will be deleted
 */
 function deleteAllChildElement(node){
-	while (node.firstChild) {
-		node.removeChild(node.firstChild);
-	}
+    while (node.firstChild) {
+        node.removeChild(node.firstChild);
+    }
 }
 
 

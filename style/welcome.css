@@ -3,210 +3,210 @@
 * @version 0.1
 */
 .body{
-	font-family: 'Open Sans', sans-serif !important;
+    font-family: 'Open Sans', sans-serif !important;
 }
 
 /*////////////////////////////////////////////////////////////////
 *WELCOME VIEW header
 ////////////////////////////////////////////////////////////////*/
 .margin_top{
-	margin-top:3%;
+    margin-top:3%;
 }
 
 .header_welcomeview{
-	background-color: #083b66;
+    background-color: #083b66;
     overflow: auto;
 }
 
 .header_welcomeview_left{
-	float: left;
+    float: left;
 }
 .img_header_welcomeview_left{
-	height: 150px;
-	width: 150px;
+    height: 150px;
+    width: 150px;
 }
 
 .header_welcomeview_right{
-	float: right;
+    float: right;
     padding-top: 8%;
-		padding-right: 2%;
+        padding-right: 2%;
 }
 
 .header_welcomeview_right_slogan
 {
-	float: left;
-	font-size: 17.5px;
-	padding-top: 4%;
-	padding-left: 9%;
-	color: white;
+    float: left;
+    font-size: 17.5px;
+    padding-top: 4%;
+    padding-left: 9%;
+    color: white;
 }
 
 .btn-login {
-	background-color: #59B2E0;
-	outline: none;
-	color: #fff;
-	font-size: 14px;
-	height: auto;
-	font-weight: normal;
-	padding: 7px 11px;
-	text-transform: uppercase;
-	border-color: #59B2E6;
+    background-color: #59B2E0;
+    outline: none;
+    color: #fff;
+    font-size: 14px;
+    height: auto;
+    font-weight: normal;
+    padding: 7px 11px;
+    text-transform: uppercase;
+    border-color: #59B2E6;
 }
 .btn-login:hover,
 .btn-login:focus {
-	color: #fff;
-	background-color: #53A3CD;
-	border-color: #53A3CD;
+    color: #fff;
+    background-color: #53A3CD;
+    border-color: #53A3CD;
 }
 
 .button_login_student{
-	width: 50%;
-	margin-bottom: 2%;
-	float: left;
-	margin-right: 1%;
+    width: 50%;
+    margin-bottom: 2%;
+    float: left;
+    margin-right: 1%;
 }
 
 .button_login_college{
-	width: 45%;
-	margin-bottom: 2%;
-	float: right;
-	margin-left: 1%;
+    width: 45%;
+    margin-bottom: 2%;
+    float: right;
+    margin-left: 1%;
 }
 #register_form_college{
-	display: none;
+    display: none;
 }
 
 .error_footer{
-	position: fixed;
-	bottom: 0;
-	width: 100%;
-	z-index: 1;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 1;
 }
 #map {
-	height: 100%;
+    height: 100%;
 }
 
 .controls {
-	margin-top: 10px;
-	border: 1px solid transparent;
-	border-radius: 2px 0 0 2px;
-	box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	height: 32px;
-	outline: none;
-	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    margin-top: 10px;
+    border: 1px solid transparent;
+    border-radius: 2px 0 0 2px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    height: 32px;
+    outline: none;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
 }
 
 #pac-input {
-	background-color: #fff;
-	font-family: Roboto;
-	font-size: 15px;
-	font-weight: 300;
-	margin-left: 12px;
-	padding: 0 11px 0 13px;
-	text-overflow: ellipsis;
-	width: 300px;
+    background-color: #fff;
+    font-family: Roboto;
+    font-size: 15px;
+    font-weight: 300;
+    margin-left: 12px;
+    padding: 0 11px 0 13px;
+    text-overflow: ellipsis;
+    width: 300px;
 }
 
 #pac-input:focus {
-	border-color: #4d90fe;
+    border-color: #4d90fe;
 }
 
 .pac-container {
-	font-family: Roboto;
+    font-family: Roboto;
 }
 
 #type-selector {
-	color: #fff;
-	background-color: #4d90fe;
-	padding: 5px 11px 0px 11px;
+    color: #fff;
+    background-color: #4d90fe;
+    padding: 5px 11px 0px 11px;
 }
 
 #type-selector label {
-	font-family: Roboto;
-	font-size: 13px;
-	font-weight: 300;
+    font-family: Roboto;
+    font-size: 13px;
+    font-weight: 300;
 }
 
 #college_equipment{
-	text-align: center;
-  	margin: 4%;
+    text-align: center;
+      margin: 4%;
 }
 
 thead{
-	background-color: rgb(51, 122, 183);
-	color: white;
+    background-color: rgb(51, 122, 183);
+    color: white;
 }
 
 /*////////////////////////////////////////////////////////////////
 *WELCOME VIEW container
 ////////////////////////////////////////////////////////////////*/
 #container_welcome_view_login{
-	display: none;
+    display: none;
 }
 
 #container_welcome_view_register{
-	display: none;
+    display: none;
 }
 
 .slogan{
-	font-family: initial;
+    font-family: initial;
   font-size: xx-large;
-	margin-top: 5%;
-	font-style: italic;
-	font-weight: bold;
+    margin-top: 5%;
+    font-style: italic;
+    font-weight: bold;
 }
 #container_welcome_view_search_room_table_map{
-	margin-top: 5%;
-	width: 80%;
-	height: 287px;
-	margin-left:  10%;
-	margin-bottom: 15px;
-	background-color: grey;
+    margin-top: 5%;
+    width: 80%;
+    height: 287px;
+    margin-left:  10%;
+    margin-bottom: 15px;
+    background-color: grey;
 }
 
 .container_welcome_view_table_search_room{
-	margin: 1%;
-	height: 410px;
-	overflow-y: auto;
+    margin: 1%;
+    height: 410px;
+    overflow-y: auto;
 }
 /*////////////////////////////////////////////////////////////////
 *Footer
 ////////////////////////////////////////////////////////////////*/
 .footer{
-	position: fixed;
-	bottom: 0;
-	width: 100%;
-	background: #444444;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: #444444;
   color: white;
-	display: flex;
+    display: flex;
 }
 
 .footer_element{
-	cursor: pointer;
-	text-align: center;
-	margin: auto;
-	margin-top: 0.5%;
-	margin-bottom: 0.5%;
+    cursor: pointer;
+    text-align: center;
+    margin: auto;
+    margin-top: 0.5%;
+    margin-bottom: 0.5%;
 }
 
 .footer_full_element{
-	z-index: 9999999;
-	height: 75%;
-	width: 75%;
-	background: #271e1e;
-	position: absolute;
-	bottom: 0;
-	top: 0;
-	padding: 2%;
-	margin: 10%;
-	overflow: scroll;
-	color: white;
+    z-index: 9999999;
+    height: 75%;
+    width: 75%;
+    background: #271e1e;
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    padding: 2%;
+    margin: 10%;
+    overflow: scroll;
+    color: white;
 }
 
 .button_footer_full_element{
-	margin-left: 90%;
-	font-size: x-large;
-	border: none;
-	background-color: transparent;
+    margin-left: 90%;
+    font-size: x-large;
+    border: none;
+    background-color: transparent;
 }

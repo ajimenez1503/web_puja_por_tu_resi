@@ -7,52 +7,52 @@
 *college VIEW
 ////////////////////////////////////////////////////////////////*/
 #college_list_rooms{
-	margin-left: auto;
+    margin-left: auto;
     margin-right: auto;
-	display:block;
+    display:block;
 }
 #college_create_room{
-	margin-left: auto;
+    margin-left: auto;
     margin-right: auto;
-	display:block;
+    display:block;
 }
 #college_messages{
-	margin-left: auto;
-	margin-right: auto;
-	display:block;
+    margin-left: auto;
+    margin-right: auto;
+    display:block;
 }
 
 #college_profile{
-	margin-left: auto;
-	margin-right: auto;
-	display:block;
+    margin-left: auto;
+    margin-right: auto;
+    display:block;
 }
 
 #college_incidence{
-	margin-left: auto;
+    margin-left: auto;
     margin-right: auto;
-	display:none;
+    display:none;
 }
 
 #college_list_students{
-	margin-left: auto;
+    margin-left: auto;
     margin-right: auto;
-	display:none;
+    display:none;
 }
 /*////////////////////////////////////////////////////////////////
 *List of rooms
 ////////////////////////////////////////////////////////////////*/
 #college_table_list_rooms{
-	margin-left: 5%;
-	margin-right: 5%;
-	height: 550px;
-	margin-bottom: 5%;
-	overflow-y: auto;
+    margin-left: 5%;
+    margin-right: 5%;
+    height: 550px;
+    margin-bottom: 5%;
+    overflow-y: auto;
 }
 
 #college_table_list_rooms thead{
-	background-color: rgb(197, 216, 234);
-	color: black;
+    background-color: rgb(197, 216, 234);
+    color: black;
 }
 
 
@@ -60,49 +60,49 @@
 *List of students
 ////////////////////////////////////////////////////////////////*/
 #college_table_list_students{
-	margin-left: 5%;
-	margin-right: 5%;
-	height: 550px;
-	margin-bottom: 5%;
-	overflow-y: auto;
+    margin-left: 5%;
+    margin-right: 5%;
+    height: 550px;
+    margin-bottom: 5%;
+    overflow-y: auto;
 }
 
 #college_student_specific_room_slider_img{
-	width: 230px;
-	height: 200px;
-	overflow: hidden;
-	position: relative;
-	margin: 10px 0 0 0;
-	border-radius: 21px;
-  	border-color: rgb(150, 172, 219);
+    width: 230px;
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+    margin: 10px 0 0 0;
+    border-radius: 21px;
+      border-color: rgb(150, 172, 219);
 }
 
 #college_student_specific_table_rent{
-	margin-left: 5%;
-	margin-right: 5%;
-	height: 310px;
-	margin-bottom: 5%;
-	overflow-y: auto;
+    margin-left: 5%;
+    margin-right: 5%;
+    height: 310px;
+    margin-bottom: 5%;
+    overflow-y: auto;
 }
 /*////////////////////////////////////////////////////////////////
 *college_room_specific
 ////////////////////////////////////////////////////////////////*/
 
 #college_room_specific_slider_img{
-	width: 230px;
-	height: 200px;
-	overflow: hidden;
-	position: relative;
-	margin: 10px 0 0 0;
-	border-radius: 21px;
-  	border-color: rgb(150, 172, 219);
+    width: 230px;
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+    margin: 10px 0 0 0;
+    border-radius: 21px;
+      border-color: rgb(150, 172, 219);
 }
 
 /*////////////////////////////////////////////////////////////////
 *create new room
 ////////////////////////////////////////////////////////////////*/
 .div_form_college_create_new_room{
-	margin: 2%;
+    margin: 2%;
 }
 
 /*////////////////////////////////////////////////////////////////
@@ -114,16 +114,16 @@
 *MESSAGES
 ////////////////////////////////////////////////////////////////*/
 .college_messages_tr{
-	  height: 50px;
+      height: 50px;
 }
 
 #college_messages_list_student_table{
-	width: 100%;
-	height: 100%;
+    width: 100%;
+    height: 100%;
 }
 
 .college_messages_table{
-	width: 25%;
+    width: 25%;
     float: left;
     height: 550px;
     margin-bottom: 2%;
@@ -131,16 +131,16 @@
     overflow-y: auto;
 }
 #college_messages_list_messages{
-	float: left;
-	width: 75%;
+    float: left;
+    width: 75%;
 }
 textarea{
-	resize: none;
-	margin-bottom: 2% !important;
-	margin-top: 2%;
+    resize: none;
+    margin-bottom: 2% !important;
+    margin-top: 2%;
 }
 #college_messages_conversation{
-	display: none;
+    display: none;
 }
 
 
@@ -148,64 +148,64 @@ textarea{
 * College profile
 ////////////////////////////////////////////////////////////////*/
 #college_profile_college_email_new{
-	display: none;
+    display: none;
 }
 
 #college_profile_college_telephone_new{
-	display: none;
+    display: none;
 }
 
 #college_profile_college_url_new{
-	display: none;
+    display: none;
 }
 
 #college_profile_college_equipment_new{
-	display: none;
+    display: none;
 }
 .nav_profile_z_index{
-	position: absolute;
-	z-index: 1002;
+    position: absolute;
+    z-index: 1002;
 }
 
 .college_elememt_profile{
-	padding: 5%;
+    padding: 5%;
 }
 
 #college_profile_college_map {
-	width: 80%;
-	height: 287px;
-	margin-left:  10%;
-	margin-bottom: 15px;
-	background-color: grey;
+    width: 80%;
+    height: 287px;
+    margin-left:  10%;
+    margin-bottom: 15px;
+    background-color: grey;
 }
 
 .college_profile_set_button{
-	text-align: center;
+    text-align: center;
 }
 
 #college_profile_table_responsiblePerson{
-	height: 250px;
-	margin-bottom: 5%;
-	overflow-y: auto;
-	margin-top: 5%;
+    height: 250px;
+    margin-bottom: 5%;
+    overflow-y: auto;
+    margin-top: 5%;
 }
 
 .button_responsiblePerson{
-	background-color: rgb(60, 168, 30);
+    background-color: rgb(60, 168, 30);
 }
 
 #college_profile_table_bank{
-	height: 250px;
-	margin-bottom: 5%;
-	overflow-y: auto;
-	margin-top: 5%;
+    height: 250px;
+    margin-bottom: 5%;
+    overflow-y: auto;
+    margin-top: 5%;
 }
 
 .button_bank{
-	background-color: rgb(255, 0, 0);
+    background-color: rgb(255, 0, 0);
 }
 
 .row_activate_bank{
-	background-color: rgb(36, 150, 17) !important;
-  	color: #FFF !important;
+    background-color: rgb(36, 150, 17) !important;
+      color: #FFF !important;
 }

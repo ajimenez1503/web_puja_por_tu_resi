@@ -227,25 +227,25 @@ function college_create_row_room(data_room){
 */
 function collegeGetAllRooms(){
     var xmlHttp =new XMLHttpRequest();
-	var url=window.location.protocol+"//"+window.location.host+port+"/Room/getAll/";
-	xmlHttp.open("GET", url, true );
+    var url=window.location.protocol+"//"+window.location.host+port+"/Room/getAll/";
+    xmlHttp.open("GET", url, true );
     xmlHttp.withCredentials = true;
-	xmlHttp.send();
-	xmlHttp.onreadystatechange = function() {
-    	if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
-    		var output= JSON.parse(xmlHttp.responseText);
+    xmlHttp.send();
+    xmlHttp.onreadystatechange = function() {
+        if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
+            var output= JSON.parse(xmlHttp.responseText);
             console.log(output)
-    		if(output.success){
+            if(output.success){
                 var father = document.getElementById("college_element_table_list_rooms");
                 deleteAllChildElement(father)
                 for (i = 0; i < output.data.length; i++) {
                     father.appendChild( college_create_row_room(output.data[i]));
                 }
                 floatThead_table("college_table_list_rooms");
-    		}else{
-    			showErrorMessagesPage("showdata",output.message,output.success);
-    		}
-    	}
+            }else{
+                showErrorMessagesPage("showdata",output.message,output.success);
+            }
+        }
     }
 }
 
@@ -256,22 +256,22 @@ function collegeGetAllRooms(){
 * @return bool (true if it is deleted)
 */
 function remove_room(id){
-	var xmlHttp =new XMLHttpRequest();
-	var url=window.location.protocol+"//"+window.location.host+port+"/Room/remove/"+id;
-	xmlHttp.open("POST", url, true );
+    var xmlHttp =new XMLHttpRequest();
+    var url=window.location.protocol+"//"+window.location.host+port+"/Room/remove/"+id;
+    xmlHttp.open("POST", url, true );
     xmlHttp.withCredentials = true;
-	xmlHttp.send();
-	xmlHttp.onreadystatechange = function() {
-    	if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
-    		var output= JSON.parse(xmlHttp.responseText);
+    xmlHttp.send();
+    xmlHttp.onreadystatechange = function() {
+        if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
+            var output= JSON.parse(xmlHttp.responseText);
             console.log(output)
-    		if(!output.success){
-    			showErrorMessagesPage("remove_room",output.message,output.success);
+            if(!output.success){
+                showErrorMessagesPage("remove_room",output.message,output.success);
                 return false;
-    		}else{
+            }else{
                 return true;
             }
-    	}
+        }
     }
 }
 
@@ -339,7 +339,7 @@ function college_sendMessage(tab, specific_student){
 
     var message=(document.getElementById(tab+"_form_text").value).escape();
     var file=document.getElementById(tab+"_form_filename");
-	var url=window.location.protocol+"//"+window.location.host+port+"/Message/create/";
+    var url=window.location.protocol+"//"+window.location.host+port+"/Message/create/";
     if (message ===""){
         showErrorMessagesPage("message","ERROR: necesita un mensaje texto.",false);
         return;
@@ -364,19 +364,19 @@ function college_sendMessage(tab, specific_student){
     for (i=0; i<student_targets.length ; i++){//send a messsage for every student
         var xmlHttp =new XMLHttpRequest();
         xmlHttp.onreadystatechange = function() {
-    		if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
-    			var output= JSON.parse(xmlHttp.responseText);
+            if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
+                var output= JSON.parse(xmlHttp.responseText);
                 console.log(output);
-    			showErrorMessagesPage("createMessage",output.message,output.success);
-    		}
-    	}
-    	xmlHttp.open("POST", url, true );
+                showErrorMessagesPage("createMessage",output.message,output.success);
+            }
+        }
+        xmlHttp.open("POST", url, true );
         xmlHttp.withCredentials = true;
         var data = new FormData();
         data.append("message", message);
         data.append("file_attached", file);
         data.append("username_student", student_targets[i]);
-    	xmlHttp.send(data);
+        xmlHttp.send(data);
     }
     document.getElementById(tab+"_form").reset();//clean input
 }
@@ -428,15 +428,15 @@ function college_message_create_row_student(data_student,unread){
 function college_message_get_list_student(){
     var list_student=[]
     var xmlHttp =new XMLHttpRequest();
-	var url=window.location.protocol+"//"+window.location.host+port+"/Message/countUnreadStudent/";
-	xmlHttp.open("GET", url, true );
+    var url=window.location.protocol+"//"+window.location.host+port+"/Message/countUnreadStudent/";
+    xmlHttp.open("GET", url, true );
     xmlHttp.withCredentials = true;
-	xmlHttp.send();
-	xmlHttp.onreadystatechange = function() {
-    	if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
-    		var output= JSON.parse(xmlHttp.responseText);
+    xmlHttp.send();
+    xmlHttp.onreadystatechange = function() {
+        if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
+            var output= JSON.parse(xmlHttp.responseText);
             console.log(output)
-    		if(output.success){
+            if(output.success){
                 var father = document.getElementById("college_messages_list_student_table");
                 deleteAllChildElement(father);
                 for (i = 0; i < output.data.length; i++) {
@@ -446,10 +446,10 @@ function college_message_get_list_student(){
                 floatThead_table("college_messages_table");
                 //add all the studnt to the select option
                 college_fill_list_student_select(list_student);
-    		}else{
-    			showErrorMessagesPage("showdata",output.message,output.success);
-    		}
-    	}
+            }else{
+                showErrorMessagesPage("showdata",output.message,output.success);
+            }
+        }
     }
 }
 
@@ -478,20 +478,20 @@ function college_fill_list_student_select(list_student){
 * @param: student
 */
 function college_open_messages_specific_student(student){
-	var xmlHttp =new XMLHttpRequest();
-	var url=window.location.protocol+"//"+window.location.host+port+"/Message/openStudent/"+student;
-	xmlHttp.onreadystatechange = function() {
-    	if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
-    		var output= JSON.parse(xmlHttp.responseText);
+    var xmlHttp =new XMLHttpRequest();
+    var url=window.location.protocol+"//"+window.location.host+port+"/Message/openStudent/"+student;
+    xmlHttp.onreadystatechange = function() {
+        if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
+            var output= JSON.parse(xmlHttp.responseText);
             console.log(output)
-    		if(!output.success){
-    			showErrorMessagesPage("displayMessages",output.message,output.success);
-    		}
-    	}
+            if(!output.success){
+                showErrorMessagesPage("displayMessages",output.message,output.success);
+            }
+        }
     }
     xmlHttp.open("POST", url, true );
     xmlHttp.withCredentials = true;
-	xmlHttp.send();
+    xmlHttp.send();
 }
 
 
@@ -501,25 +501,25 @@ function college_open_messages_specific_student(student){
 * @param: student
 */
 function college_display_messages_specific_student(student){
-	var xmlHttp =new XMLHttpRequest();
-	var url=window.location.protocol+"//"+window.location.host+port+"/Message/get/?username_student="+student;
-	xmlHttp.open("GET", url, true );
+    var xmlHttp =new XMLHttpRequest();
+    var url=window.location.protocol+"//"+window.location.host+port+"/Message/get/?username_student="+student;
+    xmlHttp.open("GET", url, true );
     xmlHttp.withCredentials = true;
-	xmlHttp.send();
-	xmlHttp.onreadystatechange = function() {
-    	if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
-    		var output= JSON.parse(xmlHttp.responseText);
+    xmlHttp.send();
+    xmlHttp.onreadystatechange = function() {
+        if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
+            var output= JSON.parse(xmlHttp.responseText);
             console.log(output)
-    		if(output.success){
+            if(output.success){
                 var father = document.getElementById("college_messages_conversation_list_message");
                 deleteAllChildElement(father);
                 for (i = 0; i < output.data.length; i++) {
                     father.appendChild( createHTMLMessage(output.data[i]));
                 }
-    		}else{
-    			showErrorMessagesPage("displayMessages",output.message,output.success);
-    		}
-    	}
+            }else{
+                showErrorMessagesPage("displayMessages",output.message,output.success);
+            }
+        }
     }
     college_open_messages_specific_student(student);
     //display the conversation
@@ -543,28 +543,28 @@ function college_display_messages_specific_student(student){
 * The input is validate and show the error in case of problem
 */
 function college_update_profile(){
-	button=document.getElementById("college_update_profile").textContent;
-	if (button=="Actualizar"){
-		document.getElementById("college_update_profile").textContent="Cambiar";
+    button=document.getElementById("college_update_profile").textContent;
+    if (button=="Actualizar"){
+        document.getElementById("college_update_profile").textContent="Cambiar";
 
     //email
-		document.getElementById("college_profile_college_email").style.display="none";
-		document.getElementById("college_profile_college_email_new").style.display="block";
-		document.getElementById("college_profile_college_email_new").value=document.getElementById("college_profile_college_email").textContent;
+        document.getElementById("college_profile_college_email").style.display="none";
+        document.getElementById("college_profile_college_email_new").style.display="block";
+        document.getElementById("college_profile_college_email_new").value=document.getElementById("college_profile_college_email").textContent;
 
     //telephone
-		document.getElementById("college_profile_college_telephone").style.display="none";
-		document.getElementById("college_profile_college_telephone_new").style.display="block";
-		document.getElementById("college_profile_college_telephone_new").value=document.getElementById("college_profile_college_telephone").textContent;
+        document.getElementById("college_profile_college_telephone").style.display="none";
+        document.getElementById("college_profile_college_telephone_new").style.display="block";
+        document.getElementById("college_profile_college_telephone_new").value=document.getElementById("college_profile_college_telephone").textContent;
 
     //url
-		document.getElementById("college_profile_college_url").style.display="none";
-		document.getElementById("college_profile_college_url_new").style.display="block";
-		document.getElementById("college_profile_college_url_new").value=document.getElementById("college_profile_college_url").textContent;
+        document.getElementById("college_profile_college_url").style.display="none";
+        document.getElementById("college_profile_college_url_new").style.display="block";
+        document.getElementById("college_profile_college_url_new").value=document.getElementById("college_profile_college_url").textContent;
 
     //equipment
     document.getElementById("college_profile_college_equipment").style.display="none";
-		document.getElementById("college_profile_college_equipment_new").style.display="block";
+        document.getElementById("college_profile_college_equipment_new").style.display="block";
     old_equipment=get_equipment_selected("college_profile_college_equipment");
 
 
@@ -596,8 +596,8 @@ function college_update_profile(){
     }
 
 
-	}else{
-		document.getElementById("college_update_profile").textContent="Actualizar"
+    }else{
+        document.getElementById("college_update_profile").textContent="Actualizar"
     var email=document.getElementById("college_profile_college_email_new").value;
     if(!validate_email(email)){
       showErrorMessagesPage("updateEmail","Email no es valido.",false);
@@ -617,12 +617,12 @@ function college_update_profile(){
     college_equipment_new=  get_equipment_selected("college_profile_college_equipment_new");
 
     var url=window.location.protocol+"//"+window.location.host+port+"/ProfileCollege/updateProfile/";
-		var xmlHttp =new XMLHttpRequest();
-		xmlHttp.onreadystatechange = function() {
-			if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
-				var output= JSON.parse(xmlHttp.responseText);
+        var xmlHttp =new XMLHttpRequest();
+        xmlHttp.onreadystatechange = function() {
+            if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
+                var output= JSON.parse(xmlHttp.responseText);
         console.log(output);
-				showErrorMessagesPage("updateProfile",output.message,output.success);
+                showErrorMessagesPage("updateProfile",output.message,output.success);
           if(output.success){
             //email
             document.getElementById("college_profile_college_email").style.display="block";
@@ -641,9 +641,9 @@ function college_update_profile(){
             document.getElementById("college_profile_college_equipment_new").style.display="none";
             college_displayProfile();
           }
-			}
-		}
-		xmlHttp.open("POST", url, true );
+            }
+        }
+        xmlHttp.open("POST", url, true );
     xmlHttp.withCredentials = true;
     var data = new FormData();
     data.append("email", email);
@@ -657,30 +657,30 @@ function college_update_profile(){
     data.append("gym", college_equipment_new.college_profile_icon_gym);
     data.append("study_room", college_equipment_new.college_profile_icon_study_room);
     data.append("heating", college_equipment_new.college_profile_icon_heating);
-		xmlHttp.send(data);
-	}
+        xmlHttp.send(data);
+    }
 }
 
 /**
 * show the data of the college user
 */
 function college_displayProfile(){
-	var xmlHttp =new XMLHttpRequest();
-	var url=window.location.protocol+"//"+window.location.host+port+"/ProfileCollege/get/";
-	xmlHttp.open("GET", url, true );
+    var xmlHttp =new XMLHttpRequest();
+    var url=window.location.protocol+"//"+window.location.host+port+"/ProfileCollege/get/";
+    xmlHttp.open("GET", url, true );
     xmlHttp.withCredentials = true;
-	xmlHttp.send();
-	xmlHttp.onreadystatechange = function() {
-    	if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
-    		var output= JSON.parse(xmlHttp.responseText);
+    xmlHttp.send();
+    xmlHttp.onreadystatechange = function() {
+        if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
+            var output= JSON.parse(xmlHttp.responseText);
             console.log(output)
-    		if(output.success){
-    			display_specific_college("college_profile_",output.data);
+            if(output.success){
+                display_specific_college("college_profile_",output.data);
           display_username("tab_profile_college_username",output.data.username);
-    		}else{
-    			showErrorMessagesPage("showdata",output.message,output.success);
-    		}
-    	}
+            }else{
+                showErrorMessagesPage("showdata",output.message,output.success);
+            }
+        }
     }
 }
 
@@ -690,37 +690,37 @@ function college_displayProfile(){
 * The input is validate and show the error in case of problem
 */
 function college_profile_updatePassword(){
-	var passwordOld=document.getElementById("college_profile_formUpdatePasswordOld").value;
-	var passwordNew=document.getElementById("college_profile_formUpdatePasswordNew").value;
-	var passwordNewRepeat=document.getElementById("college_profile_formUpdatePasswordNewRepeat").value;
-	if(passwordNew==passwordNewRepeat){
-		if(passwordNew.length>=sizePaswword){
-			var url=window.location.protocol+"//"+window.location.host+port+"/ProfileCollege/updatePassword/";
-			var xmlHttp =new XMLHttpRequest();
-			xmlHttp.onreadystatechange = function() {
-				if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
-					var output= JSON.parse(xmlHttp.responseText);
+    var passwordOld=document.getElementById("college_profile_formUpdatePasswordOld").value;
+    var passwordNew=document.getElementById("college_profile_formUpdatePasswordNew").value;
+    var passwordNewRepeat=document.getElementById("college_profile_formUpdatePasswordNewRepeat").value;
+    if(passwordNew==passwordNewRepeat){
+        if(passwordNew.length>=sizePaswword){
+            var url=window.location.protocol+"//"+window.location.host+port+"/ProfileCollege/updatePassword/";
+            var xmlHttp =new XMLHttpRequest();
+            xmlHttp.onreadystatechange = function() {
+                if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
+                    var output= JSON.parse(xmlHttp.responseText);
                     console.log(output);
-					showErrorMessagesPage("updatePassword",output.message,output.success);
+                    showErrorMessagesPage("updatePassword",output.message,output.success);
                     if(output.success){
                         document.getElementById("college_profile_id_formUpdatePassword").reset();//clean input
                         display_specific_div("college_profile_list_form",undefined);
                         college_displayProfile();
                     }
-				}
-			}
-			xmlHttp.open("POST", url, true );
+                }
+            }
+            xmlHttp.open("POST", url, true );
             xmlHttp.withCredentials = true;
             var data = new FormData();
             data.append("old_password", passwordOld);
             data.append("new_password", passwordNew);
-			xmlHttp.send(data);
-		}else{
-		    showErrorMessagesPage("updatePassword","error input",false);
-		}
-	}else{
-		showErrorMessagesPage("updatePassword","passwords not identical ",false);
-	}
+            xmlHttp.send(data);
+        }else{
+            showErrorMessagesPage("updatePassword","error input",false);
+        }
+    }else{
+        showErrorMessagesPage("updatePassword","passwords not identical ",false);
+    }
 }
 
 
@@ -729,30 +729,30 @@ function college_profile_updatePassword(){
 *The input is validate and show the error in case of problem
 
 function college_profile_updateEmail(){
-	var email=document.getElementById("college_profile_formUpdateEmail").value;
-	if(validate_email(email)){
-		var url=window.location.protocol+"//"+window.location.host+port+"/ProfileCollege/updateEmail/";
-		var xmlHttp =new XMLHttpRequest();
-		xmlHttp.onreadystatechange = function() {
-			if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
-				var output= JSON.parse(xmlHttp.responseText);
+    var email=document.getElementById("college_profile_formUpdateEmail").value;
+    if(validate_email(email)){
+        var url=window.location.protocol+"//"+window.location.host+port+"/ProfileCollege/updateEmail/";
+        var xmlHttp =new XMLHttpRequest();
+        xmlHttp.onreadystatechange = function() {
+            if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
+                var output= JSON.parse(xmlHttp.responseText);
                 console.log(output);
-				showErrorMessagesPage("updateEmail",output.message,output.success);
+                showErrorMessagesPage("updateEmail",output.message,output.success);
                 if(output.success){
                     document.getElementById("college_profile_id_formUpdateEmail").reset();//clean input
                     display_specific_div("college_profile_list_form",undefined);
                     college_displayProfile();
                 }
-			}
-		}
-		xmlHttp.open("POST", url, true );
+            }
+        }
+        xmlHttp.open("POST", url, true );
         xmlHttp.withCredentials = true;
         var data = new FormData();
         data.append("email", email);
-		xmlHttp.send(data);
-	}else{
-		showErrorMessagesPage("updateEmail","Email no es valido.",false);
-	}
+        xmlHttp.send(data);
+    }else{
+        showErrorMessagesPage("updateEmail","Email no es valido.",false);
+    }
 }
 */
 
@@ -760,27 +760,27 @@ function college_profile_updateEmail(){
 * Update the address of the college user
 */
 function college_profile_updateAddress(){
-	var url=window.location.protocol+"//"+window.location.host+port+"/ProfileCollege/updateAddress/";
-	var xmlHttp =new XMLHttpRequest();
-	xmlHttp.onreadystatechange = function() {
-		if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
-			var output= JSON.parse(xmlHttp.responseText);
+    var url=window.location.protocol+"//"+window.location.host+port+"/ProfileCollege/updateAddress/";
+    var xmlHttp =new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function() {
+        if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
+            var output= JSON.parse(xmlHttp.responseText);
             console.log(output);
-			showErrorMessagesPage("updateEmail",output.message,output.success);
+            showErrorMessagesPage("updateEmail",output.message,output.success);
             if(output.success){
                 document.getElementById("college_profile_id_formUpdateAddress").reset();//clean input
                 display_specific_div("college_profile_list_form",undefined);
                 college_displayProfile();
             }
-		}
+        }
     }
-	xmlHttp.open("POST", url, true );
+    xmlHttp.open("POST", url, true );
     xmlHttp.withCredentials = true;
     var data = new FormData();
     data.append("address", global_address_college.formatted_address);
     data.append("lat", global_address_college.lat);
     data.append("lng", global_address_college.lng);
-	xmlHttp.send(data);
+    xmlHttp.send(data);
 
 }
 
@@ -790,30 +790,30 @@ function college_profile_updateAddress(){
 *The input is validate and show the error in case of problem
 
 function college_profile_updateTelephone(){
-	var telephone=document.getElementById("college_profile_formUpdateTelephone").value;
-	if(Validate_Phonenumber(telephone)){
-		var url=window.location.protocol+"//"+window.location.host+port+"/ProfileCollege/updateTelephone/";
-		var xmlHttp =new XMLHttpRequest();
-		xmlHttp.onreadystatechange = function() {
-			if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
-				var output= JSON.parse(xmlHttp.responseText);
+    var telephone=document.getElementById("college_profile_formUpdateTelephone").value;
+    if(Validate_Phonenumber(telephone)){
+        var url=window.location.protocol+"//"+window.location.host+port+"/ProfileCollege/updateTelephone/";
+        var xmlHttp =new XMLHttpRequest();
+        xmlHttp.onreadystatechange = function() {
+            if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
+                var output= JSON.parse(xmlHttp.responseText);
                 console.log(output);
-				showErrorMessagesPage("updateTelephone",output.message,output.success);
+                showErrorMessagesPage("updateTelephone",output.message,output.success);
                 if(output.success){
                     document.getElementById("college_profile_id_formUpdateTelephone").reset();//clean input
                     display_specific_div("college_profile_list_form",undefined);
                     college_displayProfile();
                 }
-			}
-		}
-		xmlHttp.open("POST", url, true );
+            }
+        }
+        xmlHttp.open("POST", url, true );
         xmlHttp.withCredentials = true;
         var data = new FormData();
         data.append("telephone", telephone);
-		xmlHttp.send(data);
-	}else{
-		showErrorMessagesPage("updateTelephone","Telefono no es valido.",false);
-	}
+        xmlHttp.send(data);
+    }else{
+        showErrorMessagesPage("updateTelephone","Telefono no es valido.",false);
+    }
 }
 */
 
@@ -822,30 +822,30 @@ function college_profile_updateTelephone(){
 *The input is validate and show the error in case of problem
 
 function college_profile_updateURL(){
-	var URL=document.getElementById("college_profile_formUpdateURL").value;
-	if(validate_URL(URL)){
-		var url=window.location.protocol+"//"+window.location.host+port+"/ProfileCollege/updateURL/";
-		var xmlHttp =new XMLHttpRequest();
-		xmlHttp.onreadystatechange = function() {
-			if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
-				var output= JSON.parse(xmlHttp.responseText);
+    var URL=document.getElementById("college_profile_formUpdateURL").value;
+    if(validate_URL(URL)){
+        var url=window.location.protocol+"//"+window.location.host+port+"/ProfileCollege/updateURL/";
+        var xmlHttp =new XMLHttpRequest();
+        xmlHttp.onreadystatechange = function() {
+            if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
+                var output= JSON.parse(xmlHttp.responseText);
                 console.log(output);
-				showErrorMessagesPage("updateURL",output.message,output.success);
+                showErrorMessagesPage("updateURL",output.message,output.success);
                 if(output.success){
                     document.getElementById("v").reset();//clean input
                     display_specific_div("college_profile_list_form",undefined);
                     college_displayProfile();
                 }
-			}
-		}
-		xmlHttp.open("POST", url, true );
+            }
+        }
+        xmlHttp.open("POST", url, true );
         xmlHttp.withCredentials = true;
         var data = new FormData();
         data.append("URL", URL);
-		xmlHttp.send(data);
-	}else{
-		showErrorMessagesPage("updateURL","URL no es valido.",false);
-	}
+        xmlHttp.send(data);
+    }else{
+        showErrorMessagesPage("updateURL","URL no es valido.",false);
+    }
 }
 */
 
@@ -854,22 +854,22 @@ function college_profile_updateURL(){
 *The input is validate and show the error in case of problem
 
 function college_profile_updateEquipment(){
-	var equipment=get_equipment_selected("college_profile_formUpdateEquipment");
-	var url=window.location.protocol+"//"+window.location.host+port+"/ProfileCollege/updateEquipment/";
-	var xmlHttp =new XMLHttpRequest();
-	xmlHttp.onreadystatechange = function() {
-		if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
-			var output= JSON.parse(xmlHttp.responseText);
+    var equipment=get_equipment_selected("college_profile_formUpdateEquipment");
+    var url=window.location.protocol+"//"+window.location.host+port+"/ProfileCollege/updateEquipment/";
+    var xmlHttp =new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function() {
+        if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
+            var output= JSON.parse(xmlHttp.responseText);
             console.log(output);
-			showErrorMessagesPage("updateURL",output.message,output.success);
+            showErrorMessagesPage("updateURL",output.message,output.success);
             if(output.success){
                 document.getElementById("v").reset();//clean input
                 display_specific_div("college_profile_id_formUpdateEquipment",undefined);
                 college_displayProfile();
             }
-		}
-	}
-	xmlHttp.open("POST", url, true );
+        }
+    }
+    xmlHttp.open("POST", url, true );
     xmlHttp.withCredentials = true;
     var data = new FormData();
     data.append("wifi", equipment.college_profile_icon_wifi);
@@ -880,7 +880,7 @@ function college_profile_updateEquipment(){
     data.append("gym", equipment.college_profile_icon_gym);
     data.append("study_room", equipment.college_profile_icon_study_room);
     data.append("heating", equipment.college_profile_icon_heating);
-	xmlHttp.send(data);
+    xmlHttp.send(data);
 }
 */
 
@@ -908,21 +908,21 @@ function college_profile_create_responsiblePerson(){
         showErrorMessagesPage("new responsiblePerson","El trabajo esta vacio",false);
         return;
     }
-	var url=window.location.protocol+"//"+window.location.host+port+"/ResponsiblePerson/create/";
-	var xmlHttp =new XMLHttpRequest();
-	xmlHttp.onreadystatechange = function() {
-		if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
-			var output= JSON.parse(xmlHttp.responseText);
+    var url=window.location.protocol+"//"+window.location.host+port+"/ResponsiblePerson/create/";
+    var xmlHttp =new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function() {
+        if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
+            var output= JSON.parse(xmlHttp.responseText);
             console.log(output);
-			showErrorMessagesPage("new responsiblePerso",output.message,output.success);
+            showErrorMessagesPage("new responsiblePerso",output.message,output.success);
             if (output.success){
                 display_table_responsiblePerson();
                 document.getElementById("college_profile_id_formReposiblePerson").reset();//clean input
                 display_specific_div("college_profile_list_form",undefined);
             }
-		}
-	}
-	xmlHttp.open("POST", url, true );
+        }
+    }
+    xmlHttp.open("POST", url, true );
     xmlHttp.withCredentials = true;
     var data = new FormData();
     data.append("DNI", DNI);
@@ -938,20 +938,20 @@ function college_profile_create_responsiblePerson(){
 * @param id of theResponsiblePerson
 */
 function remove_ResponsiblePerson(DNI){
-	var xmlHttp =new XMLHttpRequest();
-	var url=window.location.protocol+"//"+window.location.host+port+"/ResponsiblePerson/remove/"+DNI;
-	xmlHttp.open("POST", url, true );
+    var xmlHttp =new XMLHttpRequest();
+    var url=window.location.protocol+"//"+window.location.host+port+"/ResponsiblePerson/remove/"+DNI;
+    xmlHttp.open("POST", url, true );
     xmlHttp.withCredentials = true;
-	xmlHttp.send();
-	xmlHttp.onreadystatechange = function() {
-    	if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
-    		var output= JSON.parse(xmlHttp.responseText);
+    xmlHttp.send();
+    xmlHttp.onreadystatechange = function() {
+        if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
+            var output= JSON.parse(xmlHttp.responseText);
             console.log(output)
-    		showErrorMessagesPage("remove_ResponsiblePerson",output.message,output.success);
+            showErrorMessagesPage("remove_ResponsiblePerson",output.message,output.success);
             if (output.success){
                 display_table_responsiblePerson();
             }
-    	}
+        }
     }
 }
 
@@ -999,25 +999,25 @@ function college_create_row_responsiblePerson(data_responsiblePerson){
 */
 function display_table_responsiblePerson(){
     var xmlHttp =new XMLHttpRequest();
-	var url=window.location.protocol+"//"+window.location.host+port+"/ResponsiblePerson/get/";
-	xmlHttp.open("GET", url, true );
+    var url=window.location.protocol+"//"+window.location.host+port+"/ResponsiblePerson/get/";
+    xmlHttp.open("GET", url, true );
     xmlHttp.withCredentials = true;
-	xmlHttp.send();
-	xmlHttp.onreadystatechange = function() {
-    	if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
-    		var output= JSON.parse(xmlHttp.responseText);
+    xmlHttp.send();
+    xmlHttp.onreadystatechange = function() {
+        if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
+            var output= JSON.parse(xmlHttp.responseText);
             console.log(output)
-    		if(output.success){
+            if(output.success){
                 var father = document.getElementById("college_profile_element_table_responsiblePerson");
                 deleteAllChildElement(father)
                 for (i = 0; i < output.data.length; i++) {
                     father.appendChild( college_create_row_responsiblePerson(output.data[i]));
                 }
                 floatThead_table("college_profile_table_responsiblePerson");
-    		}else{
-    			showErrorMessagesPage("showdata",output.message,output.success);
-    		}
-    	}
+            }else{
+                showErrorMessagesPage("showdata",output.message,output.success);
+            }
+        }
     }
 }
 
@@ -1043,21 +1043,21 @@ function college_profile_create_bank(){
         showErrorMessagesPage("Create bank","El propietario esta vacio",false);
         return;
     }
-	var url=window.location.protocol+"//"+window.location.host+port+"/Bank/create/";
-	var xmlHttp =new XMLHttpRequest();
-	xmlHttp.onreadystatechange = function() {
-		if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
-			var output= JSON.parse(xmlHttp.responseText);
+    var url=window.location.protocol+"//"+window.location.host+port+"/Bank/create/";
+    var xmlHttp =new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function() {
+        if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
+            var output= JSON.parse(xmlHttp.responseText);
             console.log(output);
-			showErrorMessagesPage("Create bank",output.message,output.success);
+            showErrorMessagesPage("Create bank",output.message,output.success);
             if (output.success){
                 document.getElementById("college_profile_id_formBank").reset();//clean input
                 display_specific_div("college_profile_list_form",undefined);
                 display_table_bank();
             }
-		}
-	}
-	xmlHttp.open("POST", url, true );
+        }
+    }
+    xmlHttp.open("POST", url, true );
     xmlHttp.withCredentials = true;
     var data = new FormData();
     data.append("IBAN", value_IBAN);
@@ -1072,20 +1072,20 @@ function college_profile_create_bank(){
 * @param id of bank
 */
 function remove_bank(id){
-	var xmlHttp =new XMLHttpRequest();
-	var url=window.location.protocol+"//"+window.location.host+port+"/Bank/remove/"+id;
-	xmlHttp.open("POST", url, true );
+    var xmlHttp =new XMLHttpRequest();
+    var url=window.location.protocol+"//"+window.location.host+port+"/Bank/remove/"+id;
+    xmlHttp.open("POST", url, true );
     xmlHttp.withCredentials = true;
-	xmlHttp.send();
-	xmlHttp.onreadystatechange = function() {
-    	if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
-    		var output= JSON.parse(xmlHttp.responseText);
+    xmlHttp.send();
+    xmlHttp.onreadystatechange = function() {
+        if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
+            var output= JSON.parse(xmlHttp.responseText);
             console.log(output)
-    		showErrorMessagesPage("remove_bank",output.message,output.success);
+            showErrorMessagesPage("remove_bank",output.message,output.success);
             if (output.success){
                 display_table_bank();
             }
-    	}
+        }
     }
 }
 
@@ -1095,20 +1095,20 @@ function remove_bank(id){
 * @param id of bank
 */
 function activate_bank(id){
-	var xmlHttp =new XMLHttpRequest();
-	var url=window.location.protocol+"//"+window.location.host+port+"/Bank/activate/"+id;
-	xmlHttp.open("POST", url, true );
+    var xmlHttp =new XMLHttpRequest();
+    var url=window.location.protocol+"//"+window.location.host+port+"/Bank/activate/"+id;
+    xmlHttp.open("POST", url, true );
     xmlHttp.withCredentials = true;
-	xmlHttp.send();
-	xmlHttp.onreadystatechange = function() {
-    	if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
-    		var output= JSON.parse(xmlHttp.responseText);
+    xmlHttp.send();
+    xmlHttp.onreadystatechange = function() {
+        if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
+            var output= JSON.parse(xmlHttp.responseText);
             console.log(output)
-    		showErrorMessagesPage("activate_bank",output.message,output.success);
+            showErrorMessagesPage("activate_bank",output.message,output.success);
             if (output.success){
                 display_table_bank();
             }
-    	}
+        }
     }
 }
 
@@ -1166,25 +1166,25 @@ function college_create_row_bank(data_bank){
 */
 function display_table_bank(){
     var xmlHttp =new XMLHttpRequest();
-	var url=window.location.protocol+"//"+window.location.host+port+"/Bank/get/";
-	xmlHttp.open("GET", url, true );
+    var url=window.location.protocol+"//"+window.location.host+port+"/Bank/get/";
+    xmlHttp.open("GET", url, true );
     xmlHttp.withCredentials = true;
-	xmlHttp.send();
-	xmlHttp.onreadystatechange = function() {
-    	if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
-    		var output= JSON.parse(xmlHttp.responseText);
+    xmlHttp.send();
+    xmlHttp.onreadystatechange = function() {
+        if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
+            var output= JSON.parse(xmlHttp.responseText);
             console.log(output)
-    		if(output.success){
+            if(output.success){
                 var father = document.getElementById("college_profile_element_table_bank");
                 deleteAllChildElement(father)
                 for (i = 0; i < output.data.length; i++) {
                     father.appendChild( college_create_row_bank(output.data[i]));
                 }
                 floatThead_table("college_profile_table_bank");
-    		}else{
-    			showErrorMessagesPage("showdata",output.message,output.success);
-    		}
-    	}
+            }else{
+                showErrorMessagesPage("showdata",output.message,output.success);
+            }
+        }
     }
 }
 //////////////////////////////////////////////////////////////////////////////
@@ -1197,19 +1197,19 @@ function display_table_bank(){
 * @param: tab
 */
 function countOpenIncidences(tab){
-	var xmlHttp =new XMLHttpRequest();
-	var url=window.location.protocol+"//"+window.location.host+port+"/Incidence/getNumberOpen/";
-	xmlHttp.open("GET", url, true );
+    var xmlHttp =new XMLHttpRequest();
+    var url=window.location.protocol+"//"+window.location.host+port+"/Incidence/getNumberOpen/";
+    xmlHttp.open("GET", url, true );
     xmlHttp.withCredentials = true;
-	xmlHttp.send();
-	xmlHttp.onreadystatechange = function() {
-    	if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
-    		var output= JSON.parse(xmlHttp.responseText);
+    xmlHttp.send();
+    xmlHttp.onreadystatechange = function() {
+        if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
+            var output= JSON.parse(xmlHttp.responseText);
             console.log(output)
-    		if(output.success){
-    			document.getElementById(tab+"numberIncideces").textContent=output.data;
-    		}
-    	}
+            if(output.success){
+                document.getElementById(tab+"numberIncideces").textContent=output.data;
+            }
+        }
     }
 }
 //////////////////////////////////////////////////////////////////////////////
@@ -1278,25 +1278,25 @@ function college_create_row_student(data_student,data_room,data_agreement,list_r
 */
 function collegeGetAllStudents(){
     var xmlHttp =new XMLHttpRequest();
-	var url=window.location.protocol+"//"+window.location.host+port+"/ProfileCollege/getStudentsComplete/";
-	xmlHttp.open("GET", url, true );
+    var url=window.location.protocol+"//"+window.location.host+port+"/ProfileCollege/getStudentsComplete/";
+    xmlHttp.open("GET", url, true );
     xmlHttp.withCredentials = true;
-	xmlHttp.send();
-	xmlHttp.onreadystatechange = function() {
-    	if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
-    		var output= JSON.parse(xmlHttp.responseText);
+    xmlHttp.send();
+    xmlHttp.onreadystatechange = function() {
+        if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
+            var output= JSON.parse(xmlHttp.responseText);
             console.log(output)
-    		if(output.success){
+            if(output.success){
                 var father = document.getElementById("college_element_table_list_students");
                 deleteAllChildElement(father)
                 for (i = 0; i < output.data.length; i++) {
                     father.appendChild( college_create_row_student(output.data[i].student,output.data[i].room,output.data[i].agreement,output.data[i].rents));
                 }
                 floatThead_table("college_table_list_students");
-    		}else{
-    			showErrorMessagesPage("showdata",output.message,output.success);
-    		}
-    	}
+            }else{
+                showErrorMessagesPage("showdata",output.message,output.success);
+            }
+        }
     }
 }
 //////////////////////////////////////////////////////////////////////////////
