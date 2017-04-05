@@ -8,16 +8,11 @@
  * @param: tab
  * @param: data_room
  */
-function display_specific_room(tab,data_room,display_shcool_date){
+function display_specific_room(tab,data_room){
     //panel room atributes:
     document.getElementById(tab+"_name").innerHTML=data_room.name;
     document.getElementById(tab+"_floor").innerHTML=data_room.floor;
     document.getElementById(tab+"_size").innerHTML=data_room.size;
-
-    if (display_shcool_date){
-        document.getElementById(tab+"_dateStart").innerHTML=data_room.date_start_school.date.replace(" 00:00:00", "").replace(".000000", "");
-        document.getElementById(tab+"_dateEnd").innerHTML=data_room.date_end_school.date.replace(" 00:00:00", "").replace(".000000", "");
-    }
 
     //panel room equipment
     room_equipment_father=document.getElementById(tab+"_equipment_room");

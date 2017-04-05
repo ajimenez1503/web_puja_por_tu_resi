@@ -317,7 +317,7 @@ function get_room_data(){
                 //display data agreement
                 display_specific_agreement("Room_specific_agreement_",output.data.agreement);
                 //display data room
-                display_specific_room("Room_specific",output.data.room,false);
+                display_specific_room("Room_specific",output.data.room);
                 //displat data college
                 display_specific_college("Room_specific_",output.data.college);
                 display_button_accept_refuse(output.data.agreement_signed,output.data.agreement);
@@ -601,6 +601,8 @@ function search_rooms(prefix_id,display_specific_room) {
     url+="&bath="+ equipment.search_icon_bath;
     url+="&desk="+ equipment.search_icon_desk;
     url+="&wardrove="+ equipment.search_icon_wardrove;
+    url+="&date_start_school="+document.getElementById(prefix_id+"room_form_date_start_school").value;
+    url+="&date_end_school="+document.getElementById(prefix_id+"room_form_date_end_school").value;
 
     var xmlHttp =new XMLHttpRequest();
     xmlHttp.withCredentials = true;
@@ -758,7 +760,7 @@ function GetOFFEREDRooms(prefix_id,display_specific_room){
 function display_search_room_specific(data_college,data_room){
     display_specific_div("search_room_option","student_search_room_specific");
 
-    display_specific_room("student_search_room_specific",data_room,true);
+    display_specific_room("student_search_room_specific",data_room);
     display_specific_college("student_search_",data_college);
 
     //button of bid and remove bid
