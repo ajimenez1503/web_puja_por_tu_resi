@@ -125,22 +125,6 @@ function college_create_row_room(data_room){
         var td = document.createElement('td');
         td.appendChild(document.createTextNode(data_room.name))
         tr.appendChild(td)
-    //inicio academico
-        var td = document.createElement('td');
-        td.appendChild(document.createTextNode(data_room.date_start_school.date.replace(" 00:00:00", "").replace(".000000", "")));
-        tr.appendChild(td)
-    //fin academico
-        var td = document.createElement('td');
-        td.appendChild(document.createTextNode(data_room.date_end_school.date.replace(" 00:00:00", "").replace(".000000", "")));
-        tr.appendChild(td)
-    //inicio puja
-        var td = document.createElement('td');
-        td.appendChild(document.createTextNode(data_room.date_start_bid.date.replace(" 00:00:00", "").replace(".000000", "")));
-        tr.appendChild(td)
-    //fin puja
-        var td = document.createElement('td');
-        td.appendChild(document.createTextNode(data_room.date_end_bid.date.replace(" 00:00:00", "").replace(".000000", "")));
-        tr.appendChild(td)
     //tamaño
         var td = document.createElement('td');
         td.appendChild(document.createTextNode(data_room.size))
@@ -149,9 +133,9 @@ function college_create_row_room(data_room){
         var td = document.createElement('td');
         td.appendChild(document.createTextNode(data_room.floor))
         tr.appendChild(td)
-    //cliente
+    //precio
         var td = document.createElement('td');
-        td.appendChild(document.createTextNode("nombre cliente"))
+        td.appendChild(document.createTextNode(data_room.price+"€"))
         tr.appendChild(td)
 
     //tv
