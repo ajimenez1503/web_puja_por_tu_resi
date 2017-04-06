@@ -150,10 +150,10 @@ function get_display_bids(room_id,tab_id){
                 for (i = 0; i < output.data.length; i++) {
                     var li = document.createElement("li");
                     li.className="list-group-item justify-content-between";
-                    li.innerHTML="Puntos";
+                    li.innerHTML=output.data[i].student_username+": Puntos";
                     var span = document.createElement("span");
                     span.className="badge badge-default badge-pilln";
-                    span.innerHTML=output.data[i].point;
+                    span.innerHTML=output.data[i].point ;
                     li.appendChild(span);
                     ul_element.appendChild(li);
                 }

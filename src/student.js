@@ -695,6 +695,10 @@ function create_room_element(data_college,data_room,display_specific_room,prefix
         td.onclick = function() {
             display_search_room_specific(data_college,data_room);
         };
+    }else{
+        td.onclick = function() {
+            showErrorMessagesPage("Login","El siguiente paso es iniciar sesion o registrarse.",true);
+        };
     }
 
     return td;
@@ -793,6 +797,8 @@ function create_bid(room_id){
     xmlHttp.withCredentials = true;
     var data = new FormData();
     data.append("room", room_id);
+    data.append("date_start_school",document.getElementById("search_room_form_date_start_school").value);
+    data.append("date_end_school",document.getElementById("search_room_form_date_end_school").value);
     xmlHttp.send(data);
     get_display_bids(room_id,"search_room_specific_ul_bid")
 }

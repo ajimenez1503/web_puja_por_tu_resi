@@ -18,10 +18,6 @@ function create_new_room(){
       'price':document.getElementById("college_price_new_room").value.replace("€",""),
       'floor':document.getElementById("college_floor_new_room").value,
       'size': document.getElementById("college_size_new_room").value.replace("m2",""),
-      'date_start_school': document.getElementById("college_date_start_school_new_room").value,
-      'date_end_school': document.getElementById("college_date_end_school_new_room").value,
-      'date_start_bid': document.getElementById("college_date_start_bid_new_room").value,
-      'date_end_bid': document.getElementById("college_date_end_bid_new_room").value,
     };
     var picture={
         'picture1': document.getElementById("college_picture1_new_room"),
@@ -103,10 +99,6 @@ function create_new_room(){
     data.append("price", room.price);
     data.append("floor",room.floor);
     data.append("size", room.size);
-    data.append("date_start_school", room.date_start_school);
-    data.append("date_end_school", room.date_end_school);
-    data.append("date_start_bid", room.date_start_bid);
-    data.append("date_end_bid", room.date_end_bid);
     data.append("picture1", picture.picture1);
     data.append("picture2", picture.picture2);
     data.append("picture3", picture.picture3);
