@@ -85,7 +85,7 @@ function check_sesion() {
 
 
 /**
- * Login the user by email and password.
+ * Login the user by username and password.
  * The input is validate and show the error in case of problem.
  */
 function login() {
@@ -125,6 +125,34 @@ function login() {
         showErrorMessagesPage("login", "Invalid password o usuario.", false);
     }
     //TODO document.getElementById("login-form").reset();//clean input
+}
+
+
+/**
+ * remmember_password the user by email and password.
+ * The input is validate and show the error in case of problem.
+ */
+function remmember_password() {
+    var username = document.getElementById("remmember_passwordUsername").value;
+    if ((validate_DNI(username) || validate_CIF(username))) {
+        var url = window.location.protocol + "//" + window.location.host + port + "/remmemberPassword";
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.onreadystatechange = function() {
+            if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+                var output = JSON.parse(xmlHttp.responseText);
+                console.log(output);
+                showErrorMessagesPage("login", output.message, output.success);
+            }
+        }
+        xmlHttp.open("POST", url, true);
+        xmlHttp.withCredentials = true;
+        var data = new FormData();
+        data.append("_username", username);
+        xmlHttp.send(data);
+    } else {
+        showErrorMessagesPage("login", "Invalid usuario.", false);
+    }
+    //document.getElementById("login-form").reset();//clean input
 }
 
 
