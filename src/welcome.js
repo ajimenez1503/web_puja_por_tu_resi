@@ -317,7 +317,7 @@ page('/Politica_de_privadidad', function(){
 */
 page('/Politica_de_cookies', function(){
     console.log("Politica_de_cookies")
-  display_specific_div('all_footer_full_element','Politica_de_cookies')
+    display_specific_div('all_footer_full_element','Politica_de_cookies')
 });
 
 /**
@@ -325,7 +325,7 @@ page('/Politica_de_cookies', function(){
 */
 page('/condiciones_generareales', function(){
     console.log("condiciones_generareales")
-  display_specific_div('all_footer_full_element','condiciones_generareales')
+    display_specific_div('all_footer_full_element','condiciones_generareales')
 });
 
 /**
@@ -333,5 +333,13 @@ page('/condiciones_generareales', function(){
 */
 page('/aviso_legal', function(){
     console.log("aviso_legal")
-  display_specific_div('all_footer_full_element','aviso_legal')
+    display_specific_div('all_footer_full_element','aviso_legal')
+});
+
+/**
+* Dispaly the FAQ
+*/
+page('/FAQ', function(){
+    console.log("FAQ")
+    display_specific_div('all_footer_full_element','FAQ')
 });

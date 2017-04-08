@@ -59,6 +59,7 @@
           <p onclick="page('/Politica_de_cookies')" class="footer_element"> Politica de cookies </p>
           <p onclick="page('/condiciones_generareales')" class="footer_element"> Condiciones generareales </p>
           <p onclick="page('/aviso_legal')" class="footer_element"> Aviso legal </p>
+          <p onclick="page('/FAQ')" class="footer_element"> FAQ </p>
         </div>
         <div id="all_footer_full_element">
           <div id="Politica_de_privadidad" class="footer_full_element" style="display:none;" >
@@ -108,7 +109,6 @@
                 Esta cookies es de tipo técnica puesto que permite al usuario navegar a través de la web. Ademas esta es temporal puesto que es eliminada cuando cierra la sesión en el navegador.
               </p>
           </div>
-
           <div id="condiciones_generareales" class="footer_full_element" style="display:none;" >
               <button class="button_footer_full_element"onclick="page('/welcome')" type="button" class="btn btn-link"><i class="fa fa-arrow-left" aria-hidden="true"></i> volver </button>
               <p>
@@ -142,7 +142,6 @@
                 A la hora de confirmar el pago de una mensualidad, aparece una pantalla de confirmación. Para asegurar que el pago se ha realizado correctamente.
               </p>
           </div>
-
           <div id="aviso_legal" style="display:none;" class="footer_full_element">
               <button class="button_footer_full_element"onclick="display_specific_div('all_footer_full_element')" type="button" class="btn btn-link"><i class="fa fa-arrow-left" aria-hidden="true"></i> volver </button>
               <p>
@@ -151,6 +150,235 @@
               <p>
                 Respecto a los contenido mostrado en la web, con información sobre características,  ubicación, información de contacto, habitaciones y demás de la residencia son creados por ella misma, de esta manera el titular de la página web no es responsable de la veracidad de dicha información.
               </p>
+          </div>
+          <div id="FAQ" style="display:none;" class="footer_full_element">
+              <button class="button_footer_full_element"onclick="display_specific_div('all_footer_full_element')" type="button" class="btn btn-link"><i class="fa fa-arrow-left" aria-hidden="true"></i> volver </button>
+
+              <div class="card ">
+                  <div class="card-header">
+                      <h4 class="card-header">
+                          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse1">¿Cómo puede solicitar una habitación?</a>
+                      </h4>
+                  </div>
+                  <div id="collapse1" class="panel-collapse collapse">
+                      <div class="card-block">
+                          Tienes que darte de alta y buscar hasta 5 habitaciones de tu gusto para pujar por ellas y a final de semana puede que se te haya asignado una. En este momento puede aceptar o rechazar la habitación.
+                      </div>
+                  </div>
+              </div>
+
+              <div class="card ">
+                  <div class="card-header">
+                      <h4 class="card-header">
+                          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse2">
+                              ¿Cómo recojo las llaves?
+                          </a>
+                      </h4>
+                  </div>
+                  <div id="collapse2" class="panel-collapse collapse">
+                      <div class="card-block">
+                          Una vez has firmado el contrato, ponte en contacto con la residencia para recoger las llaves o el día que empieza el contrato debe haber personal de la residencia para ayudarte.                       </div>
+                  </div>
+              </div>
+
+              <div class="card ">
+                  <div class="card-header">
+                      <h4 class="card-header">
+                          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse3">
+                             ¿Quiero registrarme pero dice “usuario no es correcto”?
+                          </a>
+                      </h4>
+                  </div>
+                  <div id="collapse3" class="panel-collapse collapse">
+                      <div class="card-block">
+                          Para el usuario debes introducir tu DNI, este es único para cada persona.
+                      </div>
+                  </div>
+              </div>
+              <div class="card ">
+                  <div class="card-header">
+                      <h4 class="card-header">
+                          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse4">
+                              ¿Puedo pasar mis puntos a otra persona?
+                          </a>
+                      </h4>
+                  </div>
+                  <div id="collapse4" class="panel-collapse collapse">
+                      <div class="card-block">
+                          No, los puntos son personales para cada usuario.
+                      </div>
+                  </div>
+              </div>
+              <div class="card ">
+                  <div class="card-header">
+                      <h4 class="card-header">
+                          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse5">
+                              ¿Cuándo debo devolver las llaves?
+                          </a>
+                      </h4>
+                  </div>
+                  <div id="collapse5" class="panel-collapse collapse">
+                      <div class="card-block">
+                          La residencia te informara sobre el procedimiento, en cambio, comúnmente se realiza el ultimo día de contrato.
+                      </div>
+                  </div>
+              </div>
+              <div class="card ">
+                  <div class="card-header">
+                      <h4 class="card-header">
+                          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse6">
+                              ¿Cuándo se debe hacer el pago de la mensualidad?
+                          </a>
+                      </h4>
+                  </div>
+                  <div id="collapse6" class="panel-collapse collapse">
+                      <div class="card-block">
+                          Este debe hacerse entre el día uno y día cinco de cada mes.
+                      </div>
+                  </div>
+              </div>
+              <div class="card ">
+                  <div class="card-header">
+                      <h4 class="card-header">
+                          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse7">
+                              ¿Cómo puedo poner una falta a la residencia?
+                          </a>
+                      </h4>
+                  </div>
+                  <div id="collapse7" class="panel-collapse collapse">
+                      <div class="card-block">
+                          Si tienes cualquier problema con la residencia, a través de la aplicación puede presentar una incidencia al a residencia.
+                      </div>
+                  </div>
+              </div>
+              <div class="card ">
+                  <div class="card-header">
+                      <h4 class="card-header">
+                          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse8">
+                              ¿Cuántos puntos necesito para pujar?
+                          </a>
+                      </h4>
+                  </div>
+                  <div id="collapse8" class="panel-collapse collapse">
+                      <div class="card-block">
+                          No existe un mínimo, puede pujar hasta el mismo día que te registras, en cambio la habitación se le asignara al que tenga más punto de todas las pujas en la mismas fechas.
+                      </div>
+                  </div>
+              </div>
+              <div class="card ">
+                  <div class="card-header">
+                      <h4 class="card-header">
+                          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse9">
+                              ¿Puedo reservar una habitación aunque no sea un estudiante?
+                          </a>
+                      </h4>
+                  </div>
+                  <div id="collapse9" class="panel-collapse collapse">
+                      <div class="card-block">
+                          Es un servicio destinado a estudiantes, en cambio, puede ser utilizado por cualquier persona
+                      </div>
+                  </div>
+              </div>
+              <div class="card ">
+                  <div class="card-header">
+                      <h4 class="card-header">
+                          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse10">
+                              ¿Qué es incluido en el pago de la mensualidad?
+                          </a>
+                      </h4>
+                  </div>
+                  <div id="collapse10" class="panel-collapse collapse">
+                      <div class="card-block">
+                          El pago del contrato incluye: los gasto de agua y luz ademas de la habitación. Ademas del equipamiento de cada habitación y residencia como wifi o comedor o gimnasio y demás.
+                      </div>
+                  </div>
+              </div>
+
+              <div class="card ">
+                  <div class="card-header">
+                      <h4 class="card-header">
+                          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse11">
+                              ¿Cuándo me registre escribí más mi nombre es posible cambiarlo?
+                          </a>
+                      </h4>
+                  </div>
+                  <div id="collapse11" class="panel-collapse collapse">
+                      <div class="card-block">
+                          Si es posible cambiarlo desde la web, en la ventana del perfil.
+                      </div>
+                  </div>
+              </div>
+              <div class="card ">
+                  <div class="card-header">
+                      <h4 class="card-header">
+                          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse12">
+                              ¿Cómo funciona el sistema de puntos?
+                          </a>
+                      </h4>
+                  </div>
+                  <div id="collapse12" class="panel-collapse collapse">
+                      <div class="card-block">
+                          Cada día desde que te registrar almacenas un punto. Es decir, desde el primer día empiezas a coleccionar puntos.
+                      </div>
+                  </div>
+              </div>
+              <div class="card ">
+                  <div class="card-header">
+                      <h4 class="card-header">
+                          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse13">
+                              ¿Cuántas ofertas de habitaciones puedo tener?
+                          </a>
+                      </h4>
+                  </div>
+                  <div id="collapse13" class="panel-collapse collapse">
+                      <div class="card-block">
+                          Solo es posible tener una oferta por estudiante.
+                      </div>
+                  </div>
+              </div>
+              <div class="card ">
+                  <div class="card-header">
+                      <h4 class="card-header">
+                          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse14">
+                              ¿Si tengo un contrato puedo pujar?
+                          </a>
+                      </h4>
+                  </div>
+                  <div id="collapse14" class="panel-collapse collapse">
+                      <div class="card-block">
+                          No, puesto que ya dispones de una habitación.
+                      </div>
+                  </div>
+              </div>
+              <div class="card ">
+                  <div class="card-header">
+                      <h4 class="card-header">
+                          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse15">
+                              ¿Cuando se realiza la asignación de habitación?
+                          </a>
+                      </h4>
+                  </div>
+                  <div id="collapse15" class="panel-collapse collapse">
+                      <div class="card-block">
+                          El viernes a las 00:00 de cada semana se realiza la asignación de habitaciones. 
+                      </div>
+                  </div>
+              </div>
+              <div class="card ">
+                  <div class="card-header">
+                      <h4 class="card-header">
+                          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse16">
+                              ¿Cómo puedo firmar el contrato?
+                          </a>
+                      </h4>
+                  </div>
+                  <div id="collapse16" class="panel-collapse collapse">
+                      <div class="card-block">
+                          Es un procedimiento bastante sencillo, solo tienes que descargar el contrato, firmarlo y subirlo a la web.
+                      </div>
+                  </div>
+              </div>
+
           </div>
         </div>
 

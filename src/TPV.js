@@ -5,7 +5,7 @@
 * @param {window_TPV} new window_TPV
 */
 function pay_tpv(id,window_TPV){
-      var card_holder_name=window_TPV.document.getElementById("card-holder-name").value;
+    var card_holder_name=window_TPV.document.getElementById("card-holder-name").value;
     var card_number=window_TPV.document.getElementById("card-number").value;
     card_number= card_number.replace(/\D/g, "");//get only the digit
     var e = window_TPV.document.getElementById("expiry-month");
@@ -28,7 +28,7 @@ function pay_tpv(id,window_TPV){
         showErrorMessagesPage("pay","Invalid fecha expiracion",false,window_TPV);
         return;
     }
-        var idTransaction=Math.floor((Math.random() * 10000) + 1);
+    var idTransaction=Math.floor((Math.random() * 10000) + 1);
     var data = new FormData();
     data.append("id", id);
     data.append("idTransaction", idTransaction);
@@ -38,19 +38,19 @@ function pay_tpv(id,window_TPV){
     xmlHttp.onreadystatechange = function() {
         if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 ){
             var output= JSON.parse(xmlHttp.responseText);
-      console.log(output);
+            console.log(output);
             showErrorMessagesPage("pay rent",output.message,output.success,window_TPV);
-      showErrorMessagesPage("pay rent",output.message,output.success);
+            showErrorMessagesPage("pay rent",output.message,output.success);
             if(output.success){
-        //window_TPV.close()//close window
+                //window_TPV.close()//close window
                 window_TPV.document.getElementById("payment_rent").style.display="none";
                 window_TPV.document.getElementById("payment_rent_confirm").style.display="block";
                 window_TPV.document.getElementById("payment_rent_confirm_idTransaction").createTextNode=idTransaction;
-        getRents();
+                getRents();
             }
         }
     }
     xmlHttp.open("POST", url, true );
-  xmlHttp.withCredentials = true;
+    xmlHttp.withCredentials = true;
     xmlHttp.send(data);
 }
