@@ -360,7 +360,7 @@
                   </div>
                   <div id="collapse15" class="panel-collapse collapse">
                       <div class="card-block">
-                          El viernes a las 00:00 de cada semana se realiza la asignación de habitaciones. 
+                          El viernes a las 00:00 de cada semana se realiza la asignación de habitaciones.
                       </div>
                   </div>
               </div>

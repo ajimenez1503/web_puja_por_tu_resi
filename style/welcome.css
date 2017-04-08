@@ -2,38 +2,41 @@
 * @author antonio Jimenez (softwarejimenez)
 * @version 0.1
 */
-.body{
+
+.body {
     font-family: 'Open Sans', sans-serif !important;
 }
+
 
 /*////////////////////////////////////////////////////////////////
 *WELCOME VIEW header
 ////////////////////////////////////////////////////////////////*/
-.margin_top{
-    margin-top:3%;
+
+.margin_top {
+    margin-top: 3%;
 }
 
-.header_welcomeview{
+.header_welcomeview {
     background-color: #083b66;
     overflow: auto;
 }
 
-.header_welcomeview_left{
+.header_welcomeview_left {
     float: left;
 }
-.img_header_welcomeview_left{
+
+.img_header_welcomeview_left {
     height: 150px;
     width: 150px;
 }
 
-.header_welcomeview_right{
+.header_welcomeview_right {
     float: right;
     padding-top: 6%;
     padding-right: 2%;
 }
 
-.header_welcomeview_right_slogan
-{
+.header_welcomeview_right_slogan {
     float: left;
     font-size: 17.5px;
     padding-top: 4%;
@@ -52,36 +55,38 @@
     text-transform: uppercase;
     border-color: #59B2E6;
 }
-.btn-login:hover,
-.btn-login:focus {
+
+.btn-login:hover, .btn-login:focus {
     color: #fff;
     background-color: #53A3CD;
     border-color: #53A3CD;
 }
 
-.button_login_student{
+.button_login_student {
     width: 50%;
     margin-bottom: 2%;
     float: left;
     margin-right: 1%;
 }
 
-.button_login_college{
+.button_login_college {
     width: 45%;
     margin-bottom: 2%;
     float: right;
     margin-left: 1%;
 }
-#register_form_college{
+
+#register_form_college {
     display: none;
 }
 
-.error_footer{
+.error_footer {
     position: fixed;
     bottom: 0;
     width: 100%;
     z-index: 1;
 }
+
 #map {
     height: 100%;
 }
@@ -128,61 +133,67 @@
     font-weight: 300;
 }
 
-#college_equipment{
+#college_equipment {
     text-align: center;
-      margin: 4%;
+    margin: 4%;
 }
 
-thead{
+thead {
     background-color: rgb(51, 122, 183);
     color: white;
 }
 
+
 /*////////////////////////////////////////////////////////////////
 *WELCOME VIEW container
 ////////////////////////////////////////////////////////////////*/
-#container_welcome_view_login{
+
+#container_welcome_view_login {
     display: none;
 }
 
-#container_welcome_view_register{
+#container_welcome_view_register {
     display: none;
 }
 
-.slogan{
+.slogan {
     font-family: initial;
-  font-size: xx-large;
+    font-size: xx-large;
     margin-top: 5%;
     font-style: italic;
     font-weight: bold;
 }
-#container_welcome_view_search_room_table_map{
+
+#container_welcome_view_search_room_table_map {
     margin-top: 5%;
     width: 80%;
     height: 287px;
-    margin-left:  10%;
+    margin-left: 10%;
     margin-bottom: 15px;
     background-color: grey;
 }
 
-.container_welcome_view_table_search_room{
+.container_welcome_view_table_search_room {
     margin: 1%;
     height: 410px;
     overflow-y: auto;
 }
+
+
 /*////////////////////////////////////////////////////////////////
 *Footer
 ////////////////////////////////////////////////////////////////*/
-.footer{
+
+.footer {
     position: fixed;
     bottom: 0;
     width: 100%;
     background: #444444;
-  color: white;
+    color: white;
     display: flex;
 }
 
-.footer_element{
+.footer_element {
     cursor: pointer;
     text-align: center;
     margin: auto;
@@ -190,7 +201,7 @@ thead{
     margin-bottom: 0.5%;
 }
 
-.footer_full_element{
+.footer_full_element {
     z-index: 9999999;
     height: 75%;
     width: 75%;
@@ -204,16 +215,18 @@ thead{
     color: white;
 }
 
-.button_footer_full_element{
+.button_footer_full_element {
     margin-left: 90%;
     font-size: x-large;
     border: none;
     background-color: transparent;
 }
 
+
 /*////////////////////////////////////////////////////////////////
 *FAQ
 ////////////////////////////////////////////////////////////////*/
+
 .faqHeader {
     font-size: 27px;
     margin: 20px;
@@ -221,7 +234,8 @@ thead{
 
 .panel-heading [data-toggle="collapse"]:after {
     font-family: 'Glyphicons Halflings';
-    content: "e072"; /* "play" icon */
+    content: "e072";
+    /* "play" icon */
     float: right;
     color: #F58723;
     font-size: 18px;

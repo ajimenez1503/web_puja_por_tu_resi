@@ -2,64 +2,69 @@
 * @author antonio Jimenez (softwarejimenez)
 * @version 0.1
 */
+
+
 /*////////////////////////////////////////////////////////////////
 *STUDENT VIEW
 ////////////////////////////////////////////////////////////////*/
 
-#home{
-
+#home {
     margin-left: auto;
     margin-right: auto;
-    display:block;
-}
-#browse{
-
-    margin-left: auto;
-    margin-right: auto;
-    display:none;
-}
-#profile{
-
-    margin-left: auto;
-    margin-right: auto;
-    display:none;
+    display: block;
 }
 
-#incidence{
+#browse {
     margin-left: auto;
     margin-right: auto;
-    display:none;
-}
-#search_room{
-    margin-left: auto;
-    margin-right: auto;
-    display:none;
+    display: none;
 }
 
-#Room{
+#profile {
     margin-left: auto;
     margin-right: auto;
-    display:none;
+    display: none;
 }
-#rent{
+
+#incidence {
     margin-left: auto;
     margin-right: auto;
-    display:none;
+    display: none;
+}
+
+#search_room {
+    margin-left: auto;
+    margin-right: auto;
+    display: none;
+}
+
+#Room {
+    margin-left: auto;
+    margin-right: auto;
+    display: none;
+}
+
+#rent {
+    margin-left: auto;
+    margin-right: auto;
+    display: none;
 }
 
 .panel-login {
     border-color: #ccc;
-    -webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
-    -moz-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
-    box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+    -webkit-box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.2);
 }
+
 .panel-login>.panel-heading {
     color: #00415d;
     background-color: #fff;
     border-color: #fff;
-    text-align:center;
+    text-align: center;
 }
-.panel-login>.panel-heading a{
+
+.panel-login>.panel-heading a {
     text-decoration: none;
     color: #666;
     font-weight: bold;
@@ -68,22 +73,25 @@
     -moz-transition: all 0.1s linear;
     transition: all 0.1s linear;
 }
-.panel-login>.panel-heading a.active{
+
+.panel-login>.panel-heading a.active {
     color: #029f5b;
     font-size: 18px;
 }
-.panel-login>.panel-heading hr{
+
+.panel-login>.panel-heading hr {
     margin-top: 10px;
     margin-bottom: 0px;
     clear: both;
     border: 0;
     height: 1px;
-    background-image: -webkit-linear-gradient(left,rgba(0, 0, 0, 0),rgba(0, 0, 0, 0.15),rgba(0, 0, 0, 0));
-    background-image: -moz-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
-    background-image: -ms-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
-    background-image: -o-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
+    background-image: -webkit-linear-gradient(left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0));
+    background-image: -moz-linear-gradient(left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0));
+    background-image: -ms-linear-gradient(left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0));
+    background-image: -o-linear-gradient(left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0));
 }
-.panel-login input[type="text"],.panel-login input[type="email"],.panel-login input[type="password"] {
+
+.panel-login input[type="text"], .panel-login input[type="email"], .panel-login input[type="password"] {
     height: 45px;
     border: 1px solid #ddd;
     font-size: 16px;
@@ -91,15 +99,14 @@
     -moz-transition: all 0.1s linear;
     transition: all 0.1s linear;
 }
-.panel-login input:hover,
-.panel-login input:focus {
-    outline:none;
+
+.panel-login input:hover, .panel-login input:focus {
+    outline: none;
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none;
     border-color: #ccc;
 }
-
 
 .btn-submit {
     background-color: #1CB94E;
@@ -112,32 +119,33 @@
     text-transform: uppercase;
     border-color: #1CB94A;
 }
-.btn-submit:hover,
-.btn-submit:focus {
+
+.btn-submit:hover, .btn-submit:focus {
     color: #fff;
     background-color: #1CA347;
     border-color: #1CA347;
 }
 
 
-
-
 /*////////////////////////////////////////////////////////////////
 *STUDENT VIEW / PROFILE
 ////////////////////////////////////////////////////////////////*/
-.elememt_profile{
+
+.elememt_profile {
     padding-bottom: 20%;
     text-align: center;
 }
 
-#profile_student_email_new{
+#profile_student_email_new {
     display: none;
 }
+
+
 /*////////////////////////////////////////////////////////////////
 *STUDENT VIEW / MESSAGE
 ////////////////////////////////////////////////////////////////*/
 
-.div_message{
+.div_message {
     background-color: #dff0d8;
     border-color: #d6e9c6;
     padding: 15px;
@@ -152,6 +160,7 @@
     overflow: hidden;
     cursor: pointer;
 }
+
 .fileUpload input.upload {
     position: absolute;
     top: 0;
@@ -159,39 +168,43 @@
     margin: 0;
     padding: 0;
     width: 100%;
-      height: 100%;
+    height: 100%;
     font-size: 20px;
     cursor: pointer;
     opacity: 0;
     filter: alpha(opacity=0);
 }
-.icon_paperclip{
+
+.icon_paperclip {
     font-size: 15px !important;
 }
 
-.label_tab{
+.label_tab {
     color: orange;
 }
 
-.list_message_element_p{
+.list_message_element_p {
     margin-left: 2%;
     margin-right: 1%;
 }
-.list_message_elements_div{
+
+.list_message_elements_div {
     display: flex;
     text-align: center;
 }
 
-.list_messages_elements_text{
-  background-color: white;
-  padding: 2%;
-  border-radius: 17px;
+.list_messages_elements_text {
+    background-color: white;
+    padding: 2%;
+    border-radius: 17px;
 }
+
+
 /*////////////////////////////////////////////////////////////////
 *STUDENT VIEW / INCIDENCE
 ////////////////////////////////////////////////////////////////*/
 
-.localIncidence{
+.localIncidence {
     /*background-color: rgb(116, 207, 234);*/
     border-radius: 10px;
     padding: 1%;
@@ -202,92 +215,99 @@
     font-weight: 100;
 }
 
-.form_margin{
+.form_margin {
     margin: 5%;
 }
 
-.form_footer{
+.form_footer {
     position: fixed;
     bottom: 0;
     width: 100%;
 }
+
+
 /*////////////////////////////////////////////////////////////////
 *STUDENT VIEW / ROOM
 ////////////////////////////////////////////////////////////////*/
 
-#Room_accept_refuse{
-    display:none;
+#Room_accept_refuse {
+    display: none;
 }
 
-#Room_data{
-    display:none;
+#Room_data {
+    display: none;
 }
 
-.button_margin_room{
+.button_margin_room {
     margin-left: 5%;
     margin-right: 5%;
     margin-bottom: 4%;
 }
-.room_wrapper_button{
+
+.room_wrapper_button {
     text-align: center;
 }
 
-.icon{
+.icon {
     font-size: 24px !important;
     margin: 1% !important;
 }
-.icon_img{
-      margin-top: -10px !important;
-      margin-left: 1% !important;
-        margin-right: 1% !important;
+
+.icon_img {
+    margin-top: -10px !important;
+    margin-left: 1% !important;
+    margin-right: 1% !important;
 }
 
 #Room_specific_college_map {
     width: 80%;
     height: 287px;
-    margin-left:  10%;
+    margin-left: 10%;
     margin-bottom: 15px;
     background-color: grey;
 }
 
-#Room_upload_file_agreement{
-    display:none;
+#Room_upload_file_agreement {
+    display: none;
 }
-.left_room{
+
+.left_room {
     float: left;
 }
-.right_room{
-    float: right;
 
+.right_room {
+    float: right;
 }
-.img_room{
+
+.img_room {
     width: 150px;
     height: 150px;
     margin: 5%;
     border-radius: 15%;
 }
 
-
-.slide_img{
+.slide_img {
     width: 230px;
     height: 200px;
     float: left;
 }
-#Room_specific_slider_img{
+
+#Room_specific_slider_img {
     width: 230px;
     height: 200px;
     overflow: hidden;
     position: relative;
     margin: 10px 0 0 0;
     border-radius: 21px;
-      border-color: rgb(150, 172, 219);
-
+    border-color: rgb(150, 172, 219);
 }
+
 
 /*////////////////////////////////////////////////////////////////
 *STUDENT VIEW / RENT
 ////////////////////////////////////////////////////////////////*/
-#table_rent{
+
+#table_rent {
     margin-left: 5%;
     margin-right: 5%;
     height: 160px;
@@ -295,77 +315,76 @@
     overflow-y: visible;
 }
 
-
-#payment_rent{
+#payment_rent {
     margin-left: 4%;
-      margin-right: 4%;
+    margin-right: 4%;
     display: none;
 }
+
 
 /*////////////////////////////////////////////////////////////////
 *STUDENT VIEW / SEARCH_ROOM
 ////////////////////////////////////////////////////////////////*/
-.form_search_room{
+
+.form_search_room {
     margin: 2%;
 }
-.selected_icon_search{
+
+.selected_icon_search {
     box-shadow: 3px 3px 22px 6px #347;
 }
 
-
-.table_search_room{
+.table_search_room {
     margin: 1%;
     height: 610px;
     overflow-y: auto;
 }
 
-#search_room_table{
+#search_room_table {
     margin-left: auto;
-  margin-right: auto;
-    display:block;
+    margin-right: auto;
+    display: block;
 }
 
-.search_room_table_map{
+.search_room_table_map {
     margin-top: 6%;
 }
 
-#student_search_room_specific{
+#student_search_room_specific {
     margin-left: auto;
     margin-right: auto;
-    display:none;
+    display: none;
 }
 
-.selected_row_table{
+.selected_row_table {
     background-color: #bac3cc !important;
     color: #FFF !important;
     cursor: pointer;
 }
 
-
-#search_room_table_map{
+#search_room_table_map {
     margin-top: 5%;
     width: 80%;
     height: 287px;
-    margin-left:  10%;
+    margin-left: 10%;
     margin-bottom: 15px;
     background-color: grey;
 }
 
-#student_search_college_map{
+#student_search_college_map {
     width: 80%;
     height: 287px;
-    margin-left:  10%;
+    margin-left: 10%;
     margin-bottom: 15px;
     background-color: grey;
 }
 
-#student_search_room_specific_slider_img{
+#student_search_room_specific_slider_img {
     width: 230px;
     height: 200px;
     overflow: hidden;
     position: relative;
     margin: 10px 0 0 0;
     border-radius: 21px;
-      border-color: rgb(150, 172, 219);
-
+    border-color: rgb(150, 172, 219);
 }
