@@ -388,3 +388,12 @@
     border-radius: 21px;
     border-color: rgb(150, 172, 219);
 }
+
+.form_search_room_element{
+    margin: 1%;
+}
+.form_search_room_element_label{
+    margin: 1%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
