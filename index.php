@@ -4,7 +4,7 @@
  */-->
 
 <!doctype html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
@@ -65,10 +65,10 @@
         <div id="all_footer_full_element">
           <div id="Politica_de_privadidad" class="footer_full_element" style="display:none;" >
               <button class="button_footer_full_element"onclick="page('/welcome')" type="button" class="btn btn-link"><i class="fa fa-arrow-left" aria-hidden="true"></i> volver </button>
+              <h1> Politica de privavidad</h1>
               <p>
                 De acuerdo a la Ley Orgánica 15/1999, de 13 de diciembre, de protección de datos de carácter personal (LOPD), se informa a los usuarios que los datos personales que nos faciliten serán incorporados al fichero PujaPorTuResi el cual está registrado ante la Agencia Española de Protección de Datos, propiedad y responsabilidad para PujaPorTuResi, S.L.
-                Respecto a la información almacenada y su uso. Esto depende del tipo de usuario.</p>
-              <h3> Estudiante:</h3>
+                Respecto a la información almacenada y su uso.</p>
               <ul>
                 <li >Nombre y apellidos: utilizados para nombrar quien firma el contrato.</li>
                 <li >DNI: para identificar a una persona de forma individual y necesario para firmar el contrato.</li>
@@ -93,7 +93,7 @@
               </p>
                 Usted garantiza que los datos aportados son verdaderos, exactos, completos y actualizados, siendo responsable de cualquier daño o perjuicio, directo o indirecto, que pudiera ocasionarse como consecuencia del incumplimiento de tal obligación. En el caso de que los datos aportados pertenecieran a un tercero, Usted garantiza que ha informado a dicho tercero de los aspectos contenidos en esta Política y obtenido su autorización para facilitar sus datos a las Sociedades Titulares para los fines señalados.
               </p>
-              <h4>El titular de la página web y responsable del tratamiento de los datos:</h4>
+              <p class="class_h4">El titular de la página web y responsable del tratamiento de los datos:</p>
               <ul style="list-style-type:none">
                 <li >Nombre:PujaPorTuResi S. L.</li>
                 <li >Direccion: XXX</li>
@@ -156,9 +156,9 @@
               <button class="button_footer_full_element"onclick="display_specific_div('all_footer_full_element')" type="button" class="btn btn-link"><i class="fa fa-arrow-left" aria-hidden="true"></i> volver </button>
               <div class="card ">
                   <div class="card-header">
-                      <h4 class="card-header">
+                      <p class="class_h4" class="card-header">
                           <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse1">¿Cómo puede solicitar una habitación?</a>
-                      </h4>
+                      </p>
                   </div>
                   <div id="collapse1" class="panel-collapse collapse">
                       <div class="card-block">
@@ -169,11 +169,11 @@
 
               <div class="card ">
                   <div class="card-header">
-                      <h4 class="card-header">
+                      <p class="class_h4" class="card-header">
                           <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse2">
                               ¿Cómo recojo las llaves?
                           </a>
-                      </h4>
+                      </p>
                   </div>
                   <div id="collapse2" class="panel-collapse collapse">
                       <div class="card-block">
@@ -183,11 +183,11 @@
 
               <div class="card ">
                   <div class="card-header">
-                      <h4 class="card-header">
+                      <p class="class_h4" class="card-header">
                           <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse3">
                              ¿Quiero registrarme pero dice “usuario no es correcto”?
                           </a>
-                      </h4>
+                      </p>
                   </div>
                   <div id="collapse3" class="panel-collapse collapse">
                       <div class="card-block">
@@ -197,11 +197,11 @@
               </div>
               <div class="card ">
                   <div class="card-header">
-                      <h4 class="card-header">
+                      <p class="class_h4" class="card-header">
                           <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse4">
                               ¿Puedo pasar mis puntos a otra persona?
                           </a>
-                      </h4>
+                      </p>
                   </div>
                   <div id="collapse4" class="panel-collapse collapse">
                       <div class="card-block">
@@ -211,11 +211,11 @@
               </div>
               <div class="card ">
                   <div class="card-header">
-                      <h4 class="card-header">
+                      <p class="class_h4" class="card-header">
                           <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse5">
                               ¿Cuándo debo devolver las llaves?
                           </a>
-                      </h4>
+                      </p>
                   </div>
                   <div id="collapse5" class="panel-collapse collapse">
                       <div class="card-block">
@@ -225,11 +225,11 @@
               </div>
               <div class="card ">
                   <div class="card-header">
-                      <h4 class="card-header">
+                      <p class="class_h4" class="card-header">
                           <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse6">
                               ¿Cuándo se debe hacer el pago de la mensualidad?
                           </a>
-                      </h4>
+                      </p>
                   </div>
                   <div id="collapse6" class="panel-collapse collapse">
                       <div class="card-block">
@@ -239,11 +239,11 @@
               </div>
               <div class="card ">
                   <div class="card-header">
-                      <h4 class="card-header">
+                      <p class="class_h4" class="card-header">
                           <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse7">
                               ¿Cómo puedo poner una falta a la residencia?
                           </a>
-                      </h4>
+                      </p>
                   </div>
                   <div id="collapse7" class="panel-collapse collapse">
                       <div class="card-block">
@@ -253,11 +253,11 @@
               </div>
               <div class="card ">
                   <div class="card-header">
-                      <h4 class="card-header">
+                      <p class="class_h4" class="card-header">
                           <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse8">
                               ¿Cuántos puntos necesito para pujar?
                           </a>
-                      </h4>
+                      </p>
                   </div>
                   <div id="collapse8" class="panel-collapse collapse">
                       <div class="card-block">
@@ -267,11 +267,11 @@
               </div>
               <div class="card ">
                   <div class="card-header">
-                      <h4 class="card-header">
+                      <p class="class_h4" class="card-header">
                           <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse9">
                               ¿Puedo reservar una habitación aunque no sea un estudiante?
                           </a>
-                      </h4>
+                      </p>
                   </div>
                   <div id="collapse9" class="panel-collapse collapse">
                       <div class="card-block">
@@ -281,11 +281,11 @@
               </div>
               <div class="card ">
                   <div class="card-header">
-                      <h4 class="card-header">
+                      <p class="class_h4" class="card-header">
                           <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse10">
                               ¿Qué es incluido en el pago de la mensualidad?
                           </a>
-                      </h4>
+                      </p>
                   </div>
                   <div id="collapse10" class="panel-collapse collapse">
                       <div class="card-block">
@@ -296,11 +296,11 @@
 
               <div class="card ">
                   <div class="card-header">
-                      <h4 class="card-header">
+                      <p class="class_h4" class="card-header">
                           <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse11">
                               ¿Cuándo me registre escribí más mi nombre es posible cambiarlo?
                           </a>
-                      </h4>
+                      </p>
                   </div>
                   <div id="collapse11" class="panel-collapse collapse">
                       <div class="card-block">
@@ -310,11 +310,11 @@
               </div>
               <div class="card ">
                   <div class="card-header">
-                      <h4 class="card-header">
+                      <p class="class_h4" class="card-header">
                           <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse12">
                               ¿Cómo funciona el sistema de puntos?
                           </a>
-                      </h4>
+                      </p>
                   </div>
                   <div id="collapse12" class="panel-collapse collapse">
                       <div class="card-block">
@@ -324,11 +324,11 @@
               </div>
               <div class="card ">
                   <div class="card-header">
-                      <h4 class="card-header">
+                      <p class="class_h4" class="card-header">
                           <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse13">
                               ¿Cuántas ofertas de habitaciones puedo tener?
                           </a>
-                      </h4>
+                      </p>
                   </div>
                   <div id="collapse13" class="panel-collapse collapse">
                       <div class="card-block">
@@ -338,11 +338,11 @@
               </div>
               <div class="card ">
                   <div class="card-header">
-                      <h4 class="card-header">
+                      <p class="class_h4" class="card-header">
                           <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse14">
                               ¿Si tengo un contrato puedo pujar?
                           </a>
-                      </h4>
+                      </p>
                   </div>
                   <div id="collapse14" class="panel-collapse collapse">
                       <div class="card-block">
@@ -352,11 +352,11 @@
               </div>
               <div class="card ">
                   <div class="card-header">
-                      <h4 class="card-header">
+                      <p class="class_h4" class="card-header">
                           <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse15">
                               ¿Cuando se realiza la asignación de habitación?
                           </a>
-                      </h4>
+                      </p>
                   </div>
                   <div id="collapse15" class="panel-collapse collapse">
                       <div class="card-block">
@@ -366,11 +366,11 @@
               </div>
               <div class="card ">
                   <div class="card-header">
-                      <h4 class="card-header">
+                      <p class="class_h4" class="card-header">
                           <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse16">
                               ¿Cómo puedo firmar el contrato?
                           </a>
-                      </h4>
+                      </p>
                   </div>
                   <div id="collapse16" class="panel-collapse collapse">
                       <div class="card-block">
@@ -384,9 +384,7 @@
 
         <div class="error_footer" id="showErrorMessage" style="display:none;">
             <strong>
-                <center>
-                    <p id="errorMessage"> Error </p>
-                </center>
+                <p id="errorMessage"> Error </p>
             </strong>
         </div>
     </body>
