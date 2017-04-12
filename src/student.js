@@ -612,7 +612,7 @@ function search_rooms(prefix_id, display_specific_room) {
             var output = JSON.parse(xmlHttp.responseText);
             console.log(output)
             if (output.success) {
-                display_table_list_rooms(prefix_id, output.data, display_specific_room)
+                display_list_rooms(prefix_id, output.data, display_specific_room)
             } else {
                 showErrorMessagesPage("showrooms", output.message, output.success);
             }
@@ -620,103 +620,60 @@ function search_rooms(prefix_id, display_specific_room) {
     }
 }
 
-
 /**
  * Get every room and display as a row in the table:
  * nombre,inicio academico,fin academico,inicio puja,fin puja,tamaño,planta,tv, bath, desk, wardrove
- * @return tr element (row)
- */
-function create_row_room(data_college, data_room) {
-    var tr = document.createElement('tr');
-    tr.id = "student_list_room_id" + data_room.id.toString();
-    //nombre
-    var td = document.createElement('td');
-    td.appendChild(document.createTextNode(data_room.name))
-    tr.appendChild(td)
-    //company
-    var td = document.createElement('td');
-    td.appendChild(document.createTextNode(data_college.companyName))
-    tr.appendChild(td)
-    //price
-    var td = document.createElement('td');
-    td.appendChild(document.createTextNode(data_room.price + "€"))
-    tr.appendChild(td)
-    //fin school
-    var td = document.createElement('td');
-    td.appendChild(document.createTextNode(data_room.date_start_school.date.replace(" 00:00:00", "").replace(".000000", "")));
-    tr.appendChild(td)
-    tr.onmouseover = function() {
-        selected_out_selected_row_table(tr.id, data_college.latitude, data_college.longitude, "search_room_table_map");
-    };
-    tr.onmouseout = function() {
-        selected_out_selected_row_table(tr.id);
-    };
-    tr.onclick = function() {
-        display_search_room_specific(data_college, data_room);
-    };
-    return tr;
-}
-
-
-
-/**
- * Get every room and display as a row in the table:
- * nombre,inicio academico,fin academico,inicio puja,fin puja,tamaño,planta,tv, bath, desk, wardrove
- * @return td element (column)
+ * @return div element (column)
  */
 function create_room_element(data_college, data_room, display_specific_room, prefix_id) {
-    var td = document.createElement('td');
-    td.style.textAlign = "center";
-    td.id = "student_list_room_id" + data_room.id.toString();
+    var div = document.createElement('div');
+    div.className+=" col-sm-6";
+    div.style.textAlign = "center";
+    div.id = "student_list_room_id" + data_room.id.toString();
     var div_img = document.createElement('div');
     var img = document.createElement("img")
     img.src = window.location.protocol + "//" + window.location.host + port + "/Room/download/" + data_room.picture1;
-    img.style.width = '300px';
-    img.style.height = '300px';
+    img.className+=" img-responsive";
     img.title = "imagen room";
     img.alt = "imagen room";
+    img.style.padding ="5%";
     div_img.appendChild(img);
-    td.appendChild(div_img);
+    div.appendChild(div_img);
     var div_info = document.createElement('div');
     div_info.appendChild(document.createTextNode(data_room.price + "€   " + data_room.name));
     div_info.appendChild(document.createElement('br'));
     div_info.appendChild(document.createTextNode(data_college.companyName));
-    td.appendChild(div_info);
+    div.appendChild(div_info);
 
 
-    td.onmouseover = function() {
-        selected_out_selected_row_table(td.id, data_college.latitude, data_college.longitude, prefix_id + "room_table_map");
+    div.onmouseover = function() {
+        selected_out_selected_row_table(div.id, data_college.latitude, data_college.longitude, prefix_id + "room_table_map");
     };
-    td.onmouseout = function() {
-        selected_out_selected_row_table(td.id);
+    div.onmouseout = function() {
+        selected_out_selected_row_table(div.id);
     };
     if (display_specific_room) {
-        td.onclick = function() {
+        div.onclick = function() {
             display_search_room_specific(data_college, data_room);
         };
     } else {
-        td.onclick = function() {
+        div.onclick = function() {
             showErrorMessagesPage("Login", "El siguiente paso es iniciar sesion o registrarse.", true);
         };
     }
 
-    return td;
+    return div;
 }
 
 /**
  * Display all the OFFERED room in the search_room_table_list_rooms
  */
-function display_table_list_rooms(prefix_id, data, display_specific_room) {
+function display_list_rooms(prefix_id, data, display_specific_room) {
     var father = document.getElementById(prefix_id + "room_table_list_rooms");
     deleteAllChildElement(father);
     for (i = 0; i < data.length; i++) {
-        for (j = 0; j < data[i].rooms.length; j = j + 2) {
-            var tr = document.createElement('tr');
-            tr.appendChild(create_room_element(data[i], data[i].rooms[j], display_specific_room, prefix_id));
-            if (j + 1 < data[i].rooms.length) {
-                tr.appendChild(create_room_element(data[i], data[i].rooms[j + 1], display_specific_room, prefix_id));
-            }
-            father.appendChild(tr);
+        for (j = 0; j < data[i].rooms.length; j++) {
+            father.appendChild(create_room_element(data[i], data[i].rooms[j], display_specific_room, prefix_id));
         }
     }
 }
@@ -735,7 +692,7 @@ function GetOFFEREDRooms(prefix_id, display_specific_room) {
             var output = JSON.parse(xmlHttp.responseText);
             console.log(output)
             if (output.success) {
-                display_table_list_rooms(prefix_id, output.data, display_specific_room)
+                display_list_rooms(prefix_id, output.data, display_specific_room)
             } else {
                 showErrorMessagesPage("showrooms", output.message, output.success);
             }

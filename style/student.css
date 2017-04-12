@@ -333,10 +333,19 @@
 .selected_icon_search {
     box-shadow: 3px 3px 22px 6px #347;
 }
+/*hide scrooll bar */
+::-webkit-scrollbar {
+    width: 0px;  /* remove scrollbar space */
+    background: transparent;  /* optional: just make scrollbar invisible */
+}
+/* optional: show position indicator in red */
+::-webkit-scrollbar-thumb {
+    background: #FF0000;
+}
 
 .table_search_room {
     margin: 1%;
-    height: 610px;
+    height: 500px;
     overflow-y: auto;
 }
 
