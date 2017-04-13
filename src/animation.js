@@ -186,7 +186,7 @@ function init_map(id, latitude, longitude) {
     };
     var map = new google.maps.Map(
         document.getElementById(id), {
-            zoom: 10,
+            zoom: 13,
             center: uluru
         }
     );

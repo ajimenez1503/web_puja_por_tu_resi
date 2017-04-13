@@ -396,7 +396,7 @@ function createHTMLMessage(message) {
     }
 
     var p_time = document.createElement('div');
-    p_time.appendChild(document.createTextNode("Fecha: " + message.date.date));
+    p_time.appendChild(document.createTextNode("Fecha: " + message.date.date.replace(" 00:00:00", "").replace(".000000", "")));
     p_time.className += " list_message_element_p";
     div_elements.appendChild(p_time);
 
