@@ -303,7 +303,7 @@ function OpenAllMessages() {
  */
 function get_room_data() {
     var xmlHttp = new XMLHttpRequest();
-    var url = window.location.protocol + "//" + window.location.host + port + "/Agreement/verifyUnsigned/";
+    var url = window.location.protocol + "//" + window.location.host + port + "/Agreement/getCurrentSigned/";
     xmlHttp.open("GET", url, true);
     xmlHttp.withCredentials = true;
     xmlHttp.send();
@@ -336,12 +336,12 @@ function display_button_accept_refuse(agreement_signed, agreement_data) {
     if (!agreement_signed) {
         document.getElementById("Room_accept_refuse").style.display = "block"; //display button
         document.getElementById("Room_upload_file_agreement").onclick = function() {
-            upload_file_agreement(agreement_data.room_id);
+            upload_file_agreement(agreement_data.room_id,agreement_data.id);
         };
         document.getElementById("Room_button_download_agreement").setAttribute('href', window.location.protocol + "//" + window.location.host + port + "/Agreement/download/" + agreement_data.file_agreement);
         document.getElementById("Room_button_download_agreement").download = "file"
         document.getElementById("Room_button_refuse_agreement").onclick = function() {
-            refuse_agreement_room(agreement_data.room_id);
+            refuse_agreement_room(agreement_data.room_id,agreement_data.id);
         };
 
     } else {
@@ -353,7 +353,7 @@ function display_button_accept_refuse(agreement_signed, agreement_data) {
 /**
  * Display the button. Assigned a every button and form the specifit function and link
  */
-function refuse_agreement_room(room_id) {
+function refuse_agreement_room(room_id,agreement_id) {
     //remove a agrement between room and a student ( assincronous false)
     var url = window.location.protocol + "//" + window.location.host + port + "/Agreement/remove/";
     var xmlHttp = new XMLHttpRequest();
@@ -368,6 +368,7 @@ function refuse_agreement_room(room_id) {
     xmlHttp.withCredentials = true;
     var data = new FormData();
     data.append("room_id", room_id);
+    data.append("agreement_id",agreement_id);
     xmlHttp.send(data);
     document.getElementById("Room_specific").style.display = "none";
     document.getElementById("Room_accept_refuse").style.display = "none"; //display button
@@ -379,7 +380,7 @@ function refuse_agreement_room(room_id) {
  * Accept the agreement by updload the file signed.
  * @param: room_id
  */
-function upload_file_agreement(room_id) {
+function upload_file_agreement(room_id,agreement_id) {
     //update the file and everything
     var file = document.getElementById("formAgreementFilename");
     var url = window.location.protocol + "//" + window.location.host + port + "/Agreement/accept/";
@@ -405,6 +406,7 @@ function upload_file_agreement(room_id) {
                 xmlHttp.withCredentials = true;
                 var data = new FormData();
                 data.append("room_id", room_id);
+                data.append("agreement_id",agreement_id);
                 data.append("file_agreement_signed", file);
                 xmlHttp.send(data);
             }
