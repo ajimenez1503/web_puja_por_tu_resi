@@ -44,6 +44,12 @@
     display: none;
 }
 
+#Agreement {
+    margin-left: auto;
+    margin-right: auto;
+    display: none;
+}
+
 #rent {
     margin-left: auto;
     margin-right: auto;
@@ -405,4 +411,37 @@
     margin: 1%;
     margin-top: 1%;
     margin-bottom: 1%;
+}
+
+/*////////////////////////////////////////////////////////////////
+*STUDENT VIEW / AGREEMENT
+////////////////////////////////////////////////////////////////*/
+#table_Agreement {
+    margin-left: 5%;
+    margin-right: 5%;
+    height: 160px;
+    margin-bottom: 5%;
+    overflow-y: visible;
+}
+
+#Room_upload_file_agreement{
+    display: none;
+}
+
+#Agreement_Room_specific{
+    display: none;
+}
+
+#Agreement_Room_specific_slider_img {
+    width: 230px;
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+    margin: 10px 0 0 0;
+    border-radius: 21px;
+    border-color: rgb(150, 172, 219);
+}
+
+#Agreement_Room_specific{
+    margin-bottom: 22%;
 }

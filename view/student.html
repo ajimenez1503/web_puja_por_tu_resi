@@ -21,6 +21,9 @@
             <li onclick="page('/Room')">
                 <a> <label>Mi Habitacion</label> </a>
             </li>
+            <li onclick="page('/Agreement')">
+                <a> <label>Contratos</label> </a>
+            </li>
 
             <li role="presentation" class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
@@ -35,7 +38,6 @@
                     </li>
                 </ul>
             </li>
-
 
             <li onclick="page('/message')">
                 <a> <label>Mensajes <span  class="label_tab" id="student_numberMessage">0</span></label> </a>
@@ -323,44 +325,6 @@
 
 
     <div id="Room">
-        <div id="Room_accept_refuse">
-            <div class="room_wrapper_button">
-                <button onclick="display_specific_div('Room_upload_file_agreement_father','Room_upload_file_agreement')" type="button" class="button_margin_room btn btn-primary">Aceptar y firmar contrato</button>
-                <a id="Room_button_download_agreement" class="button_margin_room btn btn-success">Descargar contrato</a>
-                <button id="Room_button_refuse_agreement" type="button" class="button_margin_room btn btn-warning">Rechazar habitacion</button>
-            </div>
-            <div id="Room_upload_file_agreement_father">
-                <div id="Room_upload_file_agreement" class="col-sm-7">
-                    <div class="row">
-                        <div class="col-md-10 col-md-offset-5">
-                            <div class="panel panel-login">
-                                <div class="panel-body">
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                            <form id="Room_form_id_upload_file_agreement" action="javascript:void(0);" method="post" enctype="multipart/form-data" novalidate>
-                                                <div class="form-group">
-                                                    <input type="file" id="formAgreementFilename" tabindex="2" class="form-control" placeholder="nombre archivo" required>
-                                                </div>
-                                                <div class="form-group">
-                                                    <div class="row">
-                                                        <div class="col-sm-6 col-sm-offset-3">
-                                                            <input type="submit" tabindex="4" class="form-control btn btn-submit" value="subir contrato">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-        <!-- end Room_accept_refuse -->
-
         <div id="Room_specific">
 
             <div class="col-sm-6">
@@ -442,6 +406,115 @@
     </div>
     <!-- end room -->
 
+    <div id="Agreement">
+
+        <div id="table_Agreement">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Habitacion</th>
+                        <th>Residencia</th>
+                        <th>Precio</th>
+                        <th>Contrato</th>
+                        <th>Fecha inicio</th>
+                        <th>Fecha fin</th>
+                        <th>Firmar</th>
+                        <th>Rechazar</th>
+                    </tr>
+                </thead>
+                <tbody id="table_Agreement_elements">
+                </tbody>
+            </table>
+        </div>
+
+        <div id="Room_upload_file_agreement" class="col-sm-7">
+            <div class="row">
+                <div class="col-md-10 col-md-offset-5">
+                    <div class="panel panel-login">
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <form id="Room_form_id_upload_file_agreement" action="javascript:void(0);" method="post" enctype="multipart/form-data" novalidate>
+                                        <div class="form-group">
+                                            <input type="file" id="formAgreementFilename" tabindex="2" class="form-control" placeholder="nombre archivo" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-sm-6 col-sm-offset-3">
+                                                    <input type="submit" tabindex="4" class="form-control btn btn-submit" value="subir contrato">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="Agreement_Room_specific">
+
+            <div class="col-sm-6">
+
+                <div class="panel-group">
+                    <div class="panel with panel-primary class">
+                        <div class="panel-heading">Habitacion</div>
+                        <div class="panel-body">
+                            <div class="left_room">
+                                <label>Nombre:   </label><label id="Agreement_Room_specific_name"></label></br>
+                                <label>tamaño:   </label><label id="Agreement_Room_specific_size"></label></br>
+                                <label>planta:   </label><label id="Agreement_Room_specific_floor"></label></br>
+
+                                <label>Equipmiento habitacion:</label></br>
+                                <div id="Agreement_Room_specific_equipment_room">
+                                </div>
+                            </div>
+
+                            <div class="right_room">
+                                <div id="Agreement_Room_specific_slider_img">
+                                    <div id="Agreement_Room_specific_slidesContainer_img">
+                                        <div class="slide_img"><img id="Agreement_Room_specific_picture1" width="230px" height="200px" alt="Imagen room" title="Imagen room"></div>
+                                        <div class="slide_img"><img id="Agreement_Room_specific_picture2" width="230px" height="200px" alt="Imagen room" title="Imagen room"></div>
+                                        <div class="slide_img"><img id="Agreement_Room_specific_picture3" width="230px" height="200px" alt="Imagen room" title="Imagen room"></div>
+                                    </div>
+                                    <!-- /Room_slidesContainer-->
+                                </div>
+                                <!-- /Room_slider -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="col-sm-6">
+                <div class="panel-group">
+                    <div class="panel with panel-primary class">
+                        <div class="panel-heading">Residencia</div>
+                        <div class="panel-body">
+                            <label>Nombre:   </label><label id="Agreement_Room_specific_college_company_name"></label></br>
+                            <label>Contacto:   </label><label id="Agreement_Room_specific_college_telephone"></label></br>
+                            <label>Url:   </label>
+                            <a target="_blank" id="Agreement_Room_specific_college_url"></a>
+                            </br>
+                            <label>email:   </label><label id="Agreement_Room_specific_college_email"></label></br>
+                            <label>Equipamiento:   </label></br>
+                            <div id="Agreement_Room_specific_college_equipment">
+                            </div>
+                        </div>
+                        <div id="Agreement_Room_specific_college_map"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- end Agreement_Room_specific -->
+
+    </div>
+    <!-- end Agreement -->
 
     <div id="incidence">
         <div id="student_inicidence_list" class="elememt_profile">

@@ -319,7 +319,6 @@ function get_room_data() {
                 display_specific_room("Room_specific", output.data.room);
                 //displat data college
                 display_specific_college("Room_specific_", output.data.college);
-                display_button_accept_refuse(output.data.agreement_signed, output.data.agreement);
             } else {
                 document.getElementById("Room_specific").style.display = "none";
                 showErrorMessagesPage("showdata", output.message, output.success);
@@ -327,29 +326,6 @@ function get_room_data() {
         }
     }
 }
-
-
-/**
- * Display the button. Assigned a every button and form the specifit function and link
- */
-function display_button_accept_refuse(agreement_signed, agreement_data) {
-    if (!agreement_signed) {
-        document.getElementById("Room_accept_refuse").style.display = "block"; //display button
-        document.getElementById("Room_upload_file_agreement").onclick = function() {
-            upload_file_agreement(agreement_data.room_id,agreement_data.id);
-        };
-        document.getElementById("Room_button_download_agreement").setAttribute('href', window.location.protocol + "//" + window.location.host + port + "/Agreement/download/" + agreement_data.file_agreement);
-        document.getElementById("Room_button_download_agreement").download = "file"
-        document.getElementById("Room_button_refuse_agreement").onclick = function() {
-            refuse_agreement_room(agreement_data.room_id,agreement_data.id);
-        };
-
-    } else {
-        document.getElementById("Room_accept_refuse").style.display = "none"; //display button
-    }
-
-}
-
 /**
  * Display the button. Assigned a every button and form the specifit function and link
  */
@@ -372,7 +348,7 @@ function refuse_agreement_room(room_id,agreement_id) {
     xmlHttp.send(data);
     document.getElementById("Room_specific").style.display = "none";
     document.getElementById("Room_accept_refuse").style.display = "none"; //display button
-    get_room_data();
+    getAgreements();
 }
 
 
@@ -398,7 +374,7 @@ function upload_file_agreement(room_id,agreement_id) {
                         showErrorMessagesPage("accept Agreement", output.message, output.success);
                         if (output.success) {
                             document.getElementById("Room_form_id_upload_file_agreement").reset(); //clean input
-                            get_room_data();
+                            getAgreements();
                         }
                     }
                 }
@@ -417,6 +393,130 @@ function upload_file_agreement(room_id,agreement_id) {
         console.log("Enter a correct file.")
     }
 }
+//////////////////////////////////////////////////////////////////////////////
+/*
+ *Agrements
+ */
+//////////////////////////////////////////////////////////////////////////////
+
+/**
+ * Get every agreement and display as a row in the table. habitacion,Residencia,precio,contrato,Fecha inicio,Fecha fin, Firmar,Rechazar
+ * @param data_agreement
+ * @return tr
+ */
+function create_row_agreement(data_agreement) {
+    var tr = document.createElement('tr');
+    tr.id="Agreement_"+data_agreement.agreement.id;
+    //habitacion
+    var td = document.createElement('td');
+    td.appendChild(document.createTextNode(data_agreement.room.name))
+    td.onclick = function() {
+        document.getElementById("Agreement_Room_specific").style.display = "block";
+        //display data room
+        display_specific_room("Agreement_Room_specific", data_agreement.room);
+        //displat data college
+        display_specific_college("Agreement_Room_specific_", data_agreement.college);
+    }
+    td.onmouseover = function() {
+        selected_out_selected_row_table(tr.id)
+    };
+    td.onmouseout = function() {
+        selected_out_selected_row_table(tr.id)
+    };
+    tr.appendChild(td)
+    //Residencia
+    var td = document.createElement('td');
+    td.appendChild(document.createTextNode(data_agreement.college.companyName))
+    tr.appendChild(td)
+    //price
+    var td = document.createElement('td');
+    td.appendChild(document.createTextNode(data_agreement.agreement.price.toString() + "€"));
+    tr.appendChild(td)
+    //contrato
+    var td = document.createElement('td');
+    var file_download = document.createElement('a');
+    file_download.setAttribute('href', window.location.protocol + "//" + window.location.host + port + "/Agreement/download/" + data_agreement.agreement.file_agreement);
+    file_download.download = "file"
+    file_download.appendChild(document.createTextNode("file_download"));
+    td.appendChild(file_download);
+    tr.appendChild(td);
+    //Fecha inicio
+    var td = document.createElement('td');
+    td.appendChild(document.createTextNode(data_agreement.agreement.date_start_school.date.replace(" 00:00:00", "").replace(".000000", "")));
+    tr.appendChild(td)
+    //Fecha fin
+    var td = document.createElement('td');
+    td.appendChild(document.createTextNode(data_agreement.agreement.date_end_school.date.replace(" 00:00:00", "").replace(".000000", "")));
+    tr.appendChild(td)
+    //Firmar
+    var td = document.createElement('td');
+    if (!data_agreement.agreement_signed) {
+        td.appendChild(icon_check());
+        td.title = "Aceptar room"
+        td.style.cursor = "pointer";
+        //function open TPV module
+        td.onclick = function() {
+            document.getElementById("Room_upload_file_agreement").style.display = "block"; //display button
+            document.getElementById("Room_upload_file_agreement").onclick = function() {
+                upload_file_agreement(data_agreement.room.id,data_agreement.agreement.id);
+            };
+        };
+    }
+    tr.appendChild(td)
+    //Rechazar
+    var td = document.createElement('td');
+    if (!data_agreement.agreement_signed) {
+        td.appendChild(icon_delete());
+        td.title = "rechzar room"
+        td.style.cursor = "pointer";
+        //function open TPV module
+        td.onclick = function() {
+            refuse_agreement_room(data_agreement.room.id,data_agreement.agreement.id);
+        };
+    }
+    tr.appendChild(td);
+    return tr;
+}
+
+
+/**
+ * Display table agreements in the tab
+ * @param: tab_elements
+ * @param: tab_table
+ * @param: list_agreements
+ */
+function display_table_agreements(tab_element, tab_table, list_agreements) {
+    var father = document.getElementById(tab_element);
+    deleteAllChildElement(father)
+    for (i = 0; i < list_agreements.length; i++) {
+        father.appendChild(create_row_agreement(list_agreements[i]));
+    }
+    floatThead_table(tab_table);
+}
+
+
+/**
+ * Get all the Agreement and display in the table
+ */
+function getAgreements() {
+    var xmlHttp = new XMLHttpRequest();
+    var url = window.location.protocol + "//" + window.location.host + port + "/Agreement/getList/";
+    xmlHttp.open("GET", url, true);
+    xmlHttp.withCredentials = true;
+    xmlHttp.send();
+    xmlHttp.onreadystatechange = function() {
+        if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+            var output = JSON.parse(xmlHttp.responseText);
+            console.log(output)
+            if (output.success) {
+                display_table_agreements ("table_Agreement_elements","table_Agreement",output.data)
+            } else {
+                showErrorMessagesPage("showdata", output.message, output.success);
+            }
+        }
+    }
+}
+
 //////////////////////////////////////////////////////////////////////////////
 /*
  *RENT, SHOW DATA, DOWNLOAD FILE, PAY
@@ -829,6 +929,19 @@ page('/Room', function() {
     }
 });
 
+
+/**
+ * Display the agreement page
+ */
+page('/Agreement', function() {
+    if ("studentview" === globa_view) {
+        console.log("displayagreement");
+        display_specific_div("student_view_list_elements", "Agreement");
+        countUnreadMessages("student_");
+        getAgreements();
+        document.getElementById("Agreement_Room_specific").style.display = "none";
+    }
+});
 
 /**
  * Display the search_room page
