@@ -84,6 +84,45 @@ function check_sesion() {
 }
 
 
+
+
+/**
+ * Login the user by username and password.
+* @param: username
+* @param: password
+ */
+function internal_login(username,password) {
+    var url = window.location.protocol + "//" + window.location.host + port + "/login";
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function() {
+        if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+            var output = JSON.parse(xmlHttp.responseText);
+            console.log(output);
+            if (output.success) {
+                if (output.data.ROLE[0] == "ROLE_STUDENT") {
+                    globa_view = "studentview";
+                    reloadPage();
+                } else if (output.data.ROLE[0] == "ROLE_COLLEGE") {
+                    globa_view = "collegeview";
+                    reloadPage();
+                } else {
+                    console.log(output.data.ROLE[0]);
+                    showErrorMessagesPage("login", "Role desconocido.", output.success);
+                }
+            } else {
+                showErrorMessagesPage("login", output.message, output.success);
+                console.log(output);
+            }
+        }
+    }
+    xmlHttp.open("POST", url, true);
+    xmlHttp.withCredentials = true;
+    var data = new FormData();
+    data.append("_username", username);
+    data.append("_password", password);
+    xmlHttp.send(data);
+}
+
 /**
  * Login the user by username and password.
  * The input is validate and show the error in case of problem.
@@ -92,35 +131,7 @@ function login() {
     var username = document.getElementById("loginUsername").value;
     var password = document.getElementById("loginPassword").value;
     if (password.length >= sizePaswword && (validate_DNI(username) || validate_CIF(username))) {
-        var url = window.location.protocol + "//" + window.location.host + port + "/login";
-        var xmlHttp = new XMLHttpRequest();
-        xmlHttp.onreadystatechange = function() {
-            if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
-                var output = JSON.parse(xmlHttp.responseText);
-                console.log(output);
-                if (output.success) {
-                    if (output.data.ROLE[0] == "ROLE_STUDENT") {
-                        globa_view = "studentview";
-                        reloadPage();
-                    } else if (output.data.ROLE[0] == "ROLE_COLLEGE") {
-                        globa_view = "collegeview";
-                        reloadPage();
-                    } else {
-                        console.log(output.data.ROLE[0]);
-                        showErrorMessagesPage("login", "Role desconocido.", output.success);
-                    }
-                } else {
-                    showErrorMessagesPage("login", output.message, output.success);
-                    console.log(output);
-                }
-            }
-        }
-        xmlHttp.open("POST", url, true);
-        xmlHttp.withCredentials = true;
-        var data = new FormData();
-        data.append("_username", username);
-        data.append("_password", password);
-        xmlHttp.send(data);
+        internal_login(username,password);
     } else {
         showErrorMessagesPage("login", "Invalid password o usuario.", false);
     }
@@ -215,6 +226,7 @@ function signup_college() {
             showErrorMessagesPage("signup", output.message, output.success);
             if (output.success) {
                 document.getElementById("register_form_college").reset(); //clean input
+                internal_login(user.username,user.password);
             }
         }
     }
@@ -286,6 +298,7 @@ function signup_student() {
             showErrorMessagesPage("signup", output.message, output.success);
             if (output.success) {
                 document.getElementById("register_form_student").reset(); //clean input
+                internal_login(user.username,user.password);
             }
         }
     }
