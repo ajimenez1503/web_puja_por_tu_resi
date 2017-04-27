@@ -940,6 +940,8 @@ page('/Agreement', function() {
         countUnreadMessages("student_");
         getAgreements();
         document.getElementById("Agreement_Room_specific").style.display = "none";
+        document.getElementById("Room_upload_file_agreement").style.display = "none";
+
     }
 });
 

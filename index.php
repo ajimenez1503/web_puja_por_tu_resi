@@ -59,8 +59,9 @@
           <p onclick="page('/Politica_de_cookies')" class="footer_element col-sm-2"> Politica de cookies </p>
           <p onclick="page('/condiciones_generareales')" class="footer_element col-sm-2"> Condiciones generareales </p>
           <p onclick="page('/aviso_legal')" class="footer_element col-sm-2"> Aviso legal </p>
-          <p onclick="page('/FAQ')" class="footer_element col-sm-2"> FAQ </p>
+          <p onclick="page('/FAQ')" class="footer_element col-sm-1"> FAQ </p>
           <p class="footer_element col-sm-2" onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLSc-lkdlkzKnQHWYRxEQ7vZQJm6lkDcadYobOB3Z7PULKXaL4A/viewform?embedded=tru','_blank')">Formulario</p>
+          <img class="footer_element col-sm-1" src="img/taw1-3c.png" alt=" Valid taw 1.3" align="middle">
         </div>
         <div id="all_footer_full_element">
           <div id="Politica_de_privadidad" class="footer_full_element" style="display:none;" >
@@ -375,6 +376,21 @@
                   <div id="collapse16" class="panel-collapse collapse">
                       <div class="card-block">
                           Es un procedimiento bastante sencillo, solo tienes que descargar el contrato, firmarlo y subirlo a la web.
+                      </div>
+                  </div>
+              </div>
+              <div class="card ">
+                  <div class="card-header">
+                      <p class="class_h4" class="card-header">
+                          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse17">
+                              ¿Que nivel de accesibilidad tiene la web?
+                          </a>
+                      </p>
+                  </div>
+                  <div id="collapse17" class="panel-collapse collapse">
+                      <div class="card-block">
+                          This Web page satisfies the WAI-A conformance level. You can use any of the following logos to indicate that the Web page has been evaluated with taw 3.
+                          <img src="img/taw1-3c.png" alt=" Valid taw 1.3">
                       </div>
                   </div>
               </div>
