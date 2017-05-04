@@ -3,6 +3,114 @@
 * @version 0.1
 */
 
+/*////////////////////////////////////////////////////////////////
+*Responsive desing
+////////////////////////////////////////////////////////////////*/
+@media only screen and (max-width: 768px) {
+    .responsive_margin_button{
+        margin-bottom: 160px;
+    }
+}
+
+/*
+Max width before this PARTICULAR table gets nasty
+This query will take effect for any screen smaller than 760px
+and also iPads specifically.
+*/
+@media
+only screen and (max-width: 760px),
+(min-device-width: 768px) and (max-device-width: 1024px)  {
+
+    table {
+        margin-bottom: 155px !important;
+    }
+    /* Force table to not be like tables anymore */
+    table, thead, tbody, th, td, tr {
+        display: block;
+    }
+
+    /* Hide table headers (but not display: none;, for accessibility) */
+    thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+
+    tr { border: 1px solid #ccc; }
+
+    td {
+        /* Behave  like a "row" */
+        border: none;
+        border-bottom: 1px solid #eee;
+        position: relative;
+        padding-left: 50%;
+    }
+
+    td:before {
+        /* Top/left values mimic padding */
+        top: 6px;
+        left: 6px;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+    }
+
+    /*
+    Label the data
+    */
+
+    #table_Agreement td:nth-of-type(1):before { content: "Habitacion"; }
+    #table_Agreement td:nth-of-type(2):before { content: "Residencia"; }
+    #table_Agreement td:nth-of-type(3):before { content: "Precio"; }
+    #table_Agreement td:nth-of-type(4):before { content: "Contrato"; }
+    #table_Agreement td:nth-of-type(5):before { content: "Fecha inicio"; }
+    #table_Agreement td:nth-of-type(6):before { content: "Fecha fin"; }
+    #table_Agreement td:nth-of-type(7):before { content: "Firmar"; }
+    #table_Agreement td:nth-of-type(8):before { content: "Rechazar"; }
+
+    #table_rent td:nth-of-type(1):before { content: "mes"; }
+    #table_rent td:nth-of-type(2):before { content: "año"; }
+    #table_rent td:nth-of-type(3):before { content: "precio"; }
+    #table_rent td:nth-of-type(4):before { content: "Fecha pago"; }
+    #table_rent td:nth-of-type(5):before { content: "recibo"; }
+    #table_rent td:nth-of-type(6):before { content: "pagar"; }
+
+    #college_profile_table_responsiblePerson td:nth-of-type(1):before { content: "DNI"; }
+    #college_profile_table_responsiblePerson td:nth-of-type(2):before { content: "Email"; }
+    #college_profile_table_responsiblePerson td:nth-of-type(3):before { content: "Nombre"; }
+    #college_profile_table_responsiblePerson td:nth-of-type(4):before { content: "Trabajo"; }
+    #college_profile_table_responsiblePerson td:nth-of-type(5):before { content: "Eliminar"; }
+
+    #college_profile_table_bank td:nth-of-type(1):before { content: "IBAN"; }
+    #college_profile_table_bank td:nth-of-type(2):before { content: "BIC"; }
+    #college_profile_table_bank td:nth-of-type(3):before { content: "Propietario"; }
+    #college_profile_table_bank td:nth-of-type(4):before { content: "Activar"; }
+    #college_profile_table_bank td:nth-of-type(5):before { content: "Eliminar"; }
+
+    #college_table_list_rooms td:nth-of-type(1):before { content: "nombre"; }
+    #college_table_list_rooms td:nth-of-type(2):before { content: "tamaño"; }
+    #college_table_list_rooms td:nth-of-type(3):before { content: "planta"; }
+    #college_table_list_rooms td:nth-of-type(4):before { content: "precio"; }
+    #college_table_list_rooms td:nth-of-type(5):before { content: "television"; }
+    #college_table_list_rooms td:nth-of-type(6):before { content: "baño"; }
+    #college_table_list_rooms td:nth-of-type(7):before { content: "escritorio"; }
+    #college_table_list_rooms td:nth-of-type(8):before { content: "armario"; }
+    #college_table_list_rooms td:nth-of-type(9):before { content: "Eliminar"; }
+
+    #college_table_list_students td:nth-of-type(1):before { content: "nombre"; }
+    #college_table_list_students td:nth-of-type(2):before { content: "DNI"; }
+    #college_table_list_students td:nth-of-type(3):before { content: "email"; }
+    #college_table_list_students td:nth-of-type(4):before { content: "habitacion"; }
+    #college_table_list_students td:nth-of-type(5):before { content: "fecha inicio"; }
+    #college_table_list_students td:nth-of-type(6):before { content: "fecha fin"; }
+
+    #college_student_specific_table_rent td:nth-of-type(1):before { content: "mes"; }
+    #college_student_specific_table_rent td:nth-of-type(2):before { content: "año"; }
+    #college_student_specific_table_rent td:nth-of-type(3):before { content: "precio"; }
+    #college_student_specific_table_rent td:nth-of-type(4):before { content: "Fecha pago"; }
+    #college_student_specific_table_rent td:nth-of-type(5):before { content: "recibo"; }
+}
+
 .body {
     font-family: 'Open Sans', sans-serif !important;
 }

@@ -7,6 +7,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
     <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -53,7 +54,7 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     </head>
     <body >
-        <div  id="viewBase" ></div>
+        <div  id="viewBase" class="responsive_margin_button" ></div>
         <div class="footer" >
           <p onclick="page('/Politica_de_privadidad')" class="footer_element col-sm-2" > Politica de privadidad </p>
           <p onclick="page('/Politica_de_cookies')" class="footer_element col-sm-2"> Politica de cookies </p>
