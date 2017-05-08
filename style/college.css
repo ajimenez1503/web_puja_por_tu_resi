@@ -137,17 +137,9 @@
 }
 
 .college_messages_table {
-    width: 25%;
-    float: left;
-    height: 550px;
     margin-bottom: 2%;
     padding-left: 5%;
     overflow-y: auto;
-}
-
-#college_messages_list_messages {
-    float: left;
-    width: 75%;
 }
 
 textarea {
