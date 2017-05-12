@@ -2,6 +2,8 @@
 # web_puja_por_tu_resi
 web client for puja_por_tu_resi
 
+_by @softwarejimenez
+
 ![PujaPorTuResi Logo](https://raw.githubusercontent.com/softwarejimenez/web_puja_por_tu_resi/master/img/logo.png)
 
 # Demo View Student
@@ -14,7 +16,7 @@ alt="DEMO PujaPorTuResi. View estudiante" width="240" height="180" border="10" /
 <a href="https://www.youtube.com/watch?v=i3NzDyx_N2g" target="_blank"><img src="http://i3.ytimg.com/vi/i3NzDyx_N2g/maxresdefault.jpg" 
 alt="DEMO PujaPorTuResi. View College" width="240" height="180" border="10" /></a>
 
-_by @softwarejimenez
+
 
 # Keywords: 
 college, student, bid, Web, API, responsive design, booking, delivery 
