@@ -14,8 +14,6 @@ alt="DEMO PujaPorTuResi. View estudiante" width="240" height="180" border="10" /
 <a href="https://www.youtube.com/watch?v=i3NzDyx_N2g" target="_blank"><img src="http://i3.ytimg.com/vi/i3NzDyx_N2g/maxresdefault.jpg" 
 alt="DEMO PujaPorTuResi. View College" width="240" height="180" border="10" /></a>
 
-
-https://www.youtube.com/watch?v=i3NzDyx_N2g
 _by @softwarejimenez
 
 # Keywords: 
